@@ -65,7 +65,7 @@ theme:
 plugins:
 
   - page-to-pdf:
-      disableOnServe: false
+      disableOnServe: true
       displayHeaderFooter: true
       printBackground: true
       scale: 0.7
