@@ -1,0 +1,140 @@
+site_name: "Ressources de 1ère NSI"
+site_author: Fabrice Perez
+site_url: https://eipaca.github.io/NSI-1/
+
+site_description: >-
+  Write your documentation in Markdown and create a professional static site in
+  minutes – searchable, customizable, in 60+ languages, for all devices
+
+repo_url: https://github.com/eipaca/NSI-1
+
+copyright: |
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> Mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+
+
+theme:
+  name: material
+  font: false
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.prune 
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: fr
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  logo: assets/logo-ecole-internationale-paca-manosque.png
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/log-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+plugins:
+
+  - page-to-pdf:
+      disableOnServe: false
+      displayHeaderFooter: true
+      printBackground: true
+      scale: 0.7
+      headerTemplate: '<header style="width:100%;font-size:10px;font-weight:600;color:white;background:#4051b5;margin-top:-20px;padding:10px;-webkit-print-color-adjust: exact">
+                        <span style="display:inline-block;vertical-align:middle;margin-top:-4px;margin-left:10px;">Ressources de 1ère NSI</span>
+                     </header>'
+      footerTemplate: '<footer style="position:relative;width:100%;font-size:6px;color:#999999;margin:10px 10px 0px 50px;-webkit-print-color-adjust: exact">
+                        <span>Ecole Internationale PACA | CC-BY-NC-SA </span>
+                        <span class="page" style="position:absolute;bottom:0;right:0;">
+                          <span class="pageNumber"></span>/<span class="totalPages"></span>
+                        </span>
+                      </footer>'
+
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  # enables native support for Mermaid.js diagrams
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  #  enables content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
+  
+
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+  # Page tree
+nav:
+  - A propos: index.md
+  #- Types et valeurs de base: 
+  #  - types-et-valeurs-de-base/index.md
+  #- Types construits: 
+  #  - types-construits/index.md
+  #- Traitement des données en table: 
+  #  - donnees-en-tables/index.md
+  #- Interactions entre l’homme et la machine sur le Web: 
+  #  - ihm-sur-web/index.md
+  - Langages et programmation: 
+    - langages-et-programmation/index.md
+    - Variables et affectation: langages-et-programmation/1-variables-affectation.md
+    - Opération, comparaisons et expressions: langages-et-programmation/2-operations-comparaisons-expressions.md
+    - Instructions: langages-et-programmation/3-instructions.md
+    - Constructions élémentaires: langages-et-programmation/4-constructions-elementaires.md
+    - Appel de fonctions: langages-et-programmation/5-fonctions.md
+    - Modules et bibliothèques: langages-et-programmation/6-modules-bibliotheques.md
+    - Mise au point des programmes et gestion des bugs: langages-et-programmation/7-mise-au-point-gestion-bugs.md
