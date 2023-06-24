@@ -3,9 +3,9 @@
 ## Variable
 
 !!! abstract "Cours" 
-    Les données utilisées par un programme sont stockées dans des **variables**.
+    Un programme stocke et manipule des informations en utilisant des **variables**. Une variable associe un nom à la valeur.
 
-On peut concevoir une variable un peu comme une “boite” qui est identifiée par un nom et qui contient des informations utilisées par une programme informatique. Le contenu de cette “boite” évolue pendant l’exécution du programme[^1].
+On peut concevoir une variable un peu comme une “boite” qui est identifiée par un nom et contient les informations utilisées par un programme informatique. Le contenu de cette “boite” peut évolue pendant l’exécution du programme[^1].
 
 En Python, comme dans la plupart des langages informatiques, le nom d’une variable :
 
@@ -37,7 +37,7 @@ En pratique cela permet d’éviter les noms de variable réduits à une lettre 
 On trouve par exemple :
 
 - des nombres entiers (type ```int```) ;
-- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.`ou `.5` pour 5.0 ou 0.5 et `2e5` pour $2.10^5$ ;
+- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.`ou `.5` pour 5.0 ou 0.5 et `2e5` pour $2 \times 10^5$ ;
 - des booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
 - des textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
 - des p_uplet, tableaux, dictionnaires, etc. 
@@ -69,11 +69,11 @@ SyntaxError: can't assign to literal
 On peut aussi affecter la valeur d’une variable à une autre variable, par exemple :
 ``` python 
 >>> a = 5
->>> b = a
+>>> b = a + 1
 >>> b
-5
+6
 ```
-et affecter la valeur de plusieurs variables en une seule ligne :
+et affecter les valeurs de plusieurs variables en une seule ligne :
 ``` python 
 >>> a, b = 5, 6
 >>> a
