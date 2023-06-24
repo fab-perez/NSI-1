@@ -121,36 +121,32 @@ Pour les chaînes de caractères, deux opérations sont possibles, l'addition et
 La fonction `len()` donne le nombre de caractère d’une chaine (y compris les espaces et ponctuation).
 
 ``` py
->>> len(chaine1)
-5
->>> len('hello world !')
+>>> ch = 'hello world !'
+>>> len(ch)
 13
 ```
 
 Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
-```py
->>> ch = 'good morning'
-```
 
 - On peut accéder au premier caractère avec `ch[0]`, au second avec `ch[1]`, … au caractère en iieme position par `ch[i]`. 
 :warning: Le premier caractère est `ch[0]`, et non pas `ch[1]` !
 ```py
->>> ch[3]	
-'d'
+>>> ch[6]	
+'w'
 ```
 
 - De même, en partant de la fin, on peut accéder au dernier caractère avec `ch[-1]`, à l’avant dernier avec `ch[-2]`, etc. 
 ```py
 >>> ch[-1]
-'g'
+'!'
 ```
 !!! tip inline end "PEP-8" 
     Pas d'espace autour du signe « `:` ».
 
 - On peut enfin accéder à la sous-chaîne de tous les caractères entre `i` et `j - i`, appelée une tranche, avec `ch[i:j]`.
 ```py
->>> ch[1:3]
-'oo'
+>>> ch[2:5]
+'llo'
 ```
 
 On peut aussi vérifier l’appartenance, ou pas, d’une chaine dans une autre avec `in` et `not in` :
@@ -172,11 +168,11 @@ Il existe de nombreuses méthodes[^4] pour traiter les chaines de caractères, e
 |`.count('sc')`| compte le nombre de sous-chaînes `sc` dans la chaîne.|`>>> chaine.count('bc')`<br>`1`|
 |`.lower('sc')`| onvertit une chaîne en minuscules.|`>>> 'ABCdef'.lower()`<br>`'abcdef'`|
 |`.upper('sc')`| onvertit une chaîne en majuscules.|`>>> 'ABCdef'.upper()`<br>`'ABCDEF'`|
-|`.replace('old', 'new')`| remplace tous les caractères `old` par `new`  dans la chaîne..|`>>> 'aaabbbccc'.replace('c', 'e')`<br>`'aaabbbeee'`|
+|`.replace('old', 'new')`| remplace tous les caractères `old` par `new`  dans la chaîne.|`>>> 'aaabbbccc'.replace('c', 'e')`<br>`'aaabbbeee'`|
 
 
 ## Opérateurs de comparaison
-Les opérations mathématiques de comparaison peuvent être effectuées sur des valeurs. Le résultat est un booléen (de type `bool`) égal à `True` ou `False`[^5] .
+Les opérations mathématiques de comparaison peuvent être effectuées sur des valeurs. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^5] .
 
 [^5]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
@@ -191,6 +187,7 @@ Les opérations mathématiques de comparaison peuvent être effectuées sur des 
 |≤|```a <= b```|  
 |>|```a > b```|  
 |≥|```a >= b```|  
+
 [^6]
 
 [^6]: On préfèrera `is` et `is not` à `==` et `!=` pour comparer à `None`. On écrit `a is not None` plutôt que `a != None`.
@@ -202,7 +199,7 @@ True
 >>> a == c
 False
 ```
-On peut aussi combiner les comparaisons. Pour vérifier si a est compris entre 2 et 6 ou entre 7 et 8 on peut écrire:
+On peut aussi combiner les comparaisons. Pour vérifier si `a` est compris entre 2 et 6 ou entre 7 et 8 on peut écrire :
 ```py
 >>> 2 <= a < 6
 True
@@ -210,12 +207,12 @@ True
 False
 ```
 
-Attention, c’est en fait une combinaison de plusieurs comparaisons, ce qui peut donner des hérésies mathématiques. 
+Attention, c’est en fait une combinaison de plusieurs comparaisons, ce qui peut donner des hérésies mathématiques : 
 ```py
 >>> 4 < a > 2
 True
 ```
-On peut aussi comparer les chaines de caractères par ordre lexicographique, c’est-à-dire que l’on commence par comparer les deux premiers caractères de chacune des deux chaînes, puis en cas d’égalité on s’intéresse au second, et ainsi de suite comme dans un dictionnaire. Attention aux majuscules et aux nombres  [^7]:
+On peut aussi comparer les chaines de caractères par ordre lexicographique, c’est-à-dire que l’on commence par comparer le premier caractère de chacune des deux chaînes, puis en cas d’égalité on s’intéresse au second, et ainsi de suite comme quand on cherche un mot dans un dictionnaire. Attention aux majuscules et aux nombres écrits dans des chaînes  [^7]:
 
 [^7]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
 
@@ -234,21 +231,22 @@ True
 True
 ```
 
-Les variables de type int ou float peuvent être comparées entre elles même si elles sont de  types différents:
+Les nombres de type `int` ou `float` peuvent être comparées entre eux s'ils sont de  types différents :
 ```py
 >>> 17 == 17.0
 True
 >>> 0.0 < 1
 True
 ```
-Mais pas les nombres avec les chaines de caractères:   
+Mais pas les nombres avec les chaines de caractères :   
 ```py
 >>> 17 == "17"
 False
 ```
-Attention aux égalités entre nombres de type `float` qui ne sont pas encodés de façon exacte [^8]  à la différence des `int` :
+:warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte [^8] :
 ```py
 >>> 0.1 + 0.1 + 0.1 == 0.3
+False
 ```
 
 [^8]: Les `floats` sont encodés par une fraction binaire de numérateur sur 53 bits et de dénominateur une puissance de 2. Dans le cas de `0.1`, la fraction binaire est $3602879701896397/2^{55}$.  Pour afficher toutes le décimales on peut faire: `format(.1,'.55f')`.  Une particularité de Python est de ne pas limiter l’encodage des `int`, on peut par exemple comparer `2*1000` avec `2.**1000`.
@@ -256,7 +254,7 @@ Attention aux égalités entre nombres de type `float` qui ne sont pas encodés 
 
 ##	Opérateurs logiques (ou booléens)
 
-Les opérations logiques peuvent être effectuées sur des booléens . Le résultat est un booléen égal à `True` ou `False`.
+Les opérations logiques peuvent être effectuées sur des booléens. Le résultat est un booléen égal à `True` ou `False`.
 
 
 |opérateur|notation|description|priorité|
@@ -268,7 +266,11 @@ Les opérations logiques peuvent être effectuées sur des booléens . Le résul
 (`a` et `b` sont des booléens).
 
 Comme pour les opérations mathématiques, les opérations logiques suivent des règles de priorité : 
-1. Négation, 2. Conjonction, 3. Disjonction
+
+1. Négation (`not`), 
+2. Conjonction (`and`), 
+3. Disjonction (`or`).
+
 `a or not b and c` est équivalent à `a or ((not b) and c)` mais en pratique, on met des parenthèse.
 
 ## Expressions
@@ -282,7 +284,7 @@ Exemples :
 
 - `a = 5`	n’est PAS une expression, c’est une affection de la valeur 5 à la variable `a`.
 
-- `a == 5`	est une expression qui prend la valeur `True` si `a` vaut 5, ou la valeur `False` sinon.
+- `a == 5`	est une expression qui prend la valeur `True` si `a` est égal à 5, ou la valeur `False` sinon.
 
 
 ![Division entière de 17 par 5 posée](../assets/expression-vs-instruction.png){align=right}
