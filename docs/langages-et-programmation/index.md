@@ -1,11 +1,10 @@
-
 # Langages et programmation
 
-Généralement on appelle **programmation**, ou **codage**, l'écriture de **programmes informatiques**, c’est-à-dire la description d’un algorithme dans un langage de programmation compréhensible par une machine et par un humain.
+La **programmation**, appelée aussi **codage**, est l'écriture de **programmes informatiques**, c’est-à-dire la description d’un algorithme dans un langage de programmation compréhensible par une machine et par un humain.
 
-Un **langage de programmation** est un moyen de communication avec l'ordinateur mais aussi entre programmeurs, les programmes étant d'ordinaire écrits, lus et modifiés par des équipes de programmeurs.
+Un **langage de programmation** est un moyen de communication avec l'ordinateur mais aussi entre programmeurs ; les programmes étant d'ordinaire écrits, lus et modifiés par des équipes de programmeurs.
 
-Il existe des centaines de langages informatiques[^1], par exemple C, C++, JavaScript, Java, PHP, etc. Dans ce chapitre on étudie [Python](https://python.org).
+Il existe des centaines de langages de programmation[^1], par exemple C, C++, JavaScript, Java, PHP, etc. Dans ce chapitre on étudie [Python](https://python.org).
 
 **Python**[^2] est un langage informatique inventé par Guido Van Rossum. La première version publique date de 1991. Il est multiplateforme (Linux, MacOS, Windows, android, iOS), libre et gratuit, mis à jour régulièrement (version actuelle 3.11[^3]).
 
