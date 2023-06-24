@@ -37,7 +37,7 @@ En pratique cela permet d’éviter les noms de variable réduits à une lettre 
 On trouve par exemple :
 
 - des nombres entiers (type ```int```) ;
-- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.`ou `.5` pour 5.0 ou 0.5 et `2e5` pour $2 \times 10^5$ ;
+- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.`ou `.5` pour 5.0 ou 0.5 et `2e5` ou `2E5` pour $2 \times 10^5$ ;
 - des booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
 - des textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
 - des p_uplet, tableaux, dictionnaires, etc. 
@@ -69,9 +69,9 @@ SyntaxError: can't assign to literal
 On peut aussi affecter la valeur d’une variable à une autre variable, par exemple :
 ``` python 
 >>> a = 5
->>> b = a + 1
+>>> b = a
 >>> b
-6
+5
 ```
 et affecter les valeurs de plusieurs variables en une seule ligne :
 ``` python 
