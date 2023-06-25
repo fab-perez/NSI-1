@@ -281,4 +281,4 @@ cos(...)
         carre(50,'red')
         turtle.forward(60)
     ```
- 
+    

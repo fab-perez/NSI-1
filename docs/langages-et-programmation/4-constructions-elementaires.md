@@ -290,13 +290,13 @@ while i != 2:
 
 On peut aussi utiliser :
 
-- `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`. [^1]
+- `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`. [^4.1]
 
-[^1]: `range(d, f)` montre l’avantage d’exclure la borne supérieure, il y `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l’a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
+[^4.1]: `range(d, f)` montre l’avantage d’exclure la borne supérieure, il y `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l’a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
 
-- `range(d, f, p)` qui énumère les nombres entiers compris entre `d` et `f-1` avec un pas de `p` : `d`, `d+p`, `d+2p`, etc. [^2]
+- `range(d, f, p)` qui énumère les nombres entiers compris entre `d` et `f-1` avec un pas de `p` : `d`, `d+p`, `d+2p`, etc. [^4.2]
 
-[^2]:L'instruction `range()` fonctionne sur le modèle `range([début,] fin [, pas])`. Les arguments entre crochets sont optionnels.
+[^4.2]:L'instruction `range()` fonctionne sur le modèle `range([début,] fin [, pas])`. Les arguments entre crochets sont optionnels.
 
 
 La boucle bornée ci-dessus est très similaire à la boucle non bornée suivante :

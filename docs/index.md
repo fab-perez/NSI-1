@@ -11,4 +11,4 @@ Bienvenue sur le site de ressources du cours de 1ère NSI de l'[Ecole Internatio
 * Le  [programme officiel](assets/spe633_annexe_1063268.pdf)
 
 ## Comment est construit ce site ? 
-Ce site est rédigé en Markdown, construit de façon statique avec MkDocs et le thème Material.
+Ce site est rédigé en Markdown, construit avec MkDocs et le thème Material.

@@ -1,16 +1,18 @@
 # Instructions
 
 !!! abstract "Cours" 
-	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expression)) est une commande qui doit être effectuée par la machine avant de passer à la suivante. Une **séquence** est une suite d’**instructions exécutées** dans l’ordre où elles sont écrites.
+	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expression)) est une commande qui doit être effectuée par la machine avant de passer à la suivante. 
+	
+	Une **séquence** est une suite d’**instructions exécutées** dans l’ordre où elles sont écrites.
 
 Par exemple :
 - `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
 - `print('hello world')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
 
 ## type()
-On peut écrire une instruction pour connaitre le type d’une variable avec la fonction `type()`[^1].
+On peut écrire une instruction pour connaitre le type d’une variable avec la fonction `type()`[^3.1].
 
-[^1]: Nous n’abordons pas ici la notion de classe ici.
+[^3.1]: Nous n’abordons pas ici la notion de classe ici.
 
 !!! tip inline end "PEP-8" 
     Pas d’espace avant et à l’intérieur des parenthèses d’une fonction.

@@ -40,9 +40,9 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres et/ou d
 
 
 ### Division entière (ou division euclidienne) 
-L'opérateur de division entière ```//``` et l’opération modulo ```%``` utilisés avec des entiers (de type ```int```) donnent respectivement le quotient et le reste d'une division euclidienne. Si `a` et `b` sont des entiers tels que $a = b \times q + r$,  alors ```a // b``` donne $q$ et ```a % b``` donne $r$[^1].
+L'opérateur de division entière ```//``` et l’opération modulo ```%``` utilisés avec des entiers (de type ```int```) donnent respectivement le quotient et le reste d'une division euclidienne. Si `a` et `b` sont des entiers tels que $a = b \times q + r$,  alors ```a // b``` donne $q$ et ```a % b``` donne $r$[^2.1].
 
-[^1]: 
+[^2.1]: 
       Vrai pour des entiers positifs. Attention aux surprises avec des nombres relatifs ! Les résultats sont différents entre langages/systèmes informatiques. En Python on peut tester `7 // -5` et `-17 // 5` qui donnent tous les deux `-4` mais `17 % -5` donne `-3` alors que `-17 % 5`  donne `3`.
 
 
@@ -64,7 +64,7 @@ Par exemple, le quotient et le reste de la division entière de $17$ par $5$ son
 >>> a % b
 2
 ```
-On peut affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2].
+On peut affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2.2].
 ``` python
 >>> a = 3				
 >>> a = a + 1				
@@ -82,7 +82,7 @@ On peut affecter une valeur à une variable qui dépend de son ancienne valeur, 
 ```
 
 
-[^2]: 
+[^2.2]: 
      Noter dans cet exemple la différence entre variable informatique et mathématique, et la signification du signe =. En mathématique $a = 2*a + 1$ est une équation dont l’inconnue est $a$ (on peut la résoudre facilement et trouver la solution $a = -1$). En informatique, c’est une affectation qui remplace le contenu de la variable `a` part une nouvelle valeur égale à `2*a + 1`, (même si $a \neq -1$).
 
 Des raccourcis d’écriture existent pour aller plus vite (mais attention aux erreurs en les utilisant !)
@@ -101,9 +101,9 @@ Les textes ou chaines des caractères, de type ```str``` (abréviation de *strin
 >>> chaine1 = 'hello'
 >>> chaine2 = "world"
 ```
-Pour les chaînes de caractères, deux opérations sont possibles, l'addition et la multiplication [^3]:
+Pour les chaînes de caractères, deux opérations sont possibles, l'addition et la multiplication [^2.3]:
 
-[^3]:
+[^2.3]:
   Attention : les opérateurs `+` et `*` se comportent différemment s'il s'agit d'entiers ou de chaînes de caractères : `2 + 2` est une addition alors que `'2' + '2'` est une concaténation, `2 * 3` est une multiplication alors que  `'2' * 3` est une duplication.
 
 - L'opérateur d'addition « `+` » **concatène** (assemble) deux chaînes de caractères.
@@ -156,9 +156,9 @@ True
 >>> "Py" not in "python"
 True
 ```
-Il existe de nombreuses méthodes[^4] pour traiter les chaines de caractères, en voilà quelques exemples :
+Il existe de nombreuses méthodes[^2.4] pour traiter les chaines de caractères, en voilà quelques exemples :
 
-[^4]: Une méthode est un type de fonction particulier propre aux langages orientés objet. Remarquer la construction `nom_variable.nom_methode()` dans ces cas différente de `nom_fonction(nom_variable)` par exemple `len('abc')`.
+[^2.4]: Une méthode est un type de fonction particulier propre aux langages orientés objet. Remarquer la construction `nom_variable.nom_methode()` dans ces cas différente de `nom_fonction(nom_variable)` par exemple `len('abc')`.
 
 
 |fonction|description|exemple|
@@ -172,9 +172,9 @@ Il existe de nombreuses méthodes[^4] pour traiter les chaines de caractères, e
 
 
 ## Opérateurs de comparaison
-Les opérations mathématiques de comparaison peuvent être effectuées sur des valeurs. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^5] .
+Les opérations mathématiques de comparaison peuvent être effectuées sur des valeurs. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.5] .
 
-[^5]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
+[^2.5]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
 !!! tip inline end "PEP-8" 
     Entourer les opérateurs (`==`, `!=`, `>=`, etc.) d'un espace avant et d'un espace après.
@@ -188,9 +188,9 @@ Les opérations mathématiques de comparaison peuvent être effectuées sur des 
 |>|```a > b```|  
 |≥|```a >= b```|  
 
-[^6]
+[^2.6]
 
-[^6]: On préfèrera `is` et `is not` à `==` et `!=` pour comparer à `None`. On écrit `a is not None` plutôt que `a != None`.
+[^2.6]: On préfèrera `is` et `is not` à `==` et `!=` pour comparer à `None`. On écrit `a is not None` plutôt que `a != None`.
 
 ```py
 >>> a, b, c = 5, 5, 6
@@ -212,9 +212,9 @@ Attention, c’est en fait une combinaison de plusieurs comparaisons, ce qui peu
 >>> 4 < a > 2
 True
 ```
-On peut aussi comparer les chaines de caractères par ordre lexicographique, c’est-à-dire que l’on commence par comparer le premier caractère de chacune des deux chaînes, puis en cas d’égalité on s’intéresse au second, et ainsi de suite comme quand on cherche un mot dans un dictionnaire. Attention aux majuscules et aux nombres écrits dans des chaînes  [^7]:
+On peut aussi comparer les chaines de caractères par ordre lexicographique, c’est-à-dire que l’on commence par comparer le premier caractère de chacune des deux chaînes, puis en cas d’égalité on s’intéresse au second, et ainsi de suite comme quand on cherche un mot dans un dictionnaire. Attention aux majuscules et aux nombres écrits dans des chaînes  [^2.7]:
 
-[^7]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
+[^2.7]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
 
 ```py
 >>> 'aa'>'ab'
@@ -243,13 +243,13 @@ Mais pas les nombres avec les chaines de caractères :
 >>> 17 == "17"
 False
 ```
-:warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte [^8] :
+:warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte [^2.8] :
 ```py
 >>> 0.1 + 0.1 + 0.1 == 0.3
 False
 ```
 
-[^8]: Les `floats` sont encodés par une fraction binaire de numérateur sur 53 bits et de dénominateur une puissance de 2. Dans le cas de `0.1`, la fraction binaire est $3602879701896397/2^{55}$.  Pour afficher toutes le décimales on peut faire: `format(.1,'.55f')`.  Une particularité de Python est de ne pas limiter l’encodage des `int`, on peut par exemple comparer `2*1000` avec `2.**1000`.
+[^2.8]: Les `floats` sont encodés par une fraction binaire de numérateur sur 53 bits et de dénominateur une puissance de 2. Dans le cas de `0.1`, la fraction binaire est $3602879701896397/2^{55}$.  Pour afficher toutes le décimales on peut faire: `format(.1,'.55f')`.  Une particularité de Python est de ne pas limiter l’encodage des `int`, on peut par exemple comparer `2*1000` avec `2.**1000`.
 
 
 ##	Opérateurs logiques (ou booléens)

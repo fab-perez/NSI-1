@@ -1,11 +1,11 @@
 # Variables et affectation
 
-## Variable
+## Variables
 
 !!! abstract "Cours" 
-    Un programme stocke et manipule des informations en utilisant des **variables**. Une variable associe un nom à la valeur.
+    Un programme peut manipuler des informations en utilisant des **variables**. Une variable associe un nom à la valeur.
 
-On peut concevoir une variable un peu comme une “boite” qui est identifiée par un nom et contient les informations utilisées par un programme informatique. Le contenu de cette “boite” peut évolue pendant l’exécution du programme[^1].
+On peut concevoir une variable un peu comme une “boite” qui est identifiée par un nom et contient les informations utilisées par un programme informatique. Le contenu de cette “boite” peut évolue pendant l’exécution du programme[^1.1].
 
 En Python, comme dans la plupart des langages informatiques, le nom d’une variable :
 
@@ -18,18 +18,18 @@ En Python, comme dans la plupart des langages informatiques, le nom d’une vari
 En pratique cela permet d’éviter les noms de variable réduits à une lettre et d’utiliser des noms qui ont un sens ! 
 
 !!! tip "PEP-8" 
-    La [PEP-8](https://peps.python.org/pep-0008/) [^2] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire, et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  « ```_``` » . Par exemple on utilise `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres, ce style est appelé  « *snake case* »[^3].
+    La [PEP-8](https://peps.python.org/pep-0008/) [^1.2] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire, et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  « ```_``` » . Par exemple on utilise `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres, ce style est appelé  « *snake case* »[^1.3].
 
-[^1]:
+[^1.1]:
     La notion de variable en informatique diffère des mathématiques. En mathématique une variable apparait dans l’expression symbolique d’une fonction $f(x)=2x+3$, ou dans une équation $2x+3=5x-3$ pour désigner une inconnue qu’il faut trouver, ou encore dans  une formule comme $(a+b)² =a²+2ab+b²$ pour indiquer que l’égalité est vraie pour toutes les valeurs de $a$ et $b$.
 
-[^2]:
+[^1.2]:
     [Une PEP (pour *Python Enhancement Proposal*)](https://www.python.org/dev/peps/#introduction) est un document fournissant des informations à la communauté Python, ou décrivant une nouvelle fonctionnalité. En particulier la [PEP 8](https://peps.python.org/pep-0008/) décrit les conventions de style de code agréable à lire.
 
-[^3]: 
+[^1.3]: 
     En opposition au style appelé « *camel case* » qui consiste à écrire les mots attachés en commençant par des majuscules, par exemple ```SommeDesNombres```.
 
-## Types de variables
+## Types de variable
 
 !!! abstract "Cours" 
     Les variables peuvent être de **types** différents en fonction des informations qu’elles contiennent.
@@ -45,9 +45,9 @@ On trouve par exemple :
 ##	Affectation
 
 !!! abstract "Cours" 
-    L'**affectation** consiste à stocker une valeur dans une variable. En Python, comme dans la plupart des langages informatiques, l’**affectation d'une valeur à une variable** est représentée par le signe « `=` ».[^4]
+    L'**affectation** consiste à stocker une valeur dans une variable. En Python, comme dans la plupart des langages informatiques, l’**affectation d'une valeur à une variable** est représentée par le signe « `=` ».[^1.4]
 
-[^4]: En algorithmique, l’affectation est symbolisée par une flèche allant de la valeur (à droite) vers la variable (à gauche), par exemple $a←3$ pour affecter  la valeur $3$ à la variable $a$.
+[^1.4]: En algorithmique, l’affectation est symbolisée par une flèche allant de la valeur (à droite) vers la variable (à gauche), par exemple $a←3$ pour affecter  la valeur $3$ à la variable $a$.
 
 Par exemple pour affecter les valeurs 3 (type `int`), 3.3 (type `float`) et "trois" (type `str`) à des variables nommées `a`, `b` et `c` dans la console Python:
 ``` python 
@@ -84,9 +84,9 @@ et affecter les valeurs de plusieurs variables en une seule ligne :
 !!! tip inline end "PEP-8" 
     Mettre un espace après les virgules (mais pas avant).
 
-En Python, c’est l’affectation qui définit le type de la variable[^5].
+En Python, c’est l’affectation qui définit le type de la variable[^1.5].
 
-[^5]: 
+[^1.5]: 
     On dit que Python est un langage de typage dynamique. Ce n'est pas le cas de nombreux langages comme le C  ou le C++ qui sont de typage statique. 
     Exemple de programme en C :  
     ```C

@@ -182,11 +182,11 @@ Si une fonction a un mélange d'arguments positionnels et par mot-clé, les argu
 
     Une fonction peut **renvoyer** une ou plusieurs valeurs (nombres, textes, booléens, etc..) avec l’instruction return.
     
-    S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^1] (on parle alors de procédure)  . 
+    S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.1] (on parle alors de procédure)  . 
 
     La fonction se termine immédiatement dès qu’une instruction `return` est exécutée. Les instructions suivantes sont ignorées.
 
-[^1]: Donc une fonction renvoie toujours quelque chose.
+[^5.1]: Donc une fonction renvoie toujours quelque chose.
 
 
 Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On teste tous les diviseurs potentiels les uns après les autres en vérifiant si le reste de la division entière est égal à zéro. Dès qu'on trouve un diviseur, inutile de continer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si on ne trouve aucun diviseur après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
