@@ -11,7 +11,7 @@ Il existe des centaines de langages de programmation[^0.1], par exemple C, C++, 
 
 
 
-[<figure markdown>![Image title](../assets/icon-pdf.svg){ align=left width="50" }<figcaption>Télécharger tous le chapitre</figcaption></figure>](../assets/langages-et-programmation(1).pdf)
+[<figure markdown>![Image title](../assets/icon-pdf.svg){ align=left width="50" }<figcaption>Télécharger tout le chapitre</figcaption></figure>](../assets/langages-et-programmation(1).pdf)
 
 
 
