@@ -68,22 +68,6 @@ theme:
       quote: octicons/quote-16
 
 
-plugins:
-
-  - page-to-pdf:
-      disableOnServe: true
-      displayHeaderFooter: true
-      printBackground: true
-      scale: 0.7
-      headerTemplate: '<header style="width:100%;font-size:10px;font-weight:600;color:white;background:#4051b5;margin-top:-20px;padding:10px;-webkit-print-color-adjust: exact">
-                        <span style="display:inline-block;vertical-align:middle;margin-top:-4px;margin-left:10px;">Ressources de 1ère NSI</span>
-                     </header>'
-      footerTemplate: '<footer style="position:relative;width:100%;font-size:6px;color:#999999;margin:10px 20px 0px 50px;-webkit-print-color-adjust: exact">
-                        <span>Ecole Internationale PACA | CC-BY-NC-SA 4.0</span>
-                        <span class="page" style="position:absolute;bottom:0;right:0;">
-                          <span class="pageNumber"></span>/<span class="totalPages"></span>
-                        </span>
-                      </footer>'
 
 
 extra_css:
