@@ -5,7 +5,7 @@ Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par e
 !!! note inline end "" 
     Noter ici la différene avec une fonction mathématique.
 
-Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’utiliser à n’importe quel moment et autant de fois que souhaité sans la réécrire. L’utilisation de fonctions facilite aussi la lisibilité de longs programmes .
+Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’utiliser à n’importe quel moment et autant de fois que souhaité sans la réécrire. L’utilisation de fonctions facilite aussi la lisibilité de longs programmes.
 
 !!! abstract "Cours" 
     Une fonction est définie (ou « déclarée ») par :
@@ -21,7 +21,7 @@ Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’u
         instructions
     ```
 
-De la même façon que pour les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux points qui détermine le bloc d’instructions qui forment la fonction.
+De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
 
 
 Quand on définit une fonction, elle ne s’exécute pas. Et ceci même si la fonction contient une erreur, l’interpréteur Python ne s’en aperçoit pas. Les deux programmes suivants ne font strictement rien :
@@ -128,7 +128,7 @@ Lorsqu'on définit la fonction avec «  `def bonjour(prenom1, prenom2):` »,  `p
 
 Pour avoir des paramètres facultatifs, il faut leur affecter une valeur par défaut.
 
-!!! tip inline end "PEP-8"  
+!!! tip inline end "PEP 8"  
     Pas d’espace autour du signe = pour les arguments par mot-clé. 
 
 ```py linenums="1"

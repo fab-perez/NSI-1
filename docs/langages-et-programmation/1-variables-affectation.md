@@ -3,7 +3,7 @@
 ## Variables
 
 !!! abstract "Cours" 
-    Un programme peut manipuler des informations en utilisant des **variables**. Une variable associe un nom à la valeur.
+    Les programmes manipulent des informations en utilisant des **variables**. Une variable associe un nom à la valeur.
 
 On peut concevoir une variable un peu comme une “boite” qui est identifiée par un nom et contient les informations utilisées par un programme informatique. Le contenu de cette “boite” peut évolue pendant l’exécution du programme[^1.1].
 
@@ -17,8 +17,8 @@ En Python, comme dans la plupart des langages informatiques, le nom d’une vari
 
 En pratique cela permet d’éviter les noms de variable réduits à une lettre et d’utiliser des noms qui ont un sens ! 
 
-!!! tip "PEP-8" 
-    La [PEP-8](https://peps.python.org/pep-0008/) [^1.2] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire, et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  « ```_``` » . Par exemple on utilise `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres, ce style est appelé  « *snake case* »[^1.3].
+!!! tip "PEP 8" 
+    La [PEP 8](https://peps.python.org/pep-0008/) [^1.2] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire, et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  « ```_``` » . Par exemple on utilise `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres, ce style est appelé  « *snake case* »[^1.3].
 
 [^1.1]:
     La notion de variable en informatique diffère des mathématiques. En mathématique une variable apparait dans l’expression symbolique d’une fonction $f(x)=2x+3$, ou dans une équation $2x+3=5x-3$ pour désigner une inconnue qu’il faut trouver, ou encore dans  une formule comme $(a+b)² =a²+2ab+b²$ pour indiquer que l’égalité est vraie pour toutes les valeurs de $a$ et $b$.
@@ -37,10 +37,10 @@ En pratique cela permet d’éviter les noms de variable réduits à une lettre 
 On trouve par exemple :
 
 - des nombres entiers (type ```int```) ;
-- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.`ou `.5` pour 5.0 ou 0.5 et `2e5` ou `2E5` pour $2 \times 10^5$ ;
+- des nombres décimaux, appelés « flottants » (type ```float```)  (:warning: le séparateur décimal est un point, PAS une virgule), noter qu'on peut par exemple écrire `5.` pour 5.0, `.5` pour 0.5 et `2e5` ou `2E5` pour $2 \times 10^5$ ;
 - des booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
 - des textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
-- des p_uplet, tableaux, dictionnaires, etc. 
+- des types construits comme les p_uplet, tableaux, dictionnaires, etc. 
 
 ##	Affectation
 
@@ -49,14 +49,19 @@ On trouve par exemple :
 
 [^1.4]: En algorithmique, l’affectation est symbolisée par une flèche allant de la valeur (à droite) vers la variable (à gauche), par exemple $a←3$ pour affecter  la valeur $3$ à la variable $a$.
 
-Par exemple pour affecter les valeurs 3 (type `int`), 3.3 (type `float`) et "trois" (type `str`) à des variables nommées `a`, `b` et `c` dans la console Python:
+Par exemple, saisir les commandes suivantes dans la console Python permet d'affecter les valeurs 3 (type `int`), 3.3 (type `float`) et "trois" (type `str`) à des variables nommées respectivement `a`, `b` et `c`  :
+
+!!! notetip inline end "" 
+    La console Python, ou interpréteur Python, est un moyen rapide d’exécuter des commandes. Il suffit de taper une instruction en réponse à l’invite `>>>` puis d’appuyer sur la touche « Entrée » pour lancer son exécution.
+
+
 ``` python 
 >>> a = 3
 >>> b = 3.3
 >>> c = "trois"
 ```
 
-!!! tip inline end "PEP-8" 
+!!! tip inline end "PEP 8" 
     Mettre des espaces autour du signe « `=` ».
 
 :warning: On ne peut pas écrire :
@@ -81,10 +86,10 @@ et affecter les valeurs de plusieurs variables en une seule ligne :
 >>> b
 6
 ```
-!!! tip inline end "PEP-8" 
+!!! tip inline end "PEP 8" 
     Mettre un espace après les virgules (mais pas avant).
 
-En Python, c’est l’affectation qui définit le type de la variable[^1.5].
+En Python, c’est l’affectation qui définit le type de la variable[^1.5] :
 
 [^1.5]: 
     On dit que Python est un langage de typage dynamique. Ce n'est pas le cas de nombreux langages comme le C  ou le C++ qui sont de typage statique. 
@@ -100,9 +105,9 @@ En Python, c’est l’affectation qui définit le type de la variable[^1.5].
 >>> b = 3.0
 >>> c = '3.0'
 ```
-Les variables ```a```, ```b``` et ```c``` sont de types ```int```, ```float``` et ```str``` respectivement. 
+Ici, les variables ```a```, ```b``` et ```c``` sont de types ```int```, ```float``` et ```str``` respectivement. 
 
-:warning: On ne peut pas utiliser une variable avant de l’avoir définie.
+:warning: On ne peut pas utiliser une variable avant de l’avoir définie :
 ``` python 
 >>> d
 Traceback (most recent call last):

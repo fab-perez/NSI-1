@@ -17,7 +17,7 @@ Enregistrons la fonction `est_premier` dans un fichier qu’on appelle « mesfon
 Testons à nouveau le programme principal. Toujours la même erreur. Le fichier « mesfonctions.py » doit d’abord être importé pour utiliser les fonctions qu’il contient.
 
 !!! abstract "Cours"
-    Un **module** est un ensemble de fonctions (et des variables) ayant un rapport entre elles que l'on a enfermé dans un fichier. On doit **importer** ce module dans un programme et utiliser ses fonctions.
+    Un **module** est un ensemble de fonctions (et de variables) ayant un rapport entre elles que l'on a enfermé dans un fichier. On doit **importer** ce module dans un programme et utiliser ses fonctions.
     Une **bibliothèque** (ou *package* en anglais) est un ensemble de fonctions, variables, et de **modules** dans un même fichier.
 
 ## `import`

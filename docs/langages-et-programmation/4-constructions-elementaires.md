@@ -4,7 +4,10 @@
     En Python, l’**indentation**, ou décalage vers la droite du début de ligne, délimite les séquences d’instructions et facilite la lisibilité en permettant d’identifier des **blocs**. La ligne précédant une indentation se termine toujours par le signe deux-points.
 
 
-En Python, on utilise 4 espaces (ou Tab) pour faire une indentation (on pourrait aussi utiliser un seul ou plusieurs espaces  mais il faut être consistant).
+!!! tip inline end "PEP 8" 
+    Préférer les espaces aux tabulations.
+
+En Python, on utilise 4 espaces (ou une tabulation) pour faire une indentation (on pourrait aussi utiliser un seul ou plusieurs espaces  mais il faut être consistant à travers tout un programme).
 
 ##	Instructions conditionnelles
 
@@ -17,7 +20,7 @@ En Python, on utilise 4 espaces (ou Tab) pour faire une indentation (on pourrait
     ```
 Par exemple, ce programme détermine le stade de la vie d’une personne selon son age.
 
-!!! tip inline end "PEP-8" 
+!!! tip inline end "PEP 8" 
     Pas d’espace avant le caractère « `:` ».
 
 ```py linenums="1"
@@ -27,7 +30,7 @@ if age >= 18:
     print(f"Vous êtes un {stade}")
     print(f"Vous avez {age} ans")
 ```
-> Ne pas oublier les deux-points « `:` » après la condition et l’indentation après.
+> Ne pas oublier les deux-points « `:` » après la condition et l’indentation sur les lignes suivantes.
 
 L’indentation détermine la séquence à exécuter (ou pas), dans ce cas les instructions qui suivent aux lignes 3, 4 et 5. Quand la condition (l’expression booléenne) `age >= 18` n’est pas vérifiée, aucune des trois instructions n’est exécutée. 
 
@@ -99,7 +102,7 @@ Dès qu’une condition est vérifiée, le programme ne teste pas les conditions
         print('Python ne sait pas bien calculer avec les float')
     ```
 
-!!! tip "PEP-8" 
+!!! tip "PEP 8" 
     Eviter de comparer des variables booléennes à `True` ou `False` avec `==` ou avec `is`. 
     
     On écrit :

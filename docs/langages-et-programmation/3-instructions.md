@@ -6,6 +6,7 @@
 	Une **séquence** est une suite d’**instructions exécutées** dans l’ordre où elles sont écrites.
 
 Par exemple :
+
 - `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
 - `print('hello world')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
 
@@ -14,7 +15,7 @@ On peut écrire une instruction pour connaitre le type d’une variable avec la 
 
 [^3.1]: Nous n’abordons pas ici la notion de classe ici.
 
-!!! tip inline end "PEP-8" 
+!!! tip inline end "PEP 8" 
     Pas d’espace avant et à l’intérieur des parenthèses d’une fonction.
 
 ```py
@@ -80,7 +81,7 @@ Ici la valeur affectée à `nombre_entier` est une chaine de caractères `'25'`.
 
 Une instruction de sortie s’écrit en utilisant `print()` pour afficher à l’écran des chaines de caractère et/ou des variables, séparés par des virgules. 
 
-!!! tip inline end "PEP-8" 
+!!! tip inline end "PEP 8" 
     Un espace après le caractère « `,` » mais pas avant.
 
 
@@ -110,11 +111,50 @@ Hello >>>
 
 Python 3.6 a introduit les chaine de caractères f-strings (formatted string) qui s’écrivent avec `f` devant et permettent d’y insérer des variables, ou même des expressions. 
 ```py
->>> nom = 'Paul'
->>> age = 23
->>> print(f'Bonjour {nom}, vous avez {age} ans')
-Votre nom est un Paul et vous avez 23 ans
+>>> prenom = 'Paul'
+>>> annee_naissance = 2010
+>>> print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
+Votre nom est un Paul et vous avez 13 ans
 ```
+
+## Premier programme
+
+On voudrait maintenant permettre à l'utilisateur d'entrer son prénom et sa date de naissance. Il faut chaque fois écrire dans la console les instructions suivantes :
+```py
+>>> prenom = input('Entrez votre prénom : ')
+Entrez votre prénom : Paul
+>>> annee_naissance = int(input('Entrez votre date de naissance : '))
+Entrez votre date de naissance : 2010
+>>> print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
+Bonjour Paul, vous avez 13 ans
+>>> 
+```
+On voit ici les limites de la console qui répond à des commandes de façon interactive mais ne permet pas d'écrire un programme complet !
+
+Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l'interpréteur de commande avec l'invite Python `>>>` apparaît :
+
+!!! note inline end "" 
+	Python propose par défaut un **IDE** (pour *Integrated Development Environment*) appelé IDLE. Il existe de nombreux IDE, certains dédiés à Python comme PyScripter, Thonny, etc. et d'autres généralistes comme VS Codium, VS Code, etc. acceptant plusieurs langages informatiques.
+
+![idle](../assets/instructions-idle.png){ width="70%" }
+
+Ouvrons un nouveau fichier avec le menu `File/New` pour entrer le programme Python suivant : 
+```py
+prenom = input('Entrez votre prénom : ')
+annee_naissance = int(input('Entrez votre date de naissance : '))
+print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
+```
+
+![idle](../assets/instructions-idle-premier-programme.png){ width="70%" }
+
+Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. On obtient l'affichage suivant dans la console :
+
+![idle](../assets/instructions-idle-premier-programme-run.png){ width="70%" }
+
+On a réalisé notre premier programme informatique.
+
+
+
 
 
 !!! question "Exercice corrigé" 
@@ -134,9 +174,7 @@ Votre nom est un Paul et vous avez 23 ans
 	Traduit en Python, on obtient le programme suivant.  Noter la présence de commentaires dans le code, commençant par le signe `#`, ils sont ignorés par l'interpréteur Python.
 
 	!!! note inline end "" 
-    	Dans un premier temps on n’utilise pas `def main():` généré par défaut par certains IDE.
-	!!! note inline end "" 
-		Essayer le programme sans faire la conversion des variables R, V et B en int et constater l’erreur produite.
+		Essayer le programme sans faire la conversion des variables `R`, `V` et `B` en `int` et constater l’erreur produite.
 	
 	```py
 	# Demande les 3 couleurs R, V et B de type int
@@ -146,5 +184,5 @@ Votre nom est un Paul et vous avez 23 ans
 	# Calcule le niveau de gris G, de type int
 	G = int(0.11 * R + 0.83 * V + 0.06 * B)
 	# Affiche le niveau de gris
-	print('Le niveau de Gris est', G)
+	print(f'Le niveau de Gris est {G}')
 	```

@@ -1,6 +1,6 @@
 #	Mise au point des programmes et gestion des bugs
 
-Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bug ?  Ces questions peuvent devenir extrêmement cruciales et compliquées quand certains  programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
+Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bugs ?  Ces questions peuvent devenir extrêmement cruciales et compliquées quand certains  programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
 
 [^1]: [https://www.informationisbeautiful.net/visualizations/million-lines-of-code/]( https://www.informationisbeautiful.net/visualizations/million-lines-of-code/)
 
@@ -102,7 +102,7 @@ def f(x):
 
 C’est plus déjà plus lisible avec des noms de fonction et variable qui ont un sens et plutôt que réduits à une lettre.
 
-!!! tip inline end "PEP-8"  
+!!! tip inline end "PEP 8"  
     Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés  « _ »  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
 
 ```py
