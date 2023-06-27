@@ -30,7 +30,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 25
 ```
 
-À noter: 
+À noter : 
 
 > Le résultat d’une opération est de type ```float``` si ```a``` ou ```b``` est de type ```float```, sinon de type ```int```, sauf pour la division où le résultat est toujours ```float```.
 
@@ -41,33 +41,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 
 [^2.1]: $a ^ {1 \over 2}$
 
-
-### Division entière (ou division euclidienne) 
-L'opérateur de division entière ```//``` et l’opération modulo ```%``` utilisés avec des entiers (de type ```int```) donnent respectivement le quotient et le reste d'une division euclidienne : si `a` et `b` sont des entiers tels que $a = b \times q + r$,  alors ```a // b``` donne $q$ et ```a % b``` donne $r$[^2.2].
-
-[^2.2]: 
-      Vrai pour des entiers positifs. Attention aux surprises avec des nombres relatifs ! Les résultats sont différents entre langages/systèmes informatiques. En Python on peut tester `7 // -5` et `-17 // 5` qui donnent tous les deux `-4` mais `17 % -5` donne `-3` alors que `-17 % 5`  donne `3`.
-
-
-|opérateur|notation|
-|---|:-:|
-|quotient|```a // b```|
-|reste|```a % b```|
-
-![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-light-mode.png#only-light){align=right}.
-![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}.
-
-Par exemple, le quotient et le reste de la division entière de $17$ par $5$ sont $3$ et $2$ respectivement ($17 = 2  \times 5 + 2$) :
-
-``` python
->>> a = 17
->>> b = 5
->>> a // b				
-3
->>> a % b
-2
-```
-Il est possible d'affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2.3].
+Il est possible d'affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2.2].
 ``` python
 >>> a = 3				
 >>> a = a + 1				
@@ -85,7 +59,7 @@ Il est possible d'affecter une valeur à une variable qui dépend de son ancienn
 ```
 
 
-[^2.3]: 
+[^2.2]: 
      Noter dans cet exemple la différence entre variable informatique et mathématique, et la signification du signe =. En mathématique $a = 2*a + 1$ est une équation dont l’inconnue est $a$ (elle peut être facilement résolue pour trouver la solution $a = -1$). En informatique, c’est une affectation qui remplace le contenu de la variable `a` part une nouvelle valeur égale à `2*a + 1`, (même si $a \neq -1$).
 
 Des raccourcis d’écriture existent pour aller plus vite (mais attention aux erreurs en les utilisant !).
@@ -96,9 +70,37 @@ Des raccourcis d’écriture existent pour aller plus vite (mais attention aux e
 
 
 
+
+### Division entière (ou division euclidienne) 
+L'opérateur de division entière ```//``` et l’opération modulo ```%``` utilisés avec des entiers (de type ```int```) donnent respectivement le quotient et le reste d'une division euclidienne : si `a` et `b` sont des entiers tels que $a = b \times q + r$,  alors ```a // b``` donne $q$ et ```a % b``` donne $r$[^2.3].
+
+[^2.3]: 
+      Vrai pour des entiers positifs. Attention aux surprises avec des nombres relatifs ! Les résultats sont différents entre langages/systèmes informatiques. En Python on peut tester `7 // -5` et `-17 // 5` qui donnent tous les deux `-4` mais `17 % -5` donne `-3` alors que `-17 % 5`  donne `3`.
+
+
+|opérateur|notation|
+|---|:-:|
+|quotient|```a // b```|
+|reste|```a % b```|
+
+![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-light-mode.png#only-light){align=right}
+![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}
+
+Par exemple, le quotient et le reste de la division entière de $17$ par $5$ sont $3$ et $2$ respectivement (car $17 = 2  \times 5 + 2$) :
+
+``` python
+>>> a = 17
+>>> b = 5
+>>> a // b				
+3
+>>> a % b
+2
+```
+
+
 ## Opérateurs sur les chaines de caractères 
 
-Les textes ou chaines des caractères, de type ```str``` (abréviation de *string*) sont définis  entre une paire de guillemets (```"```) ou d’apostrophes (```'```)[^2.4]. 
+Les textes ou chaines des caractères, de type ```str``` (abréviation de *string*), sont définis  entre une paire de guillemets (```"```) ou d’apostrophes (```'```)[^2.4]. 
 
 [^2.4]:
     Pouvoir utiliser les apostrophes ou les guillemets offre un énorme avantage : les guillemets permettent d'écrire  une chaîne qui contient des apostrophes et vis-versa, par exemple `"J'aime Python"` ou `'Il dit "hello".'`.
@@ -121,7 +123,7 @@ Pour les chaînes de caractères, deux opérations sont possibles, l'addition et
 - L'opérateur de multiplication « ` * `» entre un nombre entier et une chaîne de caractères **duplique** (répète) plusieurs fois une chaîne de caractères. 
 ``` py
 >>> chaine1 * 3
-'hello hello hello'
+'hello hello hello '
 ```
 
 La fonction `len()` donne le nombre de caractère d’une chaine (y compris les espaces et les signes de ponctuation).
@@ -134,7 +136,7 @@ La fonction `len()` donne le nombre de caractère d’une chaine (y compris les 
 
 Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
 
-- `ch[0]` permet d'accéder au premier caractère le la chaine `ch`, `ch[1]` au second avec , … `ch[i]` au caractère en iieme position. 
+- `ch[0]` permet d'accéder au premier caractère de la chaine `ch`, `ch[1]` au second, … `ch[i]` au caractère en `i`^ième^ position. 
 
 :warning: Le premier caractère est `ch[0]`, et non pas `ch[1]` !
 ```py
@@ -142,7 +144,7 @@ Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0
 'w'
 ```
 
-- De même, en partant de la fin, `ch[-1]` permet d'accéder au dernier caractère avec , `ch[-2]` à l’avant dernier avec , etc. 
+- De même, en partant de la fin, `ch[-1]` permet d'accéder au dernier caractère, `ch[-2]` à l’avant dernier, etc. 
 ```py
 >>> ch[-1]
 '!'
@@ -150,7 +152,7 @@ Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0
 !!! tip inline end "PEP 8" 
     Pas d'espace autour du signe « `:` ».
 
-- Enfin `ch[i:j]` permet d'obtenir la sous-chaîne de tous les caractères entre `i` (**inclus**) et `j` (**exclus**), appelée une tranche.
+- Enfin `ch[i:j]` permet d'obtenir la sous-chaîne de tous les caractères entre les positions `i` (**inclus**) et `j` (**exclus**), appelée une tranche.
 ```py
 >>> ch[2:5]
 'llo'
@@ -207,7 +209,7 @@ True
 False
 ```
 
-Il est possible de combiner les comparaisons. Pour vérifier si `a` est compris entre 2 et 6 ou entre 7 et 8 on peut écrire :
+Il est possible de combiner les comparaisons, par exemple pour vérifier si `a` est compris entre 2 et 6; et entre 7 et 8 :
 
 ```py
 >>> 2 <= a < 6
@@ -216,7 +218,7 @@ True
 False
 ```
 
-mais ce n'est pas recommendé. C'est en fait une combinaison de plusieurs comparaisons, ce qui peut donner des hérésies mathématiques : 
+mais ce n'est pas recommandé car c'est en fait une combinaison de plusieurs comparaisons, ce qui peut donner des hérésies mathématiques : 
 
 ```py
 >>> 4 < a > 2
@@ -225,7 +227,7 @@ True
 
 
 
-Les chaines de caractères sont comparées par ordre lexicographique, c’est-à-dire caractère par caractère comme les mots dans un  dictionnaire :  commencer par comparer le premier caractère de chacune des deux chaînes, puis en cas d’égalité le deuxième de chaque chaine, et ainsi de suite jusqu'à trouver un caractère qui est différent l'autre. 
+Les chaines de caractères, quant à elles, sont comparées en ordre lexicographique, c’est-à-dire caractère par caractère comme l'ordre des mots dans un dictionnaire :  commencer par comparer le premier caractère de chaque chaîne, puis en cas d’égalité le deuxième de chaque, et ainsi de suite jusqu'à trouver un caractère qui est différent l'autre. 
 
 :warning: Attention aux majuscules (elles sont "avant" toutes les minuscules) et aux nombres écrits dans des chaînes de caractères [^2.9]:
 
@@ -247,7 +249,7 @@ True
 True
 ```
 
-Les nombres de type `int` ou `float` peuvent être comparées entre eux s'ils sont de  types différents :
+Les nombres de type `int` ou `float` peuvent être comparés entre eux même s'ils sont de  types différents :
 ```py
 >>> 7 == 7.0
 True
@@ -277,7 +279,7 @@ False
 
 ##	Opérateurs logiques (ou booléens)
 
-Les opérations logiques peuvent être effectuées sur des booléens. Le résultat est un booléen égal à `True` ou `False`.
+Les opérations logiques peuvent être effectuées sur des booléens (type `bool`). Le résultat est un booléen égal à `True` ou `False`.
 
 
 |opérateur|notation|description|priorité|
@@ -299,13 +301,13 @@ Comme pour les opérations mathématiques, les opérations logiques suivent des 
 ## Expressions
 
 !!! abstract "Cours" 
-    Une **expression** (ne pas confondre avec une [instruction](3-instructions.md)) est le résultat d'un calcul d’opérations et de comparaisons.
+    Une **expression** (ne pas confondre avec une [instruction](3-instructions.md)) est le résultat à la suite d'un calcul d’opérations et de comparaisons.
 
 Exemples :
 
 - `2*a + 5`	est une expression qui prend la valeur 2 fois la valeur de `a` plus 5.  
 
-- `a = 5`	n’est PAS une expression, c’est une affection de la valeur 5 à la variable `a`.
+- `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
 
 - `a == 5`	est une expression qui prend la valeur `True` si `a` est égal à 5, ou la valeur `False` sinon.
 
