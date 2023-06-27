@@ -126,9 +126,9 @@ voire même toutes les fonctions d'un module en tapant « `*` » à la place du 
 from  mesfonctions  import *
 ```
 
-mais cette utilisation est vivement déconseillée[^1] hormis dans des cas très particuliers par exemple des programmes très courts. 
+mais cette utilisation est vivement déconseillée[^6.1] hormis dans des cas très particuliers par exemple des programmes très courts. 
 
-[^1]: Pour s’en convaincre on peut ecrire un programme avec la fonction `pow(1, 2, 3)` puis ajouter `from math import *` et réessayer.
+[^6.1]: Pour s’en convaincre on peut ecrire un programme avec la fonction `pow(1, 2, 3)` puis ajouter `from math import *` et réessayer.
 
 Python offre des centaines de modules avec des milliers de fonctions déjà programmées. Il y a différents types de modules :
 
@@ -151,15 +151,15 @@ L’interpréteur Python définit la variable `__name__` selon la manière dont 
 - directement en tant que script, dans ce cas Python affecte `'__main__'` à  `__name__`, l'instruction conditionnelle est vérifiée et la fonction `main()` est appelée ; ou alors 
 - en important le code dans un autre script et dans ce cas la fonction `main()` n’est pas appelée.
 
-En bref, la variable `__name__` détermine si le fichier est exécuté directement ou s'il a été importé.[^2] 
+En bref, la variable `__name__` détermine si le fichier est exécuté directement ou s'il a été importé.[^6.2] 
 
-[^2]: On peut facilement se convaincre de l’utilité de la fonction `main()` en écrivant un programme sans cette fonction et observer qu’il est automatiquement exécuté quand on l’importe dans un autre programme.
+[^6.2]: On peut facilement se convaincre de l’utilité de la fonction `main()` en écrivant un programme sans cette fonction et observer qu’il est automatiquement exécuté quand on l’importe dans un autre programme.
 
 ##	Le module math
 
-Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir accès aux fonctions mathématiques comme le cosinus (`cos`), le sinus (`sin`), la racine carrée (`sqrt`), le nombre π (`pi`), la partie entière (`floor`)[^3] , et bien d’autres...
+Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir accès aux fonctions mathématiques comme le cosinus (`cos`), le sinus (`sin`), la racine carrée (`sqrt`), le nombre π (`pi`), la partie entière (`floor`)[^6.3] , et bien d’autres...
 
-[^3]:
+[^6.3]:
     On a déjà vu la fonction `int()` qui semble similaire à `math.floor()`, mais attention aux différences entre les deux.
 
     === "Avec un `float` positif"

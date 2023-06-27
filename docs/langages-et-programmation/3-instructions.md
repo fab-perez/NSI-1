@@ -11,7 +11,7 @@ Par exemple :
 - `print('hello world')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
 
 ## type()
-On peut écrire une instruction pour connaitre le type d’une variable avec la fonction `type()`[^3.1].
+La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
 
 [^3.1]: Nous n’abordons pas ici la notion de classe ici.
 
@@ -30,12 +30,9 @@ On peut écrire une instruction pour connaitre le type d’une variable avec la 
 <class 'str'>
 ```
 
-!!! info "Rappel" 
-	En Python, la valeur `2` (type `int`) est égale à `2.0` (type `float`) et mais est différente de `'2'` (type `str`). 
-
 ## Conversion de type
 
-On peut convertir une variable d’un type à un autre dans une instruction en utilisant:
+Les fonctions suivantes permettent de convertir une variable d’un type à un autre :
 
 |fonction|description|exemple|
 |---|---|---|
@@ -44,7 +41,7 @@ On peut convertir une variable d’un type à un autre dans une instruction en u
 |`str()`|Convertit un entier ou un flottant en une chaine de caractères.|`>>> str(5.5)`<br>`'5.5'`|
 
 	
-> Observer dans la console comment un flottant qui prend une valeur entière (5) est affiché avec un point (5.0) :
+Observons dans la console comment une variable de type `float` qui a une valeur entière est affiché avec un point :
 
 ``` py
 >>> a = 5
@@ -102,14 +99,14 @@ le nombre est 5
 la somme de 5 et de 6 est 11
 ```
 
-Par défaut, `print()` provoque un retour à la ligne après l’affichage. Pour éviter cela on utilise une autre chaine de caractères à accoler à la fin de l’affichage avec `end=`, par exemple un espace ou même rien. 
+Par défaut, `print()` provoque un retour à la ligne après l’affichage. Pour l'éviter il faut préciser la fin de l’affichage en ajoutant un paramètre `end=` suivi d'une chaine de caractères, par exemple un espace `end=' '` ou même une chaine vide `end=''`. 
 
 ```py
 >>> print('hello', end=' ')
 Hello >>>
 ```
 
-Python 3.6 a introduit les chaine de caractères f-strings (formatted string) qui s’écrivent avec `f` devant et permettent d’y insérer des variables, ou même des expressions. 
+Python 3.6 a introduit les chaine de caractères f-strings (*formatted string*) qui s’écrivent avec `f` devant et permettent d’y insérer des variables, ou même des expressions, entre accolades. 
 ```py
 >>> prenom = 'Paul'
 >>> annee_naissance = 2010
@@ -119,7 +116,7 @@ Votre nom est un Paul et vous avez 13 ans
 
 ## Premier programme
 
-On voudrait maintenant permettre à l'utilisateur d'entrer son prénom et sa date de naissance. Il faut chaque fois écrire dans la console les instructions suivantes :
+Pour permettre à l'utilisateur d'entrer son prénom et sa date de naissance et d'affecter ses réponses aux variables `prenom` et `annee_naissance`, il faut chaque fois écrire dans la console les instructions suivantes :
 ```py
 >>> prenom = input('Entrez votre prénom : ')
 Entrez votre prénom : Paul
@@ -129,7 +126,7 @@ Entrez votre date de naissance : 2010
 Bonjour Paul, vous avez 13 ans
 >>> 
 ```
-On voit ici les limites de la console qui répond à des commandes de façon interactive mais ne permet pas d'écrire un programme complet !
+Cette séquence montre les limites de la console qui répond à des commandes de façon interactive mais ne permet pas d'écrire un programme complet !
 
 Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l'interpréteur de commande avec l'invite Python `>>>` apparaît :
 
@@ -147,11 +144,11 @@ print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
 
 ![idle](../assets/instructions-idle-premier-programme.png){ width="70%" }
 
-Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. On obtient l'affichage suivant dans la console :
+Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. Le résultat est affiché dans la console :
 
 ![idle](../assets/instructions-idle-premier-programme-run.png){ width="70%" }
 
-On a réalisé notre premier programme informatique.
+Nous avons écrit notre premier programme informatique !
 
 
 
@@ -164,14 +161,17 @@ On a réalisé notre premier programme informatique.
 	Ecrire le programme qui demande en entrée les 3 couleurs d’un pixel et affiche en sortie la nuance de gris.
 
 ??? Success "Réponse"
-	Avant d'écrire le programme on peut se poser quelques questions :
+	Quelques questions à se poser avant d'écrire le programme demandé :
 
 	- Quelles sont les informations à saisir par l'utilisateur ? Les trois niveaux de couleurs $R$, $V$ et $B$.
-	- Où stocker ces informations ? Dans trois variables de type `int` qu'on peut nommer par exemple `R`, `V` et `B` comme dans la formule.
-	- Que doit calculer le programme ? Le niveau de gris en utilisant la formule. On peut mettre le résultat dans une variable `G` de type entier.
+	- Où stocker ces informations ? Dans trois variables de type `int` nommées par exemple `R`, `V` et `B` comme dans la formule.
+	- Que doit calculer le programme ? Le niveau de gris calculé en utilisant la formule et stocké dans une variable, nommée par exemple `G`, de type `int`.
 	- Que doit faire ensuite le programme ? Le programme doit afficher le niveau de gris.
 
-	Traduit en Python, on obtient le programme suivant.  Noter la présence de commentaires dans le code, commençant par le signe `#`, ils sont ignorés par l'interpréteur Python.
+	Traduit en Python, le programme s'écrit simplement :
+
+	!!! note inline end "" 
+		Noter la présence de commentaires dans le code, commençant par le signe `#`, ils sont ignorés par l'interpréteur Python.
 
 	!!! note inline end "" 
 		Essayer le programme sans faire la conversion des variables `R`, `V` et `B` en `int` et constater l’erreur produite.

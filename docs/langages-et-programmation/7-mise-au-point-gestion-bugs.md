@@ -1,21 +1,21 @@
 #	Mise au point des programmes et gestion des bugs
 
-Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bugs ?  Ces questions peuvent devenir extrêmement cruciales et compliquées quand certains  programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
+Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bugs ?  Ces questions peuvent devenir extrêmement cruciales et compliquées quand certains  programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^7.1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
 
-[^1]: [https://www.informationisbeautiful.net/visualizations/million-lines-of-code/]( https://www.informationisbeautiful.net/visualizations/million-lines-of-code/)
+[^7.1]: [https://www.informationisbeautiful.net/visualizations/million-lines-of-code/]( https://www.informationisbeautiful.net/visualizations/million-lines-of-code/)
 
-L’utilisation combinée de **spécifications**, d'**assertions**, de **documentations des programmes** et de **jeux de tests** permettent de limiter (mais pas de garantir ! [^2] ) la présence de bugs dans les programmes.
+L’utilisation combinée de **spécifications**, d'**assertions**, de **documentations des programmes** et de **jeux de tests** permettent de limiter (mais pas de garantir ! [^7.2] ) la présence de bugs dans les programmes.
 
-[^2]: Dans la pratique il n'est pas possible de tester un logiciel dans toutes les conditions qu'il pourrait rencontrer lors de son utilisation et donc pas possible de contrer la totalité des bugs : un logiciel comme Microsoft Word compte 850 commandes et 1 600 fonctions, ce qui fait un total de plus de 500 millions de conditions à tester.
+[^7.2]: Dans la pratique il n'est pas possible de tester un logiciel dans toutes les conditions qu'il pourrait rencontrer lors de son utilisation et donc pas possible de contrer la totalité des bugs : un logiciel comme Microsoft Word compte 850 commandes et 1 600 fonctions, ce qui fait un total de plus de 500 millions de conditions à tester.
 
 ##	Bugs (ou bogues) et exceptions
 
-Il existe de nombreuses causes qui peuvent être à l’origine de bugs dans un programme : oubli d’un cas [^3], typo, dépassement de capacité mémoire[^4], mauvaise communication avec les utilisateurs ou entre programmeurs, etc.
+Il existe de nombreuses causes qui peuvent être à l’origine de bugs dans un programme : oubli d’un cas[^7.3], typo, dépassement de capacité mémoire[^7.4], mauvaise communication avec les utilisateurs ou entre programmeurs, etc.
 
-[^3]: En 1996, l'USS Yorktown teste le programme Navy's Smart Ship. Un membre d'équipage rentre un zéro comme valeur lors de manœuvres. Source : [https://en.wikipedia.org/wiki/USS_Yorktown_(CG-48)](https://en.wikipedia.org/wiki/USS_Yorktown_(CG-48))
+[^7.3]: En 1996, l'USS Yorktown teste le programme Navy's Smart Ship. Un membre d'équipage rentre un zéro comme valeur lors de manœuvres. Source : [https://en.wikipedia.org/wiki/USS_Yorktown_(CG-48)](https://en.wikipedia.org/wiki/USS_Yorktown_(CG-48))
  
 
-[^4]:  Premier vol d'Ariane 5 en 1996 :  Le code utilisé était celui d'Ariane 4, mais les valeurs d'accélération de la fusée dépassent les valeurs maximales prévues ! Source: [https://fr.wikipedia.org/wiki/Vol_501_d%27Ariane_5](https://fr.wikipedia.org/wiki/Vol_501_d%27Ariane_5)
+[^7.4]:  Premier vol d'Ariane 5 en 1996 :  Le code utilisé était celui d'Ariane 4, mais les valeurs d'accélération de la fusée dépassent les valeurs maximales prévues ! Source: [https://fr.wikipedia.org/wiki/Vol_501_d%27Ariane_5](https://fr.wikipedia.org/wiki/Vol_501_d%27Ariane_5)
 
 
 !!! abstract "Cours"
@@ -34,9 +34,9 @@ print(num1/num2)
 ZeroDivisionError : division by zero
 ```
 
-Une bonne façon de gérer les exceptions est de se comprendre les différents types d'erreurs qui surviennent et pourquoi elles se produisent. Soyez attentif aux messages d’erreur de l’interpréteur, ils sont d’une grande utilité . Voici ceux que l’on rencontre le plus souvent :
+Une bonne façon de gérer les exceptions est de comprendre les différents types d'erreurs qui surviennent et pourquoi elles se produisent. Soyons attentifs aux messages d’erreur que nous affiche l’interpréteur, ils sont d’une grande utilité . Voici ceux que l’on rencontre le plus souvent :
 
-[^5]: RTFM est, en anglais, le sigle de la phrase *Read the fucking manual*, injonction signifiant que la réponse à une question sur le fonctionnement d'un appareil est à chercher dans son mode d'emploi.
+[^7.5]: RTFM est, en anglais, le sigle de la phrase *Read the fucking manual*, injonction signifiant que la réponse à une question sur le fonctionnement d'un appareil est à chercher dans son mode d'emploi.
 
 
 -	SyntaxError : une ligne de code non valide empêche le programme de s’exécuter ;
@@ -129,9 +129,9 @@ def parfait(nombre):
 ```
 
 !!! abstract "Cours"
-    Les commentaires sont souvent indispensables afin de comprendre et modifier un programme[^6] mais sont ignorés par l’interpréteur Python.
+    Les commentaires sont souvent indispensables afin de comprendre et modifier un programme[^7.6] mais sont ignorés par l’interpréteur Python.
 
-[^6]: Comme le disait Guido van Rossum: “*Code is read much more often than it is written.*”
+[^7.6]: Comme le disait Guido van Rossum: “*Code is read much more often than it is written.*”
 
     ```py
     # Commentaire sur un bloc
@@ -435,9 +435,9 @@ AssertionError: nombre doit être positif
 ```
 
 !!! note inline end "" 
-    `assert` est souvent utilisé en phase de test seulement ou en **programmation défensive**[^7]. 
+    `assert` est souvent utilisé en phase de test seulement ou en **programmation défensive**[^7.7]. 
 
-[^7]: La programmation défensive est un mode de programmation qui utilise des assertions pour vérifier les préconditions sont effectivement bien satisfaites.
+[^7.7]: La programmation défensive est un mode de programmation qui utilise des assertions pour vérifier les préconditions sont effectivement bien satisfaites.
 
 
 Si on veut gérer les erreurs prévisibles d’utilisateur (lors d’une saisie par exemple), on peut utiliser `try...…except...`. (hors programme). Par exemple : 
