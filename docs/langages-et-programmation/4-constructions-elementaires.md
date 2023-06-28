@@ -34,7 +34,7 @@ if age >= 18:
 
 L’indentation détermine la séquence à exécuter (ou pas), dans ce cas les instructions qui suivent aux lignes 3, 4 et 5. Quand la condition (l’expression booléenne) `age >= 18` n’est pas vérifiée, aucune des trois instructions n’est exécutée. 
 
-On peut choisir de ne pas indenter l'instruction en ligne 5 `print(f"Vous avez {age} ans")`, elle ne fera plus partie de l’instruction conditionnelle et sera exécutée dans tous les cas. 
+Il est possible de ne pas indenter l'instruction en ligne 5 `print(f"Vous avez {age} ans")`, dans ce cas elle ne ferait plus partie de l’instruction conditionnelle et serait alors exécutée dans tous les cas. 
 
 ```py linenums="1"
 age = int(input("Quel age avez-vous ?"))
@@ -43,8 +43,8 @@ if age >= 18:
     print(f"Vous êtes {stade}")
 print(f"Vous avez {age} ans")
 ```
+Par contre, si l’instruction en ligne 4 `print(f"Vous êtes {stade}")` n'était pas indentée, la variable `stade` ne serait pas définie quand la condition n’est pas vérifiée et dans ce cas il y aura un message erreur à la ligne 4.
 
-Par contre si on n’indentait pas l’instruction en ligne 4 `print(f"Vous êtes {stade}")`, la variable `stade` ne serait pas définie quand la condition n’est pas vérifiée et dans ce cas on aurait un message erreur à la ligne 4.
 
 La structure `if-else` permet de gérer le cas où la condition est fausse :
 
@@ -67,7 +67,7 @@ else:
 print(f"Vous êtes {stade}")
 print(f"Vous avez {age} ans")
 ```
-Dans ce cas, la variable `stade` est toujours définie, on peut ne plus indenter l’instruction en ligne 6 `print(f"Vous êtes {stade}")`. 
+Dans ce cas, la variable `stade` est toujours définie, et l’instruction en ligne 6 `print(f"Vous êtes {stade}")` peut ne pas être indentée. 
 
 La structure `if-elif-else` permet de remplacer des instructions conditionnelles imbriquées pour gérer plusieurs cas distincts :
 
@@ -86,12 +86,49 @@ La structure `if-elif-else` permet de remplacer des instructions conditionnelles
 
 Ces deux programmes font exactement la même chose, mais le second est plsu lisible :
 
-|programme 1|programme 2|
-|---|---|
-|`if age >= 18:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "adulte"`<br>`else:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`if age >= 12:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "ado"`<br>&nbsp;&nbsp;&nbsp;&nbsp;`else:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`if age >= 2:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "enfant"`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`else :`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "bébé"`<br>`print(f"Vous êtes {stade}, vous avez {age} ans")`|`if age >= 18:`<br>`    stade = "adulte"`<br><br>`elif age >= 12:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "ado"`<br><br>`elif age >= 2:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "enfant"`<br>`else :`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "bébé"`<br>`print(f"Vous êtes {stade}, vous avez {age} ans")`|
 
+=== "Instructions conditionnelles imbriquées"
+       
+	```py linenums="1"
+	if age >= 18:
+        stade = "adulte"    # au dessus de 18
+    else:
+        if age >= 12:
+            stade = "ado"    # entre 12 et 18
+        else:
+            if age >= 2:       
+                stade = "enfant"    # entre 2 et 12 
+            else :
+                stade = "bébé"    # moins de 2
+        
+    print(f"Vous êtes {stade}, vous avez {age} ans")
+    ```
 
-Dès qu’une des conditions `if` ou `elif` est vérifiée, le programme ne teste pas les conditions `elif` suivantes ni `else` mais saute directement à la fin du bloc conditionnel, ici `print(f"Vous êtes {stade}, vous avez {age} ans")`. Par exemple, si on affecte la valeur `15` à la variable `age`, le programme exécute le bloc `elif age >= 12:…`mais pas les blocs suivants `elif age >=2 :…` ni `else:…`. 
+    Chaque fois qu'une condition `if` n'est pas vérifiée, le programme exécute toute la séquence `else` correspondante. Il "descend" ainsi de suite dans les conditions imbriquées jusqu'à ce qu'une condition soit vérifiée, et à ce stade il sort de tous les blocs conditionnels et reprend à l'instruction qui suit tous les blocs conditionnels imbriqués, ici à ligne 12 `print(f"Vous êtes {stade}, vous avez {age} ans")`. 
+        
+    Par exemple, si on affecte la valeur `10` à la variable `age`, la première condition en ligne 1 `if age >= 18:` est fausse, le programme exécute donc toute la partie indentée après le premier `else:` correspondant en ligne 3. Il passe à la seconde condition en ligne 4 `if age >= 12:` qui est encore fausse, il "passe" donc à la séquence indentée après le `else:` correspondant en ligne 6. La troisième condition en ligne 7 `if age >= 2:` est cette fois vraie, il exécute la ligne 8  `stade = "enfant"` et sort de toutes les instructions conditionnelles pour reprendre à la ligne 12 et afficher le message `Vous êtes enfant, vous avez 10 ans`. 
+    
+    Noter qu'il faut bien prendre soin à l'indentation et que ce programme n'est pas très lisible !
+    
+
+=== "Instructions conditionnelles en utilisant la structure `if-elif-else`"
+       
+	```py linenums="1"
+	if age >= 18:
+        stade = "adulte"    # au dessus de 18
+    elif age >= 12:
+        stade = "ado"    # entre 12 et 18
+    elif age >= 2:
+        stade = "enfant"    # entre 2 et 12
+    else :
+        stade = "bébé"    # moins de 2
+
+    print(f"Vous êtes {stade}, vous avez {age} ans")
+    ```
+
+    Dès que la première conditions `if` ou une condition `elif` est vérifiée, le programme ne teste plus les conditions `elif` suivantes ni le `else` final, mais reprend directement à l'instruction qui suit le bloc conditionnel, ici `print(f"Vous êtes {stade}, vous avez {age} ans")`. 
+    
+    Par exemple, si on affecte la valeur `15` à la variable `age`,  la première condition en ligne 1 `if age >= 18:` est fausse, le programme passe donc à la conditions suivante `elif age >= 12:…`, celle-ci est vérifiée, il exécute donc la ligne 4  `stade = "ado"` et n'a pas besoin de vérifier la condition suivante en ligne 5 `elif age >=2 :…` ni d'exécuter le `else:…`. Dès que la condition `elif age >= 12:…` a été vérifiée, il sort de toute l'instruction conditionnelle pour reprendre à la ligne 10 et afficher le message `Vous êtes ado, vous avez 15 ans`. 
 
 !!! info "Rappel" 
     Eviter les conditions d’égalité avec les nombres de type float. Par exemple : 
@@ -200,7 +237,7 @@ Dès qu’une des conditions `if` ou `elif` est vérifiée, le programme ne test
     Le programme est beaucoup plus lisible.
 
 !!! info "Note" 
-    On pourrait aussi utiliser l'expression trouvé dans l'[exercice corrigé](2-operations-comparaisons-expressions.md#expressions) précédent : 
+    il est bien sûr aussi possible d'utiliser l'expression trouvée dans l'[exercice corrigé](2-operations-comparaisons-expressions.md#expressions) précédent : 
     ``` py
     annee = int(input('annee: ') )
     if (annee % 4 == 0 and not annee % 100 == 0) or annee % 400 == 0:
@@ -221,10 +258,10 @@ Dès qu’une des conditions `if` ou `elif` est vérifiée, le programme ne test
         instructions
     ```
 
-La structure est similaire à l’instruction conditionnelle. La condition qui suit le mot `while` est une expression de type booléen qui prend la valeur `True` ou `False`. Le bloc d’instructions qui suit est exécuté tant que la condition est vraie. Ce bloc d’instruction doit impérativement modifier la valeur de l’expression à tester par la condition afin qu’elle finisse par ne plus être vérifiée, sinon la boucle est sans fin (non bornée).
+La structure est similaire à l’instruction conditionnelle. La condition qui suit le mot `while` est une expression de type booléen qui prend la valeur `True` ou `False`. Le bloc d’instructions qui suit est exécuté tant que la condition est vraie. Ce bloc d’instruction doit impérativement modifier la valeur de la condition afin qu’elle finisse par ne plus être vérifiée, sinon la boucle est sans fin et le programme ne se terminera jamais !
 
 Exemple :
-!!! info "Rappel" 
+!!! info inline end "Rappel" 
     `i += 2` est une abréviation de `i = i + 2`
 
 ``` py
@@ -241,9 +278,9 @@ Exemple :
 10
 ```
  
-Il faut toujours impérativement **vérifier que la condition ne sera plus vérifiée** après un nombre fini de passage, sinon le programme ne s’arrête jamais, on parle de **programme qui boucle** ou de divergence. Ici, c’est bien le cas grâce à l’instruction `i += 2`.
+Il faut toujours impérativement **vérifier que la condition ne sera plus vérifiée** après un nombre fini de passage, sinon le programme ne s’arrête jamais, le **programme boucle** ou diverge. Ici, c’est bien le cas grâce à l’instruction `i += 2`, `i` finira bien par être plus grand que 10.
 
-Exemple de programme qui boucle (erreur d’indentation dans l’instruction `i += 1`):
+Exemple de programme qui boucle (erreur d’indentation dans l’instruction `i += 2`):
 ``` py linenums="1"
 i = 0
 while i <= 10:
@@ -251,13 +288,25 @@ while i <= 10:
 i += 2
 ```
 
-Comme pour les instructions conditionnelles, attention de faire particulièrement attention aux boucles avec les nombres de type `float`.  Testons par exemple :
+Comme pour les instructions conditionnelles, attention de faire particulièrement attention aux boucles avec les nombres de type `float`. 
 
+La boucle suivante qui semble écrite correctement ne finira jamais :
 ``` py
->>> while i < 2:
-...     i += 0.1
-...     print(i)
-...     
+i = 1
+while i != 2:
+    i += 0.1
+    print(i)
+```
+
+Testons la même boucle écrite correctement :
+``` py
+i = 1
+while i < 2:
+    i += 0.1
+    print(i)
+```
+Elle affiche dans la console :
+``` py  
 1.1
 1.2000000000000002
 1.3000000000000003
@@ -269,18 +318,13 @@ Comme pour les instructions conditionnelles, attention de faire particulièremen
 1.9000000000000008
 2.000000000000001
 ``` 
-On voit que `i` ne prend jamais la valeur `2`. La boucle suivante qui semble équivalente ne finira donc jamais !
-``` py
-i = 1
-while i != 2:
-    i += 0.1
-```
+`i` ne prend jamais la valeur `2`. 
 
 ## Boucles bornées
 
 
 !!! abstract "Cours" 
-    Une boucle bornée (ou boucle non conditionnelle) permet de répéter n fois, n étant un nombre entier connu,  une instruction ou une séquence d’instructions.
+    Une boucle bornée (ou boucle non conditionnelle) permet de répéter `n`fois, `n` étant un nombre entier connu, une instruction ou une séquence d’instructions.
 
     ```py
     for i in range(n):
@@ -291,7 +335,7 @@ while i != 2:
  
 :warning: **`i` ne prend pas la valeur n**.
 
-On peut aussi utiliser :
+Il est aussi possible d'utiliser :
 
 - `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`. [^4.1]
 
@@ -305,28 +349,86 @@ On peut aussi utiliser :
 La boucle bornée ci-dessus est très similaire à la boucle non bornée suivante :
 ```py
 i = 0
-    while i < n :
-        instructions
-        i += 1
+while i < n :
+    instructions
+    i += 1
 ```
 :warning:mais attention, comparons ces deux programmes :
 
-|programme 1|programme 2|
-|---|---|
-|<br>`for i in range(5):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`|`i = 0`<br>`while i < 5:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`<br>&nbsp;&nbsp;&nbsp;&nbsp;`i += 1`|
+=== "Programme 1"
+    ```py
+    for i in range(5):
+        print(i, end=" ")
+    ```
+
+=== "Programme 2"
+    ```py
+    i = 0
+    while i < 5:
+        print(i, end=" "))
+        i = i + 1
+    ```
+
     
-Ils semblent donner le même résultat : afficher les chiffres de 0 à 4. 
+Ils semblent afficher le même résultat, tous les chiffres de 0 à 4 : ```0 1 2 3 4 ```
 
-Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les deux programmes. Dans le premier cas, la valeur finale de `i` est `4`, dans le second cas c’est `5` afin que la condition ne soit plus valide.
+Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les deux programmes.
 
-Autre différence, on peut modifier l’indice de boucle, mais il reprend sa valeur à la répétition suivante. En pratique, on évite de le faire.
+=== "Programme 1"
+    ```py
+    for i in range(5):
+        print(i, end=" ")
+    print(i)
+    ```
+    affiche : ```0 1 2 3 4 4 ```
 
-|programme 1|programme 2|
-|---|---|
-|<br>`for i in range(5):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`<br>&nbsp;&nbsp;&nbsp;&nbsp;`i = i + 2`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`|`i = 0`<br>`while i < 5:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`<br>&nbsp;&nbsp;&nbsp;&nbsp;`i = i + 2`<br>&nbsp;&nbsp;&nbsp;&nbsp;`print(i)`|
-|`0`<br>`2`<br>`1`<br>`3`<br>`2`<br>`4`<br>`3`<br>`5`<br>`4`<br>`6`|`0`<br>`2`<br>`2`<br>`4`<br>`4`<br>`6`|
+    La valeur finale de `i` est `4`
 
-La boucle `for` possède d’autres possibilités très utiles, par exemple elle permet d’énumérer chaque caractère d’une chaine de caractères. Le programme ci-dessous affiche chaque lettre d’une variable message.
+=== "Programme 2"
+    ```py
+    i = 0
+    while i < 5:
+        print(i, end=" ")
+        i = i + 1
+    print(i)
+    ```
+
+    affiche :  ```0 1 2 3 4 5 ```
+    La valeur finale de `i` est `5` afin que la condition ne soit plus valide.
+
+Dans le programme 1, la valeur finale de `i` est `4`, alors que dans le programme 2 c’est `5` afin que la condition ne soit plus valide.
+
+Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, il reprend la valeur suivante à la prochaine répétition. 
+
+=== "Programme 1"
+    ```py
+    for i in range(5):
+        print(i, end=" ")
+        i = i + 2
+        print(i, end=" ")
+    ```
+    affiche : ```0 2 1 3 2 4 3 5 4 6 ```
+
+    La valeur de `i` est modifiée à l'intérieur de la boucle mais reprend la valeur suivante à la prochaine répétition.
+
+=== "Programme 2"
+    ```py
+    i = 0
+    while i < 5:
+        print(i, end=" ")
+        i = i + 2
+        print(i, end=" ")
+    ```
+
+    affiche :  ```0 2 2 4 4 6 ```
+
+    La valeur de `i` est modifiée à l'intérieur de la boucle.
+
+
+    A chaque passage dans une boucle `for`, l'indice de boucle repart de sa valeur au dernier passage dans la boucle, même si cette valeur a changé dans la boucle. En pratique, il n'est pas recommendé de changer sa valeur dans la boucle.
+
+
+La boucle `for` possède d’autres possibilités très utiles, par exemple elle permet d’énumérer chaque caractère d’une chaine de caractères. Le programme ci-dessous affiche chaque lettre d’une variable message l'une après l'autre.
 ```py
 message = 'bonjour'
 for c in message:
@@ -335,7 +437,7 @@ for c in message:
 
 ## Instructions break et continue
 
-Il existe deux instructions qui permettent de modifier l'exécution des boucles, il s'agit de `break` et de `continue`.
+Il existe deux instructions qui permettent de modifier l'exécution des boucles `while` et `for`, il s'agit de `break` et de `continue`.
 
 
 
@@ -362,7 +464,7 @@ print('trouvé')
 
 
     
-Imaginons par exemple que l'on veuille imprimer pour tous les entiers $n$ compris entre $1$ et $10$ la valeur de $1 / (n - ­7)$ . Il est évident que quand $n$ prend la valeur $7$ il y aura une erreur. Grâce à l'instruction `continue`, il est possible de traiter cette valeur à part puis de continuer la boucle.
+Imaginons par exemple un programme qui affiche la valeur de $1 / (n - ­7)$ pour tous les entiers $n$ compris entre $1$ et $10$. Il est évident que quand $n$ prend la valeur $7$ il y aura une erreur. Grâce à l'instruction `continue`, il est possible de traiter cette valeur à part puis de continuer la boucle.
 
 ```py linenums="1"
 for n in range(10):
@@ -382,12 +484,14 @@ for n in range(10):
 
 :warning: Attention à l’indentation pour déterminer à quelle boucle appartiennent les instructions.  
 
-On peut par exemple afficher toutes les heures et minutes de la journée (de 0h0min à 23h59 min) :
+Par exemple le programme suivant affiche toutes les heures, minutes et seconde de la journée (de 0h0min0s à 23h59min59s) :
 
 ```py linenums="1"
 for heure in range(24):
     for minute in range(60):
-        print(f"{heure}h{minute}min")
+        for seconde in range(60):
+            print(f"{heure}h{minute}min{seconde}s")
+
 ```
 
 
