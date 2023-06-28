@@ -32,14 +32,21 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 
 À noter : 
 
-> Le résultat d’une opération est de type ```float``` si ```a``` ou ```b``` est de type ```float```, sinon de type ```int```, sauf pour la division où le résultat est toujours ```float```.
+> Si ```a``` et ```b``` sont deux variables toutes les deux de type ```int``` alors le résultat d'une opération entre les deux est de type ```int```, sauf pour la division qui est toujours de type ```float``` : 
+    ```py
+    >>> 10 / 5
+    2.0
+    ```
+    et si l'un de `a` ou de `b` est de type `float` alors le résultat est toujours de type `float`.
+
+
 
 > La racine carrée d’un nombre peut s'obtenir avec :  ```a ** 0.5``` [^2.1].
 
 > L’ordre des priorités mathématiques est respecté.
     
 
-[^2.1]: $a ^ {1 \over 2}$
+[^2.1]: En mathématique $\sqrt {a} = a ^ {1 \over 2}$.
 
 Il est possible d'affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2.2].
 ``` python
@@ -60,7 +67,7 @@ Il est possible d'affecter une valeur à une variable qui dépend de son ancienn
 
 
 [^2.2]: 
-     Noter dans cet exemple la différence entre variable informatique et mathématique, et la signification du signe =. En mathématique $a = 2*a + 1$ est une équation dont l’inconnue est $a$ (elle peut être facilement résolue pour trouver la solution $a = -1$). En informatique, c’est une affectation qui remplace le contenu de la variable `a` part une nouvelle valeur égale à `2*a + 1`, (même si $a \neq -1$).
+     Noter dans cet exemple la différence entre variable informatique et mathématique, et la signification du signe « = ». En mathématique $a = 2*a + 1$ est une équation dont l’inconnue est $a$ (elle peut être facilement résolue pour trouver la solution $a = -1$). En informatique, c’est l'affection du résultat de `2*a + 1` à la variable  `a` qui prend une nouvelle valeur (même si $a \neq -1$).
 
 Des raccourcis d’écriture existent pour aller plus vite (mais attention aux erreurs en les utilisant !).
 
@@ -97,6 +104,17 @@ Par exemple, le quotient et le reste de la division entière de $17$ par $5$ son
 2
 ```
 
+L'opérateur modulo, `%`, qui donne le reste d'une division entière est très utile pour déterminer si un nombre est divisible par un autre nombre, dans ce cas le reste est égal à zéro :
+``` python
+>>> 10 % 5
+0
+>>> 10 % 3				
+1
+```
+$10$ est divisible par $5$ mais pas par $3$. 
+
+
+
 
 ## Opérateurs sur les chaines de caractères 
 
@@ -106,8 +124,8 @@ Les textes ou chaines des caractères, de type ```str``` (abréviation de *strin
     Pouvoir utiliser les apostrophes ou les guillemets offre un énorme avantage : les guillemets permettent d'écrire  une chaîne qui contient des apostrophes et vis-versa, par exemple `"J'aime Python"` ou `'Il dit "hello".'`.
 
 ``` py
->>> chaine1 = 'hello '
->>> chaine2 = "world !"
+>>> chaine1 = 'Hello '
+>>> chaine2 = "world"
 ```
 Pour les chaînes de caractères, deux opérations sont possibles, l'addition et la multiplication[^2.5] :
 
@@ -117,21 +135,24 @@ Pour les chaînes de caractères, deux opérations sont possibles, l'addition et
 - L'opérateur d'addition « `+` » **concatène** (assemble) deux chaînes de caractères.
 ``` py
 >>> chaine1 + chaine2
-'hello world !'
+'Hello world'
 ```
+[^2.6]
+
+[^2.6]: « Hello world » (traduit littéralement en français par « Bonjour le monde ») sont les mots traditionnellement écrits par un programme informatique simple dont le but est de faire la démonstration rapide de son exécution sans erreur. Source : [https://fr.wikipedia.org/wiki/Hello_world](https://fr.wikipedia.org/wiki/Hello_world)
 
 - L'opérateur de multiplication « ` * `» entre un nombre entier et une chaîne de caractères **duplique** (répète) plusieurs fois une chaîne de caractères. 
 ``` py
 >>> chaine1 * 3
-'hello hello hello '
+'Hello Hello Hello '
 ```
 
 La fonction `len()` donne le nombre de caractère d’une chaine (y compris les espaces et les signes de ponctuation).
 
 ``` py
->>> ch = 'hello world !'
+>>> ch = 'Hello world'
 >>> len(ch)
-13
+11
 ```
 
 Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
@@ -147,7 +168,7 @@ Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0
 - De même, en partant de la fin, `ch[-1]` permet d'accéder au dernier caractère, `ch[-2]` à l’avant dernier, etc. 
 ```py
 >>> ch[-1]
-'!'
+'d'
 ```
 !!! tip inline end "PEP 8" 
     Pas d'espace autour du signe « `:` ».
@@ -165,9 +186,9 @@ True
 >>> "Py" not in "python"
 True
 ```
-Il existe de nombreuses méthodes[^2.6] pour traiter les chaines de caractères, quelques exemples :
+Il existe de nombreuses méthodes[^2.7] pour traiter les chaines de caractères, quelques exemples :
 
-[^2.6]: Une méthode est un type de fonction particulier propre aux langages orientés objet. Remarquer la construction `nom_variable.nom_methode()` dans ces cas différente de `nom_fonction(nom_variable)` par exemple `len('abc')`.
+[^2.7]: Une méthode est un type de fonction particulier propre aux langages orientés objet. Remarquer la construction `nom_variable.nom_methode()` dans ces cas différente de `nom_fonction(nom_variable)` par exemple `len('abc')`.
 
 
 |fonction|description|exemple|
@@ -181,9 +202,9 @@ Il existe de nombreuses méthodes[^2.6] pour traiter les chaines de caractères,
 
 
 ## Opérateurs de comparaison
-Les opérations de comparaison usuels permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.7] .
+Les opérations de comparaison usuels permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.8] .
 
-[^2.7]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
+[^2.8]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
 !!! tip inline end "PEP 8" 
     Entourer les opérateurs (`==`, `!=`, `>=`, etc.) d'un espace avant et d'un espace après.
@@ -197,9 +218,9 @@ Les opérations de comparaison usuels permettent de comparer des valeurs de mêm
 |>|```a > b```|  
 |≥|```a >= b```|  
 
-[^2.8]
+[^2.9]
 
-[^2.8]: Préfèrer `is` et `is not` à `==` et `!=` pour comparer à `None`, par exemple `a is not None` plutôt que `a != None`.
+[^2.9]: Préfèrer `is` et `is not` à `==` et `!=` pour comparer à `None`, par exemple `a is not None` plutôt que `a != None`.
 
 ```py
 >>> a, b, c = 5, 5, 6
@@ -209,11 +230,15 @@ True
 False
 ```
 
-Il est possible de combiner les comparaisons, par exemple pour vérifier si `a` est compris entre 2 et 6; et entre 7 et 8 :
+Il est possible de combiner les comparaisons, par exemple pour vérifier si `a` est compris entre 2 et 6 : 
 
 ```py
 >>> 2 <= a < 6
 True
+```
+
+entre 7 et 8 :
+```py
 >>> 7 < a < 8
 False
 ```
@@ -227,12 +252,10 @@ True
 
 
 
-Les chaines de caractères, quant à elles, sont comparées en ordre lexicographique, c’est-à-dire caractère par caractère comme l'ordre des mots dans un dictionnaire :  commencer par comparer le premier caractère de chaque chaîne, puis en cas d’égalité le deuxième de chaque, et ainsi de suite jusqu'à trouver un caractère qui est différent l'autre. 
+Les chaines de caractères, quant à elles, sont comparées en ordre lexicographique, c’est-à-dire caractère par caractère comme l'ordre des mots dans un dictionnaire :  on commence par comparer le premier caractère de chaque chaîne, puis en cas d’égalité le deuxième de chaque, et ainsi de suite jusqu'à trouver un caractère qui est différent l'autre[^2.10]. 
 
-:warning: Attention aux majuscules (elles sont "avant" toutes les minuscules) et aux nombres écrits dans des chaînes de caractères [^2.9]:
+[^2.10]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
 
-
-[^2.9]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
 
 ```py
 >>> 'aa'>'ab'
@@ -241,10 +264,18 @@ False
 True
 >>> "python" != "PYTHON"
 True
+```
+
+:warning: Attention aux majuscules (elles sont "avant" toutes les minuscules) :
+```py
 >>> "java" < "python"	
 True
 >>> "java" > "Python"
 True
+```
+
+et aux nombres écrits dans des chaînes de caractères :
+```py
 >>> "10" < "2"
 True
 ```
@@ -267,14 +298,14 @@ Traceback (most recent call last):
 TypeError: '<' not supported between instances of 'int' and 'str'
 ```
 
-:warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte[^2.10] :
+:warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte[^2.11] :
 
 ```py
 >>> 0.1 + 0.1 + 0.1 == 0.3
 False
 ```
 
-[^2.10]: Les `floats` sont encodés par une fraction binaire de numérateur sur 53 bits et de dénominateur une puissance de 2. Dans le cas de `0.1`, la fraction binaire est $3602879701896397/2^{55}$.  Pour afficher toutes le décimales on peut faire: `format(.1,'.55f')`.  Une particularité de Python est de ne pas limiter l’encodage des `int`, par exemple comparer `>>> 2*1000` avec `>>> 2.**1000` dans la console.
+[^2.11]: Les nombres de type `float` sont encodés par des fractions binaires qui "approchent" leur valeur le plus précisément possible sans être toujours parfaitement exactes. Par exemple le nombre $0,1$ est représenté par la valeur `0.1000000000000000055511151231257827021181583404541015625` en Python (`format(0.1,'.55f')` permet d'avoirtoues les décimales).  Une particularité de Python est de ne pas limiter l’encodage des `int`, par exemple comparer `>>> 2*1000` avec `>>> 2.**1000` dans la console.
 
 
 ##	Opérateurs logiques (ou booléens)
@@ -301,32 +332,31 @@ Comme pour les opérations mathématiques, les opérations logiques suivent des 
 ## Expressions
 
 !!! abstract "Cours" 
-    Une **expression** (ne pas confondre avec une [instruction](3-instructions.md)) est le résultat à la suite d'un calcul d’opérations et de comparaisons.
+    Une **expression** (ne pas confondre avec une [instruction](3-instructions.md)) est un calcul d’opérations et de comparaisons qui donne une valeur.
 
 Exemples :
 
-- `2*a + 5`	est une expression qui prend la valeur 2 fois la valeur de `a` plus 5.  
-
+- `2*a + 5`	est une expression.  
 - `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
-
-- `a == 5`	est une expression qui prend la valeur `True` si `a` est égal à 5, ou la valeur `False` sinon.
+- `a == 5`	est une expression.
 
 
 ![Division entière de 17 par 5 posée](../assets/expression-vs-instruction.png){align=right}
 
 À noter: 
-> Quand une affectation est saisie dans la console Python, par exemple `>>> a = 5`, rien n’est affiché par l'interpréteur car ce n'est pas une expression, c'est une instruction.
+> Quand une affectation est saisie dans la console Python, par exemple `>>> a = 5`, rien n’est affiché par l'interpréteur car ce n'est pas une expression.
 
 > Quand une expression est saisie dans la console Python, par exemple `>>> a == 5`, elle est évaluée par l’interpréteur et le résultat est affiché en dessous. 
 
 
 Puisqu'elle a une valeur, une expression peut être affectée à une variable : 
-`b = a**2` est une affectation de la valeur de l’expression `a**2` (le carré de a) à la variable `b`.
+`b = a**2` est une affectation de la valeur de l’expression `a**2` (le carré de `a`) à la variable `b`.
 
 
 
 !!! question "Exercice corrigé" 
 	La valeur d'une variable `annee` de type `int` est donnée, par exemple `>>> annee = 2023`.
+
     Ecrire dans l'interpréteur une expression booléenne, qui vaut `True` si `annee` est une année bissextile ou `False` sinon.
 
     « Depuis l'ajustement du calendrier grégorien, l'année sera bissextile (elle aura 366 jours) seulement si elle respecte l'un des deux critères suivants :
@@ -334,9 +364,7 @@ Puisqu'elle a une valeur, une expression peut être affectée à une variable :
     1. C1 : l'année est divisible par 4 sans être divisible par 100 (cas des années qui ne sont pas des multiples de 100) ;
     2. C2 : l'année est divisible par 400 (cas des années multiples de 100).
 
-    Si une année ne respecte ni le critère C1 ni le critère C2, l'année n'est pas bissextile ».
-    
-    Source: [https://fr.wikipedia.org/wiki/Année_bissextile](https://fr.wikipedia.org/wiki/Année_bissextile).
+    Si une année ne respecte ni le critère C1 ni le critère C2, l'année n'est pas bissextile ». Source: [https://fr.wikipedia.org/wiki/Année_bissextile](https://fr.wikipedia.org/wiki/Année_bissextile).
 
         
 

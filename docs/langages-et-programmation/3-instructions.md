@@ -8,7 +8,7 @@
 Par exemple :
 
 - `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
-- `print('hello world')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
+- `print('hello world !')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
 
 ## type()
 La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
@@ -83,11 +83,11 @@ Une instruction de sortie s’écrit en utilisant `print()` pour afficher à l�
 
 
 ```py
->>> print('hello')
-hello
+>>> print('Hello')
+Hello
 >>> message='world'
->>> print('hello', message)
-hello world
+>>> print('Hello', message)
+Hello world
 >>> nombre = 5
 >>> print(nombre)
 5
@@ -102,7 +102,7 @@ la somme de 5 et de 6 est 11
 Par défaut, `print()` provoque un retour à la ligne après l’affichage. Pour l'éviter il faut préciser la fin de l’affichage en ajoutant un paramètre `end=` suivi d'une chaine de caractères, par exemple un espace `end=' '` ou même une chaine vide `end=''`. 
 
 ```py
->>> print('hello', end=' ')
+>>> print('Hello', end=' ')
 Hello >>>
 ```
 
@@ -133,7 +133,7 @@ Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l
 !!! note inline end "" 
 	Python propose par défaut un **IDE** (pour *Integrated Development Environment*) appelé IDLE. Il existe de nombreux IDE, certains dédiés à Python comme PyScripter, Thonny, etc. et d'autres généralistes comme VS Codium, VS Code, etc. acceptant plusieurs langages informatiques.
 
-![idle](../assets/instructions-idle.png){ width="70%" }
+![idle](../assets/instructions-idle.png){ width="60%" }
 
 Ouvrons un nouveau fichier avec le menu `File/New` pour entrer le programme Python suivant : 
 ```py
@@ -142,16 +142,44 @@ annee_naissance = int(input('Entrez votre date de naissance : '))
 print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
 ```
 
-![idle](../assets/instructions-idle-premier-programme.png){ width="70%" }
+![idle](../assets/instructions-idle-premier-programme.png){ width="60%" }
 
 Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. Le résultat est affiché dans la console :
 
-![idle](../assets/instructions-idle-premier-programme-run.png){ width="70%" }
+![idle](../assets/instructions-idle-premier-programme-run.png){ width="60%" }
 
 Nous avons écrit notre premier programme informatique !
 
 
+Notons au passage une différence importante entre l'affichage d'une variable dans la console et dans un programme :
+=== "Dans la console"
+   
+	Il suffit de saisir le nom de la varible à l'invite de commande pour afficher sa valeur :
+	```py
+	>>> a = 5
+	>>> a
+	5
+	```
+    ![idle](../assets/instructions-idle-variable-dans-console.png){ width="80%" }
 
+=== "Dans un programme"
+    
+    Le programme suivant n'affiche rien dans la console :
+	```py linenums="1"
+	a = 5
+	a
+	```
+	![idle](../assets/instructions-idle-variable-dans-programme.png){ width="80%" }
+
+
+=== "Dans un programme avec print()"
+    
+    Il faut utiliser l'instruction `print()` dans un programme pour afficher la valeur d'une variable dans la console.
+	```py linenums="1"
+	a = 5
+	print(a)
+	```
+	![idle](../assets/instructions-idle-variable-dans-programme-avec-print.png){ width="80%" }
 
 
 !!! question "Exercice corrigé" 
@@ -176,7 +204,7 @@ Nous avons écrit notre premier programme informatique !
 	!!! note inline end "" 
 		Essayer le programme sans faire la conversion des variables `R`, `V` et `B` en `int` et constater l’erreur produite.
 	
-	```py
+	```py linenums="1"
 	# Demande les 3 couleurs R, V et B de type int
 	R = int(input('Rouge:'))
 	V = int(input('Vert:'))
