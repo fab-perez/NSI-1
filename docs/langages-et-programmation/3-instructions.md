@@ -8,12 +8,12 @@
 Par exemple :
 
 - `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
-- `print('hello world !')`	est une instruction qui affiche la chaine  `'hello world'` dans la console.
+- `print('Hello world')`	est une instruction qui affiche la chaine  `'Hello world'` dans la console.
 
-## type()
+## `type()`
 La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
 
-[^3.1]: Nous n’abordons pas ici la notion de classe ici.
+[^3.1]: Nous n’abordons pas la notion de classe ici.
 
 !!! tip inline end "PEP 8" 
     Pas d’espace avant et à l’intérieur des parenthèses d’une fonction.
@@ -56,19 +56,20 @@ Observons dans la console comment une variable de type `float` qui a une valeur 
 !!! abstract "Cours" 
 	Une instruction d’**entrée** permet à un programme de lire des valeurs saisies au clavier par l’utilisateur. Une instruction de **sortie** affiche des messages à l’écran.
 
-En python, la fonction `input()` permet d’écrire une instruction d’entrée qui affecte la valeur saisie à une variable. 
+En python, la fonction `input()` permet d’écrire une instruction d’entrée qui affecte la valeur saisie par l’utilisateur à une variable. 
 ``` py
 >>> saisie = input('Saisir un message')
 >>> saisie
 'abc'
 ```
-La valeur renvoyée par `input()` est toujours du type chaine de caractères (type `str`). Pour obtenir un entier ou un flottant, il faut la convertir.
+La valeur renvoyée par `input()` est toujours du type `str` :
 ```py
 >>> nombre_entier = input('Entrez un nombre entier')
 >>> nombre_entier
 '25'
 ```
-Ici la valeur affectée à `nombre_entier` est une chaine de caractères `'25'`. Pour obtenir un entier, il faut la convertir avec `int()`.
+Ici la valeur affectée à `nombre_entier` est une chaine de caractères `'25'`. Pour obtenir nombre, de type `int` ou `float`, afin de faire des calculs par exemple, il faut la convertir :
+
 ``` py
 >>> nombre_entier = int(input('Entrez un nombre entier'))
 >>> nombre_entier
@@ -99,7 +100,7 @@ le nombre est 5
 la somme de 5 et de 6 est 11
 ```
 
-Par défaut, `print()` provoque un retour à la ligne après l’affichage. Pour l'éviter il faut préciser la fin de l’affichage en ajoutant un paramètre `end=` suivi d'une chaine de caractères, par exemple un espace `end=' '` ou même une chaine vide `end=''`. 
+Par défaut, `print()` provoque un retour à la ligne après chaque affichage. Pour changer ce comportement il faut préciser la fin de l’affichage en ajoutant un paramètre `end=` suivi d'une chaine de caractères, par exemple un espace `end=' '` ou même une chaine vide `end=''`. 
 
 ```py
 >>> print('Hello', end=' ')
@@ -116,7 +117,7 @@ Votre nom est un Paul et vous avez 13 ans
 
 ## Premier programme
 
-Pour permettre à l'utilisateur d'entrer son prénom et sa date de naissance et d'affecter ses réponses aux variables `prenom` et `annee_naissance`, il faut chaque fois écrire dans la console les instructions suivantes :
+Pour permettre à l'utilisateur d'entrer son prénom et sa date de naissance et d'affecter ses réponses aux variables `prenom` et `annee_naissance`, il faut à chaque fois écrire dans la console les instructions suivantes :
 ```py
 >>> prenom = input('Entrez votre prénom : ')
 Entrez votre prénom : Paul
@@ -126,7 +127,7 @@ Entrez votre date de naissance : 2010
 Bonjour Paul, vous avez 13 ans
 >>> 
 ```
-Cette séquence montre les limites de la console qui répond à des commandes de façon interactive mais ne permet pas d'écrire un programme complet !
+Cette séquence montre les limites de la console, qui répond à des commandes de façon interactive, mais ne permet pas d'écrire un programme complet !
 
 Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l'interpréteur de commande avec l'invite Python `>>>` apparaît :
 
@@ -151,8 +152,8 @@ Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Ru
 Nous avons écrit notre premier programme informatique !
 
 
-Notons au passage une différence importante entre l'affichage d'une variable dans la console et dans un programme :
-=== "Dans la console"
+Notons au passage une différence importante entre l'affichage d'une variable depuis la console et depuis un programme :
+=== "Depuis la console"
    
 	Il suffit de saisir le nom de la varible à l'invite de commande pour afficher sa valeur :
 	```py
@@ -162,7 +163,7 @@ Notons au passage une différence importante entre l'affichage d'une variable da
 	```
     ![idle](../assets/instructions-idle-variable-dans-console.png){ width="80%" }
 
-=== "Dans un programme"
+=== "Depuis un programme"
     
     Le programme suivant n'affiche rien dans la console :
 	```py linenums="1"
@@ -172,7 +173,7 @@ Notons au passage une différence importante entre l'affichage d'une variable da
 	![idle](../assets/instructions-idle-variable-dans-programme.png){ width="80%" }
 
 
-=== "Dans un programme avec print()"
+=== "Depuis un programme avec print()"
     
     Il faut utiliser l'instruction `print()` dans un programme pour afficher la valeur d'une variable dans la console.
 	```py linenums="1"

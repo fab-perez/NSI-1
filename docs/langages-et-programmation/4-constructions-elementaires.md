@@ -7,7 +7,7 @@
 !!! tip inline end "PEP 8" 
     Préférer les espaces aux tabulations.
 
-En Python, on utilise 4 espaces (ou une tabulation) pour faire une indentation (on pourrait aussi utiliser un seul ou plusieurs espaces  mais il faut être consistant à travers tout un programme).
+L'indentation est normalement réalisée par 4 espaces ou une tabulation, voire un seul ou plusieurs espaces, mais dans tous les cas il faut être consistant à travers tout un programme.
 
 ##	Instructions conditionnelles
 
@@ -44,9 +44,9 @@ if age >= 18:
 print(f"Vous avez {age} ans")
 ```
 
-Par contre si on n’indentait pas l’instruction en ligne 4 `print(f"Vous êtes {stade}")`, la variable `stade` ne serait pas définie quand la condition n’est pas vérifiée et dans ce cas on aurait un message erreur.
+Par contre si on n’indentait pas l’instruction en ligne 4 `print(f"Vous êtes {stade}")`, la variable `stade` ne serait pas définie quand la condition n’est pas vérifiée et dans ce cas on aurait un message erreur à la ligne 4.
 
-La structure if-else permet de gérer le cas où la condition est fausse :
+La structure `if-else` permet de gérer le cas où la condition est fausse :
 
 !!! abstract "Cours" 
     ```py
@@ -84,14 +84,14 @@ La structure `if-elif-else` permet de remplacer des instructions conditionnelles
         instructions_sinon
     ```
 
-Ces deux programmes font exactement la même chose :
+Ces deux programmes font exactement la même chose, mais le second est plsu lisible :
 
 |programme 1|programme 2|
 |---|---|
 |`if age >= 18:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "adulte"`<br>`else:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`if age >= 12:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "ado"`<br>&nbsp;&nbsp;&nbsp;&nbsp;`else:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`if age >= 2:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "enfant"`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`else :`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stade = "bébé"`<br>`print(f"Vous êtes {stade}, vous avez {age} ans")`|`if age >= 18:`<br>`    stade = "adulte"`<br><br>`elif age >= 12:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "ado"`<br><br>`elif age >= 2:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "enfant"`<br>`else :`<br>&nbsp;&nbsp;&nbsp;&nbsp;`stade = "bébé"`<br>`print(f"Vous êtes {stade}, vous avez {age} ans")`|
 
 
-Dès qu’une condition est vérifiée, le programme ne teste pas les conditions `elif` suivantes ni `else` mais saute directement à la fin du bloc conditionnel, ici `print(f"Vous êtes {stade}, vous avez {age} ans")`. Par exemple, si on affecte la valeur `15` à la variable `age`, le programme exécute le bloc `elif age >= 12:…`mais pas les blocs suivants `elif age >=2 :…` ni `else:…`. 
+Dès qu’une des conditions `if` ou `elif` est vérifiée, le programme ne teste pas les conditions `elif` suivantes ni `else` mais saute directement à la fin du bloc conditionnel, ici `print(f"Vous êtes {stade}, vous avez {age} ans")`. Par exemple, si on affecte la valeur `15` à la variable `age`, le programme exécute le bloc `elif age >= 12:…`mais pas les blocs suivants `elif age >=2 :…` ni `else:…`. 
 
 !!! info "Rappel" 
     Eviter les conditions d’égalité avec les nombres de type float. Par exemple : 
