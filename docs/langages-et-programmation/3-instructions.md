@@ -80,7 +80,7 @@ Ici la valeur affectée à `nombre_entier` est une chaine de caractères `'25'`.
 Une instruction de sortie s’écrit en utilisant `print()` pour afficher à l’écran des chaines de caractère et/ou des variables, séparés par des virgules. 
 
 !!! tip inline end "PEP 8" 
-    Un espace après le caractère « `,` » mais pas avant.
+    Un espace après une virgule (`,`), mais pas avant.
 
 
 ```py
@@ -134,7 +134,7 @@ Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l
 !!! note inline end "" 
 	Python propose par défaut un **IDE** (pour *Integrated Development Environment*) appelé IDLE. Il existe de nombreux IDE, certains dédiés à Python comme PyScripter, Thonny, etc. et d'autres généralistes comme VS Codium, VS Code, etc. acceptant plusieurs langages informatiques.
 
-![idle](../assets/instructions-idle.png){ width="60%" }
+![idle](assets/instructions-idle.png){ width="60%" }
 
 Ouvrons un nouveau fichier avec le menu `File/New` pour entrer le programme Python suivant : 
 ```py
@@ -143,11 +143,11 @@ annee_naissance = int(input('Entrez votre date de naissance : '))
 print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
 ```
 
-![idle](../assets/instructions-idle-premier-programme.png){ width="60%" }
+![idle](assets/instructions-idle-premier-programme.png){ width="60%" }
 
 Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. Le résultat est affiché dans la console :
 
-![idle](../assets/instructions-idle-premier-programme-run.png){ width="60%" }
+![idle](assets/instructions-idle-premier-programme-run.png){ width="60%" }
 
 Nous avons écrit notre premier programme informatique !
 
@@ -161,7 +161,7 @@ Notons au passage une différence importante entre l'affichage d'une variable de
 	>>> a
 	5
 	```
-    ![idle](../assets/instructions-idle-variable-dans-console.png){ width="80%" }
+    ![idle](assets/instructions-idle-variable-dans-console.png){ width="80%" }
 
 === "Depuis un programme"
     
@@ -170,7 +170,7 @@ Notons au passage une différence importante entre l'affichage d'une variable de
 	a = 5
 	a
 	```
-	![idle](../assets/instructions-idle-variable-dans-programme.png){ width="80%" }
+	![idle](assets/instructions-idle-variable-dans-programme.png){ width="80%" }
 
 
 === "Depuis un programme avec print()"
@@ -180,7 +180,7 @@ Notons au passage une différence importante entre l'affichage d'une variable de
 	a = 5
 	print(a)
 	```
-	![idle](../assets/instructions-idle-variable-dans-programme-avec-print.png){ width="80%" }
+	![idle](assets/instructions-idle-variable-dans-programme-avec-print.png){ width="80%" }
 
 
 !!! question "Exercice corrigé" 

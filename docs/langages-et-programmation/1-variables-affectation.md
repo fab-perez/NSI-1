@@ -1,7 +1,7 @@
 # Variables et affectation
 
 ## Variables
-L"informatique" désigne le traitement automatique de l'information[^1.1] représentée dans les programmes par des données.
+L'informatique désigne le traitement automatique de l'information[^1.1]. Dans les programmes informatiques, l'information est représentée par des données.
 
 [^1.1]: Le terme « informatique » résulte de l'association du terme « information » au suffixe « -ique » signifiant « qui est propre à ».
 
@@ -9,11 +9,13 @@ L"informatique" désigne le traitement automatique de l'information[^1.1] repré
     Les programmes informatiques manipulent des données en utilisant des **variables**. Une variable permet d'associer un nom à une valeur.
 
 
-Une variable informatique peut se concevoir un peu comme une “boite” dans un programme qui serait identifiée par un nom et contiendrait une donnée. Le contenu de cette “boite” peut évoluer pendant l’exécution du programme[^1.2].
+![Boite étiquetée a dans laquelle on met le chiffre 3](assets/variables-boite-light-mode.png#only-light){width="15%" align=right}
+![Boite étiquetée a dans laquelle on met le chiffre 3](assets/variables-boite-dark-mode.png#only-dark){width="15%" align=right}
+
+Une variable informatique peut se concevoir comme une sorte de “boite” étiquetée où un programme stocke de l'information pour la consulter ou la modifier pendant son exécution[^1.2].
 
 [^1.2]:
     La notion de variable en informatique diffère des mathématiques. En mathématique une variable apparait dans l’expression symbolique d’une fonction $f(x)=2x+3$, ou dans une équation $2x+3=5x-3$ pour désigner une inconnue qu’il faut trouver, ou encore dans  une formule comme $(a+b)² =a²+2ab+b²$ pour indiquer que l’égalité est vraie pour toutes les valeurs de $a$ et $b$.
-
 
 En Python, comme dans la plupart des langages informatiques, le nom d’une variable :
 
@@ -26,12 +28,12 @@ En Python, comme dans la plupart des langages informatiques, le nom d’une vari
 En pratique cela permet d’éviter les noms de variable réduits à une lettre et d’utiliser des noms qui ont un sens ! 
 
 !!! tip "PEP 8" 
-    La [PEP 8](https://peps.python.org/pep-0008/) [^1.3] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  « ```_``` »[^1.4], par exemple d'appeler une variable `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres.
+    La [PEP 8](https://peps.python.org/pep-0008/) [^1.3] donne un grand nombre de recommandations de style pour écrire du code Python agréable à lire et recommande en particulier de nommer les variables par des mots en minuscule séparés par des blancs soulignés  (```_```) [^1.4], par exemple d'appeler une variable `somme_des_nombres` plutôt que `s` dans un programme qui additionne des nombres.
 
 
 
 [^1.3]:
-    [Une PEP (pour *Python Enhancement Proposal*)](https://www.python.org/dev/peps/#introduction) est un document fournissant des informations à la communauté Python, ou décrivant une nouvelle fonctionnalité. En particulier la [PEP 8](https://peps.python.org/pep-0008/) décrit les conventions de style de code agréable à lire.
+    Une [PEP (pour *Python Enhancement Proposal*)](https://www.python.org/dev/peps/#introduction) est un document fournissant des informations à la communauté Python, ou décrivant une nouvelle fonctionnalité. En particulier la [PEP 8](https://peps.python.org/pep-0008/) décrit les conventions de style de code agréable à lire.
 
 [^1.4]: 
     Le style qui consiste à nommer les variables par des mots écritsen minuscule séparés par des blancs soulignés, par exemple `somme_des_nombres`, est appelé  « *snake case* » en opposition au style qui consiste à écrire les mots attachés en commençant par des majuscules, par exemple ```SommeDesNombres```, appelé « *camel case* ».
@@ -43,11 +45,14 @@ En pratique cela permet d’éviter les noms de variable réduits à une lettre 
 
 Les principaux types de variable sont :
 
-- les nombres entiers (type ```int```) ;
-- les nombres décimaux, appelés « flottants » (type ```float```) écrits toujours avec un point, le séparateur décimal étant un point et :warning:**pas une virgule**, par exemple `5.0`. Noter que `>>> 2e5` ou `>>> 2E5` pour $2 \times 10^5$ permettent d'écrire rapidement le nombre flottant `200000.0` ;
-- les booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
-- les textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
-- d'autres types dits "construits" comme les p_uplets, tableaux, dictionnaires[^1.5], etc.
+-   les nombres entiers (type ```int```) ;
+-   les nombres décimaux, appelés « flottants » (type ```float```) qui s'écrivent toujours avec un point (:warning: le séparateur décimal est un point, **pas une virgule**), par exemple `5.0`.
+
+    Noter que `>>> .5` et `>>> 5.` permettent d'écrire rapidement les flottants `0.5` et `5.0` et que `>>> 2e5` ou `>>> 2E5` (pour $2 \times 10^5$) permettent d'écrire le nombre flottant `200000.0` ;
+
+-   les booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
+-   les textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
+-   d'autres types dits "construits" comme les p_uplets, tableaux, dictionnaires[^1.5], etc.
 
 [^1.5]: Les p_uplet, tableaux, dictionnaires sont étudiés dans un autre chapitre du programme de 1ère.
 
@@ -58,51 +63,21 @@ Les principaux types de variable sont :
 
 [^1.6]: En algorithmique, l’affectation est symbolisée par une flèche allant de la valeur (à droite) vers le nom de la variable (à gauche), par exemple $a←3$ pour affecter  la valeur $3$ à la variable $a$.
 
-Par exemple, saisir les commandes suivantes dans la console Python permet d'affecter les valeurs 3 (type `int`), 3.3 (type `float`) et "trois" (type `str`) à des variables nommées respectivement `a`, `b` et `c`  :
+Par exemple, saisir les commandes suivantes dans la console Python permet d'affecter les valeurs 3 (type `int`), 3.0 (type `float`) et "3" (type `str`) à des variables nommées respectivement `a`, `b` et `c`  :
 
 !!! notetip inline end "" 
     La console Python, ou interpréteur Python, est un moyen rapide d’exécuter des commandes. Il suffit de taper une instruction en réponse à l’invite `>>>` puis d’appuyer sur la touche « Entrée » pour lancer son exécution.
 
+!!! tip inline end "PEP 8" 
+    Mettre des espaces autour d'un égal (`=`).
 
 ``` python 
 >>> a = 3
->>> b = 3.3
->>> c = "trois"
+>>> b = 3.0
+>>> c = "3"
 ```
 
-!!! tip inline end "PEP 8" 
-    Mettre des espaces autour du signe « `=` ».
-
-:warning:  C'est bien la valeur qui se trouve à droite du signe « `=` » qui est affectée à la variable à gauche, et pas dans l'autre sens :
-``` python 
->>> 3 = a
-  File "<interactive input>", line 1
-SyntaxError: can't assign to literal
-```
-
-Il est aussi possible d'affecter la valeur d’une variable à une autre variable, par exemple :
-
-!!! note inline end "" 
-	Quand on tape le nom d'une variable dans la console, elle affiche sa valeur.
-
-``` python 
->>> a = 5
->>> b = a
->>> b
-5
-```
-et d'affecter des valeurs à plusieurs variables en même temps en une seule ligne :
-``` python 
->>> a, b = 5, 6
->>> a
-5
->>> b
-6
-```
-!!! tip inline end "PEP 8" 
-    Mettre un espace après les virgules (mais pas avant).
-
-En Python, c’est l’affectation qui définit le type de la variable[^1.7] :
+En Python, c’est l’affectation qui définit le type d'une variable[^1.7].
 
 [^1.7]: 
     Python est un langage de typage dynamique, ce n'est pas le cas de nombreux langages comme le C  ou le C++ qui forcent à définir le type d'une variable et à le conserver au cours de la vie de la variable, ils sont de typage statique. 
@@ -113,12 +88,38 @@ En Python, c’est l’affectation qui définit le type de la variable[^1.7] :
     ```
 
 
+
+:warning:  C'est bien la valeur qui se trouve à droite du signe « `=` » qui est affectée à la variable à gauche, et pas dans l'autre sens :
+``` python 
+>>> 3 = a
+  File "<interactive input>", line 1
+SyntaxError: can't assign to literal
+```
+
+!!! tip inline end "PEP 8" 
+    Mettre un espace après une virgule (`,`) , mais pas avant.
+
+Il est aussi possible d'affecter des valeurs à plusieurs variables en même temps en une seule ligne :
+``` python 
+>>> a, b = 3, 4
+>>> a
+3
+>>> b
+4
+```
+
+et d'affecter la valeur d’une variable à une autre variable, par exemple :
+
+!!! note inline end "" 
+	Quand on tape le nom d'une variable dans la console, elle affiche sa valeur.
+
 ``` python 
 >>> a = 3
->>> b = 3.0
->>> c = '3.0'
+>>> b = a
+>>> b
+3
 ```
-Ici, les variables ```a```, ```b``` et ```c``` sont de types ```int```, ```float``` et ```str``` respectivement. 
+
 
 :warning: Il n'est pas possible d'utiliser une variable avant de l’avoir définie :
 ``` python 
@@ -166,7 +167,7 @@ NameError: name 'd' is not defined
 
     3. Une deuxième solution plus élégante consiste à utiliser l'affectation de plusieurs variables sur une seule ligne :
     ``` py
-    >>> a, b = b, c
+    >>> a, b = b, a
     >>> a
     6
     >>> b

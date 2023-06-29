@@ -21,7 +21,7 @@ L'indentation est normalement réalisée par 4 espaces ou une tabulation, voire 
 Par exemple, ce programme détermine le stade de la vie d’une personne selon son age.
 
 !!! tip inline end "PEP 8" 
-    Pas d’espace avant le caractère « `:` ».
+    Pas d’espace avant le deux-points (`:`).
 
 ```py linenums="1"
 age = int(input("Quel age avez-vous ?"))

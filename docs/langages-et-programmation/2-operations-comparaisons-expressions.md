@@ -19,7 +19,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 ```
 
 !!! tip inline end "PEP 8" 
-    Entourer les opérateurs (```+```,  ```-```, ```/```, ```*```) d'un espace avant et d'un espace après.
+    Entourer les opérateurs mathématiques (```+```,  ```-```, ```/```, ```*```) d'un espace avant et d'un espace après.
 
 ``` python 
 >>> a + b
@@ -57,7 +57,7 @@ Il est possible d'affecter une valeur à une variable qui dépend de son ancienn
 ```
 
 !!! tip inline end "PEP 8" 
-    Dans ce cas particuliers, les espaces ne sont pas nécessaires autour du signe `*` pour montrer la priorité sur l'addition et améliorer la lisibilité de la formule.
+    Dans ce cas particuliers, on peut omettre les espaces autour de la multiplication (`*`) pour montrer la priorité sur l'addition et améliorer la lisibilité de la formule.
 
 ``` python
 >>> a = 2*a + 1		
@@ -90,8 +90,8 @@ L'opérateur de division entière ```//``` et l’opération modulo ```%``` util
 |quotient|```a // b```|
 |reste|```a % b```|
 
-![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-light-mode.png#only-light){align=right}
-![Division entière de 17 par 5 posée](../assets/div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}
+![Division entière de 17 par 5 posée](assets/div-euclidienne-17-par-5-light-mode.png#only-light){align=right}
+![Division entière de 17 par 5 posée](assets/div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}
 
 Par exemple, le quotient et le reste de la division entière de $17$ par $5$ sont $3$ et $2$ respectivement (car $17 = 2  \times 5 + 2$) :
 
@@ -171,7 +171,7 @@ Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0
 'd'
 ```
 !!! tip inline end "PEP 8" 
-    Pas d'espace autour du signe « `:` ».
+    Pas d'espace autour d'un deux-points (`:`).
 
 - Enfin `ch[i:j]` permet d'obtenir la sous-chaîne de tous les caractères entre les positions `i` (**inclus**) et `j` (**exclus**), appelée une tranche.
 ```py
@@ -207,7 +207,7 @@ Les opérations de comparaison usuels permettent de comparer des valeurs de mêm
 [^2.8]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
 !!! tip inline end "PEP 8" 
-    Entourer les opérateurs (`==`, `!=`, `>=`, etc.) d'un espace avant et d'un espace après.
+    Entourer les opérateurs de comparaison (`==`, `!=`, `>=`, etc.) d'un espace avant et d'un espace après.
 
 |opérateur|notation|
 |---|:-:|
@@ -341,7 +341,7 @@ Exemples :
 - `a == 5`	est une expression.
 
 
-![Division entière de 17 par 5 posée](../assets/expression-vs-instruction.png){align=right}
+![Division entière de 17 par 5 posée](assets/expression-vs-instruction.png){align=right}
 
 À noter: 
 > Quand une affectation est saisie dans la console Python, par exemple `>>> a = 5`, rien n’est affiché par l'interpréteur car ce n'est pas une expression.

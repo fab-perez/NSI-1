@@ -129,7 +129,7 @@ Lorsqu'on définit la fonction avec «  `def bonjour(prenom1, prenom2):` »,  `p
 Pour avoir des paramètres facultatifs, il faut leur affecter une valeur par défaut.
 
 !!! tip inline end "PEP 8"  
-    Pas d’espace autour du signe = pour les arguments par mot-clé. 
+    Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
 
 ```py linenums="1"
 def bonjour(prenom1, prenom2='Tim'):                                                    

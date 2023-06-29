@@ -103,7 +103,7 @@ def f(x):
 C’est plus déjà plus lisible avec des noms de fonction et variable qui ont un sens et plutôt que réduits à une lettre.
 
 !!! tip inline end "PEP 8"  
-    Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés  « _ »  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
+    Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés  (`_`)  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
 
 ```py
 def parfait(nombre):
