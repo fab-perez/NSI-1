@@ -157,7 +157,7 @@ La fonction `len()` donne le nombre de caractère d’une chaine (y compris les 
 
 Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
 
-- `ch[0]` permet d'accéder au premier caractère de la chaine `ch`, `ch[1]` au second, `ch[2]` au caractère en `i`^ième^ position. :warning: Les positions sont comptées en commençant à la position `0`, le premier caractère est `ch[0]` et non pas `ch[1]` !
+- `ch[0]` permet d'accéder au premier caractère de la chaine `ch`, `ch[1]` au second, `ch[i]` au caractère en `i`^ième^ position. :warning: Les positions sont comptées en commençant à la position `0`, le premier caractère est `ch[0]` et non pas `ch[1]` !
 
 
 ``` py
