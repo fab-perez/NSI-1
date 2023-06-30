@@ -9,8 +9,8 @@ L'informatique désigne le traitement automatique de l'information[^1.1]. Dans l
     Les programmes informatiques manipulent des données en utilisant des **variables**. Une variable permet d'associer un nom à une valeur.
 
 
-![Boite étiquetée a dans laquelle on met le chiffre 3](assets/1-variables-boite-light-mode.png#only-light){width="20%" align=right}
-![Boite étiquetée a dans laquelle on met le chiffre 3](assets/1-variables-boite-dark-mode.png#only-dark){width="20%" align=right}
+![Boite étiquetée "nom_variable" dans laquelle on met une valeur](assets/1-variables-boite-light-mode.png#only-light){width="20%" align=right}
+![Boite étiquetée "nom_variable" dans laquelle on met une valeur](assets/1-variables-boite-dark-mode.png#only-dark){width="20%" align=right}
 
 Une variable informatique peut se concevoir comme une sorte de “boite” étiquetée avec un nom, dans laquelle un programme enregistre une valeur pour la consulter ou la modifier pendant son exécution[^1.2].
 

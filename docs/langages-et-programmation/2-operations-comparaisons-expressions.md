@@ -343,7 +343,7 @@ Exemples :
 - `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
 
 
-![Division entière de 17 par 5 posée](assets/2-expression-vs-instruction.png){align=right}
+![différence dans la console entre >>> a = 5 qui n'affiche rien et >>> a == 5 qui affiche True](assets/2-expression-vs-instruction.png){align=right}
 
 À noter: 
 > Quand une affectation est saisie dans la console Python, par exemple `>>> a = 5`, rien n’est affiché par l'interpréteur car ce n'est pas une expression.
