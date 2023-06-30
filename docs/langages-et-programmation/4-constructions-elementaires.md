@@ -14,7 +14,7 @@ L'indentation est normalement réalisée par 4 espaces ou une tabulation, voire 
 !!! abstract "Cours" 
     Une instruction conditionnelle exécute, ou pas, une séquence d’instructions suivant la valeur d’une condition (une expression booléenne qui prend la valeur `True` ou `False`).
 
-    ```py
+    ``` py
     if condition:
         instructions
     ```
@@ -23,7 +23,7 @@ Par exemple, ce programme détermine le stade de la vie d’une personne selon s
 !!! tip inline end "PEP 8" 
     Pas d’espace avant le deux-points (`:`).
 
-```py linenums="1"
+``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
 if age >= 18:
     stade = "adulte"
@@ -36,7 +36,7 @@ L’indentation détermine la séquence à exécuter (ou pas), dans ce cas les i
 
 Il est possible de ne pas indenter l'instruction en ligne 5 `print(f"Vous avez {age} ans")`, dans ce cas elle ne ferait plus partie de l’instruction conditionnelle et serait alors exécutée dans tous les cas. 
 
-```py linenums="1"
+``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
 if age >= 18:
     stade = "adulte"
@@ -49,7 +49,7 @@ Par contre, si l’instruction en ligne 4 `print(f"Vous êtes {stade}")` n'étai
 La structure `if-else` permet de gérer le cas où la condition est fausse :
 
 !!! abstract "Cours" 
-    ```py
+    ``` py
     if condition:
         instructions
     else :
@@ -58,7 +58,7 @@ La structure `if-else` permet de gérer le cas où la condition est fausse :
 
 > L'instuction `else` n’a pas de condition, elle est toujours suivie des deux-points « `:` » .
 
-```py linenums="1"
+``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
 if age >= 18:
     stade = "adulte"
@@ -72,7 +72,7 @@ Dans ce cas, la variable `stade` est toujours définie, et l’instruction en li
 La structure `if-elif-else` permet de remplacer des instructions conditionnelles imbriquées pour gérer plusieurs cas distincts :
 
 !!! abstract "Cours" 
-    ```py
+    ``` py
     if condition_1:
         instructions_si_1
     elif condition_2:
@@ -89,7 +89,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 
 === "Instructions conditionnelles imbriquées"
        
-	```py linenums="1"
+	``` py linenums="1"
 	if age >= 18:
         stade = "adulte"    # au dessus de 18
     else:
@@ -113,7 +113,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 
 === "Instructions conditionnelles en utilisant la structure `if-elif-else`"
        
-	```py linenums="1"
+	``` py linenums="1"
 	if age >= 18:
         stade = "adulte"    # au dessus de 18
     elif age >= 12:
@@ -189,7 +189,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 	
     Traduit en Python, on obtient le programme suivant.
 
-    ```py linenums="1"
+    ``` py linenums="1"
     annee = int(input('annee: ') )
     if annee % 4 == 0:                     # si annee est divisible par 4 ...
         if annee % 100 != 0:                   # ... mais pas par 100,
@@ -222,7 +222,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 	
     Traduit en Python, on obtient le programme suivant.
 
-    ```py linenums="1"
+    ``` py linenums="1"
     annee = int(input('annee: ') )
     if annee % 400 == 0:        # si annee est divisible par 400
         print(annee, "est bissextile")
@@ -253,7 +253,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 !!! abstract "Cours" 
     Une boucle non bornée (ou boucle conditionnelle) permet de répéter une instruction ou une séquence d’instructions, tant qu’une condition (une expression booléenne) est vraie.
 
-    ```py
+    ``` py
     while condition:
         instructions
     ```
@@ -326,7 +326,7 @@ Elle affiche dans la console :
 !!! abstract "Cours" 
     Une boucle bornée (ou boucle non conditionnelle) permet de répéter `n`fois, `n` étant un nombre entier connu, une instruction ou une séquence d’instructions.
 
-    ```py
+    ``` py
     for i in range(n):
         instructions
     ```
@@ -347,7 +347,7 @@ Il est aussi possible d'utiliser :
 
 
 La boucle bornée ci-dessus est très similaire à la boucle non bornée suivante :
-```py
+``` py
 i = 0
 while i < n :
     instructions
@@ -356,13 +356,13 @@ while i < n :
 :warning:mais attention, comparons ces deux programmes :
 
 === "Programme 1"
-    ```py
+    ``` py
     for i in range(5):
         print(i, end=" ")
     ```
 
 === "Programme 2"
-    ```py
+    ``` py
     i = 0
     while i < 5:
         print(i, end=" "))
@@ -375,7 +375,7 @@ Ils semblent afficher le même résultat, tous les chiffres de 0 à 4 : ```0 1 2
 Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les deux programmes.
 
 === "Programme 1"
-    ```py
+    ``` py
     for i in range(5):
         print(i, end=" ")
     print(i)
@@ -385,7 +385,7 @@ Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les
     La valeur finale de `i` est `4`
 
 === "Programme 2"
-    ```py
+    ``` py
     i = 0
     while i < 5:
         print(i, end=" ")
@@ -401,7 +401,7 @@ Dans le programme 1, la valeur finale de `i` est `4`, alors que dans le programm
 Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, il reprend la valeur suivante à la prochaine répétition. 
 
 === "Programme 1"
-    ```py
+    ``` py
     for i in range(5):
         print(i, end=" ")
         i = i + 2
@@ -412,7 +412,7 @@ Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, 
     La valeur de `i` est modifiée à l'intérieur de la boucle mais reprend la valeur suivante à la prochaine répétition.
 
 === "Programme 2"
-    ```py
+    ``` py
     i = 0
     while i < 5:
         print(i, end=" ")
@@ -429,7 +429,7 @@ Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, 
 
 
 La boucle `for` possède d’autres possibilités très utiles, par exemple elle permet d’énumérer chaque caractère d’une chaine de caractères. Le programme ci-dessous affiche chaque lettre d’une variable message l'une après l'autre.
-```py
+``` py
 message = 'bonjour'
 for c in message:
     print(c)
@@ -442,13 +442,13 @@ Il existe deux instructions qui permettent de modifier l'exécution des boucles 
 
 
 !!! abstract "Cours" 
-    ![Instuction break](../assets/instruction-break-light-mode.png#only-light){align=right}
-    ![Instuction break](../assets/instruction-break-dark-mode.png#only-dark){align=right}
+    ![Instuction break](assets/4-constructions-break-light-mode.png#only-light){align=right}
+    ![Instuction break](assets/4-constructions-break-dark-mode.png#only-dark){align=right}
     L'instruction `break` permet de sortir de la boucle courante et de passer à l’instruction suivante.
 
 
 Par exemple, voici un programme qui redemande un mot de passe jusqu'à obtenir le bon :
-```py linenums="1"
+``` py linenums="1"
 while True:
     mdp = input('mot de passe')
     if mdp == '123456':
@@ -457,8 +457,8 @@ print('trouvé')
 ```
 
 !!! abstract "Cours" 
-    ![Instuction continue](../assets/instruction-continue-light-mode.png#only-light){align=right}
-    ![Instuction continue](../assets/instruction-continue-dark-mode.png#only-dark){align=right}
+    ![Instuction continue](assets/4-constructions-continue-light-mode.png#only-light){align=right}
+    ![Instuction continue](assets/4-constructions-continue-dark-mode.png#only-dark){align=right}
 
     L'instruction `continue` permet de sauter les instructions qui restent jusqu'à la fin de la boucle et de reprendre à la prochaine itération de boucle.
 
@@ -466,7 +466,7 @@ print('trouvé')
     
 Imaginons par exemple un programme qui affiche la valeur de $1 / (n - ­7)$ pour tous les entiers $n$ compris entre $1$ et $10$. Il est évident que quand $n$ prend la valeur $7$ il y aura une erreur. Grâce à l'instruction `continue`, il est possible de traiter cette valeur à part puis de continuer la boucle.
 
-```py linenums="1"
+``` py linenums="1"
 for n in range(10):
     if n == 7:
         continue
@@ -476,8 +476,8 @@ for n in range(10):
 ##	Boucles imbriquées
 
 !!! abstract "Cours" 
-    ![Boucles imbriquées](../assets/instruction-boucles-imbriquees-light-mode.png#only-light){align=right}
-    ![Boucles imbriquées](../assets/instruction-boucles-imbriquees-dark-mode.png#only-dark){align=right}
+    ![Boucles imbriquées](assets/4-constructions-boucles-imbriquees-light-mode.png#only-light){align=right}
+    ![Boucles imbriquées](assets/4-constructions-boucles-imbriquees-dark-mode.png#only-dark){align=right}
     Il est possible d’imbriquer des boucles. A chaque passage dans la première boucle (la boucle externe), la seconde boucle (la boucle interne) est effectuée entièrement. 
 
 
@@ -486,7 +486,7 @@ for n in range(10):
 
 Par exemple le programme suivant affiche toutes les heures, minutes et seconde de la journée (de 0h0min0s à 23h59min59s) :
 
-```py linenums="1"
+``` py linenums="1"
 for heure in range(24):
     for minute in range(60):
         for seconde in range(60):
@@ -514,7 +514,7 @@ for heure in range(24):
 
 
 
-    ```py linenums="1"
+    ``` py linenums="1"
     for n in range(2, 101):
         est_premier = True   
         for div in range(2, n):   #on cherche un diviseur compris entre 2 et n - 1

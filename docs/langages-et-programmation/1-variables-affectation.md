@@ -9,8 +9,8 @@ L'informatique désigne le traitement automatique de l'information[^1.1]. Dans l
     Les programmes informatiques manipulent des données en utilisant des **variables**. Une variable permet d'associer un nom à une valeur.
 
 
-![Boite étiquetée a dans laquelle on met le chiffre 3](assets/variables-boite-light-mode.png#only-light){width="20%" align=right}
-![Boite étiquetée a dans laquelle on met le chiffre 3](assets/variables-boite-dark-mode.png#only-dark){width="20%" align=right}
+![Boite étiquetée a dans laquelle on met le chiffre 3](assets/1-variables-boite-light-mode.png#only-light){width="20%" align=right}
+![Boite étiquetée a dans laquelle on met le chiffre 3](assets/1-variables-boite-dark-mode.png#only-dark){width="20%" align=right}
 
 Une variable informatique peut se concevoir comme une sorte de “boite” étiquetée avec un nom, dans laquelle un programme enregistre une valeur pour la consulter ou la modifier pendant son exécution[^1.2].
 
@@ -48,7 +48,7 @@ Les principaux types de variable sont :
 -   les nombres entiers (type ```int```) ;
 -   les nombres décimaux, appelés « flottants » (type ```float```) qui s'écrivent toujours avec un point (:warning: le séparateur décimal est un point, **pas une virgule**), par exemple `5.0`.
 
-    Noter que `>>> .5` et `>>> 5.` permettent d'écrire rapidement les flottants `0.5` et `5.0` et que `>>> 2e5` ou `>>> 2E5` (pour $2 \times 10^5$) permettent d'écrire le nombre flottant `200000.0` ;
+    Noter que `.5` et `5.` permettent d'écrire rapidement les flottants `0.5` et `5.0` et que `2e5` ou `2E5` (pour $2 \times 10^5$) permettent d'écrire le nombre flottant `200000.0` ;
 
 -   les booléens prenant seulement les valeurs `True` ou `False` (type ```bool```) ;
 -   les textes ou chaines des caractères (type ```str```) écrits entre une paire de guillemets (```"```) ou d’apostrophes (```'```) ;
@@ -71,7 +71,7 @@ Par exemple, saisir les commandes suivantes dans la console Python permet d'affe
 !!! tip inline end "PEP 8" 
     Mettre des espaces autour d'un égal (`=`).
 
-``` python 
+``` py 
 >>> a = 3
 >>> b = 3.0
 >>> c = "3"
@@ -90,7 +90,7 @@ En Python, c’est l’affectation qui définit le type d'une variable[^1.7].
 
 
 :warning:  C'est bien la valeur qui se trouve à droite du signe « `=` » qui est affectée à la variable à gauche, et pas dans l'autre sens :
-``` python 
+``` py 
 >>> 3 = a
   File "<interactive input>", line 1
 SyntaxError: can't assign to literal
@@ -100,7 +100,7 @@ SyntaxError: can't assign to literal
     Mettre un espace après une virgule (`,`) , mais pas avant.
 
 Il est aussi possible d'affecter des valeurs à plusieurs variables en même temps en une seule ligne :
-``` python 
+``` py 
 >>> a, b = 3, 4
 >>> a
 3
@@ -113,7 +113,7 @@ et d'affecter la valeur d’une variable à une autre variable, par exemple :
 !!! note inline end "" 
 	Quand on tape le nom d'une variable dans la console, elle affiche sa valeur.
 
-``` python 
+``` py 
 >>> a = 3
 >>> b = a
 >>> b
@@ -122,7 +122,7 @@ et d'affecter la valeur d’une variable à une autre variable, par exemple :
 
 
 :warning: Il n'est pas possible d'utiliser une variable avant de l’avoir définie :
-``` python 
+``` py 
 >>> d
 Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
@@ -131,7 +131,7 @@ NameError: name 'd' is not defined
 
 !!! question "Exercice corrigé" 
 	On affecte les valeurs 5 et 6 (de type `int`)  à deux variables nommées respectivement `a` et `b` :
-    ```py
+    ``` py
     >>> a = 5
     >>> b = 6
     ```

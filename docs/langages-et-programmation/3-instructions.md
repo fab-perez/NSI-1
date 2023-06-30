@@ -1,14 +1,13 @@
 # Instructions
 
 !!! abstract "Cours" 
-	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expression)) est une commande qui doit être effectuée par la machine avant de passer à la suivante. 
-	
-	Une **séquence** est une suite d’**instructions exécutées** dans l’ordre où elles sont écrites.
+	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expression)) est une commande effectuée par un programme. 	Une **séquence** est une suite d’instructions.
 
 Par exemple :
 
 - `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
 - `print('Hello world')`	est une instruction qui affiche la chaine  `'Hello world'` dans la console.
+- `a == 2`	n'est pas une instruction, c'est une expression qui compare la valeur de `a` à la valeur `2`.
 
 ## `type()`
 La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
@@ -18,7 +17,7 @@ La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
 !!! tip inline end "PEP 8" 
     Pas d’espace avant et à l’intérieur des parenthèses d’une fonction.
 
-```py
+``` py
 >>> x = 2
 >>> type(x)
 <class 'int'>
@@ -54,16 +53,16 @@ Observons dans la console comment une variable de type `float` qui a une valeur 
 ## Instructions d’entrée et sortie
 
 !!! abstract "Cours" 
-	Une instruction d’**entrée** permet à un programme de lire des valeurs saisies au clavier par l’utilisateur. Une instruction de **sortie** affiche des messages à l’écran.
+	Une instruction d’**entrée** permet à un programme de lire des valeurs saisies au clavier par l’utilisateur. Une instruction de **sortie** affiche des messages sur l’écran de l'utilisateur.
 
-En python, la fonction `input()` permet d’écrire une instruction d’entrée qui affecte la valeur saisie par l’utilisateur à une variable. 
+En Python, la fonction `input()` permet d’écrire une instruction d’entrée qui affecte la valeur saisie par l’utilisateur à une variable. 
 ``` py
 >>> saisie = input('Saisir un message')
 >>> saisie
 'abc'
 ```
 La valeur renvoyée par `input()` est toujours du type `str` :
-```py
+``` py
 >>> nombre_entier = input('Entrez un nombre entier')
 >>> nombre_entier
 '25'
@@ -83,7 +82,7 @@ Une instruction de sortie s’écrit en utilisant `print()` pour afficher à l�
     Un espace après une virgule (`,`), mais pas avant.
 
 
-```py
+``` py
 >>> print('Hello')
 Hello
 >>> message='world'
@@ -102,13 +101,13 @@ la somme de 5 et de 6 est 11
 
 Par défaut, `print()` provoque un retour à la ligne après chaque affichage. Pour changer ce comportement il faut préciser la fin de l’affichage en ajoutant un paramètre `end=` suivi d'une chaine de caractères, par exemple un espace `end=' '` ou même une chaine vide `end=''`. 
 
-```py
+``` py
 >>> print('Hello', end=' ')
 Hello >>>
 ```
 
 Python 3.6 a introduit les chaine de caractères f-strings (*formatted string*) qui s’écrivent avec `f` devant et permettent d’y insérer des variables, ou même des expressions, entre accolades. 
-```py
+``` py
 >>> prenom = 'Paul'
 >>> annee_naissance = 2010
 >>> print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
@@ -118,7 +117,7 @@ Votre nom est un Paul et vous avez 13 ans
 ## Premier programme
 
 Pour permettre à l'utilisateur d'entrer son prénom et sa date de naissance et d'affecter ses réponses aux variables `prenom` et `annee_naissance`, il faut à chaque fois écrire dans la console les instructions suivantes :
-```py
+``` py
 >>> prenom = input('Entrez votre prénom : ')
 Entrez votre prénom : Paul
 >>> annee_naissance = int(input('Entrez votre date de naissance : '))
@@ -134,20 +133,20 @@ Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l
 !!! note inline end "" 
 	Python propose par défaut un **IDE** (pour *Integrated Development Environment*) appelé IDLE. Il existe de nombreux IDE, certains dédiés à Python comme PyScripter, Thonny, etc. et d'autres généralistes comme VS Codium, VS Code, etc. acceptant plusieurs langages informatiques.
 
-![idle](assets/instructions-idle.png){ width="60%" }
+![idle](assets/3-instructions-idle.png){ width="60%" }
 
 Ouvrons un nouveau fichier avec le menu `File/New` pour entrer le programme Python suivant : 
-```py
+``` py
 prenom = input('Entrez votre prénom : ')
 annee_naissance = int(input('Entrez votre date de naissance : '))
 print(f'Bonjour {prenom}, vous avez {2023 - annee_naissance} ans')
 ```
 
-![idle](assets/instructions-idle-premier-programme.png){ width="60%" }
+![idle](assets/3-instructions-idle-premier-programme.png){ width="60%" }
 
 Enregistrons le programme dans nos fichiers avec le menu `File/Save As` puis `Run/Run Module` pour exécuter le programme. Le résultat est affiché dans la console :
 
-![idle](assets/instructions-idle-premier-programme-run.png){ width="60%" }
+![idle](assets/3-instructions-idle-premier-programme-run.png){ width="60%" }
 
 Nous avons écrit notre premier programme informatique !
 
@@ -156,31 +155,31 @@ Notons au passage une différence importante entre l'affichage d'une variable de
 === "Depuis la console"
    
 	Il suffit de saisir le nom de la varible à l'invite de commande pour afficher sa valeur :
-	```py
+	``` py
 	>>> a = 5
 	>>> a
 	5
 	```
-    ![idle](assets/instructions-idle-variable-dans-console.png){ width="80%" }
+    ![idle](assets/3-instructions-idle-variable-dans-console.png){ width="80%" }
 
 === "Depuis un programme"
     
     Le programme suivant n'affiche rien dans la console :
-	```py linenums="1"
+	``` py linenums="1"
 	a = 5
 	a
 	```
-	![idle](assets/instructions-idle-variable-dans-programme.png){ width="80%" }
+	![idle](assets/3-instructions-idle-variable-dans-programme.png){ width="80%" }
 
 
 === "Depuis un programme avec print()"
     
     Il faut utiliser l'instruction `print()` dans un programme pour afficher la valeur d'une variable dans la console.
-	```py linenums="1"
+	``` py linenums="1"
 	a = 5
 	print(a)
 	```
-	![idle](assets/instructions-idle-variable-dans-programme-avec-print.png){ width="80%" }
+	![idle](assets/3-instructions-idle-variable-dans-programme-avec-print.png){ width="80%" }
 
 
 !!! question "Exercice corrigé" 
@@ -205,7 +204,7 @@ Notons au passage une différence importante entre l'affichage d'une variable de
 	!!! note inline end "" 
 		Essayer le programme sans faire la conversion des variables `R`, `V` et `B` en `int` et constater l’erreur produite.
 	
-	```py linenums="1"
+	``` py linenums="1"
 	# Demande les 3 couleurs R, V et B de type int
 	R = int(input('Rouge:'))
 	V = int(input('Vert:'))

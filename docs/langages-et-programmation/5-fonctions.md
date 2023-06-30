@@ -16,7 +16,7 @@ Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’u
     - deux points,
     - une séquence d’instructions indentées (le « corps » de la fonction).
     
-    ```py
+    ``` py
     def nom_dela_fonction(param1, param2, ...):
         instructions
     ```
@@ -85,7 +85,7 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
 ## La fonction main()
 On a déjà vu une fonction appelée `main` générée automatiquement par certains éditeurs suivie par le code suivant :
 
-```py
+``` py
 if __name__ == '__main__':
     main()
 ```
@@ -106,7 +106,7 @@ L'interpréteur Python exécute tout programme linéairement à partir du haut d
 
     On appelle une fonction en écrivant son nom suivi des arguments entre parenthèses.
 
-```py linenums="1"  
+``` py linenums="1"  
 def bonjour(prenom1, prenom2):
     print('hello', prenom1, 'and', prenom2)
 
@@ -117,7 +117,7 @@ Ici on appelle la fonction `bonjour` à la ligne 4 en lui passant les **argument
 
 :bug: Il faut appeler une fonction avec le même nombre d'arguments qu'elle a de paramètres sinon on obtient un message d'erreur :
 
-```py 
+``` py 
 >>> bonjour('Tom')
 Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
@@ -131,7 +131,7 @@ Pour avoir des paramètres facultatifs, il faut leur affecter une valeur par dé
 !!! tip inline end "PEP 8"  
     Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
 
-```py linenums="1"
+``` py linenums="1"
 def bonjour(prenom1, prenom2='Tim'):                                                    
     print('hello', prenom1, 'and', prenom2)
 
@@ -142,27 +142,27 @@ hello Tom and Tim
 
 Ici, lorsqu'on définit la fonction avec «  `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2`** est appelé un **argument par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**. On peut donner la valeur des paramètres par leur mot clé dans n’importe quel ordre.
 
-```py
+``` py
 def bonjour(prenom1='Tom', prenom2='Tim'):
     print('hello', prenom1, 'and', prenom2)
 ```
 
 === "Exemple d'appel 1"
-    ```py
+    ``` py
     >>> bonjour("Paul", "Pierre")
     hello Paul and Pierre
     ```
     La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre.
 
 === "Exemple d'appel 2"
-    ```py
+    ``` py
     >>> bonjour(prenom2="Jack")
     hello Tom and Jack
     ```
     La fonction est appelée avec la valeur de `prenom2` qui est donnée, `prenom1` prend sa valeur par défaut.
 
 === "Exemple d'appel 3"
-    ```py
+    ``` py
     >>> bonjour(prenom2="Jack", prenom1="Joe")
     hello Joe and Jack
     ```
@@ -192,7 +192,7 @@ Si une fonction a un mélange d'arguments positionnels et par mot-clé, les argu
 Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On teste tous les diviseurs potentiels les uns après les autres en vérifiant si le reste de la division entière est égal à zéro. Dès qu'on trouve un diviseur, inutile de continer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si on ne trouve aucun diviseur après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
 
 === "Avec une boucle for jusqu'à nombre - 1"
-    ```py linenums="1"
+    ``` py linenums="1"
     def est_premier(nombre):
         # Cherche un diviseur entre 2 et nombre-1
         for div in range(2, nombre):
@@ -203,7 +203,7 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On 
     ```
 
 === "Avec une boucle while jusqy'à la racine carrée du nombre"
-    ```py linenums="1"
+    ``` py linenums="1"
     def est_premier(nombre):
         div = 2
         # Cherche un diviseur entre 2 et la racine carré de nombre
@@ -219,14 +219,14 @@ Appelons la fonction avec les nombres 10 et 13
 
 
 === "Avec le nombre 10"
-    ```py 
+    ``` py 
     >>> estpremier(10)
     False
     ```
     L’instruction conditionnelle est vérifiée dès le premier passage dans la boucle, donc l’instruction `return False` est immédiatement exécutée et la fonction se termine là, la dernière instruction `return True` n’est jamais exécutée.
 
 === "Avec le nombre 13"
-    ```py 
+    ``` py 
     >>> estpremier(13)
     True
     ```
@@ -237,20 +237,20 @@ Appelons la fonction avec les nombres 10 et 13
 :warning: Attention à ne pas confondre `print()` et `return`. Comparons ces deux fonctions :
 
 === "Fonction 1"
-    ```py 
+    ``` py 
     def ajoute_1(nombre):
         print(nombre + 1)
     ```
 
 === "Fonction 2"
-    ```py 
+    ``` py 
     def ajoute_1(nombre):
         return nombre + 1
     ```
 
 
 Quand on appelle l’un ou l’autre programme dans la console, on obtient le même résultat :
-```py 
+``` py 
 >>> ajoute_1(5)
 6
 ```
@@ -263,7 +263,7 @@ Alors quelle est la différence ?
 Dans le doute, de façon générale, on évite d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et on préfère utiliser `return`.
 
 Une fonction peut aussi renvoyer plusieurs valeurs en même temps, séparées par des virgules, par exemple: 
-```py 
+``` py 
 def carre_cube(x):
    return x**2, x**3
 ``` 
@@ -273,7 +273,7 @@ def carre_cube(x):
 !!! question "Exercice corrigé" 
 	Écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier()` donnée.
 
-    ```py 
+    ``` py 
     def est_premier(nombre):
         for div in range(2, nombre):
             if nombre % div == 0:
@@ -284,7 +284,7 @@ def carre_cube(x):
 ??? Success "Réponse"
     Pour décomposer un nombre en facteurs premiers on commence par cherche son plus petit diviseur qui est un nombre premier (un "facteur premier") et on divise ce nombre par ce diviseur, puis on fait la même chose pour le quotient obtenu, puis sur le deuxième quotient, etc. tant que le quotient est plus grand que 1. 
 
-	```py 
+	``` py 
     def main():
         nombre = int(input('entrez un nombre'))
         premier = 2 # on commence par le plus petit nombre premier : 2
@@ -304,12 +304,12 @@ def carre_cube(x):
 
 !!! abstract "Cours"
     En Python, les fonctions lambda sont des fonctions extrêmement courtes, limitées à une seule expression, sans utiliser le mot-clé `def`.  
-    ```py 
+    ``` py 
     nom_de_fonction = lambda param1, param2,…: expression
     ```
 
 Prenons un exemple :
-```py
+``` py
 >>> ma_somme = lambda x, y: x + y
 >>> ma_somme(3, 5)
 8
@@ -326,19 +326,19 @@ Dans notre exemple, `ma_somme` renvoie la valeur de l’expression `x + y`.
 	Écrire la fonction cube qui renvoie le cube d’un nombre sous formes classique et lambda.
 
 ??? Success "Réponse"
-    ```py 
+    ``` py 
     def cube(y): 
        return y**3
     ```
     et 
 
-    ```py 
+    ``` py 
     cube = lambda y: y**3 
     ```
 
 
 On peut utiliser une instruction conditionnelle par exemple : 
-```py
+``` py
 >>> entre_10_et_20 = lambda x: True if (x > 10 and x < 20) else False                     
 >>> entre_10_et_20(5)
 False
@@ -352,14 +352,14 @@ False
 Exemple : Les programmes suivants lèvent une erreur
 
 === "Programme 1"
-    ```py 
+    ``` py 
     print(a)
     a = 1
     ```
     Ce programme essaie d'afficher la variable `a` avant qu'elle ne soit définie.
 
 === "Programme 2"
-    ```py 
+    ``` py 
     a = a + 1
     print(a)
     ```
@@ -375,7 +375,7 @@ Tenter d’appeler une variable locale depuis l’extérieur de la fonction qui 
 
 Exemple : Le programme suivant lève une erreur. La variable a n’existe pas dans la fonction main(), elle est locale à affiche_a ().
 
-```py
+``` py
 def affiche_a():
     a = 1
     print(f'valeur de a dans affiche_a {a}')
@@ -389,7 +389,7 @@ def main():
 
 Dans les exemples précédents, les arguments utilisés en appelant les fonctions étaient à chaque fois des valeurs (est_premier(10), est_premier(13). Cela n'est nullement obligatoire. Les arguments utilisés dans l'appel d'une fonction peuvent aussi être des variables ou même des expressions.
 
-```py 
+``` py 
 >>> est_premier(23)			>>> a = 23				>>> nombre = 22
 True					>>> est_premier(a)			>>> est_premier(nombre + 1)
  					True					True
@@ -402,7 +402,7 @@ Quand une variable est passée en argument à la fonction, par exemple dans le c
     Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution. On dit que **les paramètres sont passés par valeur**.
 
 Exemple :
-```py 
+``` py 
 def ajoute_1(a):
     a = a + 1
     print(f'valeur de a dans ajoute_1 : {a}')
@@ -427,7 +427,7 @@ Sauf exception on préfère utiliser uniquement des variables locales pour facil
 
 Elle peut être affichée par une fonction :
 
-```py 
+``` py 
 a = 1
 def fonction():
     print(a)
@@ -436,7 +436,7 @@ fonction()
 
 Mais ne peut pas être modifiée. Le programme suivant lève une erreur :
 
-```py 
+``` py 
 a = 1
 def fonction():
     a += 1
@@ -446,7 +446,7 @@ fonction()
 
 On peut néanmoins essayer de lui assigner une nouvelle valeur :
 
-```py 
+``` py 
 a = 1
 def fonction():
     a = 2
@@ -456,7 +456,7 @@ fonction()
 
 Mais dans ce cas, Python part du principe que `a` est locale à la fonction, et non plus une variable globale :
 
-```py 
+``` py 
 a = 1
 def fonction():
     a = 2
@@ -469,7 +469,7 @@ L’instruction `a = 2` a créé un nouvelle variable locale à la fonction, la 
 
 Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale depuis une fonction, notamment dans le cas où une fonction se sert d’une variable globale et la manipule. Pour faire cela, il faut utiliser le mot clef `global` devant le nom d’une variable globale utilisée localement afin d’indiquer à Python qu’on souhaite bien modifier son contenu de la variable globale et non pas créer une variable locale de même nom :
 
-```py 
+``` py 
 a = 1
 def fonction():
     global a
@@ -493,7 +493,7 @@ Une fonction peut être appelée n’importe où dans un programme (après sa d�
 Exemple : Programmer la fonction factorielle  $n!  =  1  \times 2  \times 3  \times 4  \times ...  \times (n-1)  \times n$
 
 Programme standard. On multiplie tous les entiers de 1 à n
-```py 
+``` py 
 def factorielle(n):
     fact = 1
     for i in range(1, n+1):
@@ -502,7 +502,7 @@ def factorielle(n):
 ```
 
 Programme récursif :. n ! = (n-1)! * n et 1 !=1
-```py 
+``` py 
 def factorielle_recursive(n):
     if n == 1:
         return 1
@@ -518,7 +518,7 @@ def factorielle_recursive(n):
 	Écrire une fonction récursive `compte_a_rebours(n)` qui compte à rebours de `n` à `0`.
 
 ??? Success "Réponse"
-    ```py 
+    ``` py 
     def compte_a_rebours(n):
         if n < 0:
             pass
@@ -528,7 +528,7 @@ def factorielle_recursive(n):
     ```
     ou plus simplement :  
 
-    ```py 
+    ``` py 
     def compte_a_rebours(n):
         print(n)
         if n > 0:

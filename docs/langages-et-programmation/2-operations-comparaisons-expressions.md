@@ -13,7 +13,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 |divisions décimale|```a / b```|
 
 
-``` python 
+``` py 
 >>> a = 5
 >>> b = 2
 ```
@@ -21,7 +21,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 !!! tip inline end "PEP 8" 
     Entourer les opérateurs mathématiques (```+```,  ```-```, ```/```, ```*```) d'un espace avant et d'un espace après.
 
-``` python 
+``` py 
 >>> a + b
 7
 >>> a / b
@@ -32,8 +32,8 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 
 À noter : 
 
-> Si ```a``` et ```b``` sont deux variables toutes les deux de type ```int``` alors le résultat d'une opération entre les deux est de type ```int```, sauf pour la division qui est toujours de type ```float``` : 
-    ```py
+> Si ```a``` et ```b``` sont deux variables toutes les deux de type ```int``` alors le résultat d'une opération entre les deux est de type ```int```, sauf pour la division qui est toujours de type ```float``` même si le résultat est un entier : 
+    ``` py
     >>> 10 / 5
     2.0
     ```
@@ -49,7 +49,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 [^2.1]: En mathématique $\sqrt {a} = a ^ {1 \over 2}$.
 
 Il est possible d'affecter une valeur à une variable qui dépend de son ancienne valeur, par exemple l’augmenter d’une quantité donnée (on dit **incrémenter**)[^2.2].
-``` python
+``` py
 >>> a = 3				
 >>> a = a + 1				
 >>> a					
@@ -59,12 +59,12 @@ Il est possible d'affecter une valeur à une variable qui dépend de son ancienn
 !!! tip inline end "PEP 8" 
     Dans ce cas particuliers, on peut omettre les espaces autour de la multiplication (`*`) pour montrer la priorité sur l'addition et améliorer la lisibilité de la formule.
 
-``` python
+``` py
 >>> a = 2*a + 1		
 >>> a
 9
 ```
-
+[^2.2]
 
 [^2.2]: 
      Noter dans cet exemple la différence entre variable informatique et mathématique, et la signification du signe « = ». En mathématique $a = 2*a + 1$ est une équation dont l’inconnue est $a$ (elle peut être facilement résolue pour trouver la solution $a = -1$). En informatique, c’est l'affection du résultat de `2*a + 1` à la variable  `a` qui prend une nouvelle valeur (même si $a \neq -1$).
@@ -90,12 +90,12 @@ L'opérateur de division entière ```//``` et l’opération modulo ```%``` util
 |quotient|```a // b```|
 |reste|```a % b```|
 
-![Division entière de 17 par 5 posée](assets/div-euclidienne-17-par-5-light-mode.png#only-light){align=right}
-![Division entière de 17 par 5 posée](assets/div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}
+![Division entière de 17 par 5 posée](assets/2-div-euclidienne-17-par-5-light-mode.png#only-light){align=right}
+![Division entière de 17 par 5 posée](assets/2-div-euclidienne-17-par-5-dark-mode.png#only-dark){align=right}
 
-Par exemple, le quotient et le reste de la division entière de $17$ par $5$ sont $3$ et $2$ respectivement (car $17 = 2  \times 5 + 2$) :
+Par exemple, le quotient et le reste de la division entière de $17$ par $5$ sont $3$ et $2$ respectivement (car $17 = 3  \times 5 + 2$) :
 
-``` python
+``` py
 >>> a = 17
 >>> b = 5
 >>> a // b				
@@ -104,8 +104,8 @@ Par exemple, le quotient et le reste de la division entière de $17$ par $5$ son
 2
 ```
 
-L'opérateur modulo, `%`, qui donne le reste d'une division entière est très utile pour déterminer si un nombre est divisible par un autre nombre, dans ce cas le reste est égal à zéro :
-``` python
+L'opérateur modulo, `%`, qui donne le reste d'une division entière, est très utile pour déterminer si un nombre est divisible par un autre nombre, dans ce cas le reste est égal à zéro :
+``` py
 >>> 10 % 5
 0
 >>> 10 % 3				
@@ -157,16 +157,16 @@ La fonction `len()` donne le nombre de caractère d’une chaine (y compris les 
 
 Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
 
-- `ch[0]` permet d'accéder au premier caractère de la chaine `ch`, `ch[1]` au second, … `ch[i]` au caractère en `i`^ième^ position. 
+- `ch[0]` permet d'accéder au premier caractère de la chaine `ch`, `ch[1]` au second, `ch[2]` au caractère en `i`^ième^ position. :warning: Les positions sont comptées en commençant à la position `0`, le premier caractère est `ch[0]` et non pas `ch[1]` !
 
-:warning: Le premier caractère est `ch[0]`, et non pas `ch[1]` !
-```py
+
+``` py
 >>> ch[6]	
 'w'
 ```
 
 - De même, en partant de la fin, `ch[-1]` permet d'accéder au dernier caractère, `ch[-2]` à l’avant dernier, etc. 
-```py
+``` py
 >>> ch[-1]
 'd'
 ```
@@ -174,7 +174,7 @@ Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0
     Pas d'espace autour d'un deux-points (`:`).
 
 - Enfin `ch[i:j]` permet d'obtenir la sous-chaîne de tous les caractères entre les positions `i` (**inclus**) et `j` (**exclus**), appelée une tranche.
-```py
+``` py
 >>> ch[2:5]
 'llo'
 ```
@@ -202,7 +202,7 @@ Il existe de nombreuses méthodes[^2.7] pour traiter les chaines de caractères,
 
 
 ## Opérateurs de comparaison
-Les opérations de comparaison usuels permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.8] .
+Les opérations de comparaison usuelless permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.8] .
 
 [^2.8]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
@@ -222,7 +222,9 @@ Les opérations de comparaison usuels permettent de comparer des valeurs de mêm
 
 [^2.9]: Préfèrer `is` et `is not` à `==` et `!=` pour comparer à `None`, par exemple `a is not None` plutôt que `a != None`.
 
-```py
+:warning: Une erreur courante consiste à confondre l'opérateur de comparaison `==` pour vérifier si deux valeurs sont égales avec l'affectation qui utilise le signe `=` !
+
+``` py
 >>> a, b, c = 5, 5, 6
 >>> a == b
 True
@@ -232,20 +234,20 @@ False
 
 Il est possible de combiner les comparaisons, par exemple pour vérifier si `a` est compris entre 2 et 6 : 
 
-```py
+``` py
 >>> 2 <= a < 6
 True
 ```
 
 entre 7 et 8 :
-```py
+``` py
 >>> 7 < a < 8
 False
 ```
 
 mais ce n'est pas recommandé car c'est en fait une combinaison de plusieurs comparaisons, ce qui peut donner des hérésies mathématiques : 
 
-```py
+``` py
 >>> 4 < a > 2
 True
 ```
@@ -257,7 +259,7 @@ Les chaines de caractères, quant à elles, sont comparées en ordre lexicograph
 [^2.10]: Les comparaisons entre chaînes de caractère se font en comparant le point de code Unicode de chaque caractère. Il est donné par la fonction `ord()` (la fonction `chr()` fait ‘inverse ). Par exemple, `ord('A')` vaut `65` et `ord('a')` vaut `97` donc `'A' < 'a'` est vrai.
 
 
-```py
+``` py
 >>> 'aa'>'ab'
 False
 >>> "python" == "python"	
@@ -267,7 +269,7 @@ True
 ```
 
 :warning: Attention aux majuscules (elles sont "avant" toutes les minuscules) :
-```py
+``` py
 >>> "java" < "python"	
 True
 >>> "java" > "Python"
@@ -275,13 +277,13 @@ True
 ```
 
 et aux nombres écrits dans des chaînes de caractères :
-```py
+``` py
 >>> "10" < "2"
 True
 ```
 
 Les nombres de type `int` ou `float` peuvent être comparés entre eux même s'ils sont de  types différents :
-```py
+``` py
 >>> 7 == 7.0
 True
 >>> 0.0 < 1
@@ -289,7 +291,7 @@ True
 ```
 
 Mais pas les nombres avec les chaines de caractères :   
-```py
+``` py
 >>> 7 == "7"
 False
 >>> 7 < '8'
@@ -300,12 +302,12 @@ TypeError: '<' not supported between instances of 'int' and 'str'
 
 :warning: Attention aux égalités entre nombres de type `float` qui ne sont pas toujours encodés de façon exacte[^2.11] :
 
-```py
+``` py
 >>> 0.1 + 0.1 + 0.1 == 0.3
 False
 ```
 
-[^2.11]: Les nombres de type `float` sont encodés par des fractions binaires qui "approchent" leur valeur le plus précisément possible sans être toujours parfaitement exactes. Par exemple le nombre $0,1$ est représenté par la valeur `0.1000000000000000055511151231257827021181583404541015625` en Python (`format(0.1,'.55f')` permet d'avoirtoues les décimales).  Une particularité de Python est de ne pas limiter l’encodage des `int`, par exemple comparer `>>> 2*1000` avec `>>> 2.**1000` dans la console.
+[^2.11]: Les nombres de type `float` sont encodés par des fractions binaires qui "approchent" leur valeur le plus précisément possible sans être toujours parfaitement exactes. Par exemple le nombre $0,1$ est représenté par la valeur `0.1000000000000000055511151231257827021181583404541015625` en Python (`format(0.1,'.55f')` permet d'afficher toutes les décimales).  Une particularité de Python est de ne pas limiter l’encodage des `int`, par exemple comparer `>>> 2*1000` avec `>>> 2.**1000` dans la console.
 
 
 ##	Opérateurs logiques (ou booléens)
@@ -337,11 +339,11 @@ Comme pour les opérations mathématiques, les opérations logiques suivent des 
 Exemples :
 
 - `2*a + 5`	est une expression.  
-- `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
 - `a == 5`	est une expression.
+- `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
 
 
-![Division entière de 17 par 5 posée](assets/expression-vs-instruction.png){align=right}
+![Division entière de 17 par 5 posée](assets/2-expression-vs-instruction.png){align=right}
 
 À noter: 
 > Quand une affectation est saisie dans la console Python, par exemple `>>> a = 5`, rien n’est affiché par l'interpréteur car ce n'est pas une expression.
@@ -402,7 +404,7 @@ Puisqu'elle a une valeur, une expression peut être affectée à une variable :
     	On pourrait se passer des parenthèses et utiliser les règles de priorités des opérateurs booléens :
         `annee % 4 == 0 and annee % 100 != 0 or annee % 400 == 0`, mais en pratique ce n'est pas recommandé.
 
-	```py
+	``` py
 	>>> annee = 2023
     >>> (annee % 4 == 0 and annee % 100 != 0) or annee % 400 == 0
     False

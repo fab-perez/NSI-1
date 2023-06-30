@@ -2,7 +2,7 @@
 
 On a créé une fonction `est_premier` qui peut être appelée par d’autres programmes ou fonctions qui se trouvent dans le même fichier. Ecrivons un nouveau programme Python qui appelle est_premier:
 
-```py 
+``` py 
 def main():
     n = int(input('Entrez un nombre'))
     print(est_premier(n)) 
@@ -24,13 +24,13 @@ Testons à nouveau le programme principal. Toujours la même erreur. Le fichier 
 
 Pour importer un module dans un programme, on utilise l'instruction `import`. On écrit en début de programme :
 
-```py
+``` py
 import mesfonctions
 ```
 
 A la différence des fonctions que l'on utilise habituellement dans un programme, comme `print()` ou `range()`, pour appeler une fonction du module il faut taper le nom du module suivi d'un point « . » puis du nom de la fonction.  Par exemple on écrit `mesfonctions.est_premier()`
 
-```py linenums="1"
+``` py linenums="1"
 import mesfonctions
 def main():
     n = int(input('Entrez un nombre'))
@@ -41,7 +41,7 @@ def main():
 
 On peut aussi donner un alias à un module :
 
-```py linenums="1"
+``` py linenums="1"
 import  mesfonctions  as mf
 ```
 et utiliser ensuite `mf.est_premier()`.
@@ -67,7 +67,7 @@ et utiliser ensuite `mf.est_premier()`.
 
 La fonction `help` permet de savoir ce que contient un module :
 
-```py
+``` py
 >>> help(mesfonctions)
 Help on module mesfonctions:
 …
@@ -77,7 +77,7 @@ Help on module mesfonctions:
 
 Il existe une autre méthode d'importation qui ne fonctionne pas tout à fait de la même façon. Admettons que le module `mesfonctions` contienne des dizaines de fonctions, mais que nous ayons uniquement besoin dans notre programme de la fonction `est_premier`, dans ce cas on préfèrera n'importer que cette fonction au lieu d'importer tout le module.
 
-```py
+``` py
 from  mesfonctions   import est_premier
 
 def main():
@@ -117,12 +117,12 @@ et utiliser ensuite la fonction `estprems()`.
 
 On peut aussi appeler plusieurs fonctions d’un même module séparée par des virgules :
 
-```py
+``` py
 from  mesfonctions   import est_premier, une_autre_fonction
 ```
 voire même toutes les fonctions d'un module en tapant « `*` » à la place du nom de la fonction à importer.
 
-```py
+``` py
 from  mesfonctions  import *
 ```
 
@@ -140,7 +140,7 @@ Python offre des centaines de modules avec des milliers de fonctions déjà prog
 
 On a vu auparavant la définition de la fonction `main()` contenant le programme principal, suivi du bout de code suivant :
 
-```py
+``` py
 if __name__ == '__main__':
     main()
 ```
@@ -163,7 +163,7 @@ Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir
     On a déjà vu la fonction `int()` qui semble similaire à `math.floor()`, mais attention aux différences entre les deux.
 
     === "Avec un `float` positif"
-    ```py
+    ``` py
     >>> math.floor(12.5)
     12.0
     >>> int(12.5)
@@ -171,7 +171,7 @@ Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir
     ```
 
     === "Avec un `float` négatif"
-    ```py
+    ``` py
     >>> math.floor(-12.5)
     -13.0
     >>> int(-12.5)
@@ -179,7 +179,7 @@ Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir
     ```
 
 
-```py
+``` py
 >>> import math
 >>> math.cos(math.pi)             # cosinus d'un angle en radian
 -1.0
@@ -205,13 +205,13 @@ Le [module `random`](https://docs.python.org/3/library/random.html) permet d’u
 
 La [bibliothèque `mathplotlib`](https://matplotlib.org/) contient le module `pyplot` (utilisé pour tracer des courbes). Pour importer ce module, l’utilisation d’un alias est particulièrement utile dans ce cas. 
 
-```py
+``` py
 import matplolib.pyplot as plt
 ```
 
 pyplot permet d'afficher des données sous de [multiples formes](https://matplotlib.org/stable/gallery/index.html). Par exemple pour afficher un point de coordonnées (2, 4 ) sous forme d'une croix verte dans un repère on utilise :
 
-```py
+``` py
 x, y = 2, 4
 plt.plot(x, y,'g+')
 plt.show()  
@@ -230,7 +230,7 @@ Il y en a beaucoup d’autres, tant dans la nature (https://github.com/search?q=
 
 La fonction `dir` permet d’explorer le contenu d’un module :
 
-```py
+``` py
 >>> import math
 >>> dir(math)
 ['__doc__',
@@ -246,7 +246,7 @@ La fonction `dir` permet d’explorer le contenu d’un module :
 
 En plus de la documentation en ligne, on a déjà vu la fonction help qui donne les spécifications d’une fonction.
 
-```py
+``` py
 >>> help(math.cos)
 Help on built-in function cos in module math:
 
@@ -264,7 +264,7 @@ cos(...)
 
 ??? Success "Réponse"
 
-    ```py 
+    ``` py 
     import turtle
 
     def carre(taille, couleur):
