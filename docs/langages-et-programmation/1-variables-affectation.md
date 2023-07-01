@@ -89,7 +89,7 @@ En Python, c’est l’affectation qui définit le type d'une variable[^1.7].
 
 
 
-:warning:  C'est bien la valeur qui se trouve à droite du signe « `=` » qui est affectée à la variable à gauche, et pas dans l'autre sens :
+:warning:  C'est bien la valeur qui se trouve à droite du signe « `=` » qui est affectée à la variable à gauche, et pas dans l'autre sens.
 ``` py 
 >>> 3 = a
   File "<interactive input>", line 1
@@ -99,7 +99,7 @@ SyntaxError: can't assign to literal
 !!! tip inline end "PEP 8" 
     Mettre un espace après une virgule (`,`) , mais pas avant.
 
-Il est aussi possible d'affecter des valeurs à plusieurs variables en même temps en une seule ligne :
+Il est aussi possible d'affecter des valeurs à plusieurs variables en même temps en une seule ligne.
 ``` py 
 >>> a, b = 3, 4
 >>> a
@@ -121,7 +121,7 @@ et d'affecter la valeur d’une variable à une autre variable, par exemple :
 ```
 
 
-:warning: Il n'est pas possible d'utiliser une variable avant de l’avoir définie :
+:warning: Il n'est pas possible d'utiliser une variable avant de lui avoir affecté une valeur.
 ``` py 
 >>> d
 Traceback (most recent call last):

@@ -1,11 +1,16 @@
 # Appel de fonctions
 
-Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par exemple `print()` ou `len()` sont des fonctions prédéfinies par Python. Quand on écrit un programme on utilise beaucoup de fonctions existantes, mais très souvent on veut aussi créer nos propres fonctions.
+Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par exemple `print()` ou `len()` sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions ce qui présente de nombreux avantages :
 
 !!! note inline end "" 
-    Noter ici la différene avec une fonction mathématique.
+    Noter ici la différence avec une fonction mathématique.
 
-Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’utiliser à n’importe quel moment et autant de fois que souhaité sans la réécrire. L’utilisation de fonctions facilite aussi la lisibilité de longs programmes.
+- Modularité : Les fonctions permettent de découper un programme en petites parties indépendantes, ce qui facilite la lisibilité et la résolution de problèmes complexes.
+
+- Réutilisabilité : Une fois qu'une fonction est définie, elle peut être appelée plusieurs fois sans avoir à réécrire le même bloc de code à chaque fois. 
+
+- Testabilité : Les fonctions sont des séquences isolées de code qui peuvent être testées individuellement.
+
 
 !!! abstract "Cours" 
     Une fonction est définie (ou « déclarée ») par :
@@ -24,36 +29,57 @@ Une fonction permet d’isoler une séquence d’instructions pour pouvoir l’u
 De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
 
 
-Quand on définit une fonction, elle ne s’exécute pas. Et ceci même si la fonction contient une erreur, l’interpréteur Python ne s’en aperçoit pas. Les deux programmes suivants ne font strictement rien :
+Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction contient une erreur, l’interpréteur Python ne s’en aperçoit pas.
 
 === "Programme 1"
+
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien.
 
     ``` py linenums="1"
     def bonjour():
         print('hello')
     ```
-    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien.
     
 === "Programme 2" 
+
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur (:bug:  `prit` au lieu de `print` ).
 
     ``` py linenums="1"
     def bonjour():
         prit('hello')
     ```
-     La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur (:bug:  `prit` au lieu de `print` ).
 
-Pour exécuter la fonction, il faut l’**appeler** dans un programme ou dans l’interpréteur Python en écrivant son nom suivi des parenthèse. 
+Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’**appeler** dans un programme ou dans la console Python en écrivant son nom suivi des parenthèse. 
 
 !!! note inline end "" 
-    :warning: Quand la fonction n’a pas de paramètres il faut quand même mettre les parenthèses quand on l'appelle.
+    :warning: Quand la fonction n’a pas de paramètres il faut quand même mettre les parenthèses pour l'appeller.
 
-``` py linenums="1"
-def bonjour():
-    print('hello')
+=== "Dans la console"
+    ``` py linenums="1"
+    def bonjour():
+        print('hello')
+    ```
 
->>> bonjour()
-hello
-```
+    Ici le programme définit une fonction mais ne l'appelle. Elle peut être appelée depuis la console :
+
+    ``` py
+    >>> bonjour()
+    hello
+    ```
+
+=== "Dans un programme"
+    ``` py linenums="1"
+    def bonjour():
+        print('hello')
+    
+    bonjour()
+    ```
+
+    Ici le programme définit une fonction et l'appelle immédiatement. Quand on exécute le programme, il affiche dans la console :
+    ``` py
+    hello
+    ```
+
 
 Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renvoient un message d’erreur :
 
@@ -83,16 +109,22 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
 
 
 ## La fonction main()
-On a déjà vu une fonction appelée `main` générée automatiquement par certains éditeurs suivie par le code suivant :
 
-``` py
+![Fenêtre PyScripter avec la fonction main() par défaut](assets/5-fonctions-pyscripter.png){width="50%" align=right}
+
+PyScripter, comme d'autres IDE (*Integrated Development Environment*), génèrent automatiquement une fonction appelée `main` avec le code suivant :
+
+``` py linenums="1"
+def main():
+    pass
+
 if __name__ == '__main__':
     main()
 ```
 
 En Python, comme dans la plupart des langages de programmation, il y a une fonction principale, appelée souvent `main()` qui sert de point de départ pour l'exécution d'un programme. 
 
-L'interpréteur Python exécute tout programme linéairement à partir du haut donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire pour indiquer le point de départ pour l’exécution afin de mieux comprendre le fonctionnement du programme.
+L'interpréteur Python exécute tout programme linéairement à partir de haut en bas, donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire pour indiquer le point de départ pour l’exécution afin de mieux comprendre le fonctionnement du programme.
 
 
 ##	Paramètres et arguments 
@@ -106,6 +138,8 @@ L'interpréteur Python exécute tout programme linéairement à partir du haut d
 
     On appelle une fonction en écrivant son nom suivi des arguments entre parenthèses.
 
+Prenons en exemple une fonction simple :
+
 ``` py linenums="1"  
 def bonjour(prenom1, prenom2):
     print('hello', prenom1, 'and', prenom2)
@@ -113,9 +147,20 @@ def bonjour(prenom1, prenom2):
 bonjour('Tom', 'Lisa')
 ```
 
-Ici on appelle la fonction `bonjour` à la ligne 4 en lui passant les **arguments** `'Tom'` et `'Lisa'`. Ce sont les valeurs que prennent les deux **paramètres** `prenom1` et `prenom2` pendant l'exécution de la fonction.
+La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** appelés `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lisa')`,  en lui passant les **arguments** `'Tom'` et `'Lisa'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
 
-:bug: Il faut appeler une fonction avec le même nombre d'arguments qu'elle a de paramètres sinon on obtient un message d'erreur :
+`prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le même ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lisa'`, comme indiqué par leur position.
+
+Néanmoins il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. Par exemple, ces deux appels de fonctions sont identiques :
+
+``` py 
+>>> bonjour('Tom', 'Lisa')
+hello Tom and Lisa
+>>> bonjour(prenom2 = 'Lisa', prenom1 = 'Tom')
+hello Tom and Lisa
+```
+
+Dans tous les cas, il faut appeler une fonction avec **exactement le même nombre d'arguments qu'elle a de paramètres positionnels** sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur :bug: :
 
 ``` py 
 >>> bonjour('Tom')
@@ -124,9 +169,7 @@ Traceback (most recent call last):
 TypeError: bonjour() missing 1 required positional argument: 'prenom2'
 ```
 
-Lorsqu'on définit la fonction avec «  `def bonjour(prenom1, prenom2):` »,  `prenom1` prend la valeur du premier argument quand on appelle la fonction et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **arguments positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le bon ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lisa'`, comme indiqué par leur position.
-
-Pour avoir des paramètres facultatifs, il faut leur affecter une valeur par défaut.
+Il est possible d'avoir des paramètres facultatifs en leur donnant une valeur d'argument par défaut, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
 
 !!! tip inline end "PEP 8"  
     Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
@@ -140,7 +183,11 @@ def bonjour(prenom1, prenom2='Tim'):
 hello Tom and Tim
 ```
 
-Ici, lorsqu'on définit la fonction avec «  `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2`** est appelé un **argument par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**. On peut donner la valeur des paramètres par leur mot clé dans n’importe quel ordre.
+Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**. 
+
+Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. 
+
+Voyons quelques exemples :
 
 ``` py
 def bonjour(prenom1='Tom', prenom2='Tim'):
@@ -169,8 +216,8 @@ def bonjour(prenom1='Tom', prenom2='Tim'):
     La fonction est appelée avec deux arguments donnés par leur mot-clé, l'ordre n'a pas d'importance.
 
 
-
-Si une fonction a un mélange d'arguments positionnels et par mot-clé, les arguments positionnels doivent toujours être placés avant les arguments par mot-clé : Ecrire «`def bonjour (prenom1='Tim', prenom2):`» :bug: est incorrect.
+À noter : 
+> Si une fonction a un mélange de paramètres positionnels et par mot-clé, les paramètres positionnels doivent toujours être placés avant les paramètres par mot-clé : Ecrire «`def bonjour (prenom1='Tim', prenom2):`» :bug: est incorrect.
 
 
 
