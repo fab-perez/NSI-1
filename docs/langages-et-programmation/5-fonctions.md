@@ -1,6 +1,6 @@
 # Appel de fonctions
 
-Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par exemple `print()` ou `len()` sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions ce qui présente de nombreux avantages :
+Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par exemple `print()` ou `len()` sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions, ce qui présente de nombreux avantages :
 
 !!! note inline end "" 
     Noter ici la différence avec une fonction mathématique.
@@ -75,7 +75,7 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
     bonjour()
     ```
 
-    Ici le programme définit une fonction et l'appelle immédiatement. Quand on exécute le programme, il affiche dans la console :
+    Ici le programme définit une fonction et l'appelle immédiatement. Quand le programme est exécuté, il affiche dans la console :
     ``` py
     hello
     ```
@@ -108,7 +108,7 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
     La fonction `bonjour` est appelée avant d'être définie.
 
 
-## La fonction main()
+## La fonction `main()`
 
 ![Fenêtre PyScripter avec la fonction main() par défaut](assets/5-fonctions-pyscripter.png){width="50%" align=right}
 
@@ -122,17 +122,18 @@ if __name__ == '__main__':
     main()
 ```
 
-En Python, comme dans la plupart des langages de programmation, il y a une fonction principale, appelée souvent `main()` qui sert de point de départ pour l'exécution d'un programme. 
+En Python, comme dans la plupart des langages de programmation, il y a une fonction principale, appelée souvent `main()`. Elle sert de point de départ de l'exécution d'un programme. 
 
-L'interpréteur Python exécute tout programme linéairement à partir de haut en bas, donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire pour indiquer le point de départ pour l’exécution afin de mieux comprendre le fonctionnement du programme.
+L'interpréteur Python exécute tout programme linéairement à partir de haut en bas, donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire afin de mieux comprendre le fonctionnement du programme.
 
 
 ##	Paramètres et arguments 
 
 !!! abstract "Cours"
-    Même si dans la pratique on confond souvent les deux termes par abus de langage : 
+    Même si dans la pratique les deux termes sont confondus par abus de langage, il faut faire la différence entre : 
 
     - Les **paramètres** (ou paramètres formels) d'une fonction sont des noms de variables écrits entre parenthèses après le nom de la fonction qui sont utilisées par la fonction.
+
     - Les **arguments** (ou paramètres réels) sont les valeurs qui sont données aux paramètres lorsque la fonction est appelée. 
 
 
@@ -147,7 +148,7 @@ def bonjour(prenom1, prenom2):
 bonjour('Tom', 'Lisa')
 ```
 
-La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** appelés `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lisa')`,  en lui passant les **arguments** `'Tom'` et `'Lisa'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
+La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lisa')`,  en lui passant les **arguments** `'Tom'` et `'Lisa'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
 
 `prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le même ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lisa'`, comme indiqué par leur position.
 
@@ -169,7 +170,7 @@ Traceback (most recent call last):
 TypeError: bonjour() missing 1 required positional argument: 'prenom2'
 ```
 
-Il est possible d'avoir des paramètres facultatifs en leur donnant une valeur d'argument par défaut, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
+Il existe aussi des paramètres qui sont facultatifs avec une valeur d'argument par défaut, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
 
 !!! tip inline end "PEP 8"  
     Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
@@ -183,37 +184,83 @@ def bonjour(prenom1, prenom2='Tim'):
 hello Tom and Tim
 ```
 
-Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**. 
+Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
+
+[^5.1]: Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec `end=''` dans `print('hello', end='')`.
 
 Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. 
 
-Voyons quelques exemples :
+
+Voyons l'exemple d'un fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs):
 
 ``` py
-def bonjour(prenom1='Tom', prenom2='Tim'):
-    print('hello', prenom1, 'and', prenom2)
+def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
+    print('hello', prenom1, ',', prenom2, 'and', prenom3)
 ```
 
 === "Exemple d'appel 1"
+
+    La fonction est appelée avec trois arguments sans mot-clé, ils sont pris dans l'ordre.
+
     ``` py
-    >>> bonjour("Paul", "Pierre")
-    hello Paul and Pierre
+    >>> bonjour("Paul", "Pierre", "Jean")
+    hello Paul , Pierre and Jean
     ```
-    La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre.
+
 
 === "Exemple d'appel 2"
+
+    La fonction est appelée sans arguments, hors elle a un paramètre positionnel qui est obligatoire, il y a une erreur.
+
     ``` py
-    >>> bonjour(prenom2="Jack")
-    hello Tom and Jack
+    >>> bonjour()
+    Traceback (most recent call last):
+    File "<interactive input>", line 1, in <module>
+    TypeError: bonjour() missing 1 required positional argument: 'prenom1'
     ```
-    La fonction est appelée avec la valeur de `prenom2` qui est donnée, `prenom1` prend sa valeur par défaut.
 
 === "Exemple d'appel 3"
+
+    La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre. Le troisième paramètre utilise la valeur par défaut.
+
     ``` py
-    >>> bonjour(prenom2="Jack", prenom1="Joe")
-    hello Joe and Jack
+    >>> bonjour("Paul", "Pierre")
+    hello Paul , Pierre and Tom
     ```
-    La fonction est appelée avec deux arguments donnés par leur mot-clé, l'ordre n'a pas d'importance.
+
+=== "Exemple d'appel 4"
+
+    La fonction est appelée avec deux arguments, le premier est positionnel, le second corresponant au mot-clé du troisième paramètre. Le deuxième paramètre utilise la valeur par défaut.
+
+    ``` py
+    >>> bonjour("Paul", prenom3="Pierre")
+    hello Paul , Tim and Pierre
+    ```
+
+
+=== "Exemple d'appel 5"
+
+    La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel. Il y a une erreur car les paramètres positionnels doivent être placés avant.
+
+
+    ``` py
+    >>> bonjour(prenom3="Pierre", "Paul")
+    File "<interactive input>", line 1
+    bonjour(prenom3="Pierre", "Paul")
+                                    ^
+    SyntaxError: positional argument follows keyword argument
+    ```
+
+
+
+=== "Exemple d'appel 6"
+
+    La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel identifié par son mot-clé. Le deuxième paramètre utilise la valeur par défaut.
+
+    ``` py
+    >>> bonjour(prenom3="Pierre", prenom1="Paul")
+    hello Paul , Tim and Pierre
+    ```
 
 
 À noter : 
@@ -221,19 +268,22 @@ def bonjour(prenom1='Tom', prenom2='Tim'):
 
 
 
-##	L’instruction Return
+##	L’instruction `return`
 
 !!! abstract "Cours"
     !!! note inline end "" 
-        On dit préfère le verbe "renvoyer" à "retourner" qui est un anglicisme pour *return*.
+        Le verbe "renvoyer" est préféré à "retourner" (anglicisme pour *return*).
 
     Une fonction peut **renvoyer** une ou plusieurs valeurs (nombres, textes, booléens, etc..) avec l’instruction return.
-    
-    S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.1] (on parle alors de procédure)  . 
-
+        
     La fonction se termine immédiatement dès qu’une instruction `return` est exécutée. Les instructions suivantes sont ignorées.
 
-[^5.1]: Donc une fonction renvoie toujours quelque chose.
+
+
+À noter :
+> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2] (on parle alors de procédure). 
+
+[^5.2]: Donc une fonction renvoie toujours quelque chose.
 
 
 Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On teste tous les diviseurs potentiels les uns après les autres en vérifiant si le reste de la division entière est égal à zéro. Dès qu'on trouve un diviseur, inutile de continer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si on ne trouve aucun diviseur après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
@@ -249,54 +299,54 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On 
 
     ```
 
-=== "Avec une boucle while jusqy'à la racine carrée du nombre"
+=== "Avec une boucle while jusqu'à la racine carrée du nombre"
     ``` py linenums="1"
     def est_premier(nombre):
         div = 2
         # Cherche un diviseur entre 2 et la racine carré de nombre
         while div**2 <= nombre:
             if nombre % div == 0:
-                return False    # on a trouvé un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
-            div = div + 1     # on essaye le diviseur d'après
+                return False   # on a trouvé un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
+            div = div + 1    # on essaye le diviseur d'après
         return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
 
     ```
 
-Appelons la fonction avec les nombres 10 et 13
+Appelons la fonction `estpremier `avec les arguments 21 et 13 :
 
+=== "Appel `estpremier(21)`"
+    `div` prend la valeur `2`, ce n'est pas un diviseur de `21` (`21 % 2` est égal à 1), la boucle continue.
+    `div` prend la valeur `3`, c'est pas un diviseur de `21` (`21 % 3` est égal à 0), l’instruction conditionnelle `nombre % div == 0` est vérifiée, donc l’instruction `return False` est exécutée et la fonction se termine, la dernière instruction `return True` n’est jamais exécutée.
 
-=== "Avec le nombre 10"
     ``` py 
-    >>> estpremier(10)
+    >>> estpremier(21)
     False
     ```
-    L’instruction conditionnelle est vérifiée dès le premier passage dans la boucle, donc l’instruction `return False` est immédiatement exécutée et la fonction se termine là, la dernière instruction `return True` n’est jamais exécutée.
 
-=== "Avec le nombre 13"
+=== "Appel `estpremier(13)`"
+    `div` prend les valeur `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
+    
     ``` py 
     >>> estpremier(13)
     True
     ```
-    La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre.
-
-
 
 :warning: Attention à ne pas confondre `print()` et `return`. Comparons ces deux fonctions :
 
-=== "Fonction 1"
+=== "Fonction avec `print()`"
     ``` py 
     def ajoute_1(nombre):
         print(nombre + 1)
     ```
 
-=== "Fonction 2"
+=== "Fonction avec `return`"
     ``` py 
     def ajoute_1(nombre):
         return nombre + 1
     ```
 
 
-Quand on appelle l’un ou l’autre programme dans la console, on obtient le même résultat :
+Quand on appelle l’une ou l’autre fonction `ajoute_1` dans la console, on obtient le même résultat :
 ``` py 
 >>> ajoute_1(5)
 6
@@ -305,6 +355,7 @@ Quand on appelle l’un ou l’autre programme dans la console, on obtient le m�
 Alors quelle est la différence ? 
 
 - Avec `print()`, la première fonction `ajoute_1()` affiche le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;
+
 - par contre avec la seconde fonction le résultat calculé et renvoyé par la fonction peut être utilisé, par exemple pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être affiché avec `print()` si on le souhaite. 
 
 Dans le doute, de façon générale, on évite d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et on préfère utiliser `return`.
