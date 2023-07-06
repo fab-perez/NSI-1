@@ -29,7 +29,7 @@ Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par e
 De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
 
 
-Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction contient une erreur, l’interpréteur Python ne s’en aperçoit pas.
+Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction comporte une erreur, l’interpréteur Python ne s’en aperçoit pas.
 
 === "Programme 1"
 
@@ -42,7 +42,7 @@ Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas autom
     
 === "Programme 2" 
 
-    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur (:bug:  `prit` au lieu de `print` ).
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur :bug: sur `prit` au lieu de `print`.
 
     ``` py linenums="1"
     def bonjour():
@@ -145,23 +145,23 @@ Prenons en exemple une fonction simple :
 def bonjour(prenom1, prenom2):
     print('hello', prenom1, 'and', prenom2)
 
-bonjour('Tom', 'Lisa')
+bonjour('Tom', 'Lea')
 ```
 
-La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lisa')`,  en lui passant les **arguments** `'Tom'` et `'Lisa'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
+La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lea')`,  en lui passant les **arguments** `'Tom'` et `'Lea'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
 
-`prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le même ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lisa'`, comme indiqué par leur position.
+`prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le même ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lea'`, comme indiqué par leur position.
 
-Néanmoins il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. Par exemple, ces deux appels de fonctions sont identiques :
+Néanmoins il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. Par exemple, ces deux appels de fonctions sont identiques :
 
 ``` py 
->>> bonjour('Tom', 'Lisa')
-hello Tom and Lisa
->>> bonjour(prenom2 = 'Lisa', prenom1 = 'Tom')
-hello Tom and Lisa
+>>> bonjour('Tom', 'Lea')
+hello Tom and Lea
+>>> bonjour(prenom2 = 'Lea', prenom1 = 'Tom')
+hello Tom and Lea
 ```
 
-Dans tous les cas, il faut appeler une fonction avec **exactement le même nombre d'arguments qu'elle a de paramètres positionnels** sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur :bug: :
+Dans tous les cas, il faut appeler une fonction avec **suffisament d'arguments pour tous ses paramètres positionnels** sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur :bug: :
 
 ``` py 
 >>> bonjour('Tom')
@@ -170,31 +170,31 @@ Traceback (most recent call last):
 TypeError: bonjour() missing 1 required positional argument: 'prenom2'
 ```
 
-Il existe aussi des paramètres qui sont facultatifs avec une valeur d'argument par défaut, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
+En plus des paramètres positionnels qui sont obligatoires, il existe des paramètres qui sont facultatifs ayant une valeur d'argument par défaut s'il ne sont pas renseignés, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
 
 !!! tip inline end "PEP 8"  
     Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
 
 ``` py linenums="1"
-def bonjour(prenom1, prenom2='Tim'):                                                    
+def bonjour(prenom1, prenom2='Lisa'):
     print('hello', prenom1, 'and', prenom2)
 
 --- Exemple d‘appel dans l‘interpreteur-----------------
 >>> bonjour('Tom')
-hello Tom and Tim
+hello Tom and Lisa
 ```
 
-Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Tim'):` », la valeur de `prenom2` est `'Tim'` par défaut, c’est la valeur qui est utilisée par la fonction si on ne la précise pas quand on l'appelle.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
+Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):` », la valeur de `prenom2` est `'Lisa'` par défaut, c’est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
 
 [^5.1]: Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec `end=''` dans `print('hello', end='')`.
 
 Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. 
 
 
-Voyons l'exemple d'un fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs):
+Voyons l'exemple d'une fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs):
 
 ``` py
-def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
+def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     print('hello', prenom1, ',', prenom2, 'and', prenom3)
 ```
 
@@ -203,14 +203,14 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
     La fonction est appelée avec trois arguments sans mot-clé, ils sont pris dans l'ordre.
 
     ``` py
-    >>> bonjour("Paul", "Pierre", "Jean")
-    hello Paul , Pierre and Jean
+    >>> bonjour("Tom", "Lea", "Jean")
+    hello Tom , Lea and Jean
     ```
 
 
 === "Exemple d'appel 2"
 
-    La fonction est appelée sans arguments, hors elle a un paramètre positionnel qui est obligatoire, il y a une erreur.
+    La fonction est appelée sans arguments alors qu'elle a un paramètre positionnel obligatoire, il y a une erreur.
 
     ``` py
     >>> bonjour()
@@ -224,8 +224,8 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
     La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre. Le troisième paramètre utilise la valeur par défaut.
 
     ``` py
-    >>> bonjour("Paul", "Pierre")
-    hello Paul , Pierre and Tom
+    >>> bonjour("Tom", "Lea")
+    hello Tom , Lea and Zoe
     ```
 
 === "Exemple d'appel 4"
@@ -233,8 +233,8 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
     La fonction est appelée avec deux arguments, le premier est positionnel, le second corresponant au mot-clé du troisième paramètre. Le deuxième paramètre utilise la valeur par défaut.
 
     ``` py
-    >>> bonjour("Paul", prenom3="Pierre")
-    hello Paul , Tim and Pierre
+    >>> bonjour("Tom", prenom3="Lea")
+    hello Tom , Lisa and Lea
     ```
 
 
@@ -244,10 +244,10 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
 
 
     ``` py
-    >>> bonjour(prenom3="Pierre", "Paul")
+    >>> bonjour(prenom3="Lea", "Tom")
     File "<interactive input>", line 1
-    bonjour(prenom3="Pierre", "Paul")
-                                    ^
+    bonjour(prenom3="Lea", "Tom")
+                                ^
     SyntaxError: positional argument follows keyword argument
     ```
 
@@ -258,13 +258,13 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
     La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel identifié par son mot-clé. Le deuxième paramètre utilise la valeur par défaut.
 
     ``` py
-    >>> bonjour(prenom3="Pierre", prenom1="Paul")
-    hello Paul , Tim and Pierre
+    >>> bonjour(prenom3="Lea", prenom1="Tom")
+    hello Tom , Lisa and Lea
     ```
 
 
 À noter : 
-> Si une fonction a un mélange de paramètres positionnels et par mot-clé, les paramètres positionnels doivent toujours être placés avant les paramètres par mot-clé : Ecrire «`def bonjour (prenom1='Tim', prenom2):`» :bug: est incorrect.
+> Si une fonction est définie avec des paramètres positionnels et des paramètres par mot-clé, les paramètres positionnels doivent toujours être placés avant les paramètres par mot-clé : Ecrire «`def bonjour (prenom1='Tim', prenom2):`» :bug: est incorrect.
 
 
 
@@ -281,12 +281,12 @@ def bonjour(prenom1, prenom2='Tim', prenom3='Tom'):
 
 
 À noter :
-> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2] (on parle alors de procédure). 
+> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2] (une telle fonction est appelée une procédure). 
 
 [^5.2]: Donc une fonction renvoie toujours quelque chose.
 
 
-Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On teste tous les diviseurs potentiels les uns après les autres en vérifiant si le reste de la division entière est égal à zéro. Dès qu'on trouve un diviseur, inutile de continer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si on ne trouve aucun diviseur après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
+Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Elle consiste à tester tous les entiers les uns après les autres en vérifiant s'ils divisent ce nombre, c'est-à-dire si le reste de la division entière est égal à zéro. Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
 
 === "Avec une boucle for jusqu'à nombre - 1"
     ``` py linenums="1"
@@ -294,7 +294,7 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On 
         # Cherche un diviseur entre 2 et nombre-1
         for div in range(2, nombre):
             if nombre % div == 0:
-                return False    # on a trouvé un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
+                return False    # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
         return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
 
     ```
@@ -306,8 +306,8 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. On 
         # Cherche un diviseur entre 2 et la racine carré de nombre
         while div**2 <= nombre:
             if nombre % div == 0:
-                return False   # on a trouvé un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
-            div = div + 1    # on essaye le diviseur d'après
+                return False   # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
+            div = div + 1    # essayons le suivant
         return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
 
     ```
@@ -346,7 +346,7 @@ Appelons la fonction `estpremier `avec les arguments 21 et 13 :
     ```
 
 
-Quand on appelle l’une ou l’autre fonction `ajoute_1` dans la console, on obtient le même résultat :
+Que l’une ou l’autre fonction `ajoute_1` soit appelée dans la console, elles affichent toutes les deux le même résultat :
 ``` py 
 >>> ajoute_1(5)
 6
@@ -356,9 +356,31 @@ Alors quelle est la différence ?
 
 - Avec `print()`, la première fonction `ajoute_1()` affiche le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;
 
-- par contre avec la seconde fonction le résultat calculé et renvoyé par la fonction peut être utilisé, par exemple pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être affiché avec `print()` si on le souhaite. 
+- par contre, avec la seconde fonction, le résultat calculé et renvoyé par la fonction peut être utilisé, par exemple pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être simplement affiché, par exemple `print(ajoute_1(5))`. 
 
-Dans le doute, de façon générale, on évite d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et on préfère utiliser `return`.
+
+Appelons `ajoute_1(5)` et affectons la valeur retournée par ces fonctions à une variable :
+
+=== "Fonction avec `print()`"
+    
+    ``` py 
+    def ajoute_1(nombre):
+        print(nombre + 1)
+
+    suivant = ajoute_1(5)
+    ```
+    Dans ce cas `suivant` à la valeur `None`, :bug: ce n'est probablement pas ce qui était attendu !
+
+=== "Fonction avec `return`"
+    ``` py 
+    def ajoute_1(nombre):
+        return nombre + 1
+
+    suivant = ajoute_1(5)
+    ```
+    Dans ce cas `suivant` à la valeur `6` !
+
+Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
 
 Une fonction peut aussi renvoyer plusieurs valeurs en même temps, séparées par des virgules, par exemple: 
 ``` py 
@@ -380,7 +402,11 @@ def carre_cube(x):
     ```
 
 ??? Success "Réponse"
-    Pour décomposer un nombre en facteurs premiers on commence par cherche son plus petit diviseur qui est un nombre premier (un "facteur premier") et on divise ce nombre par ce diviseur, puis on fait la même chose pour le quotient obtenu, puis sur le deuxième quotient, etc. tant que le quotient est plus grand que 1. 
+    Décomposer un nombre en facteurs premiers consiste à :
+
+    1. chercher son plus petit diviseur qui est un nombre premier (un "facteur premier") et l'afficher ; 
+    2. diviser ce nombre par le diviseur trouvé et remplacer le nombre par le quotient ;
+    3. recommencer tant que le nombre est plus grand que 1. 
 
 	``` py 
     def main():
@@ -408,16 +434,21 @@ def carre_cube(x):
 
 Prenons un exemple :
 ``` py
->>> ma_somme = lambda x, y: x + y
->>> ma_somme(3, 5)
+>>> somme = lambda x, y: x + y
+>>> somme(3, 5)
 8
 ```
 
-Comme avec une variable, on utilise le signe `=` pour affecter à la fonction (`ma_somme`) sa définition, avec d’abord le mot réservé `lambda` suivi de la liste des paramètres (zéro, un ou plusieurs), séparés par des virgules (ici deux paramètres `x` et `y`), ensuite figure un nouveau signe deux points « `:` » et l’expression de la fonction lambda.
+Ici la fonction lambda est définie par l'expression `lambda x, y: x + y` qui comporte :
 
-Les fonctions lambda n’ont qu’une seule expression et c'est le résultat de cette expression qui est renvoyé par la fonction. 
+- le mot réservé `lambda` ;
+- suivi de deux paramètres `x` et `y` placés avant les deux-points ;
+- deux-points `:` ;
+- l'expression de la valeur renvoyée `x + y`, placée après les deux-points.
 
-Dans notre exemple, `ma_somme` renvoie la valeur de l’expression `x + y`.
+Le signe `=` affecte cette fonction à une variable, ici `somme`, c'est le nom de cette fonction.
+
+La fonction peut être ensuite appelée `somme(3, 5)`, comme toute fonction, avec deux arguments `3` et `5` : 
 
 
 !!! question "Exercice corrigé" 
@@ -435,7 +466,8 @@ Dans notre exemple, `ma_somme` renvoie la valeur de l’expression `x + y`.
     ```
 
 
-On peut utiliser une instruction conditionnelle par exemple : 
+Réduite à une seule expression, les fonctions lambda permettent d'utiliser une instruction conditionnelle écrite sous une forme un peu différente que [vue précedemment](4-constructions-elementaires.md#instructions-conditionnelles) : 
+
 ``` py
 >>> entre_10_et_20 = lambda x: True if (x > 10 and x < 20) else False                     
 >>> entre_10_et_20(5)
@@ -485,19 +517,26 @@ def main():
 
 ###	Paramètres passés par valeur
 
-Dans les exemples précédents, les arguments utilisés en appelant les fonctions étaient à chaque fois des valeurs (est_premier(10), est_premier(13). Cela n'est nullement obligatoire. Les arguments utilisés dans l'appel d'une fonction peuvent aussi être des variables ou même des expressions.
+Dans les exemples précédents (`est_premier(13`, etc.), les arguments utilisés en appelant les fonctions étaient des valeurs. 
+
+Les arguments utilisés dans l'appel d'une fonction peuvent aussi être des variables ou même des expressions. Les trois appels de fonctions suivants font le même chose :
+
 
 ``` py 
->>> est_premier(23)			>>> a = 23				>>> nombre = 22
-True					>>> est_premier(a)			>>> est_premier(nombre + 1)
- 					True					True
-
+>>> est_premier(13)
+True
+>>> a = 13
+>>> est_premier(a)
+True
+>>> nombre = 6
+>>> est_premier(2*nombre + 1)
+True
 ```
 
-Quand une variable est passée en argument à la fonction, par exemple dans le cas de est_premier(a), sa valeur est copiée dans une variable locale à la fonction. C'est cette variable locale qui est utilisée pour faire les calculs dans la fonction appelée.  Les modifications de cette variable locale à l’intérieur de la fonction ne modifient pas la variable qui a été passée en paramètre. Et c’est le cas même quand le nom de la variable passée en paramètre est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction.
+Quand un nom de variable est passé en argument à la fonction, par exemple dans le cas de est_premier(a), sa valeur est copiée dans une variable locale à la fonction. C'est cette variable locale qui est utilisée pour faire les calculs dans la fonction appelée.  Les modifications de cette variable locale à l’intérieur de la fonction ne modifient pas la variable qui a été passée en paramètre. Et c’est le cas même quand le nom de la variable passée en paramètre est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction.
 
 !!! abstract "Cours"
-    Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution. On dit que **les paramètres sont passés par valeur**.
+    Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution.  **Les paramètres sont passés par valeur**.
 
 Exemple :
 ``` py 
@@ -518,7 +557,7 @@ valeur de a dans main : 1
  
 ###	Variables globales
 
-Sauf exception on préfère utiliser uniquement des variables locales pour faciliter la compréhension des programmes et réduire l’utilisation de mémoire inutile, mais dans certains cas leur portée n’est plus suffisante.
+Sauf exception il est préférable d'utiliser uniquement des variables locales pour faciliter la compréhension des programmes et réduire l’utilisation de mémoire inutile, mais dans certains cas leur portée n’est plus suffisante.
 
 !!! abstract "Cours"
     Une variable définie en dehors de toute fonction est appelée **variable globale**. Elle est utilisable à travers l’ensemble du programme. 

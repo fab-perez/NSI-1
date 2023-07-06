@@ -41,7 +41,7 @@ Les opérations arithmétiques usuelles sont effectuées sur des nombres de type
 
 
 
-> La racine carrée d’un nombre peut s'obtenir avec :  ```a ** 0.5``` [^2.1].
+> La racine carrée d’un nombre peut s'obtenir avec :  ```a**0.5``` [^2.1].
 
 > L’ordre des priorités mathématiques est respecté.
     
