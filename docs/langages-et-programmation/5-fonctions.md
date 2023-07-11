@@ -60,7 +60,7 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
         print('hello')
     ```
 
-    Ici le programme définit une fonction mais ne l'appelle. Elle peut être appelée depuis la console :
+    Ici le programme définit une fonction mais ne l'appelle pas. Elle peut être appelée depuis la console :
 
     ``` py
     >>> bonjour()
@@ -94,6 +94,8 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
     La fonction `bonjour` est appelée avant d'être définie, le programme affiche un message d'erreur :
     
     ```
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
     NameError: name 'bonjour' is not defined
     ```
 
@@ -113,6 +115,9 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
     La fonction `bonjour` est appelée avant d'être définie, le programme affiche un message d'erreur :
     
     ```
+    Traceback (most recent call last):
+      File "<module1>", line 5, in <module>
+      File "<module1>", line 2, in main
     NameError: name 'bonjour' is not defined
     ```
 
