@@ -1,6 +1,6 @@
 # Appel de fonctions
 
-Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par exemple `print()` ou `len()` sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions, ce qui présente de nombreux avantages :
+Nous avons déjà utilisé des fonctions comme `print()` ou `len()` qui sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions, ce qui présente de nombreux avantages :
 
 !!! note inline end "" 
     Noter ici la différence avec une fonction mathématique.
@@ -18,7 +18,7 @@ Nous avons déjà utilisé des fonctions depuis le début de cette leçon, par e
     - le mot réservé `def` (pour *define*),
     - son nom,
     - zéro, un ou plusieurs paramètres écrits entre parenthèses (les parenthèses sont obligatoires même quand il n’y a pas de paramètres) et séparés par des virgules,
-    - deux points,
+    - deux-points `:`,
     - une séquence d’instructions indentées (le « corps » de la fonction).
     
     ``` py
@@ -42,19 +42,19 @@ Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas autom
     
 === "Programme 2" 
 
-    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur :bug: sur `prit` au lieu de `print`.
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur :bug: sur une apostrophe manquante à la fin de `'hello`.
 
     ``` py linenums="1"
     def bonjour():
-        prit('hello')
+        print('hello)
     ```
 
-Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’**appeler** dans un programme ou dans la console Python en écrivant son nom suivi des parenthèse. 
+Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’**appeler** depuis un programme ou depuis la console Python en écrivant son nom suivi des parenthèse. 
 
 !!! note inline end "" 
     :warning: Quand la fonction n’a pas de paramètres il faut quand même mettre les parenthèses pour l'appeller.
 
-=== "Dans la console"
+=== "Depuis la console"
     ``` py linenums="1"
     def bonjour():
         print('hello')
@@ -67,7 +67,7 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
     hello
     ```
 
-=== "Dans un programme"
+=== "Depuis un programme"
     ``` py linenums="1"
     def bonjour():
         print('hello')
@@ -84,15 +84,19 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
 Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renvoient un message d’erreur :
 
 === "Programme 1"
-
+    
     ``` py linenums="1"
     bonjour()
 
     def bonjour():
         print('hello')
     ```
-    La fonction `bonjour` est appelée avant d'être définie.
+    La fonction `bonjour` est appelée avant d'être définie, le programme affiche un message d'erreur :
     
+    ```
+    NameError: name 'bonjour' is not defined
+    ```
+
 === "Programme 2"
 
     ``` py linenums="1"
@@ -105,14 +109,18 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renv
     def bonjour():
         print('hello')
     ```
-    La fonction `bonjour` est appelée avant d'être définie.
 
+    La fonction `bonjour` est appelée avant d'être définie, le programme affiche un message d'erreur :
+    
+    ```
+    NameError: name 'bonjour' is not defined
+    ```
 
 ## La fonction `main()`
 
 ![Fenêtre PyScripter avec la fonction main() par défaut](assets/5-fonctions-pyscripter.png){width="50%" align=right}
 
-PyScripter, comme d'autres IDE (*Integrated Development Environment*), génèrent automatiquement une fonction appelée `main` avec le code suivant :
+PyScripter, comme d'autres IDE (*Integrated Development Environment*), génèr automatiquement une fonction appelée `main` avec le code suivant :
 
 ``` py linenums="1"
 def main():
@@ -124,7 +132,7 @@ if __name__ == '__main__':
 
 En Python, comme dans la plupart des langages de programmation, il y a une fonction principale, appelée souvent `main()`. Elle sert de point de départ de l'exécution d'un programme. 
 
-L'interpréteur Python exécute tout programme linéairement à partir de haut en bas, donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire afin de mieux comprendre le fonctionnement du programme.
+L'interpréteur Python exécute tout programme linéairement de haut en bas, donc il n'est pas indispensable de définir cette fonction `main()` dans chaque programme, mais il est recommandé de le faire dans de longs programmes découpés en fonction afin de mieux comprendre leur fonctionnement.
 
 
 ##	Paramètres et arguments 
@@ -150,7 +158,7 @@ bonjour('Tom', 'Lea')
 
 La fonction `bonjour` est définie en ligne 1 par « `def bonjour(prenom1, prenom2):` » avec deux  **paramètres** `prenom1` et `prenom2`. Elle est ensuite appelée à la ligne 4, `bonjour('Tom', 'Lea')`,  en lui passant les **arguments** `'Tom'` et `'Lea'`,  ce sont les valeurs que prennent les deux paramètres `prenom1` et `prenom2` pendant l'exécution de la fonction.
 
-`prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction et **dans le même ordre**. Dans l'exemple ci-dessus, `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lea'`, comme indiqué par leur position.
+`prenom1` prend la valeur du premier argument quand on appelle cette fonction `bonjour` et `prenom2` la valeur du deuxième. `prenom1`et `prenom2` sont appelés des **paramètres positionnels** (en anglais *positional arguments*). Il est  **obligatoire** de leur donner une valeur quand on appelle une fonction. Par défaut, les paramètres prennent les valeurs des arguments **dans l'ordre de leurs positions respectives**, dans l'exemple ci-dessus `prenom1` prend la valeur `'Tom'`  et `prenom2` la valeur `'Lea'`, comme indiqué par leur position.
 
 Néanmoins il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. Par exemple, ces deux appels de fonctions sont identiques :
 
@@ -184,7 +192,7 @@ def bonjour(prenom1, prenom2='Lisa'):
 hello Tom and Lisa
 ```
 
-Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):` », la valeur de `prenom2` est `'Lisa'` par défaut, c’est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
+Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Lisa'):` », la valeur de `prenom2` est `'Lisa'` par défaut, c’est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
 
 [^5.1]: Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec `end=''` dans `print('hello', end='')`.
 
@@ -274,10 +282,9 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     !!! note inline end "" 
         Le verbe "renvoyer" est préféré à "retourner" (anglicisme pour *return*).
 
-    Une fonction peut **renvoyer** une ou plusieurs valeurs (nombres, textes, booléens, etc..) avec l’instruction return.
+    Une fonction peut **renvoyer** une ou plusieurs valeurs avec l’instruction **`return`**.
         
     La fonction se termine immédiatement dès qu’une instruction `return` est exécutée. Les instructions suivantes sont ignorées.
-
 
 
 À noter :
@@ -312,7 +319,15 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Ell
 
     ```
 
-Appelons la fonction `estpremier `avec les arguments 21 et 13 :
+Appelons la fonction `estpremier `avec les arguments 13 et 21 :
+
+=== "Appel `estpremier(13)`"
+    `div` prend les valeur `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
+    
+    ``` py 
+    >>> estpremier(13)
+    True
+    ```
 
 === "Appel `estpremier(21)`"
     `div` prend la valeur `2`, ce n'est pas un diviseur de `21` (`21 % 2` est égal à 1), la boucle continue.
@@ -323,13 +338,7 @@ Appelons la fonction `estpremier `avec les arguments 21 et 13 :
     False
     ```
 
-=== "Appel `estpremier(13)`"
-    `div` prend les valeur `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
-    
-    ``` py 
-    >>> estpremier(13)
-    True
-    ```
+
 
 :warning: Attention à ne pas confondre `print()` et `return`. Comparons ces deux fonctions :
 
@@ -369,7 +378,7 @@ Appelons `ajoute_1(5)` et affectons la valeur retournée par ces fonctions à un
 
     suivant = ajoute_1(5)
     ```
-    Dans ce cas `suivant` à la valeur `None`, :bug: ce n'est probablement pas ce qui était attendu !
+    Dans ce cas la variable `suivant` a la valeur `None`, :bug: ce n'est probablement pas ce qui était attendu !
 
 === "Fonction avec `return`"
     ``` py 
@@ -378,7 +387,7 @@ Appelons `ajoute_1(5)` et affectons la valeur retournée par ces fonctions à un
 
     suivant = ajoute_1(5)
     ```
-    Dans ce cas `suivant` à la valeur `6` !
+    Dans ce cas la variable `suivant` a la valeur `6` !
 
 Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
 
@@ -432,7 +441,7 @@ def carre_cube(x):
     nom_de_fonction = lambda param1, param2,…: expression
     ```
 
-Prenons un exemple :
+Prenons par exemple une fonction qui ajoute deux valeurs :
 ``` py
 >>> somme = lambda x, y: x + y
 >>> somme(3, 5)
@@ -441,9 +450,9 @@ Prenons un exemple :
 
 Ici la fonction lambda est définie par l'expression `lambda x, y: x + y` qui comporte :
 
-- le mot réservé `lambda` ;
-- suivi de deux paramètres `x` et `y` placés avant les deux-points ;
-- deux-points `:` ;
+- le mot réservé `lambda`,
+- suivi de deux paramètres `x` et `y` placés avant les deux-points,
+- deux-points `:`,
 - l'expression de la valeur renvoyée `x + y`, placée après les deux-points.
 
 Le signe `=` affecte cette fonction à une variable, ici `somme`, c'est le nom de cette fonction.
@@ -486,14 +495,29 @@ Exemple : Les programmes suivants lèvent une erreur
     print(a)
     a = 1
     ```
-    Ce programme essaie d'afficher la variable `a` avant qu'elle ne soit définie.
+    Ce programme essaie d'afficher la variable `a` avant qu'elle ne soit définie, il affiche un message d'erreur :
+
+    ```
+    >>>
+    Traceback (most recent call last):
+    File "<module1>", line 1, in <module>
+    NameError: name 'a' is not defined
+    ```
 
 === "Programme 2"
     ``` py 
     a = a + 1
     print(a)
     ```
-    Ce programme essaie d'affecter à la variable `a` une valeur calculée en utilisant `a` avant qu'elle ne soit définie.
+    Ce programme essaie d'affecter à la variable `a` une valeur calculée en utilisant `a` avant qu'elle ne soit définie, il affiche un message d'erreur :
+
+    ```
+    >>>
+    Traceback (most recent call last):
+    File "<module1>", line 1, in <module>
+    NameError: name 'a' is not defined
+    ```
+
 
 
 ###	Variables locales
@@ -503,16 +527,23 @@ Exemple : Les programmes suivants lèvent une erreur
 
 Tenter d’appeler une variable locale depuis l’extérieur de la fonction qui l’a définie provoquera une erreur. 
 
-Exemple : Le programme suivant lève une erreur. La variable a n’existe pas dans la fonction main(), elle est locale à affiche_a ().
+Exemple : 
 
 ``` py
 def affiche_a():
     a = 1
-    print(f'valeur de a dans affiche_a {a}')
+    print(f'valeur de a dans affiche_a : {a}')
 
-def main():
-    affiche_a()
-    print(f'valeur de a dans main {a}')
+affiche_a()
+print(f'valeur de a dans le programme : {a}')
+```
+La variable `a` elle est locale à `affiche_a`, le programme suivant lève une erreur :
+
+```
+>>>
+Traceback (most recent call last):
+  File "<module1>", line 6, in <module>
+NameError: name 'a' is not defined
 ```
 
 ###	Paramètres passés par valeur
@@ -533,7 +564,7 @@ True
 True
 ```
 
-Quand un nom de variable est passé en argument à la fonction, par exemple dans le cas de est_premier(a), sa valeur est copiée dans une variable locale à la fonction. C'est cette variable locale qui est utilisée pour faire les calculs dans la fonction appelée.  Les modifications de cette variable locale à l’intérieur de la fonction ne modifient pas la variable qui a été passée en paramètre. Et c’est le cas même quand le nom de la variable passée en paramètre est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction.
+Quand un nom de variable est passé en argument à la fonction, par exemple dans le cas de `est_premier(a)`, sa valeur est copiée dans une variable locale à la fonction. C'est cette variable locale qui est utilisée pour faire les calculs dans la fonction appelée.  Les modifications de cette variable locale à l’intérieur de la fonction ne modifient pas la variable qui a été passée en paramètre. Et c’est le cas même quand le nom de la variable passée en paramètre est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction.
 
 !!! abstract "Cours"
     Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution.  **Les paramètres sont passés par valeur**.
@@ -544,16 +575,18 @@ def ajoute_1(a):
     a = a + 1
     print(f'valeur de a dans ajoute_1 : {a}')
 
-def main():
-    a = 1
-    ajoute_1 (a)
-    print(f'valeur de a dans main :{a}')
->>> 
-valeur de a dans ajoute_1 : 2
-valeur de a dans main : 1
+a = 1
+ajoute_1(a)
+print(f'valeur de a dans le programme : {a}')
 ```
 
-`ajoute_1 (a)` change la valeur de `a` en `2` pendant son exécution, mais la valeur de `a` n’a pas changée dans `main()`.
+La valeur de a est modifiée en `2` à l'intérieur de la fonction `ajoute_1` pendant son exécution, mais pas dans le programme où elle garde sa valeur initiale de  `1`.
+
+```
+>>> 
+valeur de a dans ajoute_1 : 2
+valeur de a dans le programme : 1
+```
  
 ###	Variables globales
 
@@ -566,54 +599,71 @@ Elle peut être affichée par une fonction :
 
 ``` py 
 a = 1
-def fonction():
+def affiche_a():
     print(a)
-fonction()
+
+affiche_a()
 ```
 
-Mais ne peut pas être modifiée. Le programme suivant lève une erreur :
+
+Mais ne peut pas être modifiée. 
 
 ``` py 
 a = 1
-def fonction():
+def affiche_a():
     a += 1
-    print(a)
-fonction()
+    print(f'valeur de a dans affiche_a : {a}')
+
+affiche_a()
+```
+Ce programme affiche une erreur :
+```
+>>>
+Traceback (most recent call last):
+  File "<module1>", line 6, in <module>
+  File "<module1>", line 3, in affiche_a
+UnboundLocalError: local variable 'a' referenced before assignment
 ```
 
 On peut néanmoins essayer de lui assigner une nouvelle valeur :
 
 ``` py 
 a = 1
-def fonction():
+def affiche_a():
     a = 2
-    print(a)
-fonction()
+    print(f'valeur de a dans affiche_a : {a}')
+
+affiche_a()
+print(f'valeur de a dans le programme : {a}')
 ```
 
-Mais dans ce cas, Python part du principe que `a` est locale à la fonction, et non plus une variable globale :
+Mais dans ce cas, Python part du principe que `a` est locale à la fonction, et non plus une variable globale. L’instruction `a = 2` a créé un nouvelle variable locale à la fonction, la variable globale n’a pas changé :
+
+```
+>>>
+valeur de a dans affiche_a : 2
+valeur de a dans le programme : 1
+```
+
+
+
+Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale dans une fonction et que cette nouvelle valeur soit gardée dans le reste du programme. Pour cela, il faut utiliser le mot clef `global` devant le nom d’une variable globale utilisée localement afin d’indiquer qu'il faut modifier la valeur de la variable globale et non pas créer une variable locale de même nom :
 
 ``` py 
 a = 1
-def fonction():
-    a = 2
-    print(a)
-fonction()
-print(a)
-```
-
-L’instruction `a = 2` a créé un nouvelle variable locale à la fonction, la variable globale n’a pas changé. 
-
-Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale depuis une fonction, notamment dans le cas où une fonction se sert d’une variable globale et la manipule. Pour faire cela, il faut utiliser le mot clef `global` devant le nom d’une variable globale utilisée localement afin d’indiquer à Python qu’on souhaite bien modifier son contenu de la variable globale et non pas créer une variable locale de même nom :
-
-``` py 
-a = 1
-def fonction():
+def affiche_a():
     global a
     a = 2
-    print(a)
-fonction()
-print(a)
+    print(f'valeur de a dans affiche_a : {a}')
+
+affiche_a()
+print(f'valeur de a dans le programme : {a}')
+```
+La variable `a` a été modifiée dans la fonction et que sa nouvelle valeur est gardée dans le reste du programme :
+```
+>>>
+valeur de a dans affiche_a : 2
+valeur de a dans le programme : 2
 ```
 
 !!! abstract "Cours"
@@ -627,18 +677,22 @@ Une fonction peut être appelée n’importe où dans un programme (après sa d�
 !!! abstract "Cours"
     Une fonction récursive est une fonction qui peut s'appeler elle-même au cours de son exécution.
 
-Exemple : Programmer la fonction factorielle  $n!  =  1  \times 2  \times 3  \times 4  \times ...  \times (n-1)  \times n$
+Prenons pour exemple une fonction qui renvoie le produit de tous les nombres entiers entre 1 et $n$. Ce produit est appelé factorielle de $n$ et noté $n!$.
 
-Programme standard. On multiplie tous les entiers de 1 à n
+$n!  =  1  \times 2  \times 3  \times 4  \times ...  \times (n-1)  \times n$ 
+
+Une simple boucle `for` permet de multiplier tous les entiers allant de `1` à `n` :
+
 ``` py 
 def factorielle(n):
     fact = 1
-    for i in range(1, n+1):
-        fact = fact*i
+    for i in range(1, n + 1):
+        fact = fact * i
     return fact
 ```
 
-Programme récursif :. n ! = (n-1)! * n et 1 !=1
+Mais il est aussi possible de remarquer que $n!  =  (n - 1)!  \times n$ et que $1!  =  1$, ce qui permet d'écrire un programme récursif suivant : 
+ 
 ``` py 
 def factorielle_recursive(n):
     if n == 1:
@@ -652,7 +706,7 @@ def factorielle_recursive(n):
 
  
 !!! question "Exercice corrigé" 
-	Écrire une fonction récursive `compte_a_rebours(n)` qui compte à rebours de `n` à `0`.
+	Écrire une fonction récursive `compte_a_rebours(n)` qui affiche les nombres entiers à rebours allant de `n` à `0`.
 
 ??? Success "Réponse"
     ``` py 
