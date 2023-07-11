@@ -143,7 +143,7 @@ L'interpréteur Python exécute tout programme linéairement de haut en bas, don
 ##	Paramètres et arguments 
 
 !!! abstract "Cours"
-    Même si dans la pratique les deux termes sont confondus par abus de langage, il faut faire la différence entre : 
+    Même si dans la pratique les deux termes sont souvent confondus par abus de langage, il faut faire la différence entre : 
 
     - Les **paramètres** (ou paramètres formels) d'une fonction sont des noms de variables écrits entre parenthèses après le nom de la fonction qui sont utilisées par la fonction.
 
@@ -174,7 +174,7 @@ hello Tom and Lea
 hello Tom and Lea
 ```
 
-Dans tous les cas, il faut appeler une fonction avec **suffisament d'arguments pour tous ses paramètres positionnels** sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur :bug: :
+Dans tous les cas, il faut appeler une fonction avec **suffisament d'arguments pour tous ses paramètres positionnels**, sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur :bug: :
 
 ``` py 
 >>> bonjour('Tom')
@@ -201,7 +201,7 @@ Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, pr
 
 [^5.1]: Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec `end=''` dans `print('hello', end='')`.
 
-Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel ils correspondent. 
+Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. 
 
 
 Voyons l'exemple d'une fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs):
@@ -298,9 +298,9 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
 [^5.2]: Donc une fonction renvoie toujours quelque chose.
 
 
-Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Elle consiste à tester tous les entiers les uns après les autres en vérifiant s'ils divisent ce nombre, c'est-à-dire si le reste de la division entière est égal à zéro. Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
+Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Elle consiste à tester tous les entiers possibles, les uns après les autres, en vérifiant s'ils divisent ce nombre, c'est-à-dire si le reste de la division entière est égal à zéro. Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
 
-=== "Avec une boucle for jusqu'à nombre - 1"
+=== "Avec une boucle `for` en testant les entiers allant de 2 à `nombre` (exclus)"
     ``` py linenums="1"
     def est_premier(nombre):
         # Cherche un diviseur entre 2 et nombre-1
@@ -311,7 +311,7 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Ell
 
     ```
 
-=== "Avec une boucle while jusqu'à la racine carrée du nombre"
+=== "Avec une boucle `while` en testant les entiers allent de 2 à la racine carrée du nombre"
     ``` py linenums="1"
     def est_premier(nombre):
         div = 2
