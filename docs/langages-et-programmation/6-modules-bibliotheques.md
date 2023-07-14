@@ -1,16 +1,54 @@
 ##	Modules et bibliothèques
 
-On a créé une fonction `est_premier` qui peut être appelée par d’autres programmes ou fonctions qui se trouvent dans le même fichier. Ecrivons un nouveau programme Python qui appelle est_premier:
 
-``` py 
+Nous avons vu dans l'exercice précédent comment écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier`. 
+
+
+!!! info inline end "Rappel" 
+    La fonction `est_premier` doit être est écrite au début du programme, elle doit être définie **avant** d'être appelée.
+
+
+``` py linenums="1"
+def est_premier(nombre):
+    for div in range(2, nombre):
+        if nombre % div == 0:
+            return False
+    return True
+
 def main():
-    n = int(input('Entrez un nombre'))
-    print(est_premier(n)) 
+    nombre = int(input('Entrez un nombre '))
+    premier = 2 # on commence par le plus petit nombre premier : 2
+    while nombre > 1:
+        if nombre % premier == 0:      # si premier divise nombre
+            print(premier, end=" ")                 # alors on l'affiche
+            nombre = nombre // premier     # et on recommence après avoir divisé nombre par premier
+        else:                          # sinon, premier n'est pas un diviseur
+            premier += 1                 # on cherche le nombre premier suivant
+            while not(est_premier(premier)):
+                premier += 1
+
+
+if __name__ == '__main__':
+    main()
 ```
 
-ce programme génère une erreur : `NameError: name 'est_premier' is not defined`
+Ici le programme etait écrit dans le même fichier Python que la fonction `est_premier`. Mais se passerait'il si un programme écrit dans un autre fichier Python appelle cette même fonction ? 
 
-Comment faire pour appeler `est_premier` depuis ce nouveau programme sans tout réécrire ? Il faut créer un module.
+Ecrivons un nouveau programme Python qui appelle `est_premier` :
+
+``` py linenums="1"
+n = int(input('Entrez un nombre'))
+print(est_premier(n)) 
+```
+
+Il affiche une erreur :bug: : 
+```
+Traceback (most recent call last):
+  File "<module2>", line 2, in <module>
+NameError: name 'est_premier' is not defined
+```
+
+Alors comment faire pour appeler `est_premier` depuis ce nouveau programme sans tout réécrire ? Il faut créer un module.
 
 Enregistrons la fonction `est_premier` dans un fichier qu’on appelle « mesfonctions.py ». :warning: le fichier « mesfonctions.py » doit être **enregistré dans le même répertoire** que le nouveau programme.
 
@@ -22,50 +60,54 @@ Testons à nouveau le programme principal. Toujours la même erreur. Le fichier 
 
 ## `import`
 
-Pour importer un module dans un programme, on utilise l'instruction `import`. On écrit en début de programme :
+Pour importer un module dans un programme, il faut utiliser l'instruction `import` en début de programme :
 
 ``` py
 import mesfonctions
 ```
 
-A la différence des fonctions que l'on utilise habituellement dans un programme, comme `print()` ou `range()`, pour appeler une fonction du module il faut taper le nom du module suivi d'un point « . » puis du nom de la fonction.  Par exemple on écrit `mesfonctions.est_premier()`
+A la différence des fonctions Python standard, comme `print()` ou `range()`, utilisée habituellement dans un programme, pour appeler une fonction du module il faut écrire le nom du module suivi d'un point « . » puis du nom de la fonction.  Par exemple on écrit `mesfonctions.est_premier()`
 
 ``` py linenums="1"
 import mesfonctions
-def main():
-    n = int(input('Entrez un nombre'))
-    print(mesfonctions.est_premier(n)) 
+
+n = int(input('Entrez un nombre '))
+print(mesfonctions.est_premier(n)) 
 ```
 
 :warning: Prendre soin d’enregistrer ce programme dans le même répertoire que le fichier « mesfonctions.py ».
 
-On peut aussi donner un alias à un module :
+Il est aussi possible donner un alias à un module pour ne pas à avoir réécrire son nom, par exemple pour écrire `mf` au lieu de `mesfonctions`:
 
 ``` py linenums="1"
 import  mesfonctions  as mf
+
+n = int(input('Entrez un nombre '))
+print(mf.est_premier(n)) 
 ```
-et utiliser ensuite `mf.est_premier()`.
+
 
 !!! abstract "Cours"
     === "Sans alias"
-        On importe un module nom_module en début de programme avec l’instruction :
+        Pour importer un module `nom_module`, il faut écrire en début de programme l’instruction :
 
         `import nom_module`	
         
-        puis on utilise une fonction de ce module nom_fonction() en écrivant :
+        puis pour utiliser une fonction `nom_fonction()` de ce module  :
 
         `nom_module.nom_fonction()`
 
     === "Avec alias"
-        On importe un module nom_module en début de programme en lui donnant un alias avec l’instruction :
+        Pour importer un module `nom_module` en lui donnant un alias `nom_alias`, il faut écrire en début de programme l’instruction :
 
         `import nom_module as nom_alias`	
+        
+        puis pour utiliser une fonction `nom_fonction()` de ce module  :
 
-        puis on utilise une fonction de ce module nom_fonction() en écrivant :
+        `nomnom_alias_module.nom_fonction()`
 
-        `nom_alias.nom_fonction()`
 
-La fonction `help` permet de savoir ce que contient un module :
+La fonction `help()` permet de savoir ce que contient un module :
 
 ``` py
 >>> help(mesfonctions)
@@ -77,12 +119,11 @@ Help on module mesfonctions:
 
 Il existe une autre méthode d'importation qui ne fonctionne pas tout à fait de la même façon. Admettons que le module `mesfonctions` contienne des dizaines de fonctions, mais que nous ayons uniquement besoin dans notre programme de la fonction `est_premier`, dans ce cas on préfèrera n'importer que cette fonction au lieu d'importer tout le module.
 
-``` py
+``` py linenums="1"
 from  mesfonctions   import est_premier
 
-def main():
-    n = int(input('Entrez un nombre'))
-    print(est_premier(n))
+n = int(input('Entrez un nombre '))
+print(est_premier(n))
 ```
 
 Ici on ne met pas le préfixe « `mesfonctions.` »  devant le nom de la fonction. 
@@ -95,27 +136,30 @@ et utiliser ensuite la fonction `estprems()`.
    
     === "Sans alias"
 
-        On importe une fonction `nom_fonction()` depuis le module `nom_module` en début de programme avec l’instruction :
+        Pour importer une fonction `nom_fonction()` depuis le module `nom_module`, il faut écrire en début de programme l’instruction :
         
         `from nom_module import nom_fonction`		
         
-        puis on utilise cette fonction en écrivant :
+        puis pour utiliser cette fonction :
         
         `nom_fonction()`
 
+
+        
     === "Avec alias"
 
-        On importe une fonction `nom_fonction()` en lui donnant un alias depuis le module `nom_module` en début de programme avec l’instruction :
+
+        Pour importer une fonction `nom_fonction()` en lui donnant un alias `nom_alias` depuis le module `nom_module`, il faut écrire en début de programme l’instruction :
         
         `from nom_module import nom_fonction as nom_alias`		
         
-        puis on utilise cette fonction en écrivant :
+        puis pour utiliser cette fonction :
         
         `nom_alias()`
 
 
 
-On peut aussi appeler plusieurs fonctions d’un même module séparée par des virgules :
+Il est aussi possible d'importer plusieurs fonctions d’un même module séparées par des virgules :
 
 ``` py
 from  mesfonctions   import est_premier, une_autre_fonction
@@ -126,9 +170,10 @@ voire même toutes les fonctions d'un module en tapant « `*` » à la place du 
 from  mesfonctions  import *
 ```
 
-mais cette utilisation est vivement déconseillée[^6.1] hormis dans des cas très particuliers par exemple des programmes très courts. 
+Mais cette utilisation est vivement déconseillée[^6.1] hormis dans des cas très particuliers par exemple des programmes très courts. Pour s’en convaincre, imaginons un programme écrit en utilisant l'instruction `pow(1, 2, 3)` qui fonctionnerait très bien jusqu'à ce qu'une mise à jour nécessitant une fonction mathématiques ajoute l'import `from math import *` en début de programme ce qui génèrera une erreur inattendue [^6.1].
 
-[^6.1]: Pour s’en convaincre on peut ecrire un programme avec la fonction `pow(1, 2, 3)` puis ajouter `from math import *` et réessayer.
+[^6.1]: La fonction standard Python `pow()` prend trois paramètres alors que la fonction `pow()` du module `math` n'en a que deux ! L'import de `from math import *` a importé la seconde fonction probablement à l'insu du programmeur.
+
 
 Python offre des centaines de modules avec des milliers de fonctions déjà programmées. Il y a différents types de modules :
 
@@ -136,7 +181,7 @@ Python offre des centaines de modules avec des milliers de fonctions déjà prog
 - ceux qui sont inclus dans la bibliothèque standard de Python comme `random` ou `math`,
 - ceux que l’on peut rajouter en les installant séparemment comme `numpy` ou `matplotlib`.
 
-##	la fonction main()
+##	De l'utilité de la fonction 'main()'
 
 On a vu auparavant la définition de la fonction `main()` contenant le programme principal, suivi du bout de code suivant :
 
@@ -153,14 +198,35 @@ L’interpréteur Python définit la variable `__name__` selon la manière dont 
 
 En bref, la variable `__name__` détermine si le fichier est exécuté directement ou s'il a été importé.[^6.2] 
 
-[^6.2]: On peut facilement se convaincre de l’utilité de la fonction `main()` en écrivant un programme sans cette fonction et observer qu’il est automatiquement exécuté quand on l’importe dans un autre programme.
+
+[^6.2]:
+    On peut facilement se convaincre de l’utilité de la fonction `main()` en écrivant le programme qui affiche la décomposition d’un nombre en facteurs premiers sans `main()` dans le fichier « mesfonctions.py » :
+    ``` py linenums="1"
+    def est_premier(nombre):
+        for div in range(2, nombre):
+            if nombre % div == 0:
+                return False
+        return True
+
+    nombre = int(input('Entrez un nombre '))
+    premier = 2 # on commence par le plus petit nombre premier : 2
+    while nombre > 1:
+            if nombre % premier == 0:      # si premier divise nombre
+                print(premier, end=" ")                 # alors on l'affiche
+                nombre = nombre // premier     # et on recommence après avoir divisé nombre par premier
+            else:                          # sinon, premier n'est pas un diviseur
+                premier += 1                 # on cherche le nombre premier suivant
+                while not(est_premier(premier)):
+                    premier += 1
+    ```
+    Lorsque pour utiliser la fonction `est_premier` le module est importé dans un autre programme avec `import  mesfonctions`, toute la suite du programme de la décomposition d’un nombre en facteurs premiers est exécuté automatiquement.
 
 ##	Le module math
 
 Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir accès aux fonctions mathématiques comme le cosinus (`cos`), le sinus (`sin`), la racine carrée (`sqrt`), le nombre π (`pi`), la partie entière (`floor`)[^6.3] , et bien d’autres...
 
 [^6.3]:
-    On a déjà vu la fonction `int()` qui semble similaire à `math.floor()`, mais attention aux différences entre les deux.
+    Nous avons déjà vu la fonction `int()` qui semble similaire à `math.floor()`, mais attention aux différences entre les deux.
 
     === "Avec un `float` positif"
     ``` py
@@ -209,7 +275,7 @@ La [bibliothèque `mathplotlib`](https://matplotlib.org/) contient le module `py
 import matplolib.pyplot as plt
 ```
 
-pyplot permet d'afficher des données sous de [multiples formes](https://matplotlib.org/stable/gallery/index.html). Par exemple pour afficher un point de coordonnées (2, 4 ) sous forme d'une croix verte dans un repère on utilise :
+`pyplot` permet d'afficher des données sous de [multiples formes](https://matplotlib.org/stable/gallery/index.html). Par exemple pour afficher un point de coordonnées (2, 4 ) sous forme d'une croix verte dans un repère on utilise :
 
 ``` py
 x, y = 2, 4
@@ -244,7 +310,7 @@ La fonction `dir` permet d’explorer le contenu d’un module :
 …
 ```
 
-En plus de la documentation en ligne, on a déjà vu la fonction help qui donne les spécifications d’une fonction.
+En plus de la documentation en ligne, on a déjà vu la fonction `help` qui donne les spécifications d’une fonction.
 
 ``` py
 >>> help(math.cos)

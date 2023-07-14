@@ -81,7 +81,7 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
     ```
 
 
-Il faut définir une fonction **avant** de l’appeler. Ces deux programmes renvoient un message d’erreur :
+Il faut définir une fonction **avant** de l’appeler. Ces deux programmes affichent un message d’erreur :
 
 === "Programme 1"
     
@@ -308,7 +308,6 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Ell
             if nombre % div == 0:
                 return False    # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
         return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
-
     ```
 
 === "Avec une boucle `while` en testant les entiers allent de 2 à la racine carrée du nombre"
@@ -327,7 +326,7 @@ Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Ell
 Appelons la fonction `estpremier `avec les arguments 13 et 21 :
 
 === "Appel `estpremier(13)`"
-    `div` prend les valeur `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
+    `div` prend les valeurs `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
     
     ``` py 
     >>> estpremier(13)
@@ -407,7 +406,7 @@ def carre_cube(x):
 !!! question "Exercice corrigé" 
 	Écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier()` donnée.
 
-    ``` py 
+    ``` py linenums="1"
     def est_premier(nombre):
         for div in range(2, nombre):
             if nombre % div == 0:
@@ -422,18 +421,22 @@ def carre_cube(x):
     2. diviser ce nombre par le diviseur trouvé et remplacer le nombre par le quotient ;
     3. recommencer tant que le nombre est plus grand que 1. 
 
-	``` py 
+    ``` py linenums="1"
     def main():
-        nombre = int(input('entrez un nombre'))
+        nombre = int(input('Entrez un nombre '))
         premier = 2 # on commence par le plus petit nombre premier : 2
         while nombre > 1:
             if nombre % premier == 0:      # si premier divise nombre
-                print(premier)                 # alors on l'affiche
+                print(premier, end=" ")                 # alors on l'affiche
                 nombre = nombre // premier     # et on recommence après avoir divisé nombre par premier
             else:                          # sinon, premier n'est pas un diviseur
                 premier += 1                 # on cherche le nombre premier suivant
                 while not(est_premier(premier)):
                     premier += 1
+
+
+    if __name__ == '__main__':
+        main()
     ```
                 
 
@@ -462,7 +465,7 @@ Ici la fonction lambda est définie par l'expression `lambda x, y: x + y` qui co
 
 Le signe `=` affecte cette fonction à une variable, ici `somme`, c'est le nom de cette fonction.
 
-La fonction peut être ensuite appelée `somme(3, 5)`, comme toute fonction, avec deux arguments `3` et `5` : 
+ L'instruction `somme(3, 5)` permet ensuite d'appeler la fonction avec deux arguments `3` et `5`.
 
 
 !!! question "Exercice corrigé" 
@@ -493,7 +496,7 @@ False
 !!! abstract "Cours"
     La **portée** d'une variable désigne les endroits du programme où cette variable **existe et peut être utilisée**. En Python, la portée d'une variable commence dès sa première affectation.
 
-Exemple : Les programmes suivants lèvent une erreur
+Exemple : Les programmes suivants affichent un message d'erreur
 
 === "Programme 1"
     ``` py 
@@ -530,7 +533,7 @@ Exemple : Les programmes suivants lèvent une erreur
 !!! abstract "Cours"
     Une variable définie à l’intérieur d’une fonction est appelée **variable locale**. Elle ne peut être utilisée que localement c’est-à-dire qu’à l’intérieur de la fonction qui l’a définie. 
 
-Tenter d’appeler une variable locale depuis l’extérieur de la fonction qui l’a définie provoquera une erreur. 
+Tenter d'utiliser une variable locale depuis l’extérieur de la fonction qui l’a définie provoquera une erreur. 
 
 Exemple : 
 
@@ -542,7 +545,7 @@ def affiche_a():
 affiche_a()
 print(f'valeur de a dans le programme : {a}')
 ```
-La variable `a` elle est locale à `affiche_a`, le programme suivant lève une erreur :
+La variable `a` elle est locale à `affiche_a`, le programme suivant affiche un message d'erreur :
 
 ```
 >>>
@@ -603,10 +606,10 @@ Sauf exception il est préférable d'utiliser uniquement des variables locales p
 Elle peut être affichée par une fonction :
 
 ``` py 
-a = 1
 def affiche_a():
-    print(a)
+    print(f'valeur de a dans affiche_a : {a}')       
 
+a = 1
 affiche_a()
 ```
 
@@ -614,30 +617,31 @@ affiche_a()
 Mais ne peut pas être modifiée. 
 
 ``` py 
-a = 1
 def affiche_a():
     a += 1
     print(f'valeur de a dans affiche_a : {a}')
 
+a = 1
 affiche_a()
+
 ```
-Ce programme affiche une erreur :
+Ce programme affiche un message d'erreur :bug: :
 ```
 >>>
 Traceback (most recent call last):
   File "<module1>", line 6, in <module>
-  File "<module1>", line 3, in affiche_a
+  File "<module1>", line 2, in affiche_a
 UnboundLocalError: local variable 'a' referenced before assignment
 ```
 
 On peut néanmoins essayer de lui assigner une nouvelle valeur :
 
 ``` py 
-a = 1
 def affiche_a():
     a = 2
     print(f'valeur de a dans affiche_a : {a}')
 
+a = 1
 affiche_a()
 print(f'valeur de a dans le programme : {a}')
 ```
@@ -655,12 +659,12 @@ valeur de a dans le programme : 1
 Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale dans une fonction et que cette nouvelle valeur soit gardée dans le reste du programme. Pour cela, il faut utiliser le mot clef `global` devant le nom d’une variable globale utilisée localement afin d’indiquer qu'il faut modifier la valeur de la variable globale et non pas créer une variable locale de même nom :
 
 ``` py 
-a = 1
 def affiche_a():
     global a
     a = 2
     print(f'valeur de a dans affiche_a : {a}')
 
+a = 1
 affiche_a()
 print(f'valeur de a dans le programme : {a}')
 ```
@@ -703,7 +707,7 @@ def factorielle_recursive(n):
     if n == 1:
         return 1
     else:
-        return n * factorielle_recursive(n-1)          # le else est facultatif
+        return  factorielle_recursive(n-1) * n         # le else est facultatif
 ```
 
 :warning: Il est impératif de prévoir une condition d'arrêt à la récursivité, sinon le programme ne s'arrête jamais ! On doit toujours tester en premier la condition d'arrêt, et ensuite, si la condition n'est pas vérifiée, lancer un appel récursif.

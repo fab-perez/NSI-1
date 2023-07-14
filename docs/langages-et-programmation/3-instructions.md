@@ -1,7 +1,9 @@
 # Instructions
 
 !!! abstract "Cours" 
-	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expression)) est une commande effectuée par un programme. 	Une **séquence** est une suite d’instructions.
+	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expressions)) est une commande qui doit être effectuée par un programme. 
+	
+	Une **séquence** est une suite d’instructions.
 
 Par exemple :
 
@@ -53,7 +55,7 @@ Observons dans la console comment une variable de type `float` qui a une valeur 
 ## Instructions d’entrée et sortie
 
 !!! abstract "Cours" 
-	Une instruction d’**entrée** permet à un programme de lire des valeurs saisies au clavier par l’utilisateur. Une instruction de **sortie** affiche des messages sur l’écran de l'utilisateur.
+	Une instruction d’**entrée** permet à un programme de lire une valeur saisie au clavier par l’utilisateur. Une instruction de **sortie** affiche un message sur l’écran de l'utilisateur.
 
 En Python, la fonction `input()` permet d’écrire une instruction d’entrée qui affecte la valeur saisie par l’utilisateur à une variable. 
 ``` py
@@ -67,14 +69,14 @@ La valeur renvoyée par `input()` est toujours du type `str` :
 >>> nombre_entier
 '25'
 ```
-Ici la valeur affectée à `nombre_entier` est une chaine de caractères `'25'`. Pour obtenir nombre, de type `int` ou `float`, afin de faire des calculs par exemple, il faut la convertir :
+Ici la valeur affectée à `nombre_entier` est une chaine de caractères : `'25'`. Pour obtenir un nombre, de type `int` ou `float`, afin de faire des calculs par la suite par exemple, il faut la convertir :
 
 ``` py
 >>> nombre_entier = int(input('Entrez un nombre entier'))
 >>> nombre_entier
 25
 ```
-> Si l’utilisateur ne saisit pas un nombre entier, cela génère un message d’erreur.
+> Si l’utilisateur ne saisit pas un nombre entier, cette instruction génère un message d’erreur.
 
 Une instruction de sortie s’écrit en utilisant `print()` pour afficher à l’écran des chaines de caractère et/ou des variables, séparés par des virgules. 
 
@@ -126,7 +128,7 @@ Entrez votre date de naissance : 2010
 Bonjour Paul, vous avez 13 ans
 >>> 
 ```
-Cette séquence montre les limites de la console, qui répond à des commandes de façon interactive, mais ne permet pas d'écrire un programme complet !
+Cette séquence montre les limites de la console, qui répond à des commandes de façon interactive, mais ne permet pas d'écrire un programme élaboré !
 
 Ouvrons IDLE (/python/Lib/idlelib/idle.bat) pour écrire un premier programme, l'interpréteur de commande avec l'invite Python `>>>` apparaît :
 
@@ -154,7 +156,7 @@ Nous avons écrit notre premier programme informatique !
 Notons au passage une différence importante entre l'affichage d'une variable depuis la console et depuis un programme :
 === "Depuis la console"
    
-	Il suffit de saisir le nom de la varible à l'invite de commande pour afficher sa valeur :
+	Il suffit de saisir le nom de la variable à l'invite de commande pour afficher sa valeur :
 	``` py
 	>>> a = 5
 	>>> a
