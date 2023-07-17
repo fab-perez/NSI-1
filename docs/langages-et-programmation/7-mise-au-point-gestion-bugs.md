@@ -1,6 +1,6 @@
 #	Mise au point des programmes et gestion des bugs
 
-Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bugs ?  Ces questions peuvent devenir extrêmement cruciales et compliquées quand certains  programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^7.1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
+Comment s’assurer qu’un programme fasse ce qu’il est censé faire ? Qu’il ne contient pas de bugs ?  Ces questions que chacun se pose quand il écrit un programme peuvent devenir extrêmement cruciales et compliquées quand certains programmes informatiques contiennent des millions de lignes de code, voire des milliards (Google)[^7.1] ou avoir des défauts de fonctionnements aux conséquences désastreuses  (avionique, nucléaire, médical, etc.). Des solutions existent pour essayer de limiter ces effets néfastes.
 
 [^7.1]: [https://www.informationisbeautiful.net/visualizations/million-lines-of-code/]( https://www.informationisbeautiful.net/visualizations/million-lines-of-code/)
 
@@ -34,12 +34,12 @@ print(num1/num2)
 ZeroDivisionError : division by zero
 ```
 
-Une bonne façon de gérer les exceptions est de comprendre les différents types d'erreurs qui surviennent et pourquoi elles se produisent. Soyons attentifs aux messages d’erreur que nous affiche l’interpréteur, ils sont d’une grande utilité . Voici ceux que l’on rencontre le plus souvent :
+Une bonne façon de gérer les exceptions est de comprendre les différents types d'erreurs qui surviennent et pourquoi elles se produisent. Soyons attentifs aux messages d’erreur que nous affiche l’interpréteur, ils sont d’une grande utilité[^7.5]. En voici certains parmi les plus courants :
 
 [^7.5]: RTFM est, en anglais, le sigle de la phrase *Read the fucking manual*, injonction signifiant que la réponse à une question sur le fonctionnement d'un appareil est à chercher dans son mode d'emploi.
 
 
--	SyntaxError : une ligne de code non valide empêche le programme de s’exécuter ;
+-	`SyntaxError` : Une ligne de code non valide empêche le programme de s’exécuter.
 ```py
 >>> print("Hello World)
   File "<interactive input>", line 1
@@ -48,14 +48,17 @@ Une bonne façon de gérer les exceptions est de comprendre les différents type
 SyntaxError: incomplete input
 ```
 
--	`IndentationError` : Contrairement à d'autres langages comme Java, C ou C++, qui utilisent des accolades pour séparer les blocs de code, Python utilise l'indentation pour définir la hiérarchie et la structure des blocs de code.
+-	`IndentationError` : Une mauvaise indentation ne permet pas de définir les blocs de code correctement[^7.6].
+
+[^7.6]: Contrairement à d'autres langages comme Java, C ou C++, qui utilisent des accolades pour séparer les blocs de code, Python utilise l'indentation pour définir la hiérarchie et la structure des blocs de code.
+
 ```py
 for i in range(10):
 print(i)
 IndentationError: expected an indented block after 'for' statement on line 1
 ```
 
--	`TypeError` : vous essayez d'effectuer une opération en utilisant un type de données incompatible :
+-	`TypeError` : Une opération utilise des types de données incompatibles.
 ```py
 >>> "abc" + 2
 Traceback (most recent call last):
@@ -63,14 +66,12 @@ Traceback (most recent call last):
 TypeError: can only concatenate str (not "int") to str
 ```
 
--	`ValueErro`r : une fonction est appelée avec un argument d’une value non autorisée :
+-	`ValueError` : Une fonction est appelée avec une valeur d'argument non autorisée.
 
 ```py
 >>> int('abc')
 ValueError: invalid literal for int() with base 10: 'abc'
 ```
-
--	etc.
 
 
 Pour corriger les bugs et exceptions inévitables lorsqu’on écrit un programme, le débogueur est un outil très utile.
@@ -87,11 +88,11 @@ Pour utiliser le débogueur de PyScripter :
 3.	Exécuter le script pas à pas tout en inspectant l’évolution des variables dans les onglets Variables ou Watches (surveillances). Pour ajouter une variable à surveiller, cliquer droit dans la fenêtre Watches et ajouter un nom de la variable ou une expression.
 
 
-##	Commentaires, noms de variables et de fonctions,
+##	Commentaires, noms de variables et de fonctions
 
-Que fait cette fonction?
+Il est difficile de dire ce que fait cette fonction au premier coup d'oeil :
 
-```py
+```py linenums="1"
 def f(x):
     a = 0
     for i in range(1, x):
@@ -100,12 +101,12 @@ def f(x):
     return x == a
 ```
 
-C’est plus déjà plus lisible avec des noms de fonction et variable qui ont un sens et plutôt que réduits à une lettre.
-
 !!! tip inline end "PEP 8"  
-    Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés  (`_`)  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
+    Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés (`_`)  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
 
-```py
+C’est plus déjà plus lisible avec des noms de fonction et variable qui ont un sens plutôt que réduits à une lettre.
+
+```py linenums="1"
 def parfait(nombre):
     somme_diviseurs = 0
     for i in range(1, nombre):
@@ -116,7 +117,7 @@ def parfait(nombre):
 
 et encore plus lisible avec des commentaires :
 
-```py
+```py linenums="1"
 def parfait(nombre):
     somme_diviseurs = 0
     # Iterer sur tous les entiers i compris entre 1 et nombre - 1
@@ -129,21 +130,36 @@ def parfait(nombre):
 ```
 
 !!! abstract "Cours"
-    Les commentaires sont souvent indispensables afin de comprendre et modifier un programme[^7.6] mais sont ignorés par l’interpréteur Python.
 
-[^7.6]: Comme le disait Guido van Rossum: “*Code is read much more often than it is written.*”
+    !!! tip inline end "PEP 8"  
+        Limiter la longueur des lignes à 79 ou 80 caractères.
+
+    Écrire un beau code Python implique d'adopter certaines conventions et bonnes pratiques pour le rendre clair, lisible, maintenable et compréhensible pour vous-même et pour les autres développeurs[^7.7] :
+
+    1. Choisir des noms de variables et de fonctions significatifs et éviter les noms génériques comme "a", "b", "x", etc. qui ne donnent pas d'indication sur leur contenu. Préférer des noms descriptifs comme "somme_diviseurs" plutôt que "sd".
+
+    2. Commenter le code pour expliquer les parties importantes, les décisions de conception, les algorithmes, etc. Les commentaires doivent être clairs, concis et utiles. N'ajoutez pas de commentaires évidents qui ne font que répéter le code.
 
     ```py
     # Commentaire sur un bloc
-
     instruction           # Commentaire sur une instruction particuliere
     ```
+    3. Eviter les répétition de code et diviser les programmes en fonctions logiques, plus modulaires, plus faciles à comprendre et à déboguer.
+
+[^7.7]: Comme le disait Guido van Rossum: “*Code is read much more often than it is written.*”
 
 
 ##	Spécifications de fonctions
 
 !!! abstract "Cours"
-    La **spécification** (ou **prototype**) d’une fonction est un mode d'emploi à l’attention des utilisateurs d’une fonction contenant précisément les paramètres d’appel à fournir, leur type et les valeurs renvoyées.
+    La **spécification** (ou **prototype**) d’une fonction est un mode d'emploi à l’attention des utilisateurs d’une fonction expliquant clairement :
+
+    - ce que fait la fonction,
+
+    - les paramètres qu’elle accepte,
+
+    - les valeurs qu’elle renvoie.
+
     
     En python, la spécification est résumée dans la « **docstring** », un commentaire au début du corps de la fonction entre **tripe guillemets** (ou **triple apostrophes**) :
 
@@ -152,15 +168,19 @@ def parfait(nombre):
 
     ```py
     def nom_dela_fonction (parametres):
-    """commentaires de spécifications 
-    entre triple guillemets
+    """ spécification de la fonction écrit entre triple guillemets comprenant :
+    - ce que fait la fonction,
+    - les paramètres qu’elle accepte,
+    - les valeurs qu’elle renvoie. 
     """  
     ```                                                                     
 
 
-Si l’idée générale est toujours la même (spécifier les paramètres, ce que fait la fonction, ce qu’elle renvoie), et que certaines conventions sont données dans la [PEP 257](https://peps.python.org/pep-0257/), on rencontre différentes habitudes d’écrire une docstring Python. Par exemple, la fonction parfait(nombre) pourra se présenter sous la forme :
+Si l’idée générale est toujours la même, aucun format n'est imposé même si certaines conventions sont données dans la [PEP 257](https://peps.python.org/pep-0257/). En pratique, il existe différentes habitudes d'écrire les *docstrings* de fonctions et il est important de rester consistant à travers un même programme pour améliorer la lisibilité du code. 
 
-```py
+Par exemple, la fonction précédente `parfait(nombre)` pourrait se présenter sous la forme :
+
+```py linenums="1"
 def parfait(nombre):
     """ (int) -> bool
     Renvoie True si nombre est parfait, False sinon
@@ -177,7 +197,8 @@ def parfait(nombre):
 ```
 
 ou encore :
-```py
+
+```py linenums="1"
     """ Renvoie True si nombre est parfait, False sinon
     Parameters:
         nombre (int): un nombre entier.
@@ -188,12 +209,12 @@ ou encore :
 
 ou plus simplement sur une seule ligne (dans ce cas les `"""`  sont écrits sur la même ligne):
 
-```py
+```py linenums="1"
 def parfait(nombre):
     """ Renvoie True si nombre (int) est parfait, False sinon """
 ```
 
-La fonction `help` affiche la docstring d’une fonction, par exemple on peut aussi saisir `help(print)` dans la console.
+La fonction `help` affiche la *docstring* d’une fonction :
 
 ```py
 >>> help(est_premier)
@@ -204,7 +225,7 @@ est_premier(nombre)
     Renvoie True si un nombre est parfait, False sinon
 ```
 
-:warning: Ne pas confondre la spécification encadrée par `"""` avec les commentaires qui commencent par `#` .  On peut d’ailleurs ajouter des commentaires indiqués par `#`  dans la docstring qui ne seront pas affichés par `help`. La spécification sera lue par l’utilisateur de la fonction, les commentaires par le programmeur qui lit/écrit le programme. 
+:warning: Ne pas confondre la spécification encadrée par `"""` avec les commentaires qui commencent par `#`. D’ailleurs il est possible ajouter des commentaires commençant par `#`  dans une *docstring* qui ne seront pas affichés par `help`. La spécification sera lue par l’utilisateur de la fonction, les commentaires par le programmeur qui lit/écrit le programme. 
 
 Remarquer aussi dans la console ou en programmant quand on tape `parfait(` la spécification qui s’affiche.
 ![pyscripter affiche la docstring](../assets/pyscripter-docstring.png )
@@ -212,12 +233,14 @@ Remarquer aussi dans la console ou en programmant quand on tape `parfait(` la sp
 
 ##	Préconditions, postconditions
 
-On a auparavant testé la fonction `parfait(nombre)` avec un exemple simple :
+Testons la fonction `parfait(nombre)` avec un exemple simple :
+
 ```PY
 >>> parfait(13)
 False
 ```
-Que se passe t’il maintenant si on passe un argument qui n’est pas un entier à la fonction `parfait` ? 
+Que se passe t’il maintenant si un argument qui n’est pas un entier est passé à la fonction `parfait` ? 
+
 ```PY
 >>> parfait(13.0)
 Traceback (most recent call last):
@@ -226,7 +249,8 @@ Traceback (most recent call last):
 TypeError: 'float' object cannot be interpreted as an integer
 ```
 
-`nombre` doit impératif être de type entier. C’est une **précondition** de la fonction. On peut indiquer les préconditions dans la docstring de la fonction.
+`nombre` doit impératif être de type entier. C’est une **précondition** de la fonction. Il est souvent recommandé d'indiquer les préconditions dans la *docstring* de la fonction pour limiter les risques d'erreur.
+
 ```py
 def parfait(nombre):
     """ (int) -> bool
@@ -235,15 +259,15 @@ def parfait(nombre):
     """
 ```
 
-De la même façon, on peut préciser des **postconditions** quand il y en a.
+De la même façon les **postconditions**, quand il y en a, peuvent être précisées dans la *docstring*.
 
 !!! abstract "Cours"
-    Une **précondition** doit être vraie avant le début d’un calcul / d’une fonction afin de garantir que son exécution soit possible sans erreur. 
+    Une **précondition** doit être vraie avant le début d’une fonction afin de garantir que son exécution soit possible sans erreur. 
 
 Exemple : avant une division, s’assurer que le dénominateur est non nul.
 
 !!! abstract "Cours"
-    Une **postcondition** doit être vraie à la fin d’un calcul / d’une fonction afin de garantir que son résultat soit correct.
+    Une **postcondition** doit être vraie à la fin d’une fonction afin de garantir que son résultat soit correct.
 
 Une postcondition non satisfaite correspond à une erreur lors du calcul, généralement due à une erreur de programmation. Par exemple,  vérifier à la fin d’une fonction renvoyant la valeur absolue d’un nombre que le résultat est supérieur ou égal à 0.
 
@@ -266,7 +290,7 @@ def division(n, d) :
 ```
 
 !!! note inline end "" 
-  	`d > 0` est une précondition à la fonction. Si ce n'est pas cas (`d` ≤ 0), alors la boucle ne se terminera jamais !
+  	`d > 0` est une précondition qui doit être vérifiée au début de la fonction. Si ce n'est pas cas (`d` ≤ 0), alors la boucle ne se terminera jamais !
 
 Ici le variant de boucle est `r`. A chaque passage dans la boucle il diminue de `d` (d est positif ) donc la condition `r >= d` finira par ne plus être vérifiée, la boucle se terminera.
 
@@ -296,7 +320,7 @@ Au début de la ligne 3, `q` et `r` ont pris les valeurs `0` et `13`, la conditi
   3       0       13       True            4              VRAI (entrée dans la boucle)   
 ```
 
-Au début de la ligne 4, les valeurs de `q` et `r` sont inchangées, la condition `r  >= d` reste donc vérifiée, l’instruction suivante est 5. On peut ainsi compléter la table jusqu’à la fin du programme. On obtient :
+Au début de la ligne 4, les valeurs de `q` et `r` sont inchangées, la condition `r  >= d` reste donc vérifiée, l’instruction suivante est 5. Complétons ainsi la table jusqu’à la fin du programme :
 ```
 (ligne)   q       r       r >= d     (ligne suivante)     n == q * d + r
 =======================================================================
@@ -320,7 +344,7 @@ Au début de la ligne 4, les valeurs de `q` et `r` sont inchangées, la conditio
 !!! note inline end "" 
   	il n'y a pas unicité de variant ni d'invariant de boucle.
 
-On peut observer que la propriété `n == q * d + r` reste vraie à chaque retour dans la boucle, même si elle n'est pas toujours vraie au milieu de la boucle. Elle est aussi vraie en sortie de boucle et permet de s’assurer que le résultat calculé est celui attendu.
+Observons que la propriété `n == q * d + r` reste vraie à chaque retour dans la boucle, même si elle n'est pas toujours vraie au milieu de la boucle. Elle est aussi vraie en sortie de boucle et permet de s’assurer que le résultat calculé est celui attendu.
 
 
 
@@ -371,10 +395,10 @@ On peut observer que la propriété `n == q * d + r` reste vraie à chaque retou
 ??? Success "Réponse 2"
     A chaque itération `j - i`  diminue de 2 , c’est un **variant de boucle** qui finira par devenir négatif, autrement dit la condition `i <= j` deviendra fausse et la boucle s’arrêtera (à moins qu’elle se termine plus tôt si mot n’est pas un palindrome), donc **le programme se terminera**.
 
-    On peut aussi le démontrer formellement. Supposons que l’on rentre dans la boucle à la ligne 5 avec `i` et `j` ayant des valeurs appelées $x$ et $y$.  `j - i`  est égal à $y - x$.  Après les lignes 7 et 8,  `i` devient égal à $x + 1$ et `j` à $y - 1$, donc  `j - i`  devient bien égal à $(y  - 1) – (x + 1) = y – x- 2$.  `j - i`  a bien diminué de $2$.
+    Il est aussi possible de le démontrer formellement. Supposons que l’on rentre dans la boucle à la ligne 5 avec `i` et `j` ayant des valeurs appelées $x$ et $y$.  `j - i`  est égal à $y - x$.  Après les lignes 7 et 8,  `i` devient égal à $x + 1$ et `j` à $y - 1$, donc  `j - i`  devient bien égal à $(y  - 1) – (x + 1) = y – x- 2$.  `j - i`  a bien diminué de $2$.
 
 ??? Success "Réponse 3"
-    De la même façon on peut démontrer que `i + j == len(mot) - 1`   est un invariant de boucle :
+    De la même façon, il est possible de démontrer que `i + j == len(mot) - 1`   est un invariant de boucle :
 
     - Au début du programme, avant de rentrer dans la boucle, `i` est égal à 0 et  j est égal à `len(mot)- 1` donc  `i + j` est bien égal à `len(mot) - 1`.   
     - Lorsqu’on rentre dans la boucle à la ligne 5 avec `i` et `j` ayant des valeurs $x$ et $y$ telles que $x + y$ est égal à `len(mot) - 1` , après les lignes 7 et 8, `i` devient égal à $x + 1$ et `j` à $y - 1$, donc  `i + j`  est toujours égal à $(x + 1) + (y - 1) = x + y $ c'est-à-dire à `len(mot)  – 1`.
@@ -385,20 +409,22 @@ On peut observer que la propriété `n == q * d + r` reste vraie à chaque retou
 
 ##	Assertions
 
-On peut tester les préconditions, postconditions et les invariants par des assertions, car leur non-respect est due à une erreur de programmation. 
+Des assertions permettent de tester les préconditions, postconditions et les invariants de boucles. Leur non-respect alerte sur une erreur de programmation. 
 
 !!! abstract "Cours"
-    **Assertion** : vérifie qu’une expression est **vraie*, sinon stoppe le programme.
+    Une **Assertion** vérifie qu’une expression est **vraie* et arrête le programme sinon
+    .
     ```py
     assert <condition> 
     ```
 
-    On peut aussi afficher des informations quand l’assertion est **fausse** puis stopper le programme :
+    Un message peut être affiché quand une assertion est **fausse** avant d'arrêter le programme :
+
     ```py
     assert <condition>, 'message '
     ```
 
-Reprenons la fonction `est_premier(nombre)` vue précédemment. Le parmaètre `nombre` doit être de type entier et positif. Ce sont des préconditions. Ajoutons les assertions correspondantes au début de la fonction.
+Reprenons la fonction `est_premier(nombre)` vue précédemment. Le paramètre `nombre` doit être de type entier et positif. Ce sont des préconditions. Ajoutons les assertions correspondantes au début de la fonction.
 
 ```py linenums="1"
 def est_premier(nombre):
@@ -416,7 +442,7 @@ def est_premier(nombre):
     return True 
 ```
 
-On obtient:
+et testons le résultat :
 
 ```py
 >>> est_premier('5')
@@ -435,12 +461,12 @@ AssertionError: nombre doit être positif
 ```
 
 !!! note inline end "" 
-    `assert` est souvent utilisé en phase de test seulement ou en **programmation défensive**[^7.7]. 
+    `assert` est souvent utilisé en phase de test seulement ou en **programmation défensive**[^7.8]. 
 
-[^7.7]: La programmation défensive est un mode de programmation qui utilise des assertions pour vérifier les préconditions sont effectivement bien satisfaites.
+[^7.8]: La programmation défensive est un mode de programmation qui vise à créer des programmes et des applications robustes face aux erreurs et aux entrées de données inattendues.
 
 
-Si on veut gérer les erreurs prévisibles d’utilisateur (lors d’une saisie par exemple), on peut utiliser `try...…except...`. (hors programme). Par exemple : 
+L'instruction `try...…except...` (hors programme) permet de gérer efficament les erreurs prévisibles d’utilisateur, lors d’une saisie par exemple : 
 
 ```py
 while True:
@@ -465,9 +491,9 @@ La **qualité** et le **nombre** de tests sont importants.
 ### La qualité des tests 
 
 !!! abstract "Cours"
-    On teste sur des valeurs d’arguments normales mais aussi des valeurs ‘spéciales’ ou ‘extrêmes’ du programme. 
+    Les tests doivent porter sur des valeurs d’arguments "normales" mais aussi des valeurs "spéciales" ou "extrêmes" du programme. 
 
-Par exemple, que se passe-t-il si on passe `0` et `1` comme argument à la fonction `est_premier` ?
+Par exemple, que se passe-t-il quand les valeurs `0` ou `1` sont passées en argument à la fonction `est_premier` ?
 ```py
 >>> est_premier(0)
 True
@@ -501,7 +527,7 @@ def est_premier(nombre):
 !!! abstract "Cours"
     Un **programme de test** permet d’effectuer **un grand nombre de tests automatiquement**.
 
-On peut vérifier par des assertions la fonction `est_premier` pour tous les multiples de 2 allant de 4 à 100.
+Vérifions par des assertions la fonction `est_premier` pour tous les multiples de 2 allant de 4 à 100.
 
 ```py
 def test_est_premier():
@@ -511,7 +537,7 @@ def test_est_premier():
     return True
 ```
 
-On peut aussi écrire un programme de tests en utilisant la célèbre formule d’Euler : n² + n + 41 qui produit de nombreux nombres premiers, notamment pour tous les nombres n allant de 0 à 39.
+Il est aussi possible d'écrire un programme de tests en utilisant la célèbre formule d’Euler : $n^2 + n + 41$ qui produit de nombreux nombres premiers, notamment pour tous les nombres $n$ allant de 0 à 39.
 
 ```py
 def test2_est_premier():
@@ -522,9 +548,9 @@ def test2_est_premier():
 ```
 
 ### Le module doctest
-La fonction `tesmod()` du module `doctest` permet d’effectuer automatiquement un jeu de tests défini dans la docstring d’une fonction. Chaque test à effectuer est indiqué dans la docstring sur une ligne commençant par `>>>` pour simuler la console et le résultat attendu dans la ligne suivante.
+La fonction `tesmod()` du module `doctest` permet d’effectuer automatiquement un jeu de tests défini dans la docstring d’une fonction. Chaque test à effectuer est indiqué dans la *docstring* sur une ligne commençant par `>>>` pour simuler la console et le résultat attendu dans la ligne suivante.
 
-Par exemple on écrira :
+Par exemple :
 ```
 import doctest
 
