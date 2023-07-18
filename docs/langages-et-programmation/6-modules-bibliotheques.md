@@ -1,10 +1,6 @@
 ##	Modules et bibliothèques
 
-
 Nous avons vu dans l'exercice précédent comment écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier`. 
-
-
-
 
 
 ``` py linenums="1"

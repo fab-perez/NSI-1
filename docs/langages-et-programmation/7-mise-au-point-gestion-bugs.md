@@ -199,6 +199,7 @@ def parfait(nombre):
 ou encore :
 
 ```py linenums="1"
+def parfait(nombre):
     """ Renvoie True si nombre est parfait, False sinon
     Parameters:
         nombre (int): un nombre entier.
@@ -225,10 +226,11 @@ est_premier(nombre)
     Renvoie True si un nombre est parfait, False sinon
 ```
 
-:warning: Ne pas confondre la spécification encadrée par `"""` avec les commentaires qui commencent par `#`. D’ailleurs il est possible ajouter des commentaires commençant par `#`  dans une *docstring* qui ne seront pas affichés par `help`. La spécification sera lue par l’utilisateur de la fonction, les commentaires par le programmeur qui lit/écrit le programme. 
+:warning: Ne pas confondre la spécification encadrée par `"""` avec les commentaires qui commencent par `#`. D’ailleurs il est possible d'ajouter des commentaires commençant par `#`  dans une *docstring* qui ne seront pas affichés par `help`. La spécification sera lue par le programmeur qui utilise la fonction, les commentaires par celui qui lira et modifiera le code de la fonction. 
 
-Remarquer aussi dans la console ou en programmant quand on tape `parfait(` la spécification qui s’affiche.
-![pyscripter affiche la docstring](../assets/pyscripter-docstring.png )
+!!! note inline end "" 
+    Remarquer l'affichage dans la console ou dans la zone de programme PyScriter la spécification qui s’affiche après avoir saisi le nom de la fonction, par exemple `parfait(`.
+    ![pyscripter affiche la docstring](../assets/pyscripter-docstring.png )
 
 
 ##	Préconditions, postconditions
@@ -259,27 +261,29 @@ def parfait(nombre):
     """
 ```
 
-De la même façon les **postconditions**, quand il y en a, peuvent être précisées dans la *docstring*.
-
 !!! abstract "Cours"
-    Une **précondition** doit être vraie avant le début d’une fonction afin de garantir que son exécution soit possible sans erreur. 
+    Les **préconditions** sont des conditions qui doivent être vraies avant l'exécution d'une fonction pour garantir que celle-ci fonctionne correctement. Si une précondition échoue, cela signifie que l'appel de la fonction n'était pas correct.
 
-Exemple : avant une division, s’assurer que le dénominateur est non nul.
+    Les **postconditions** sont des conditions qui doivent être vraies après l'exécution d'une fonction. Elles permettent de vérifier si la fonction s'est exécutée correctement et a donné les résultats attendus. 
 
-!!! abstract "Cours"
-    Une **postcondition** doit être vraie à la fin d’une fonction afin de garantir que son résultat soit correct.
 
-Une postcondition non satisfaite correspond à une erreur lors du calcul, généralement due à une erreur de programmation. Par exemple,  vérifier à la fin d’une fonction renvoyant la valeur absolue d’un nombre que le résultat est supérieur ou égal à 0.
+Par exemple :
+- une précondition à une fonction effectuant une division est de s’assurer que le dénominateur est non nul, 
+
+- une postcondition à une fonction renvoyant la valeur absolue d’un nombre est de vérifier que la fonction renvoie une valeur positive.
+
+Les **preconditions** et **postconditions** peuvent être indiquées dans la *docstring* ou vérifiées par des [assertions](#assertions).
 
 
 ##	Variant et invariant de boucle
 
 !!! abstract "Cours"
-    Un variant de boucle permet de s’assurer qu’une boucle se terminera…
+    Un **variant de boucle** permet de s’assurer qu’une boucle se terminera.
 
-…mais pas qu’un algorithme fournit la réponse attendue
+Mais il ne vérifie pas qu’un algorithme fournit la réponse attendue.
 
-Une fonction de division euclidienne de deux entiers positifs `n` par `d` peut s’écrire de la manière suivante :
+Prenons un exemple. Une fonction de division euclidienne de deux entiers positifs `n` par `d` peut s’écrire de la manière suivante :
+
 
 ```py linenums="1"
 def division(n, d) :
@@ -290,9 +294,13 @@ def division(n, d) :
 ```
 
 !!! note inline end "" 
-  	`d > 0` est une précondition qui doit être vérifiée au début de la fonction. Si ce n'est pas cas (`d` ≤ 0), alors la boucle ne se terminera jamais !
+  	A noter que `d > 0` est une précondition qui doit être vérifiée au début de la fonction. Si ce n'est pas cas et que `d` ≤ 0 alors la boucle ne se terminera jamais !
+    
+Ici le variant de boucle est `r`. A chaque passage dans la boucle il diminue de `d` (d est positif) donc la condition `r >= d` finira par ne plus être vérifiée, la boucle se terminera.
 
-Ici le variant de boucle est `r`. A chaque passage dans la boucle il diminue de `d` (d est positif ) donc la condition `r >= d` finira par ne plus être vérifiée, la boucle se terminera.
+
+
+
 
 !!! abstract "Cours"
 
