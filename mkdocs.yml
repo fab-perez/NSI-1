@@ -74,6 +74,7 @@ extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
+  - pymdownx.critic
   - pymdownx.tilde
   - pymdownx.highlight:
       anchor_linenums: true
@@ -129,3 +130,6 @@ nav:
     - Appel de fonctions: langages-et-programmation/5-fonctions.md
     - Modules et bibliothèques: langages-et-programmation/6-modules-bibliotheques.md
     - Mise au point des programmes et gestion des bugs: langages-et-programmation/7-mise-au-point-gestion-bugs.md
+  - Types construits: 
+    - types-construits/index.md
+    - p-uplets: types-construits/1-p-uplet.md
