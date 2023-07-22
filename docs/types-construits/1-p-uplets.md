@@ -78,11 +78,12 @@ La fonction `len()` renvoie la longueur d'un p-uplet, c'est-à-dire le nombre d'
 
 Comme pour les chaines de caractères, les éléments d’un p-uplets `p` sont indexés à partir de `0` jusqu'à `len(p)` **exclus**, c'est-à-dire le dernier élément est en position `len(p) - 1`. Il est possible d'accèder aux éléments par leur index entre crochets. 
 
-``` 
+``` py
 >>> p = (1, 2, 'hello', True)
 >>> p[0]
 1
 ``` 
+
 
 :warning: Le premier élément est à l’index 0.
 
@@ -156,25 +157,25 @@ Ce qui pouvait aussi s’écrire sans parenthèse  :
 Le mot clé `in` permet de vérifier si un élément `elem` est présent dans un p-uplet `p`,  `elem in p` renvoie un booléen :
 
 ``` py
->>> t = (1, 3, 8)
->>> 3 in t
+>>> p = (1, 3, 8)
+>>> 3 in p
 True
->>> 4 in t
+>>> 4 in p
 False
 ```
 
-Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un p-uplet. Comparons différentes méthodes pour parcourir un p-uplet :
+Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un p-uplet. Comparons différentes méthodes pour parcourir un p-uplet `p` :
 
 
 
 === "Avec une boucle non bornée `while`"
-    Il faut gérer l'indice de boucle `i`, c'est-à-dire l'intialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(t) - 1`.  `t[i]` permet d'accéder à la valeurs du p-uplets en position `i`.
+    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `p`, c'est-à-dire l'intialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(p) - 1`.  `p[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
 
     ``` py
-    >>> t = (1, 3, 8)
+    >>> p = (1, 3, 8)
     >>> i = 0
-    >>> while i < len(t):
-    ...     print(t[i])
+    >>> while i < len(p):
+    ...     print(p[i])
     ...     i = i + 1
     ...     
     1
@@ -184,12 +185,12 @@ Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itére
 
 === "Avec une boucle bornée `for`"
 
-    L'indice de boucle `i` prend les valeurs allant de  `0` à `len(t) - 1`. `t[i]` permet d'accéder à la valeurs du p-uplets en position `i`.
+    Avec `for i in range(len(p)):`, l'indice de boucle `i` prend automatiquement les valeurs allant de  `0` à `len(p) - 1`. `p[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
 
     ``` py
-    >>> t = (1, 3, 8)
-    >>> for i in range(len(t):
-    ...     print(t[i])
+    >>> p = (1, 3, 8)
+    >>> for i in range(len(p)):
+    ...     print(p[i])
     ...     
     1
     3
@@ -199,11 +200,11 @@ Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itére
 
 === "Avec une boucle bornée `for` et le mot clé `in`"
 
-    `for elem in t` permet d'accéder directement aux valeurs du p-uplet, sans connaître leur position.
+    `for elem in t` permet d'accéder directement à toutes les du p-uplet les unes après les autres, sans connaître leurs positions.
 
     ``` py
-    >>> t = (1, 3, 8)
-    >>> for elem in t:
+    >>> p = (1, 3, 8)
+    >>> for elem in p:
     ...     print(elem)
     ...     
     1
@@ -212,12 +213,12 @@ Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itére
     ```
 
 
- La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un p-uplet, par exemple pour rechercher la plus petite valeur, mais ne permet pas d'accéder à sa position dans ce cas il faut utiliser les autres méthodes.
+La boucle `for elem in p` est plus simple pour parcourir les valeurs d'un p-uplet, par exemple pour rechercher la plus petite ou la plus grande valeur dans ce p-uplet, mais elle ne permet pas d'accéder à sa position. Pour accéder à la position d'une valeur que l'on recherche, il faut utiliser les deux autres méthodes.
 
 :warning: Il est possible d'accéder aux éléments d’un tuple mais **pas de les modifier**.
 
 ``` py
->>> montuple[1] = 3
+>>> t[1] = 3
 Traceback (innermost last):
 File "<stdin>", line 1, in ?
 TypeError: object doesn't support item assignment

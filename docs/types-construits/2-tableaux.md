@@ -117,48 +117,73 @@ True
 False
 ```
 
-Le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau.
+De facçon très similaire aux p-uplets, le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
 
 
-=== Avec une boucle non bornée `while`
+=== "Avec une boucle non bornée `while`"
+    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `t`, c'est-à-dire l'intialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(t) - 1`.  `t[i]` permet d'accéder à la valeur du tableau qui se trouve à la position `i`.
 
-        ``` py
-        >>> i = 0
-        >>> while i < len(t):
-        ...     print(t[i])
-        ...     i = i + 1
-        ...     
-        1
-        3
-        ```
+    ``` py
+    >>> t = [1, 3, 8]
+    >>> i = 0
+    >>> while i < len(t):
+    ...     print(t[i])
+    ...     i = i + 1
+    ...     
+    1
+    3
+    8
+    ```
+
+=== "Avec une boucle bornée `for`"
+
+    Avec `for i in range(len(t)):`, l'indice de boucle `i` prend automatiquement les valeurs allant de  `0` à `len(t) - 1`. `t[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
+
+    ``` py
+    >>> t = [1, 3, 8]
+    >>> for i in range(len(t)):
+    ...     print(t[i])
+    ...     
+    1
+    3
+    8
+    ```
 
 
-=== Avec une boucle non bornée `for`
-        ``` py
-        >>> for elem in t:
-        ...     print(elem)
-        ...     
-        1
-        3
-        8
-        ```
+=== "Avec une boucle bornée `for` et le mot clé `in`"
+
+    `for elem in t` permet d'accéder directement à toutes les du tableau les unes après les autres, sans connaître leurs positions.
+
+    ``` py
+    >>> t = [1, 3, 8]
+    >>> for elem in t:
+    ...     print(elem)
+    ...     
+    1
+    3
+    8
+    ```
+
+
+La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un tableau, par exemple pour rechercher la plus petite ou la plus grande valeur dans ce tableau, mais elle ne permet pas d'accéder à sa position. Pour accéder à la position d'une valeur que l'on recherche, il faut utiliser les deux autres méthodes.
 
 
 
->>> for element in animaux:
-...     print(element)
-girafe
-tigre
-singe
-souris
-2.4	Modifier un tableau
-2.4.1	Modifier un élément
+## Modifier un tableau
+
+### Modifier un élément
+
 A la différence des p-uplets, on peut modifier la valeur d’un élément dans un tableau :
+
+``` py
 >>> animaux = ['girafe', 'tigre', 'singe', 'souris']
 >>> animaux[2]= "lion"
 >>> animaux
 ['girafe', 'tigre', 'lion', 'souris']
-2.4.2	Opérations sur tableaux
+``` 
+
+###	Opérations sur tableaux
+
 Avec les tableaux, on peut utiliser l'opérateur + de concaténation, ainsi que l'opérateur * pour la duplication  :
 >>> ani1 = ['girafe', 'tigre']
 >>> ani2 = ['singe', 'souris']
