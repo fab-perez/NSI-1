@@ -132,4 +132,5 @@ nav:
     - Mise au point des programmes et gestion des bugs: langages-et-programmation/7-mise-au-point-gestion-bugs.md
   - Types construits: 
     - types-construits/index.md
-    - p-uplets: types-construits/1-p-uplet.md
+    - p-uplets: types-construits/1-p-uplets.md
+    - Tableaux: types-construits/2-tableaux.md
