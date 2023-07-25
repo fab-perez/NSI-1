@@ -1,4 +1,4 @@
-# Tableaux
+# Tableaux (type `list`)
 
 !!! abstract "Cours" 
     Un tableau est une suite ordonnée d’éléments qui peuvent être modifiés (muables[^2.1]).
@@ -12,9 +12,9 @@
 
 ##	Création
 
-Un tableau est déclaré par une série de valeurs séparées par des virgules, et le tout **encadré par des crochets** “`[ ]`”. Il contient des éléments tous du même type (selon le programme de 1ere[^2.3])  .
+Un tableau est déclaré par une série de valeurs séparées par des virgules, et le tout **encadré par des crochets** “`[ ]`”. Il contient des éléments du même type (selon le programme de 1ere[^2.3])  .
 
-[^2.3] Le type `list` de Python offre plus de possibilité qu'un tableau et notemment peut contenir des éléments de types différents (y compris d’autres tableaux).
+[^2.3]: Le type `list` de Python offre plus de possibilité qu'un tableau et notamment peut contenir des éléments de types différents (y compris d’autres tableaux).
 
 ``` py
 >>> t = [1, 2, 3, 4]
@@ -173,7 +173,7 @@ La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un tablea
 
 ### Modifier un élément
 
-A la différence des p-uplets, on peut modifier la valeur d’un élément dans un tableau :
+À la différence des chaines de caractères et p-uplets, il est possible de modifier la valeur d’un élément dans un tableau :
 
 ``` py
 >>> animaux = ['girafe', 'tigre', 'singe', 'souris']
@@ -184,179 +184,290 @@ A la différence des p-uplets, on peut modifier la valeur d’un élément dans 
 
 ###	Opérations sur tableaux
 
-Avec les tableaux, on peut utiliser l'opérateur + de concaténation, ainsi que l'opérateur * pour la duplication  :
->>> ani1 = ['girafe', 'tigre']
->>> ani2 = ['singe', 'souris']
->>> ani1 + ani2
-['girafe', 'tigre', 'singe', 'souris']
->>> ani1 * 3
-['girafe', 'tigre', 'girafe', 'tigre', 'girafe', 'tigre']
-2.4.3	Ajouter de nouveaux éléments
-Il existe plusieurs méthodes pour ajouter des éléments à un tableau
-tableau.append(x) 
-	Ajouter un élément à la fin d’un tableau.
-	>>> tableau = [1, 2, 3]
->>> tableau.append(4)
->>> tableau
+
+Deux opérations sont possibles, l'addition et la multiplication :
+
+- L'opérateur d'addition « `+` » **concatène** (assemble) deux tableaux.
+
+- L'opérateur de multiplication « ` * `» entre un nombre entier et une tableau **duplique** (répète) plusieurs fois les éléments dans un nouveau tableau. 
+
+
+``` py
+>>> [1, 2] + [3, 4]
 [1, 2, 3, 4]
-tableau.insert(i, x) 
-	Insérer un élément x à la position donnée par l’indice i. i est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	>>> tableau = ['a', 'b', 'd']
->>> tableau.insert(2, 'c')
->>> tableau
-['a', 'b', 'c', 'd']
-tableau.extend(autretableau)	Étend un tableau en y ajoutant tous les éléments de l’autretableau 
-	>>> tableau_1 = [1, 2, 3]
->>> tableau_2 = [4, 5, 6]
->>> tableau_1.extend(tableau_2)
->>> tableau_1
-[1, 2, 3, 4, 5, 6]
-Attention à ne pas confondre append (ajouter un élément) et extend (étendre un tableau). Si on utilise append avec un tableau on obtient un tableau de tableaux !
->>> tableau_1.append(tableau_2)
->>> tableau_1
-[1, 2, 3, [4, 5, 6]]
-2.4.4	Supprimer des éléments
-A l’aide de méthodes 
-tableau.remove(x) 
-	Supprime le premier élément dont la valeur est égale à x. Si le tableau  contient plusieurs fois la valeur x, seule la première occurrence trouvée est supprimée.	>>> tableau = [12, 13, 14, 15]
->>> tableau.remove(13)
->>> tableau
-[12, 14, 15]
-tableau.pop(i)
-tableau.pop()
-	Enlève l'élément situé à la position i et le renvoie en valeur de retour. Si aucune position n'est spécifiée, enlève et renvoie le dernier élément du tableau	>>> t=[1,2,3]
->>> t.pop()
-3
->>> t
-[1, 2]
-tableau.clear()
-	Supprime tous les éléments du tableau. 	>>> t.clear()
->>> t
-[]
-A l’aide du mot clé “del”  on peut aussi supprimer un élément du tableau :
->>> tableau
-[1, 2, 3, 4, 5]
->>> tableau = [1 ,2, 3 ,4]
->>> del tableau[3]
->>> tableau
-[1, 2, 3]	Ou tous les éléments
->>> tableau = [1,2,3]
->>> del tableau [:]
->>> tableau
-[]
-Ou encore le tableau entier avec l’instruction del tableau, alors la variable tableau n’existe plus.
->>> del tableau
->>> tableau
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-NameError: name ' tableau ' is not defined
-2.5	D’autres méthodes bien utiles
+>>> 3 * [1, 2]
+[1, 2, 1, 2, 1, 2]
+```
+
+
+
+###	Ajouter de nouveaux éléments
+
+Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
+
+- `t.append(x)` ajoute un élément `x` à la fin d’un tableau `t`.
+    ``` py
+	>>> t = [1, 2, 3]
+    >>> t.append(4)
+    >>> t
+    [1, 2, 3, 4]
+    ```
+- `t.insert(i, x)` insére un élément `x` à la position donnée par l’indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
+    ``` py
+    >>> t = ['a', 'b', 'd']
+    >>> t.insert(2, 'c')
+    >>> t
+    ['a', 'b', 'c', 'd']
+    ```
+- `t.extend(autretableau)` étend un tableau `t` en lui ajoutant tous les éléments de `autretableau`.
+    ``` py
+	>>> t = [1, 2, 3]
+    >>> t.extend([4, 5, 6])
+    >>> t
+    [1, 2, 3, 4, 5, 6]
+    ```
+
+    :warning: Ne pas confondre `append` (ajouter un élément) et `extend` (étendre un tableau). Si on utilise `append` avec un tableau on obtient un tableau de tableaux !
+        ``` py
+        >>> t.append([4, 5, 6])
+        >>> t
+        [1, 2, 3, [4, 5, 6]]
+        ```
+
+
+###	Supprimer des éléments
+
+Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
+
+-`t.remove(x)` supprime le premier élément dont la valeur est égale à `x`. Si le tableau  contient plusieurs fois la valeur `x`, seule la première occurrence trouvée est supprimée.
+    ``` py
+    	>>> t = [12, 13, 14, 15]
+        >>> t.remove(13)
+        >>> t
+        [12, 14, 15]
+
+- `t.pop(i)` supprime l'élément situé à la position `i` et le renvoie en valeur de retour. Si aucune position n'est spécifiée, `t.pop()` supprime et renvoie le dernier élément du tableau
+    ``` py
+    >>> t = [1,2,3]
+    >>> t.pop()
+    3
+    >>> t
+    [1, 2]
+    ```
+
+
+- A l’aide du mot clé `del`  on peut aussi supprimer un élément du tableau :
+    ```py 
+    >>> t
+    [1, 2, 3, 4, 5]
+    >>> del t[3]
+    >>> t
+    [1, 2, 3]	
+    ```
+    Ou encore le tableau entier avec l’instruction `del t`, alors la variable `t` n’existe plus.
+    ``` py
+    >>> del t
+    >>> t
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      NameError: name ' tu ' is not defined
+    ```
+
+##	D’autres méthodes bien utiles
+
 Deux méthodes pour trier un tableau :
-tableau.sort()
-	Ordonne les éléments dans le tableau  	>>> l=[5, 8, 2, 1]
->>> l.sort()
->>> l
-[1, 2, 5, 8]
-tableau.reverse()
-	Inverse l'ordre des éléments du tableau.	>>> l.reverse()
->>> l
-[8, 5, 2, 1]
+
+- `t.sort()` ordonne les éléments dans le tableau.
+    ``` py
+    >>> t = [5, 8, 2, 1]
+    >>> t.sort()
+    >>> t
+    [1, 2, 5, 8]
+    ```
+
+- `t.reverse()` inverse l'ordre des éléments du tableau.
+    ``` py
+    >>> t.reverse()
+    >>> t
+    [8, 5, 2, 1]
+    ```
+
 Pour trouver un élément dans un tableau :
-tableau.index(x)
-	Renvoie la position du premier élément du tableau dont la valeur égale x 	>>> l = [5 ,0 ,3 ,2 ,8 ,6]
->>> l.index(2)
-3
->>> ['a', 'c', 'd', 'e'].index('c')
-1
-tableau.count(x)	Renvoie le nombre d'éléments ayant la valeur x dans le tableau.	>>> [1, 1 , 2, 2, 2 ,3 , 4, 4 ,3].count(3)
-2
-Enfin, pour obtenir une liste exhaustive des méthodes disponibles pour les tableaux, on utilise dir(list).
-Remarque :  les méthodes telles que insert(), remove() ou sort(), qui ne font que modifier le tableau, ne renvoient pas de valeur (ou plutôt elles renvoient None).
-2.6	Conversion de type (cast)
-La fonction list(sequence) fonctionne exactement comme la fonction tuple(), c'est-à-dire qu'elle prend en argument un objet séquentiel et renvoie le tableau correspondant:
+
+- `t.index(x)` renvoie la position du premier élément du tableau dont la valeur égale `x`.
+    ``` py
+    >>> t = [5 ,0 ,3 ,2 ,8 ,6]
+    >>> t.index(2)
+    3
+    >>> ['a', 'c', 'd', 'e'].index('c')
+    1
+    ```
+
+- `t.count(x)`	renvoie le nombre d'éléments ayant la valeur `x` dans le tableau.
+    ``` py
+    >>> [1, 1 , 2, 2, 2 ,3 , 4, 4 ,3].count(3)
+    2
+    ```
+
+Enfin, `dir(list)` permet d'obtenir la liste exhaustive des méthodes disponibles pour les tableaux.
+
+!!! note "" 
+    Les méthodes telles que `insert()`, `remove()` ou `sort()`, qui ne font que modifier le tableau, ne renvoient pas de valeur (ou plutôt elles renvoient `None`).
+
+##	Conversion de type (cast)
+
+
+Comme la fonction `tuple()`, la fonction `list()` prend en argument un objet séquentiel (une chaine de caractère par exemple) et renvoie le tableau correspondant :
+
+
+``` py
 >>> list('abc')
 ['a', 'b', 'c']
->>> list('hello world')
-['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+>>> list((1, 2, 3))
+[1, 2, 3]
+```
+
 On peut créer un tableau vide avec la fonction list() sans argument.
+``` py
 tableauvide = list()  
-Nous avons déjà vu l'utilisation de la fonction range() . Lorsqu'elle est utilisée en combinaison avec la fonction list(), on obtient une tableau d'entiers. Par exemple :
+```
+
+Nous avons déjà vu l'utilisation de la fonction `range()` . Lorsqu'elle est utilisée en combinaison avec la fonction list(), on obtient une tableau d'entiers. Par exemple :
+
+``` py
 >>> list(range(10))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-La méthode split() permet de découper une chaîne en tableau avec un séparateur  : chaine.split(separateur).
+```
+
+La méthode `.split()` permet de découper une chaîne en tableau avec un séparateur  : `chaine.split(separateur)`.
+
+``` py
 >>> chaine = 'Bonjour tout le monde !'
 >>> chaine.split(' ')
 ['Bonjour', 'tout', 'le', 'monde', '!']
-Réciproquement la méthode join() permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: elementSeparateur.join(montableau).
+```
+
+Réciproquement la méthode `.join()` permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: `elementSeparateur.join(t)```.
+
+``` py
 >>> t = ['Bonjour', 'tout', 'le', 'monde', '!']
 >>> ' '.join(t)
 'Bonjour tout le monde !'
-2.7	Création par compréhension
-On peut aussi créer un tableau par compréhension en utilisant :
- Nouveau_tableau = [expression(i) for i in ancien_tableau if condition]
+```
+
+##	Création par compréhension
+
+Il est possible de créer un tableau par compréhension en utilisant :
+```py 
+nouveau_tableau = [expression(i) for i in ancien_tableau if condition]
+```
+
 Exemple :
+``` py
 >>> carres = []
 >>> for x in range(10):
 ...     carres.append(x**2)
 >>> carres
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81	Est equivalent à 
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81
+```
+Ce qui est equivalent à :
+``` py
 >>> carres = [x**2 for x in range(10)]
 >>> carres
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-A partir d’un autre tableau ancien_tableau
+``` 
+
+A partir d’un autre tableau `ancien_tableau` :
+``` py
 >>> mult_3 = [3 * i for i in [1, 2, 3]]
 >>> mult_3
 [3, 6, 9]
-Et avec  if conditions
+```
+
+Et avec une condition :
+``` py
 >>> nombres = [2, 5, 11, 17]
 >>> carre_mult_3 = [x**2 for x in nombres if x != 11]
-Ou même avec une fonction
+```
+
+Ou même avec une fonction :
+```
 >>> def f(x):
 ...     return 2*x + 3
 >>> absisses = [1, 2, 3, 5, 10]
 >>> ordonnees = [f(x) for x in absisses]
 >>> ordonnees
 [5, 7, 9, 13, 23]
-Avec plusieurs arguments
+```
+
+Avec plusieurs arguments :
+``` py
 >>> [x + y for x in [10, 30, 50] for y in [20, 40, 60]]
 [30, 50, 70, 50, 70, 90, 70, 90, 110]
+```
  
-2.8	Tableaux de tableaux 
+##	Tableaux de tableaux 
+
 Pour finir, il est tout à fait possible de construire des tableaux de p-uplets ou des tableaux de tableaux. Cette fonctionnalité peut parfois être très pratique.
-2.8.1	Création d’un tableau de tableaux
+
+###	Création d’un tableau de tableaux
+``` py
 >>> enclos1 = ['girafe', 4]
 >>> enclos2 = ['tigre', 2]
 >>> enclos3 = ['singe', 5]
 >>> zoo = [enclos1, enclos2, enclos3]
 >>> zoo
 [['girafe', 4], ['tigre', 2], ['singe', 5]]
+```
+
 Dans cet exemple, chaque sous-tableau contient une catégorie d'animal et le nombre d'animaux pour chaque catégorie. 
 On aurait pu écrire directement :
->>> zoo=[['girafe',4], ['tigre',2], ['singe',5]]
+``` py
+>>> zoo=[['girafe', 4], ['tigre', 2], ['singe', 5]]
 >>> zoo
 [['girafe', 4], ['tigre', 2], ['singe', 5]]
+```
+
 On peut aussi créer un tableau de tableaux avec une fonction :
+
+``` py
 matrice = []
 for n in range(4) :
     ligne = [4*n + 1 for i in range(1, 5)]
     matrice.append(ligne)
+```
+
 Ou par compréhension par exemple, cette compréhension de tableaux combine les éléments de deux tableaux  s'ils ne sont pas égaux :
+``` py
 >>> table = [[x, y] for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
 >>> table
 [[1, 3], [1, 4], [2, 3], [2, 1], [2, 4], [3, 1], [3, 4]]
-2.8.2	Accès aux éléments
+```
+
+###	Accès aux éléments
+
 Pour accéder à un élément du tableau de tableaux, on utilise l'indiçage habituel :
+``` py
 >>> zoo[1]
 ['tigre', 2]
+```
+
 Pour accéder à un élément d’un sous-tableau, on utilise un double indiçage :
+```
 >>> zoo[1][0]
 'tigre'
 >>> zoo[2][1]
 5
-Dans le cas d’un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice  . 
+```
+
+Dans le cas d’un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice. 
+
+```
 girafe	4
 tigre	2
 singe
 5
+```
 
 On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments sont donc identifiés par zoo[no de ligne][no de colonne]
  
