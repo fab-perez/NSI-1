@@ -1,7 +1,7 @@
 # p-uplets (type `tuple`)
 
 !!! abstract "Cours" 
-    Un p-uplet (ou n-uplet) est une suite ordonnée d’éléments qui ne peuvent pas être modifiés (immuables[^1.1] ).
+    Un **p-uplet** (ou n-uplet) est une suite **ordonnée** d’éléments qui ne peuvent **pas être modifiés** (immuables[^1.1] ).
 
     En Python les p-uplets sont du type `tuple`.
 

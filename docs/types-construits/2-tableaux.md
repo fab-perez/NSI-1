@@ -1,7 +1,7 @@
 # Tableaux (type `list`)
 
 !!! abstract "Cours" 
-    Un tableau est une suite ordonnée d’éléments qui peuvent être modifiés (muables[^2.1]).
+    Un **tableau** est une suite **ordonnée** d’éléments qui peuvent être **modifiés** (muables[^2.1]).
 
     En Python les tableaux sont du type `list`[^2.2].
 
@@ -212,6 +212,7 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
     >>> t
     [1, 2, 3, 4]
     ```
+
 - `t.insert(i, x)` insére un élément `x` à la position donnée par l’indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
     ``` py
     >>> t = ['a', 'b', 'd']
@@ -219,6 +220,7 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
     >>> t
     ['a', 'b', 'c', 'd']
     ```
+
 - `t.extend(autretableau)` étend un tableau `t` en lui ajoutant tous les éléments de `autretableau`.
     ``` py
 	>>> t = [1, 2, 3]
@@ -256,7 +258,7 @@ Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
     ```
 
 
-- A l’aide du mot clé `del`  on peut aussi supprimer un élément du tableau :
+- L'instruction `del`[^2.5]  permet aussi de supprimer un élément du tableau :
     ```py 
     >>> t
     [1, 2, 3, 4, 5]
@@ -265,6 +267,7 @@ Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
     [1, 2, 3]	
     ```
     Ou encore le tableau entier avec l’instruction `del t`, alors la variable `t` n’existe plus.
+
     ``` py
     >>> del t
     >>> t
@@ -272,6 +275,8 @@ Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
       File "<stdin>", line 1, in <module>
       NameError: name ' tu ' is not defined
     ```
+
+[^2.5]: `del` est une instruction Python, pas une fonction, elle s’écrit donc sans parenthèse.
 
 ##	D’autres méthodes bien utiles
 
@@ -314,8 +319,8 @@ Enfin, `dir(list)` permet d'obtenir la liste exhaustive des méthodes disponible
 !!! note "" 
     Les méthodes telles que `insert()`, `remove()` ou `sort()`, qui ne font que modifier le tableau, ne renvoient pas de valeur (ou plutôt elles renvoient `None`).
 
-##	Conversion de type (cast)
 
+##	Conversion de type (cast)
 
 Comme la fonction `tuple()`, la fonction `list()` prend en argument un objet séquentiel (une chaine de caractère par exemple) et renvoie le tableau correspondant :
 
@@ -411,215 +416,399 @@ Avec plusieurs arguments :
 Pour finir, il est tout à fait possible de construire des tableaux de p-uplets ou des tableaux de tableaux. Cette fonctionnalité peut parfois être très pratique.
 
 ###	Création d’un tableau de tableaux
+
+On peut créer un tableau qui contient des tableaux :
 ``` py
->>> enclos1 = ['girafe', 4]
->>> enclos2 = ['tigre', 2]
->>> enclos3 = ['singe', 5]
->>> zoo = [enclos1, enclos2, enclos3]
->>> zoo
-[['girafe', 4], ['tigre', 2], ['singe', 5]]
+>>> t0 = [0, 0, 0]
+>>> t1 = [1, 1, 1]
+>>> t2 = [2, 2, 2]
+>>> t = [t0, t1, t2]
+>>> t
+[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
 ```
 
-Dans cet exemple, chaque sous-tableau contient une catégorie d'animal et le nombre d'animaux pour chaque catégorie. 
-On aurait pu écrire directement :
+Il était possible d'écrire directement :
 ``` py
->>> zoo=[['girafe', 4], ['tigre', 2], ['singe', 5]]
->>> zoo
-[['girafe', 4], ['tigre', 2], ['singe', 5]]
+>>> t = [[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+>>> t
+[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
 ```
 
-On peut aussi créer un tableau de tableaux avec une fonction :
+Il est aussi possible de construire le tableau de tableaux ligne par ligne.
 
 ``` py
-matrice = []
-for n in range(4) :
-    ligne = [4*n + 1 for i in range(1, 5)]
-    matrice.append(ligne)
+>>> t = []
+>>> for i in range(3):
+...     t_i = [i for j in range (3)]
+...     t.append(t_i)
+...     
+>>> t
+[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
 ```
 
-Ou par compréhension par exemple, cette compréhension de tableaux combine les éléments de deux tableaux  s'ils ne sont pas égaux :
+Ou par compréhension.
+``` py
+>>> t = [[i for j in range (3)] for i in range(3)]
+>>> t
+[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+```
+
+
+par exemple, cette compréhension de tableaux combine les éléments de deux tableaux  s'ils ne sont pas égaux :
 ``` py
 >>> table = [[x, y] for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
 >>> table
 [[1, 3], [1, 4], [2, 3], [2, 1], [2, 4], [3, 1], [3, 4]]
 ```
 
+
+!!! question "Exercice corrigé" 
+	Construire le tableau de tableaux suivant par compréhension :
+
+    ``` py
+    [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+     [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+     [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+     [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+     [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+     [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
+     [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
+     [70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+     [80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
+     [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]] 
+    ```
+
+
+??? Success "Réponse"
+
+    ``` py 
+    T = []
+    for i in range(10):
+        T.append([j + 10*i for j in range(10)])
+    ```
+    ou alors
+    ``` py 
+    T = [[j + 10*i for j in range (10)] for i in range(10)]
+    ```
+
+
 ###	Accès aux éléments
 
 Pour accéder à un élément du tableau de tableaux, on utilise l'indiçage habituel :
+
 ``` py
->>> zoo[1]
-['tigre', 2]
+>>> t = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+>>> t[1]
+[4, 5, 6]
 ```
 
 Pour accéder à un élément d’un sous-tableau, on utilise un double indiçage :
 ```
->>> zoo[1][0]
-'tigre'
->>> zoo[2][1]
-5
+>>> t[1][2]
+6
+>>> t[2][1]
+8
 ```
 
 Dans le cas d’un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice. 
 
-```
-girafe	4
-tigre	2
-singe
-5
-```
+
 
 On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments sont donc identifiés par zoo[no de ligne][no de colonne]
- 
-En pratique : Ecrire une fonction qui vérifie qu’un carré est magique (ou pas) 
-«  En mathématiques, un carré magique d'ordre n est composé de n2 entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques) 
 
-def est_magique(m):
-    '''[[int]] -> bool
-    Renvoie Trus si m est un carré magique, False sinon
-    '''
 
-    taille=len(m)
 
-    # calcule la somme sur la diagonale
-    diag = 0
-    for line in range(taille):
-        diag = diag + m[line][line]
+!!! question "Exercice corrigé" 
+	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  $0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d’Edouard Lucas sous forme d'un tableau de tableaux :
 
-    # vérifie les lignes
-    for line in range(taille):
-        somme = 0
-        for col in range(taille):
-            somme = somme + m[line][col]
-        if somme != diag:
-            return False
 
-    #vérifie les colonnes
-    for col in range(taille):
-        somme = 0
+    ||||
+    |:-:|:-:|:-:|
+    |c + a|c – a – b|c + b|
+    |c – a + b|c|c + a – b|
+    |c – b|c + a + b|c – a|
+
+    
+    «  En mathématiques, un carré magique d'ordre n est composé de n² entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
+
+
+
+??? Success "Réponse"
+    ``` py linenums="1"
+    def lucas(a, b, c):
+        '''(int, int, int) -> [[int]]
+        Renvoie un carré magique 3 x 3 en utilisant la formule de lucas
+        '''
+        assert 0 < a < b < c - a and b!= 2*a, 'a, b et c ne sont pas valides'
+        return [[c + a, c - a - b, c + b],
+                [c - a + b, c, c + a - b],
+                [c - b, c + a + b, c - a]]
+    ```
+
+
+
+!!! question "Exercice corrigé" 
+	Ecrire une fonction qui vérifie qu’un carré est magique (ou pas).
+    «  En mathématiques, un carré magique d'ordre n est composé de n2 entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
+
+??? Success "Réponse"
+    ``` py linenums="1"
+    def est_magique(m):
+        '''[[int]] -> bool
+        Renvoie True si m est un carré magique, False sinon
+        '''
+
+        taille=len(m)
+
+        # calcule la somme sur la diagonale
+        diag = 0
         for line in range(taille):
-            somme = somme + m[line][col]
-        if somme !=diag:
-            return False
+            diag = diag + m[line][line]
 
-    # si on arrive ici, c'est que m est un carre est magique
-    return True
+        # vérifie les lignes
+        for line in range(taille):
+            somme = 0
+            for col in range(taille):
+                somme = somme + m[line][col]
+            if somme != diag:
+                return False
+
+        #vérifie les colonnes
+        for col in range(taille):
+            somme = 0
+            for line in range(taille):
+                somme = somme + m[line][col]
+            if somme !=diag:
+                return False
+
+        # si on arrive ici, c'est que m est un carre est magique
+        return True
 
 
-c1 = [[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]]
-assert est_magique(c1)
+    c1 = [[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]]
+    assert est_magique(c1)
 
-c2 = [[2, 7, 6], [9, 5, 1], [4, 3, 8]]
-assert est_magique(c2)
+    c2 = [[2, 7, 6], [9, 5, 1], [4, 3, 8]]
+    assert est_magique(c2)
 
-c3 = [[2, 7, 6], [9, 5, 1], [4, 3, 7]]
-assert not est_magique(c3)
+    c3 = [[2, 7, 6], [9, 5, 1], [4, 3, 7]]
+    assert not est_magique(c3)
 
-Pour aller plus loin : Ecrire une fonction lucas(a, b, c) prenant en paramètres 3 entiers relatifs a, b et c , vérifie par asserts que  0 < a < b < c – a et b ≠ 2a puis construit le carré magique 3x3 en utilisant la méthode d’Edouard Lucas 
-c + a	c – a – b	c + b
-c – a + b	c	c + a – b
-c – b	c + a + b	c – a
+    ```
+
+
  
-2.9	Tableaux muables
-On a vu que les tableaux sont muables c’est-à-dire qu’on peut modifier chaque élément d’un tableau individuellement, supprimer ou ajouter des éléments. Mais on peut aussi modifier les variables de type int, float, tuple, str ou bool pourtant dit «  immuables », alors qu’elle est la différence ? 
-Observons la différence en utilisant la fonction id() qui renvoie l'identifiant d’une variable en mémoire.
->>> a = 1
->>> id(a)
-2366593132848
->>> a = a + 1
->>> id(a)
-2366593132880
-Une nouvelle variable a été créée en mémoire.	>>> t = [1]
->>> id(t)
-2366637916800
->>> t.append(2)
->>> id(t)
-2366637916800
-C’est la même variable t qui est en mémoire.
-2.9.1	Copie de tableau
-Comparons ce qu’il se passe quand on copie une variable immuable, par exemple de type int, et une variable de type list muable.
->>> a = 1
->>> b = a
-Modifions b
->>> b = 2
->>> b
-2
-Qu’est-il arrivé à a
->>> a
-1
-a n’a pas changé	>>> t = [1, 2, 3]
->>> u = t
-Modifions u
->>> u[2] = 4
->>> u
-[1, 2, 4]
-Qu’est-il arrivé à t
->>> t
-[1, 2, 4]
-t a aussi été modifié quand on a modifié u !
-Les deux variables t et u ne sont pas deux objets différents mais deux noms qui font référence vers le même objet.  Pour s’en convaincre on peut vérifier les adresses des variables
->>> id(a)
-2366593132848
->>> id(b)
-2366593132880
-a et b sont bien deux variables différentes.	>>> id(t)
-2366638078720
->>> id(u)
-2366638078720
-t et u  sont deux noms pour la même variables .
-Pour copier un tableau , il faut créer une copie explicite du tableau initial.  Cela se fait de plusieurs manières : 
-•	avec t[:] qui créé une copie des données du tableau t (en opposition à une copie du tableau t) :
+##	Tableaux muables
+
+Les tableaux sont muables c’est-à-dire qu’on peut modifier chaque élément d’un tableau individuellement, supprimer ou ajouter des éléments. Mais on peut aussi modifier les variables de type `int`, `float`, `tuple`, `str` ou `bool` pourtant dit «  immuables », alors qu’elle est la différence ? 
+
+Observons la différence quand on modifie la valeur d'une variable en utilisant la fonction `id()` qui renvoie l'identifiant de la variable en mémoire.
+
+=== "avec une variable de type "immuable""
+    ``` py
+    >>> a = 1
+    >>> id(a)
+    2366593132848
+    >>> a = a + 1
+    >>> id(a)
+    2366593132880
+    ```
+    Une nouvelle variable `a` est créée en mémoire quand on change sa valeur.	
+    
+=== "avec une variable de type "muable""
+    ``` py
+    >>> t = [1]
+    >>> id(t)
+    2366637916800
+    >>> t.append(2)
+    >>> id(t)
+    2366637916800
+    ```
+
+    C’est la même variable `t` qui reste en mémoire avec une valeur différente.
+
+###	Copie de tableau
+
+Comparons ce qu’il se passe quand on copie une variable immuable, par exemple de type `int`, et une variable de type `list` muable.
+
+
+=== "avec une variable de type "immuable""
+       
+    ``` py
+    >>> a = 1
+    >>> b = a
+    ```
+    Modifions `b`.
+    ```
+    >>> b = 2
+    >>> b
+    2
+    ```
+
+    Qu’est-il arrivé à `a` ?
+    ``` py
+    >>> a
+    1
+    ```
+    `a` n’a pas changé.
+
+=== "avec une variable de type "muable""
+    ``` py
+    >>> t = [1, 2, 3]
+    >>> u = t
+    ```
+    
+    Modifions `u`.
+    
+    ``` py
+    >>> u[2] = 4
+    >>> u
+    [1, 2, 4]
+    ```
+
+    Qu’est-il arrivé à `t` ,
+
+    ``` PY
+    >>> t
+    [1, 2, 4]
+    ```
+
+    `t` a aussi été modifié quand on a modifié `u` !
+
+Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux noms qui font référence au même objet en mémoire**.  Pour s’en convaincre on peut vérifier les adresses des variables
+
+=== "avec une variable de type "immuable""
+
+    ``` py
+    >>> id(a)
+    2366593132848
+    >>> id(b)
+    2366593132880
+    ```
+
+    `a` et `b` sont bien deux variables différentes.	
+    
+=== "avec une variable de type "muable""
+    ``` py
+    >>> id(t)
+    2366638078720
+    >>> id(u)
+    2366638078720
+    ```
+    `t` et `u`  sont deux noms pour la même variable.
+
+
+Pour copier un tableau , il faut créer une **copie explicite** du tableau initial.  Cela peut se faire de plusieurs manières : 
+
+- avec `t[:]` qui créé une copie *des données* du tableau `t` (en opposition à une copie du tableau `t`) :
+``` py
 >>> t = [1, 2, 3]
 >>> u = t[:]
-•	Avec  la fonction list(itérable) qui renvoie un tableau formé des éléments de la variable itérable:
+```
+
+- Avec  la fonction `list(t)` qui renvoie un tableau formé des éléments de la variable `t`:
+``` pu
 >>> u = list(t)
-•	Ou encore utiliser la méthode .copy()
+```
+
+-Ou encore utiliser la méthode `.copy()` :
+```
 >>> u = t.copy()
+```
  
-2.9.2	Tableau passé en paramètre de fonction
-Passer des arguments à une fonction d’un type muable comme list   génère des effets de bord   . 
-On a vu précédemment qu’une fonction ne modifie pas la valeur d’une variable passée en paramètre en dehors de son exécution. On dit que les paramètres sont passés par valeur. C’est en effet le cas avec des variables de type immuable mais ce n’est pas le cas pour les variables de type muable comme le type list. Dans ce cas, la fonction reçoit l'adresse en mémoire de la variable passée en argument et peut donc en modifier le contenu.
-Illustrons cela des fonctions f(x) et g(x) qui modifient simplement la valeur d’un paramètre x 
-def f(x):
-    x = 2	def g(x):
-    x.append(2)
-Appelons ces fonctions en passant des variables a et t en paramètre  : 
->>> a = 1
->>> f(a)
->>> a
-1 
-a n’a pas été modifié par la fonction f().	>>> t = [1]
->>> g(t)
->>> t
-[1 ,2]
-t a été modifié par la fonction g() !
-2.9.3	Autres effets 
+###	Tableau passé en paramètre de fonction
+Passer des arguments à une fonction d’un type muable comme `list`[^2.6] génère des effets de bord[^2.7] . 
+
+[^2.6]: Ou de type `dict` ou `set` qui sont aussi des types muables.
+[^2.7]: Un effet de bord se produit quand une fonction modifie le contenu d'une variable qui appartient au contexte appelant.
+
+Nous avons vu précédemment qu’une fonction ne modifie pas la valeur d’une variable passée en paramètre en dehors de son exécution, les paramètres sont passés par valeur.  C’est en effet le cas avec des variables de type immuable mais ce n’est pas le cas pour les variables de type muable comme le type `lis`t. Dans ce cas, la fonction reçoit l'adresse en mémoire de la variable passée en argument et peut donc en modifier le contenu.
+
+Illustrons cela des fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d’un paramètre `x`. 
+
+=== "avec une variable de type "immuable""
+    ``` py
+    def f(x):
+        x = 2	
+    ```
+
+=== "avec une variable de type "muable""
+    ``` py
+    def g(x):
+        x.append(2)
+    ```
+
+Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.8]: : 
+[^2.8]: Les variables `a` et `t` pourraient s'appeler aussi `x` ce qui donnerait le même résultat.
+
+=== "avec une variable de type "immuable""
+    ``` py
+    >>> a = 1
+    >>> f(a)
+    >>> a
+    1 
+    ```
+    `a` n’a pas été modifié par la fonction `f`.
+    
+=== "avec une variable de type "muable""
+    ``` py
+    >>> t = [1]
+    >>> g(t)
+    >>> t
+    [1 ,2]
+    ```
+
+    `t` a été modifié par la fonction `g` !
+
+###	Autres effets 
+
 On peut initialiser un tableau avec une valeur par défaut pour tous les éléments, par exemple des zéros, avec 
+
+``` py
 >>> t = [0] * 3
 >>> t
 [0, 0, 0]
+```
+
 Mais attention à ne pas utiliser cette méthode pour des tableaux de tableaux :
+``` py
 >>> t = [[0] * 3] * 3
 >>> t
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 >>> t[0][0] = 1
 >>> t
 [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
-On préfèrera donc :  t = [0 for i in range(3)]  et    t = [[0 for i in range(3)] for i in range(3)]
-De la même façon, on ne doit pas définir un paramètre de fonction par mot clé avec un tableau de type list , par exemple dans la fonction suivante :  
+```
+
+On préfèrera donc :  `t = [0 for i in range(3)]`  et    `t = [[0 for i in range(3)] for i in range(3)]`
+
+De la même façon, on ne doit pas définir une valeur par défaut de paramètre de fonction avec un tableau de type `list` [^2.9], par exemple dans la fonction suivante :  
+
+[^2.9]: Voir [https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values] (https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values) 
+
+``` py
 def ajouter(a, L = []):
     L.append(a)
     return L
+```
+
 La valeur par défaut n'est évaluée qu'une seule fois puis la fonction accumule les arguments au fil des appels :
+``` py
 >>> M = ajouter(1)
 >>> M
 [1]
 >>> N = ajouter(2)
 >>> N
 [1, 2]
-Pour finir, il revient au même de faire par exemple n += 1 et n = n + 1 pour des entiers mais par pour des tableaux :
+```
+
+Pour finir, il revient au même de faire par exemple `n += 1` et `n = n + 1` pour des entiers mais par pour des tableaux. Comparons : 
+``` py
 def f(L, n) :
     for k in range(n) :
-        L += [k]  # equivalent à L.append()	def g(L, n) :
+        L += [k]  # equivalent à L.append(), modifie la valeur de l'argument L	
+
+def g(L, n) :
     for k in range(n) :
-        L = L + [k]
+        L = L + [k]   # crée une nouvelle variable 'locale' L et ne modifie par l'argument L
+```
