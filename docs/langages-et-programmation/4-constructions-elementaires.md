@@ -7,7 +7,7 @@
 !!! tip inline end "PEP 8" 
     Préférer les espaces aux tabulations.
 
-L'indentation est normalement réalisée par 4 espaces ou une tabulation, voire un seul ou plusieurs espaces, mais dans tous les cas il faut être consistant à travers tout un programme.
+L'indentation est normalement réalisée par quatre caractères « espace ». Python accèpte aussi une tabulation, voire un seul ou un autre nombre d'espaces, mais dans tous les cas il faut être consistant à travers tout un programme.
 
 ##	Instructions conditionnelles
 
@@ -182,7 +182,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
     A[annee%4 == 0] --> |True| B;
     A -->|False| C{pas bissextile};
     B[annee%100 != 0] --> |True| D{bissextile};
-    B --> |True| E;
+    B --> |False| E;
     E[annee%400 == 0] --> |True| F{bissextile};
     E --> |False| G{pas bissextile};
     ```
@@ -226,7 +226,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
     annee = int(input('annee: ') )
     if annee % 400 == 0:        # si annee est divisible par 400
         print(annee, "est bissextile")
-    elif annee % 400 == 0:        # sinon, si annee est divisible par 100 (et pas par 400 car déjà testé)
+    elif annee % 100 == 0:        # sinon, si annee est divisible par 100 (et pas par 400 car déjà testé)
         print(annee, "n'est pas est bissextile")
     elif annee % 4 == 0:          # sinon, si annee est divisible par 4 (et pas par 100 et 400 car déjà testés)
             print(annee, "est bissextile")        
@@ -288,9 +288,7 @@ while i <= 10:
 i += 2
 ```
 
-Comme pour les instructions conditionnelles, attention de faire particulièrement attention aux boucles avec les nombres de type `float`. 
-
-La boucle suivante qui semble écrite correctement ne finira jamais :
+:warning: Comme pour les instructions conditionnelles, il faut faire particulièrement attention aux boucles avec les nombres de type `float`. La boucle suivante qui semble écrite correctement ne finira jamais :
 ``` py
 i = 1
 while i != 2:
@@ -318,7 +316,7 @@ Elle affiche dans la console :
 1.9000000000000008
 2.000000000000001
 ``` 
-`i` ne prend jamais la valeur `2`. 
+`i` ne prend donc jamais la valeur `2`. 
 
 ## Boucles bornées
 
@@ -370,7 +368,7 @@ while i < n :
     ```
 
     
-Ils semblent afficher le même résultat, tous les chiffres de 0 à 4 : ```0 1 2 3 4 ```
+Les deux programmes semblent afficher la même chose, tous les chiffres de 0 à 4 : ```0 1 2 3 4 ```
 
 Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les deux programmes.
 
@@ -430,7 +428,7 @@ Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, 
 
 La boucle `for` possède d’autres possibilités très utiles, par exemple elle permet d’énumérer chaque caractère d’une chaine de caractères. Le programme ci-dessous affiche chaque lettre d’une variable message l'une après l'autre.
 ``` py
-message = 'bonjour'
+message = 'Hello world'
 for c in message:
     print(c)
 ```
@@ -506,7 +504,7 @@ for heure in range(24):
     - La première boucle parcourt tous les nombres `n` allant de 2 (0 et 1 ne sont pas premiers) à 100 pour vérifier s'ils sont premiers ou pas. 
 
 	!!! note inline end "" 
-    	On peut se contenter de chercher un diviseur `div` seulement entre 2 et $\sqrt{n}$ avec une boucle `while div**2 <= n:`.
+    	On peut se contenter de chercher un diviseur `div` seulement entre 2 et $\sqrt{n}$ avec une boucle `while div**2 <= n:` ou `while div <= n**0.5:`.
 
     - Pour chaque nombre `n`, la deuxième boucle vérifie s'il est divisible par un nombre `div` compris entre 2 et `n - 1`. Si `n` est divisible par `div`, alors il n'est pas premier et on affecte la valeur `False` à la variable `est_premier`. Dans ce cas, inutile de chercher d'autres diviseurs, on peut sortie de la boucle avec une instruction `break`.
 
@@ -514,7 +512,7 @@ for heure in range(24):
 
 
 
-    ``` py linenums="1"
+    ``` py linenums="1" title="nombres_premiers.py"
     for n in range(2, 101):
         est_premier = True   
         for div in range(2, n):   #on cherche un diviseur compris entre 2 et n - 1

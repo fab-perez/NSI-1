@@ -19,11 +19,11 @@ Une variable informatique peut se concevoir comme une sorte de “boite” étiq
 
 En Python, comme dans la plupart des langages informatiques, le nom d’une variable :
 
-- s'écrit en lettres minuscules (```a``` à ```z```) et majuscules (```A``` à ```Z```) et peut contenir des chiffres (```0``` à ```9```) et le caractère souligné (```_```) ;
-- ne doit pas comporter d’espace, de signes d’opération ```+```, ```-```, ```*``` ou ```/```, ni de caractères spéciaux comme des signes de ponctuation `'`, `"`, `,`, `.` , `:`, etc. ou `@` ;
+- s'écrit en lettres minuscules (« `a` » à « `z` ») et majuscules (« `A` » à « `Z` ») et peut contenir des chiffres (« `0` » à « `9` ») et le caractère blanc souligné (« `_` ») ;
+- ne doit pas comporter d’espace, de signes d’opération « `+` », « `-` », « `*` » ou « `/` », ni de caractères spéciaux comme des signes de ponctuation « `'` », « `"` », « `,` », « `.` », « `:` », « `@` », etc.  ;
 - ne doit pas commencer par un chiffre ;
-- ne doit pas être un mot réservé de Python, par exemple ```for```, ```if```, ```print```, etc. ; et
-- est sensible à la casse, ce qui signifie que les variables ```TesT```, ```test``` ou ```TEST``` sont différentes.
+- ne doit pas être un mot réservé de Python, par exemple « `for` », « `if` », « `print` », etc. ; et
+- est sensible à la casse, ce qui signifie que les variables « `TesT` », « `test` » ou « `TEST` » sont différentes.
 
 En pratique cela permet d’éviter les noms de variable réduits à une lettre et d’utiliser des noms qui ont un sens ! 
 

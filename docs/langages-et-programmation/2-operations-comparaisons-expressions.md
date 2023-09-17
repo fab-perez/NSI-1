@@ -227,7 +227,7 @@ Les opérations de comparaison usuelless permettent de comparer des valeurs de m
 
 [^2.9]
 
-[^2.9]: Préfèrer `is` et `is not` à `==` et `!=` pour comparer à `None`, par exemple `a is not None` plutôt que `a != None`.
+[^2.9]: Préférer `is` et `is not` à `==` et `!=` pour comparer à `None`, par exemple `a is not None` plutôt que `a != None`.
 
 :warning: Une erreur courante consiste à confondre l'opérateur de comparaison `==` pour vérifier si deux valeurs sont égales avec l'affectation qui utilise le signe `=` !
 
@@ -345,9 +345,9 @@ Comme pour les opérations mathématiques, les opérations logiques suivent des 
 
 Exemples :
 
-- `2*a + 5`	est une expression.  
-- `a == 5`	est une expression.
-- `a = 5`	n’est **pas** une expression, c’est une affection de la valeur 5 à la variable `a`.
+- `2*a + 5`	est une expression, elle a une valeur (qui dépend de la valeur de `a`).  
+- `a == 5`	est une expression booléene, elle vaut `True`ou `False`.
+- `a = 5`	n’est **pas** une expression, c’est une affectation de la valeur 5 à la variable `a`.
 
 
 ![différence dans la console entre >>> a = 5 qui n'affiche rien et >>> a == 5 qui affiche True](assets/2-expression-vs-instruction.png){align=right}
@@ -380,13 +380,13 @@ Puisqu'elle a une valeur, une expression peut être affectée à une variable :
 ??? Success "Réponse"
 	Avant d'écrire cette expression on peut se poser quelques questions :
 
-	- Comment savoir si un nombre est divisible par un autre ? On vérifie que le reste de la division entière est égal à zéro. Par exemple 2023 n'est pas divisible par 4 car le reste de la division entière de 2023 par 4 est 3 : 
+	- Comment savoir si un nombre est divisible par un autre ? Il suffit de vérifier si le reste de la division entière est égal à zéro ou pas. Par exemple 2023 n'est pas divisible par 4 car le reste de la division entière de 2023 par 4 est 3 : 
     ``` py
     >>> annee = 2023
     >>> annee % 4
     3
     ```
-    Par contre 2024 est divisible par 4 car le reste de la division entière de 2024 par 4 est 0 : 
+    Par contre 2024 est divisible par 4 car le reste de la division entière de 2024 par 4 est bien 0 : 
     ``` py
     >>> annee = 2024
     >>> annee % 4
@@ -402,7 +402,7 @@ Puisqu'elle a une valeur, une expression peut être affectée à une variable :
 
         `>>> annee % 400 == 0 `
 
-    - :warning: la dernière clause indique qu'une année **n'est pas** bissextile si les conditions C1 **et** C2 sont toutes les deux **fausses**. Il faut donc comprendre qu'une année **est** bissextile si l'une des conditions C1 **ou** C2 est **vraie** (ou les deux en même temps) .
+    - :warning: la dernière clause indique qu'une année **n'est pas** bissextile si les conditions C1 **et** C2 sont toutes les deux **fausses**. Il faut donc comprendre qu'une année **est** bissextile si l'une des conditions C1 **ou** C2 est **vraie** (ou les deux en même temps).
     
 	
 	Traduit en Python, on obtient l'expression suivante que l'on peut tester dans la console.
