@@ -40,7 +40,7 @@ singleton = [5] # Creation d'un tableau avec un seul element
 ```
 
 ## Fonction `len()`
-La fonction `len()` permet de connaître la longueur d'un tableau, c'est-à-dire le nombre d'éléments qu’il contient.
+La fonction `len()` renvoie la longueur d'un tableau, c'est-à-dire le nombre d'éléments qu’il contient.
 
 ``` py
 >>> animaux = ['girafe', 'tigre', 'singe', 'souris']
@@ -117,7 +117,7 @@ True
 False
 ```
 
-De facçon très similaire aux p-uplets, le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
+De façon très similaire aux p-uplets, le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
 
 
 === "Avec une boucle non bornée `while`"
@@ -241,14 +241,14 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
 
 Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
 
--`t.remove(x)` supprime le premier élément dont la valeur est égale à `x`. Si le tableau  contient plusieurs fois la valeur `x`, seule la première occurrence trouvée est supprimée.
+-`t.remove(x)` supprime le premier élément dont la valeur est égale à `x`. Si le tableau  contient plusieurs fois la valeur `x`, seule la première occurrence trouvée est supprimée :
     ``` py
     	>>> t = [12, 13, 14, 15]
         >>> t.remove(13)
         >>> t
         [12, 14, 15]
 
-- `t.pop(i)` supprime l'élément situé à la position `i` et le renvoie en valeur de retour. Si aucune position n'est spécifiée, `t.pop()` supprime et renvoie le dernier élément du tableau
+- `t.pop(i)` supprime l'élément situé à la position `i` et le renvoie en valeur de retour. Si aucune position n'est spécifiée, `t.pop()` supprime et renvoie le dernier élément du tableau :
     ``` py
     >>> t = [1,2,3]
     >>> t.pop()
@@ -666,7 +666,7 @@ Comparons ce qu’il se passe quand on copie une variable immuable, par exemple 
     [1, 2, 4]
     ```
 
-    Qu’est-il arrivé à `t` ,
+    Qu’est-il arrivé à `t` ?
 
     ``` PY
     >>> t
@@ -698,9 +698,11 @@ Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux no
     `t` et `u`  sont deux noms pour la même variable.
 
 
-Pour copier un tableau , il faut créer une **copie explicite** du tableau initial.  Cela peut se faire de plusieurs manières : 
+Pour copier un tableau , il faut créer une **copie explicite** du tableau initial.  Cela peut se faire de plusieurs manières[^2.6] :
 
-- avec `t[:]` qui créé une copie *des données* du tableau `t` (en opposition à une copie du tableau `t`) :
+[^2.6]: :warning:Aucune de ces approches ne fonctionne pour un tableau de tableaux, il faut par exemple utiliser la méthode `.deepcopy()` du module `copy`. 
+
+- Avec `t[:]` qui créé une copie *des données* du tableau `t` (en opposition à une copie du tableau `t`) :
 ``` py
 >>> t = [1, 2, 3]
 >>> u = t[:]
@@ -711,16 +713,18 @@ Pour copier un tableau , il faut créer une **copie explicite** du tableau initi
 >>> u = list(t)
 ```
 
--Ou encore utiliser la méthode `.copy()` :
+- Ou encore utiliser la méthode `.copy()` :
 ```
 >>> u = t.copy()
 ```
  
-###	Tableau passé en paramètre de fonction
-Passer des arguments à une fonction d’un type muable comme `list`[^2.6] génère des effets de bord[^2.7] . 
 
-[^2.6]: Ou de type `dict` ou `set` qui sont aussi des types muables.
-[^2.7]: Un effet de bord se produit quand une fonction modifie le contenu d'une variable qui appartient au contexte appelant.
+
+###	Tableau passé en paramètre de fonction
+Passer des arguments à une fonction d’un type muable comme `list`[^2.7] génère des effets de bord[^2.8] . 
+
+[^2.7]: Ou de type `dict` ou `set` qui sont aussi des types muables.
+[^2.8]: Un effet de bord se produit quand une fonction modifie le contenu d'une variable qui appartient au contexte appelant.
 
 Nous avons vu précédemment qu’une fonction ne modifie pas la valeur d’une variable passée en paramètre en dehors de son exécution, les paramètres sont passés par valeur.  C’est en effet le cas avec des variables de type immuable mais ce n’est pas le cas pour les variables de type muable comme le type `lis`t. Dans ce cas, la fonction reçoit l'adresse en mémoire de la variable passée en argument et peut donc en modifier le contenu.
 
@@ -738,8 +742,8 @@ Illustrons cela des fonctions `f(x)` et `g(x)` qui modifient simplement la valeu
         x.append(2)
     ```
 
-Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.8]: : 
-[^2.8]: Les variables `a` et `t` pourraient s'appeler aussi `x` ce qui donnerait le même résultat.
+Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.9]: 
+[^2.9]: Les variables `a` et `t` pourraient s'appeler aussi `x` ce qui donnerait le même résultat.
 
 === "avec une variable de type "immuable""
     ``` py
@@ -748,7 +752,7 @@ Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.8]:
     >>> a
     1 
     ```
-    `a` n’a pas été modifié par la fonction `f`.
+    La valeur de `a` n’a pas été modifiée par la fonction `f`.
     
 === "avec une variable de type "muable""
     ``` py
@@ -758,7 +762,7 @@ Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.8]:
     [1 ,2]
     ```
 
-    `t` a été modifié par la fonction `g` !
+    La valeur de `t` a été modifiée par la fonction `g` !
 
 ###	Autres effets 
 
@@ -782,9 +786,9 @@ Mais attention à ne pas utiliser cette méthode pour des tableaux de tableaux :
 
 On préfèrera donc :  `t = [0 for i in range(3)]`  et    `t = [[0 for i in range(3)] for i in range(3)]`
 
-De la même façon, on ne doit pas définir une valeur par défaut de paramètre de fonction avec un tableau de type `list` [^2.9], par exemple dans la fonction suivante :  
+De la même façon, on ne doit pas définir une valeur par défaut de paramètre de fonction avec un tableau de type `list`[^2.10], par exemple dans la fonction suivante :  
 
-[^2.9]: Voir [https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values] (https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values) 
+[^2.10]: Voir [https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values](https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values).
 
 ``` py
 def ajouter(a, L = []):
