@@ -42,17 +42,17 @@ Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas autom
     
 === "Programme 2" 
 
-    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur :bug: sur une apostrophe manquante à la fin de `'hello`.
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur, :bug: il manque les apostrophes autour de `'hello'`.
 
     ``` py linenums="1"
     def bonjour():
-        print('hello)
+        print(hello)
     ```
 
 Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’**appeler** depuis un programme ou depuis la console Python en écrivant son nom suivi des parenthèse. 
 
 !!! note inline end "" 
-    :warning: Quand la fonction n’a pas de paramètres il faut quand même mettre les parenthèses pour l'appeller.
+    :warning: Quand la fonction n’a pas de paramètres, il faut quand même mettre les parenthèses pour l'appeller.
 
 === "Depuis la console"
     ``` py linenums="1"
@@ -125,7 +125,7 @@ Il faut définir une fonction **avant** de l’appeler. Ces deux programmes affi
 
 ![Fenêtre PyScripter avec la fonction main() par défaut](assets/5-fonctions-pyscripter.png){width="50%" align=right}
 
-PyScripter, comme d'autres IDE (*Integrated Development Environment*), génèr automatiquement une fonction appelée `main` avec le code suivant :
+PyScripter, comme d'autres IDE (*Integrated Development Environment*), génère automatiquement une fonction appelée `main` avec le code suivant :
 
 ``` py linenums="1"
 def main():
@@ -718,7 +718,7 @@ def factorielle_recursive(n):
 	Écrire une fonction récursive `compte_a_rebours(n)` qui affiche les nombres entiers à rebours allant de `n` à `0`.
 
 ??? Success "Réponse"
-    ``` py 
+    ``` py linenums="1"
     def compte_a_rebours(n):
         if n < 0:
             pass
@@ -728,7 +728,7 @@ def factorielle_recursive(n):
     ```
     ou plus simplement :  
 
-    ``` py 
+    ``` py linenums="1"
     def compte_a_rebours(n):
         print(n)
         if n > 0:
