@@ -42,7 +42,7 @@ Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas autom
     
 === "Programme 2" 
 
-    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur, :bug: il manque les apostrophes autour de `'hello'`.
+    La fonction `bonjour` n'est pas appelée, ce programme ne fait rien, même s'il y une erreur, :bug: il manque des apostrophes ou des guillemets autour de `'hello'`.
 
     ``` py linenums="1"
     def bonjour():
@@ -293,9 +293,9 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
 
 
 À noter :
-> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2] (une telle fonction est appelée une procédure). 
+> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2]. 
 
-[^5.2]: Donc une fonction renvoie toujours quelque chose.
+[^5.2]: Une fonction qui renvoie `None` (ou qui ne renvoie rien dans d'autres langages) est appelée une procédure.
 
 
 Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Elle consiste à tester tous les entiers possibles, les uns après les autres, en vérifiant s'ils divisent ce nombre, c'est-à-dire si le reste de la division entière est égal à zéro. Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
