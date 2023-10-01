@@ -26,8 +26,17 @@ Nous avons déjà utilisé des fonctions comme `print()` ou `len()` qui sont des
         instructions
     ```
 
-De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
 
+Comme pour les noms de variables, le nom d'une fonction  :
+- s'écrit en lettres minuscules (« `a` » à « `z` ») et majuscules (« `A` » à « `Z` ») et peut contenir des chiffres (« `0` » à « `9` ») et le caractère blanc souligné (« `_` ») ;
+- ne doit pas comporter d’espace, de signes d’opération « `+` », « `-` », « `*` » ou « `/` », ni de caractères spéciaux comme des signes de ponctuation « `'` », « `"` », « `,` », « `.` », « `:` », « `@` », etc.  ;
+- ne doit pas commencer par un chiffre ;
+- ne doit pas être un mot réservé de Python, par exemple « `for` », « `if` », « `print` », etc. ; et
+- est sensible à la casse, ce qui signifie que les fonctions « `TesT` », « `test` » ou « `TEST` » sont différentes.
+
+
+
+De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
 
 Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction comporte une erreur, l’interpréteur Python ne s’en aperçoit pas.
 
@@ -204,14 +213,16 @@ Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, pr
 Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. 
 
 
-Voyons l'exemple d'une fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs):
+Prenons l'exemple d'une fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs) :
 
 ``` py
 def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     print('hello', prenom1, ',', prenom2, 'and', prenom3)
 ```
 
-=== "Exemple d'appel 1"
+et comparons plusieurs appels de la fonction :
+
+=== "Appel 1"
 
     La fonction est appelée avec trois arguments sans mot-clé, ils sont pris dans l'ordre.
 
@@ -221,18 +232,18 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     ```
 
 
-=== "Exemple d'appel 2"
+=== "Appel 2"
 
-    La fonction est appelée sans arguments alors qu'elle a un paramètre positionnel obligatoire, il y a une erreur.
+    La fonction est appelée sans arguments alors qu'elle a un paramètre positionnel obligatoire, il y a une erreur : bug:.
 
     ``` py
     >>> bonjour()
     Traceback (most recent call last):
-    File "<interactive input>", line 1, in <module>
+      File "<interactive input>", line 1, in <module>
     TypeError: bonjour() missing 1 required positional argument: 'prenom1'
     ```
 
-=== "Exemple d'appel 3"
+=== "Appel 3"
 
     La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre. Le troisième paramètre utilise la valeur par défaut.
 
@@ -241,9 +252,9 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     hello Tom , Lea and Zoe
     ```
 
-=== "Exemple d'appel 4"
+=== "Appel 4"
 
-    La fonction est appelée avec deux arguments, le premier est positionnel, le second corresponant au mot-clé du troisième paramètre. Le deuxième paramètre utilise la valeur par défaut.
+    La fonction est appelée avec deux arguments, le premier est positionnel, le second correspondant au mot-clé du troisième paramètre. Le deuxième paramètre utilise la valeur par défaut.
 
     ``` py
     >>> bonjour("Tom", prenom3="Lea")
@@ -251,7 +262,19 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
     ```
 
 
-=== "Exemple d'appel 5"
+=== "Appel 5"
+
+    La fonction est appelée avec les deux arguments par mot-clé, mais il manque l'argument postionnel obligatoire, il y a une erreur : bug:
+
+    ``` py
+    >>> bonjour(prenom2="Jean", prenom3="Lea")
+    Traceback (most recent call last):
+      File "<interactive input>", line 1, in <module>
+    TypeError: bonjour() missing 1 required positional argument: 'prenom1'
+    ```
+
+
+=== "Appel 6"
 
     La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel. Il y a une erreur car les paramètres positionnels doivent être placés avant.
 
@@ -266,7 +289,7 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
 
 
 
-=== "Exemple d'appel 6"
+=== "Appel 7"
 
     La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel identifié par son mot-clé. Le deuxième paramètre utilise la valeur par défaut.
 
@@ -283,6 +306,181 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
 
 ##	L’instruction `return`
 
+Prenons l'exemple d'une fonction très pratique, `prix` qui permet d'afficher un prix en ajoutant la TVA. Cette fonction a deux paramètres, `prix_ht` le prix hors taxe d'un bien et `tva` le taux de TVA exprimé en pourcent et qui vaut `20` par défaut :
+
+``` py
+def prix(prix_ht, tva=20):
+    prix_ttc = prix_ht * (1 + tva/100)
+    print(prix_ttc)
+
+```
+Comment afficher le prix d'un article de 100 euros avec 5% de TVA ? C'est très simple, il suffit de l'appeler :
+
+``` py
+>>> prix(100, 5)
+105.0
+```
+
+Mais comment afficher le prix total de plusieurs articles avec des taux de tva différents ? Par exemple un panier contenant un article de 100 euros à 5% de TVA et un autre article de 50 euros à 20% de TVA ? Cette fonction montre très rapidement ses limites. 
+
+Plutôt que d'afficher le prix calculé, il est plus judicieux de le **renvoyer**.
+
+!!! note inline end "" 
+    Il n'y a pas de parenthèse à l'instuction `return`.
+
+``` py
+def prix(prix_ht, tva=20):
+    prix_ttc = prix_ht * (1 + tva/100)
+    return prix_ttc
+```
+et d'afficher les prix qui nous intéressent :
+
+``` py
+>>> prix(100, 5)
+105.0
+>>> prix(100, 5) + prix(50)
+165
+```
+
+``` py
+>>> prix(100, 5)
+105.0
+>>> prix(100, 5) + prix(50)
+165
+```
+
+Voyons plus en détail la différence entre les deux fonctions avec `print()` et `return`. 
+
+=== "Fonction avec `print()`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        print(prix_ttc)
+    ```
+
+=== "Fonction avec `return`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        return prix_ttc
+    ```
+
+Elles affichent toutes les deux le même résultat quand elles sont appelées dans la console :
+
+``` py
+>>> prix(100, 5)
+105.0
+```
+
+Alors quelle est la différence ? Elle apparaît immédiatement si on appelle la fonction depuis le programme avec `prix(100, 5)`:
+
+=== "Fonction avec `print()`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        print(prix_ttc)
+
+    prix(100, 5)
+    ```
+    Le programme affiche `105`.
+
+=== "Fonction avec `return`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        return prix_ttc
+    
+    prix(100, 5)
+    ```
+    Le programme n'affiche rien.
+
+Et si on essaye d'appelle la fonction depuis le programme avec `print(prix(100, 5))`:
+
+=== "Fonction avec `print()`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        print(prix_ttc)
+
+    print(prix(100, 5))
+    ```
+    Le programme affiche `105` quand `print(prix_ttc)` s'exécute puis `None` quand `print(prix(100, 5))` s'exécute.
+
+=== "Fonction avec `return`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        return prix_ttc
+    
+    print(prix(100, 5))
+    ```
+    Le programme affiche `105` quand `print(prix(100, 5))` s'exécute.
+
+
+- Avec `print()`, la première fonction `prix` **affiche** le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;
+
+- par contre, avec la seconde fonction, le résultat calculé et **renvoyé** par la fonction peut être utilisé, par exemple pour faire des calculs, pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être simplement affiché comme par exemple `print(prix(100, 5))`. 
+
+
+Appelons `prix(100, 5)` et affectons la valeur retournée par ces fonctions à une variable :
+
+=== "Fonction avec `print()`"
+    
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        print(prix_ttc)
+
+    p = prix(100, 5)
+    ```
+    Dans ce cas la variable `p` a la valeur `None`, :bug: ce n'est probablement pas ce qui était attendu !
+
+=== "Fonction avec `return`"
+    ``` py 
+    def prix(prix_ht, tva=20):
+        prix_ttc = prix_ht * (1 + tva/100)
+        return prix_ttc
+
+    p = prix(100, 5)
+    ```
+    Dans ce cas la variable `suivant` a la valeur `165` !
+
+Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
+
+Un autre point important à noter est qu'une fonction se termine immédiatement dès qu’une instruction `return` est exécutée. 
+
+Par exemple dans la fonction `plus_petit(a, b)` suivante[^5.2], qui renvoie le plus petit de deux nombres `a` et `b` :
+
+[^5.2]: La fonction `min()` existe dans Python.
+
+``` py linenums="1" 
+def plus_petit(a, b): 
+    if a < b:
+        return a
+    else: 
+        return b
+```     
+
+le `else` en ligne 4 est inutile. On peut simplement écrire : 
+``` py linenums="1" 
+def plus_petit(a, b): 
+    if a < b:
+        return a
+    return b
+```     
+En effet, si `a` est plus petit que `b`, la fonction se termine à la ligne 3 et le dernier `return b` ne sera jamais exécuté.
+
+Pour finir, Une fonction peut aussi renvoyer plusieurs valeurs en même temps, séparées par des virgules, par exemple la fonction `carre_cube(x)` suivante renvoie le carré le cube d'un nombre `x` : 
+
+``` py 
+def carre_cube(x):
+   return x**2, x**3
+
+print(acrre)
+``` 
+
+
+
 !!! abstract "Cours"
     !!! note inline end "" 
         Le verbe "renvoyer" est préféré à "retourner" (anglicisme pour *return*).
@@ -293,152 +491,74 @@ def bonjour(prenom1, prenom2='Lisa', prenom3='Zoe'):
 
 
 À noter :
-> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.2]. 
+> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.3]. 
 
-[^5.2]: Une fonction qui renvoie `None` (ou qui ne renvoie rien dans d'autres langages) est appelée une procédure.
-
-
-Voici par exemple une fonction qui vérifie si un nombre est premier ou pas. Elle consiste à tester tous les entiers possibles, les uns après les autres, en vérifiant s'ils divisent ce nombre, c'est-à-dire si le reste de la division entière est égal à zéro. Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine à la dernière ligne avec l'instruction `return True`.
-
-=== "Avec une boucle `for` en testant les entiers allant de 2 à `nombre` (exclus)"
-    ``` py linenums="1"
-    def est_premier(nombre):
-        # Cherche un diviseur entre 2 et nombre-1
-        for div in range(2, nombre):
-            if nombre % div == 0:
-                return False    # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
-        return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
-    ```
-
-=== "Avec une boucle `while` en testant les entiers allent de 2 à la racine carrée du nombre"
-    ``` py linenums="1"
-    def est_premier(nombre):
-        div = 2
-        # Cherche un diviseur entre 2 et la racine carré de nombre
-        while div**2 <= nombre:
-            if nombre % div == 0:
-                return False   # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
-            div = div + 1    # essayons le suivant
-        return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
-
-    ```
-
-Appelons la fonction `estpremier `avec les arguments 13 et 21 :
-
-=== "Appel `estpremier(13)`"
-    `div` prend les valeurs `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
-    
-    ``` py 
-    >>> estpremier(13)
-    True
-    ```
-
-=== "Appel `estpremier(21)`"
-    `div` prend la valeur `2`, ce n'est pas un diviseur de `21` (`21 % 2` est égal à 1), la boucle continue.
-    `div` prend la valeur `3`, c'est pas un diviseur de `21` (`21 % 3` est égal à 0), l’instruction conditionnelle `nombre % div == 0` est vérifiée, donc l’instruction `return False` est exécutée et la fonction se termine, la dernière instruction `return True` n’est jamais exécutée.
-
-    ``` py 
-    >>> estpremier(21)
-    False
-    ```
+[^5.3]: Une fonction qui renvoie `None` (ou qui ne renvoie rien dans d'autres langages) est appelée une procédure.
 
 
-
-:warning: Attention à ne pas confondre `print()` et `return`. Comparons ces deux fonctions :
-
-=== "Fonction avec `print()`"
-    ``` py 
-    def ajoute_1(nombre):
-        print(nombre + 1)
-    ```
-
-=== "Fonction avec `return`"
-    ``` py 
-    def ajoute_1(nombre):
-        return nombre + 1
-    ```
-
-
-Que l’une ou l’autre fonction `ajoute_1` soit appelée dans la console, elles affichent toutes les deux le même résultat :
-``` py 
->>> ajoute_1(5)
-6
-```
-
-Alors quelle est la différence ? 
-
-- Avec `print()`, la première fonction `ajoute_1()` affiche le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;
-
-- par contre, avec la seconde fonction, le résultat calculé et renvoyé par la fonction peut être utilisé, par exemple pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être simplement affiché, par exemple `print(ajoute_1(5))`. 
-
-
-Appelons `ajoute_1(5)` et affectons la valeur retournée par ces fonctions à une variable :
-
-=== "Fonction avec `print()`"
-    
-    ``` py 
-    def ajoute_1(nombre):
-        print(nombre + 1)
-
-    suivant = ajoute_1(5)
-    ```
-    Dans ce cas la variable `suivant` a la valeur `None`, :bug: ce n'est probablement pas ce qui était attendu !
-
-=== "Fonction avec `return`"
-    ``` py 
-    def ajoute_1(nombre):
-        return nombre + 1
-
-    suivant = ajoute_1(5)
-    ```
-    Dans ce cas la variable `suivant` a la valeur `6` !
-
-Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
-
-Une fonction peut aussi renvoyer plusieurs valeurs en même temps, séparées par des virgules, par exemple: 
-``` py 
-def carre_cube(x):
-   return x**2, x**3
-``` 
 
 
 
 !!! question "Exercice corrigé" 
-	Écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier()` donnée.
+	Écrire une fonction `est_premier(nombre)` qui renvoie `True` si `nombre` est un nomber premier et `False` sinon.
 
-    ``` py linenums="1"
-    def est_premier(nombre):
-        for div in range(2, nombre):
-            if nombre % div == 0:
-                return False
-        return True
-    ```
+    Rappel : un nombre est premier s’il n’a que deux diviseurs, 1 et lui-même.
+
+
+??? Success "Aide"
+    Le fait qu'une fonction se termine immédiatement après une instruction `return` est bien utile dans ce cas.  
+    Pour vérifier si `nombre` est premier, il suffit de tester tous les entiers entre `2` et `n-1` les uns après les autres pour trouver un diviseur autre que `1` et `nombre`.  Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction `return False` termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine en renvoyant `True`.
+
 
 ??? Success "Réponse"
-    Décomposer un nombre en facteurs premiers consiste à :
-
-    1. chercher son plus petit diviseur qui est un nombre premier (un "facteur premier") et l'afficher ; 
-    2. diviser ce nombre par le diviseur trouvé et remplacer le nombre par le quotient ;
-    3. recommencer tant que le nombre est plus grand que 1. 
-
-    ``` py linenums="1"
-    def main():
-        nombre = int(input('Entrez un nombre '))
-        premier = 2 # on commence par le plus petit nombre premier : 2
-        while nombre > 1:
-            if nombre % premier == 0:      # si premier divise nombre
-                print(premier, end=" ")                 # alors on l'affiche
-                nombre = nombre // premier     # et on recommence après avoir divisé nombre par premier
-            else:                          # sinon, premier n'est pas un diviseur
-                premier += 1                 # on cherche le nombre premier suivant
-                while not(est_premier(premier)):
-                    premier += 1
 
 
-    if __name__ == '__main__':
-        main()
-    ```
-                
+    === "Avec une boucle `for` en testant les entiers allant de 2 à `nombre` (exclus)"
+        ``` py linenums="1"
+        def est_premier(nombre):
+            # Cherche un diviseur entre 2 et nombre-1
+            for div in range(2, nombre):
+                if nombre % div == 0:
+                    return False    # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
+            return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
+        ```
+
+    === "Avec une boucle `while` en testant les entiers allent de 2 à la racine carrée du nombre"
+        ``` py linenums="1"
+        def est_premier(nombre):
+            div = 2
+            # Cherche un diviseur entre 2 et la racine carré de nombre
+            while div**2 <= nombre:
+                if nombre % div == 0:
+                    return False   # div est un diviseur, nombre n'est pas premier, la fonction se termine et renvoie False
+                div = div + 1    # essayons le suivant
+            return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
+
+        ```
+
+    Appelons la fonction `estpremier `avec les arguments 13 et 21 :
+
+    === "Appel `estpremier(13)`"
+        `div` prend les valeurs `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
+        
+        ``` py 
+        >>> estpremier(13)
+        True
+        ```
+
+    === "Appel `estpremier(21)`"
+        `div` prend la valeur `2`, ce n'est pas un diviseur de `21` (`21 % 2` est égal à 1), la boucle continue.
+        `div` prend la valeur `3`, c'est pas un diviseur de `21` (`21 % 3` est égal à 0), l’instruction conditionnelle `nombre % div == 0` est vérifiée, donc l’instruction `return False` est exécutée et la fonction se termine, la dernière instruction `return True` n’est jamais exécutée.
+
+        ``` py 
+        >>> estpremier(21)
+        False
+        ```
+
+
+
+
+
 
         
 ##	Fonction lambda
@@ -556,7 +676,7 @@ NameError: name 'a' is not defined
 
 ###	Paramètres passés par valeur
 
-Dans les exemples précédents (`est_premier(13`, etc.), les arguments utilisés en appelant les fonctions étaient des valeurs. 
+Dans les exemples précédents (`est_premier(13`), etc.), les arguments utilisés en appelant les fonctions étaient des valeurs. 
 
 Les arguments utilisés dans l'appel d'une fonction peuvent aussi être des variables ou même des expressions. Les trois appels de fonctions suivants font le même chose :
 
@@ -572,7 +692,7 @@ True
 True
 ```
 
-Quand un nom de variable est passé en argument à la fonction, par exemple dans le cas de `est_premier(a)`, sa valeur est copiée dans une variable locale à la fonction. C'est cette variable locale qui est utilisée pour faire les calculs dans la fonction appelée.  Les modifications de cette variable locale à l’intérieur de la fonction ne modifient pas la variable qui a été passée en paramètre. Et c’est le cas même quand le nom de la variable passée en paramètre est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction.
+Quand un argument de fonction est une variable (ou une expression contenant une variable), par exemple dans le cas de `est_premier(a)`, c'est la valeur de cette variable (ou de cette expression) qui est passée au paramètre correspondant de la fonction. On dit que le paramètre est « passé par valeur ». Des modifications éventuelles de ce paramètre dans la fonction ne modifient pas la valeur de la variable qui a servit d'argument à la fonction. Et c’est le cas même quand le nom de la variable est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction. 
 
 !!! abstract "Cours"
     Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution.  **Les paramètres sont passés par valeur**.
