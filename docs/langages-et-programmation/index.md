@@ -12,3 +12,5 @@ Il existe des centaines de langages de programmation[^0.1], par exemple C, C++, 
 [^0.1]: [https://fr.wikipedia.org/wiki/Liste_de_langages_de_programmation](https://fr.wikipedia.org/wiki/Liste_de_langages_de_programmation).
 [^0.2]: Nommé en hommage à la série britannique *Monty Python Flying Circus*.
 [^0.3]: en 2023.
+
+[<figure markdown>![Image title](../assets/icon-pdf.svg){align=left width="50"}<figcaption>Télécharger tout le chapitre</figcaption></figure>](./assets/langages-et-programmation-1-pages-1-30.pdf)
