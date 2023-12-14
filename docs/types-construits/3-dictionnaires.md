@@ -1,7 +1,7 @@
 # Dictionnaires (type `dict`)
 
 !!! abstract "Cours" 
-    Un **dictionnaire** est un ensemble **non-ordonné** d’éléments sous la forme **clé-valeur**, qui peuvent être **modifiés** (muables[^3.1]).
+    Un **dictionnaire** est un ensemble **non-ordonné** d'éléments sous la forme **clé-valeur**, qui peuvent être **modifiés** (muables[^3.1]).
 
     En Python les dictionnaires sont du type `dict`.
 
@@ -11,7 +11,7 @@ Les dictionnaires se révèlent très pratiques pour manipuler des structures co
 
 ##	Création
 
-Un dictionnaire est déclaré par une série d’éléments sous la forme couples **clés - valeurs** (key-value) séparés par des virgules, et le tout **encadré par des accolades** “{ }”.
+Un dictionnaire est déclaré par une série d'éléments sous la forme couples **clés - valeurs** (key-value) séparés par des virgules, et le tout **encadré par des accolades** “{ }”.
 
 ``` py
 >>> capitales = {"France": "Paris", "Italie": "Rome", "Espagne": "Madrid"}
@@ -73,7 +73,7 @@ TypeError: unhashable type: 'list'
 
 ## Fonction `len()`
 
-La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nombre d'éléments (couple clé :valeur) qu’il contient.
+La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nombre d'éléments (couple clé :valeur) qu'il contient.
 
 ``` py
 >>> capitales = {"France": "Paris", "Italie": "Rome", "Espagne": "Madrid"}
@@ -84,7 +84,7 @@ La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nomb
 
 ##	Accès aux éléments
 
-Les éléments d’un dictionnaire n’ont **pas d’ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de leur position** (comme avec les p-uplets, tableaux et chaines de caractères). 
+Les éléments d'un dictionnaire n'ont **pas d'ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de leur position** (comme avec les p-uplets, tableaux et chaines de caractères). 
 
 ``` py
 >>> capitales[1]
@@ -95,7 +95,7 @@ KeyError: 1
 
 Ce sont les **clés** du dictionnaire qui permettent d'accéder aux valeurs. Pour récupérer la valeur associée à une clé donnée, il suffit d'utiliser la syntaxe suivante `dictionnaire[cle]`[^3.2]. 
 
-[^3.2]: Ou alors utiliser en utilsant la méthode `.get()` qui permet de récupérer la valeur associée à une clé ou afficher un message si elle n’existe pas :
+[^3.2]: Ou alors utiliser en utilsant la méthode `.get()` qui permet de récupérer la valeur associée à une clé ou afficher un message si elle n'existe pas :
     ``` py
     >>> capitale.get('France')
     'Paris'
@@ -107,7 +107,7 @@ Ce sont les **clés** du dictionnaire qui permettent d'accéder aux valeurs. Pou
 >>> capitales["France"]
 'Paris'
 ```
-mais un erreur est levée si le clé n’existe pas :
+mais un erreur est levée si le clé n'existe pas :
 
 ```
 >>> capitales['Allemagne']
@@ -127,14 +127,14 @@ True
 False
 ```
 
-:warning: `in` ne s’applique qu' aux clés d’un dictionnaire, pas à ses valeurs :
+:warning: `in` ne s'applique qu' aux clés d'un dictionnaire, pas à ses valeurs :
 
 ``` py
 >>> "Paris" in capitales
 False
 ```
 
-De façon très similaire aux p-uplets et tableaux, le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les clés d'un dictionnaire :
+De façon très similaire aux p-uplets et tableaux, le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les clés d'un dictionnaire :
 
 ``` py
 >>> for key in capitales:
@@ -185,7 +185,7 @@ capitales["Italie"] = "Roma"
 {'Espagne': 'Madrid', 'France': 'Paris', 'Italie': 'Roma'}
 ```
 
-Mais si dans un tableau, on ne peut pas modifier une valeur d’un indice qui n’existe pas :
+Mais si dans un tableau, on ne peut pas modifier une valeur d'un indice qui n'existe pas :
 
 ``` py
 >>> pays = ['Madrid', 'Paris', 'Roma']
@@ -195,7 +195,7 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ```
 
-dans un dictionnaire, modifier la valeur d’une clé qui n’existe pas revient à ajouter le couple clé-valeur :
+dans un dictionnaire, modifier la valeur d'une clé qui n'existe pas revient à ajouter le couple clé-valeur :
 
 ``` py
 >>> capitales["Allemagne"] = 'Berlin'
@@ -227,18 +227,18 @@ Comme pour les tableaux, il est possible d'utiliser les methodes `pop()` et `cle
     >>> d.clear()
     ```
 
-Comme pour les tableaux, le mot clé `del` permet de supprimer un élément d’un dictionnaire :
+Comme pour les tableaux, le mot clé `del` permet de supprimer un élément d'un dictionnaire :
 ``` py
 >>> del capitalse['Allemagne']
 >>> capitales
 {'Espagne': 'Madrid', 'France': 'Paris', 'Italie': 'Roma'} 
 ```
 
-Ou encore le dictionnaire entier avec l’instruction `del capitales`, alors la variable `capitales` n’existe plus.
+Ou encore le dictionnaire entier avec l'instruction `del capitales`, alors la variable `capitales` n'existe plus.
 
 ##	Dictionnaires muables
 
-Les dictionnaires, comme les tableaux, sont de type muables donc les mêmes limites s’appliquent.
+Les dictionnaires, comme les tableaux, sont de type muables donc les mêmes limites s'appliquent.
 
 ###	Copie de dictionnaire
 
@@ -251,7 +251,7 @@ Les dictionnaires, comme les tableaux, sont de type muables donc les mêmes limi
 ```
 Comme avec les tableaux, `d1` a aussi été modifiée quand on a modifié `d2` ! Les deux variables `d1` et `d2` sont en fait deux noms qui font référence vers le même objet[^3.4]. 
 
-[^3.4]: Pour s’en convaincre on peut vérifier les adresses des variables avec id() :
+[^3.4]: Pour s'en convaincre on peut vérifier les adresses des variables avec id() :
     ``` 
     >>> id(d1)						>>> id(d2)
     2156942732160						2156942732160
@@ -276,9 +276,9 @@ Pour copier un dictionnaire , il faut créer une copie explicite du dictionnaire
 
 ###	Dictionnaire passé en paramètre de fonction
 
-Les mêmes effets qu’avec les tableaux peuvent être observés quand on passe un dictionnaire en paramètre d’une fonction : **la fonction peut en modifier le contenu**.
+Les mêmes effets qu'avec les tableaux peuvent être observés quand on passe un dictionnaire en paramètre d'une fonction : **la fonction peut en modifier le contenu**.
 
-Illustrons cela par deux fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d’un paramètre `x` et appelons ces fonctions en passant des variables `a` et `d` en paramètre : 
+Illustrons cela par deux fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d'un paramètre `x` et appelons ces fonctions en passant des variables `a` et `d` en paramètre : 
 
 
 === "avec une variable de type "immuable""
@@ -303,7 +303,7 @@ Appelons ces fonctions en passant des variables `a` et `d` en paramètre [^3.5]:
     >>> a
     1 
     ```
-    La valeur de `a` n’a pas été modifiée par la fonction `f`.
+    La valeur de `a` n'a pas été modifiée par la fonction `f`.
     
 === "avec une variable de type "muable""
     ``` py
@@ -325,9 +325,9 @@ La fonction `dict(tableau de p-uplets)` transforme un tableau de tuples (comme o
 {'one': 1, 'three': 3, 'two': 2}
 ```
 
-##	Un exemple d’utilisation de dictionnaire : les p-uplets nommés
+##	Un exemple d'utilisation de dictionnaire : les p-uplets nommés
 
-Un **p-uplet nommé** est un p-uplet, dont les éléments sont appelés via un descripteur au lieu d’un indice. L’intérêt est d’améliorer la lisibilité du code pour réduire les risques d’erreurs. Le type des p-uplets nommés n’existe pas nativement dans Python[^3.6]: , on peut alors utiliser des dictionnaires. Voici un exemple pour montrer la syntaxe :
+Un **p-uplet nommé** est un p-uplet, dont les éléments sont appelés via un descripteur au lieu d'un indice. L'intérêt est d'améliorer la lisibilité du code pour réduire les risques d'erreurs. Le type des p-uplets nommés n'existe pas nativement dans Python[^3.6]: , on peut alors utiliser des dictionnaires. Voici un exemple pour montrer la syntaxe :
 
 [^3.6]: Il existe un module Python `collection.namedtuple` mais le programme invite à utiliser des dictionnaires dans ce cas.
 
@@ -339,7 +339,7 @@ Un **p-uplet nommé** est un p-uplet, dont les éléments sont appelés via un d
 
 ##	Dictionnaire de tableaux, dictionnaires de dictionnaires
 
-De même qu’on peut utiliser des tableaux de tableaux, on peut utiliser des dictionnaires de tuples ou de tableaux :
+De même qu'on peut utiliser des tableaux de tableaux, on peut utiliser des dictionnaires de tuples ou de tableaux :
 
 ``` py
 >>> traduction = {"un": ["one", "eins"], "deux": ["two", "zwei"], "trois": ["three", "drei"]}

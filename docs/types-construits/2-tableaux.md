@@ -1,7 +1,7 @@
 # Tableaux (type `list`)
 
 !!! abstract "Cours" 
-    Un **tableau** est une suite **ordonnée** d’éléments qui peuvent être **modifiés** (muables[^2.1]).
+    Un **tableau** est une suite **ordonnée** d'éléments qui peuvent être **modifiés** (muables[^2.1]).
 
     En Python les tableaux sont du type `list`[^2.2].
 
@@ -14,7 +14,7 @@
 
 Un tableau est déclaré par une série de valeurs séparées par des virgules, et le tout **encadré par des crochets** “`[ ]`”. Il contient des éléments du même type (selon le programme de 1ere[^2.3])  .
 
-[^2.3]: Le type `list` de Python offre plus de possibilité qu'un tableau et notamment peut contenir des éléments de types différents (y compris d’autres tableaux).
+[^2.3]: Le type `list` de Python offre plus de possibilité qu'un tableau et notamment peut contenir des éléments de types différents (y compris d'autres tableaux).
 
 ``` py
 >>> t = [1, 2, 3, 4]
@@ -24,7 +24,7 @@ Un tableau est déclaré par une série de valeurs séparées par des virgules, 
 <class 'list'>
 ```
 
-:warning: Comme pour les p-uplets, ne pas confondre la virgule de séparateur d’éléments avec le point de séparateur décimal.
+:warning: Comme pour les p-uplets, ne pas confondre la virgule de séparateur d'éléments avec le point de séparateur décimal.
 
 
 Il est possible decréer un tableau vide :
@@ -40,7 +40,7 @@ singleton = [5] # Creation d'un tableau avec un seul element
 ```
 
 ## Fonction `len()`
-La fonction `len()` renvoie la longueur d'un tableau, c'est-à-dire le nombre d'éléments qu’il contient.
+La fonction `len()` renvoie la longueur d'un tableau, c'est-à-dire le nombre d'éléments qu'il contient.
 
 ``` py
 >>> animaux = ['girafe', 'tigre', 'singe', 'souris']
@@ -52,7 +52,7 @@ La fonction `len()` renvoie la longueur d'un tableau, c'est-à-dire le nombre d'
 
 ## Accès aux éléments
 
-Comme pour les chaines de caractères et les p-uplets, les éléments d’un tableau `t` sont indexés à partir de `0` jusqu'à `len(t)` **exclus**, c'est-à-dire le dernier élément est en position `len(t) - 1`. Il est possible d'accèder aux éléments par leur index entre crochets. 
+Comme pour les chaines de caractères et les p-uplets, les éléments d'un tableau `t` sont indexés à partir de `0` jusqu'à `len(t)` **exclus**, c'est-à-dire le dernier élément est en position `len(t) - 1`. Il est possible d'accèder aux éléments par leur index entre crochets. 
 
 
 ``` py
@@ -61,10 +61,10 @@ Comme pour les chaines de caractères et les p-uplets, les éléments d’un tab
 'b'
 ```
 
-:warning: Le premier élément est à l’index 0.
+:warning: Le premier élément est à l'index 0.
 
 
-Comme pour les p-uplets, on peut utiliser des indices négatifs, le dernier élément à l’indice `-1`, l'avant-dernier `-2`, etc.
+Comme pour les p-uplets, on peut utiliser des indices négatifs, le dernier élément à l'indice `-1`, l'avant-dernier `-2`, etc.
 
 ``` py
 >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
@@ -117,7 +117,7 @@ True
 False
 ```
 
-De façon très similaire aux p-uplets, le mot clé `in` permet aussi d’écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
+De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
 
 
 === "Avec une boucle non bornée `while`"
@@ -173,7 +173,7 @@ La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un tablea
 
 ### Modifier un élément
 
-À la différence des chaines de caractères et p-uplets, il est possible de modifier la valeur d’un élément dans un tableau :
+À la différence des chaines de caractères et p-uplets, il est possible de modifier la valeur d'un élément dans un tableau :
 
 ``` py
 >>> animaux = ['girafe', 'tigre', 'singe', 'souris']
@@ -205,7 +205,7 @@ Deux opérations sont possibles, l'addition et la multiplication :
 
 Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
 
-- `t.append(x)` ajoute un élément `x` à la fin d’un tableau `t`.
+- `t.append(x)` ajoute un élément `x` à la fin d'un tableau `t`.
     ``` py
 	>>> t = [1, 2, 3]
     >>> t.append(4)
@@ -213,7 +213,7 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
     [1, 2, 3, 4]
     ```
 
-- `t.insert(i, x)` insére un élément `x` à la position donnée par l’indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
+- `t.insert(i, x)` insére un élément `x` à la position donnée par l'indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
     ``` py
     >>> t = ['a', 'b', 'd']
     >>> t.insert(2, 'c')
@@ -266,7 +266,7 @@ Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
     >>> t
     [1, 2, 3]	
     ```
-    Ou encore le tableau entier avec l’instruction `del t`, alors la variable `t` n’existe plus.
+    Ou encore le tableau entier avec l'instruction `del t`, alors la variable `t` n'existe plus.
 
     ``` py
     >>> del t
@@ -276,9 +276,9 @@ Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
       NameError: name ' tu ' is not defined
     ```
 
-[^2.5]: `del` est une instruction Python, pas une fonction, elle s’écrit donc sans parenthèse.
+[^2.5]: `del` est une instruction Python, pas une fonction, elle s'écrit donc sans parenthèse.
 
-##	D’autres méthodes bien utiles
+##	D'autres méthodes bien utiles
 
 Deux méthodes pour trier un tableau :
 
@@ -382,7 +382,7 @@ Ce qui est equivalent à :
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 ``` 
 
-A partir d’un autre tableau `ancien_tableau` :
+A partir d'un autre tableau `ancien_tableau` :
 ``` py
 >>> mult_3 = [3 * i for i in [1, 2, 3]]
 >>> mult_3
@@ -415,7 +415,7 @@ Avec plusieurs arguments :
 
 Pour finir, il est tout à fait possible de construire des tableaux de p-uplets ou des tableaux de tableaux. Cette fonctionnalité peut parfois être très pratique.
 
-###	Création d’un tableau de tableaux
+###	Création d'un tableau de tableaux
 
 On peut créer un tableau qui contient des tableaux :
 ``` py
@@ -502,7 +502,7 @@ Pour accéder à un élément du tableau de tableaux, on utilise l'indiçage hab
 [4, 5, 6]
 ```
 
-Pour accéder à un élément d’un sous-tableau, on utilise un double indiçage :
+Pour accéder à un élément d'un sous-tableau, on utilise un double indiçage :
 ```
 >>> t[1][2]
 6
@@ -510,7 +510,7 @@ Pour accéder à un élément d’un sous-tableau, on utilise un double indiçag
 8
 ```
 
-Dans le cas d’un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice. 
+Dans le cas d'un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice. 
 
 
 
@@ -519,7 +519,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments s
 
 
 !!! question "Exercice corrigé" 
-	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  $0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d’Edouard Lucas sous forme d'un tableau de tableaux :
+	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  $0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d'Edouard Lucas sous forme d'un tableau de tableaux :
 
 
     ||||
@@ -548,7 +548,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments s
 
 
 !!! question "Exercice corrigé" 
-	Ecrire une fonction qui vérifie qu’un carré est magique (ou pas).
+	Ecrire une fonction qui vérifie qu'un carré est magique (ou pas).
     «  En mathématiques, un carré magique d'ordre n est composé de n2 entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
 
 ??? Success "Réponse"
@@ -600,7 +600,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments s
  
 ##	Tableaux muables
 
-Les tableaux sont muables c’est-à-dire qu’on peut modifier chaque élément d’un tableau individuellement, supprimer ou ajouter des éléments. Mais on peut aussi modifier les variables de type `int`, `float`, `tuple`, `str` ou `bool` pourtant dit «  immuables », alors qu’elle est la différence ? 
+Les tableaux sont muables c'est-à-dire qu'on peut modifier chaque élément d'un tableau individuellement, supprimer ou ajouter des éléments. Mais on peut aussi modifier les variables de type `int`, `float`, `tuple`, `str` ou `bool` pourtant dit «  immuables », alors qu'elle est la différence ? 
 
 Observons la différence quand on modifie la valeur d'une variable en utilisant la fonction `id()` qui renvoie l'identifiant de la variable en mémoire.
 
@@ -625,11 +625,11 @@ Observons la différence quand on modifie la valeur d'une variable en utilisant 
     2366637916800
     ```
 
-    C’est la même variable `t` qui reste en mémoire avec une valeur différente.
+    C'est la même variable `t` qui reste en mémoire avec une valeur différente.
 
 ###	Copie de tableau
 
-Comparons ce qu’il se passe quand on copie une variable immuable, par exemple de type `int`, et une variable de type `list` muable.
+Comparons ce qu'il se passe quand on copie une variable immuable, par exemple de type `int`, et une variable de type `list` muable.
 
 
 === "avec une variable de type "immuable""
@@ -645,12 +645,12 @@ Comparons ce qu’il se passe quand on copie une variable immuable, par exemple 
     2
     ```
 
-    Qu’est-il arrivé à `a` ?
+    Qu'est-il arrivé à `a` ?
     ``` py
     >>> a
     1
     ```
-    `a` n’a pas changé.
+    `a` n'a pas changé.
 
 === "avec une variable de type "muable""
     ``` py
@@ -666,7 +666,7 @@ Comparons ce qu’il se passe quand on copie une variable immuable, par exemple 
     [1, 2, 4]
     ```
 
-    Qu’est-il arrivé à `t` ?
+    Qu'est-il arrivé à `t` ?
 
     ``` PY
     >>> t
@@ -675,7 +675,7 @@ Comparons ce qu’il se passe quand on copie une variable immuable, par exemple 
 
     `t` a aussi été modifié quand on a modifié `u` !
 
-Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux noms qui font référence au même objet en mémoire**.  Pour s’en convaincre on peut vérifier les adresses des variables
+Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux noms qui font référence au même objet en mémoire**.  Pour s'en convaincre on peut vérifier les adresses des variables
 
 === "avec une variable de type "immuable""
 
@@ -721,14 +721,14 @@ Pour copier un tableau , il faut créer une **copie explicite** du tableau initi
 
 
 ###	Tableau passé en paramètre de fonction
-Passer des arguments à une fonction d’un type muable comme `list`[^2.7] génère des effets de bord[^2.8] . 
+Passer des arguments à une fonction d'un type muable comme `list`[^2.7] génère des effets de bord[^2.8] . 
 
 [^2.7]: Ou de type `dict` ou `set` qui sont aussi des types muables.
 [^2.8]: Un effet de bord se produit quand une fonction modifie le contenu d'une variable qui appartient au contexte appelant.
 
-Nous avons vu précédemment qu’une fonction ne modifie pas la valeur d’une variable passée en paramètre en dehors de son exécution, les paramètres sont passés par valeur.  C’est en effet le cas avec des variables de type immuable mais ce n’est pas le cas pour les variables de type muable comme le type `lis`t. Dans ce cas, la fonction reçoit l'adresse en mémoire de la variable passée en argument et peut donc en modifier le contenu.
+Nous avons vu précédemment qu'une fonction ne modifie pas la valeur d'une variable passée en paramètre en dehors de son exécution, les paramètres sont passés par valeur.  C'est en effet le cas avec des variables de type immuable mais ce n'est pas le cas pour les variables de type muable comme le type `lis`t. Dans ce cas, la fonction reçoit l'adresse en mémoire de la variable passée en argument et peut donc en modifier le contenu.
 
-Illustrons cela des fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d’un paramètre `x`. 
+Illustrons cela des fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d'un paramètre `x`. 
 
 === "avec une variable de type "immuable""
     ``` py
@@ -752,7 +752,7 @@ Appelons ces fonctions en passant des variables `a` et `t` en paramètre [^2.9]:
     >>> a
     1 
     ```
-    La valeur de `a` n’a pas été modifiée par la fonction `f`.
+    La valeur de `a` n'a pas été modifiée par la fonction `f`.
     
 === "avec une variable de type "muable""
     ``` py

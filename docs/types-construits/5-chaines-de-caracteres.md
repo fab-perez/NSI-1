@@ -30,7 +30,7 @@ TypeError: can only concatenate str (not "int") to str
 
 ##	Accès aux éléments (lettres)
 
-Comme pour les p-uplets et tableaux, on peut accéder à un caractère d’une chaîne de caractères par sa position :
+Comme pour les p-uplets et tableaux, on peut accéder à un caractère d'une chaîne de caractères par sa position :
 
 ``` py
 >>> animaux = "girafe tigre"
@@ -51,7 +51,7 @@ Ou à une partie de la chaîne (tranches) :
 
 ##	Modifier une chaîne
 
-Le type `str` est immuable, on ne peut pas modifier un des éléments d’une chaîne de caractère : 
+Le type `str` est immuable, on ne peut pas modifier un des éléments d'une chaîne de caractère : 
 
 ``` py
 >>> animaux[4] = "F"
@@ -60,7 +60,7 @@ Traceback (most recent call last):
 TypeError: 'str' object does not support item assignment
 ```
 
-Par conséquent, pour modifier une chaîne de caractères, il faut écraser l’ancienne.   
+Par conséquent, pour modifier une chaîne de caractères, il faut écraser l'ancienne.   
 
 
 ##	Caractères spéciaux
@@ -69,7 +69,7 @@ Il existe certains caractères spéciaux très pratiques, par exemple :
 
 -	`\n` pour le retour à la ligne, 
 - 	`\t` produit une tabulation,
--	`\` (caractère d'échappement) par exemple dans  `\'` ou `\"` permet d’écrire des guillemets simples ou doubles sans que ceux-ci ne soient pas confondus avec les guillemets de de la chaîne de caractères.
+-	`\` (caractère d'échappement) par exemple dans  `\'` ou `\"` permet d'écrire des guillemets simples ou doubles sans que ceux-ci ne soient pas confondus avec les guillemets de de la chaîne de caractères.
 
 ``` py
 >>> print("Un retour à la ligne\npuis une tabulation\t puis un guillemet\"")
@@ -99,14 +99,14 @@ Voici quelques méthodes spécifiques aux objets de type str :
     'tigre'
     ```
 
--   `chaine.split(sep)` découpe une chaîne de caractères en utilisant le séparateur sep (ou blanc si il n’est pas précisé).	
+-   `chaine.split(sep)` découpe une chaîne de caractères en utilisant le séparateur sep (ou blanc si il n'est pas précisé).	
     ``` py
     animaux = "girafe tigre singe souris"
     >>> animaux.split()
     ['girafe', 'tigre', 'singe', 'souris']
     ```
 
--   `chaine.find(sub)` renvoie la position d’une sous-chaîne dans une chaine de caractères ou -1 si elle n’est pas trouvée.	
+-   `chaine.find(sub)` renvoie la position d'une sous-chaîne dans une chaine de caractères ou -1 si elle n'est pas trouvée.	
     ``` py
     >>> animal = "girafe"
     >>> animal.find("i")
@@ -126,7 +126,7 @@ Voici quelques méthodes spécifiques aux objets de type str :
     'gorafe togre'
     ```
 
--   `chaine.count(x)` renvoie le nombre d’occurrence d’une sous chaîne x dans une chaîne de caractères.	
+-   `chaine.count(x)` renvoie le nombre d'occurrence d'une sous chaîne x dans une chaîne de caractères.	
     ``` py
     >>> animaux.count("i")
     2
@@ -150,7 +150,7 @@ Les éléments de la liste initiale sont concaténés les uns à la suite des au
 
 
 !!! tip inline end "PEP 8"  
-    Préférer l’utilisation de  `.join()` plutôt que `+` pour concaténer des chaines . 
+    Préférer l'utilisation de  `.join()` plutôt que `+` pour concaténer des chaines . 
 
 ``` py
 >>> "".join(seq)
