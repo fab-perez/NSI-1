@@ -1,0 +1,1887 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ressources pour le cours de 1ère NSI de l'Ecole Internationale PACA">
+      
+      
+        <meta name="author" content="Fabrice Perez">
+      
+      
+        <link rel="canonical" href="https://eipaca.github.io/NSI-1/langages-et-programmation/5-fonctions/">
+      
+      
+        <link rel="prev" href="../4-constructions-elementaires/">
+      
+      
+        <link rel="next" href="../6-modules-bibliotheques/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+    
+    
+      
+        <title>Appel de fonctions - Ressources de 1ère NSI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 8.25a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4A.75.75 0 0 1 5 8.25ZM4 10.5A.75.75 0 0 0 4 12h4a.75.75 0 0 0 0-1.5H4Z"/><path d="M13-.005c1.654 0 3 1.328 3 3 0 .982-.338 1.933-.783 2.818-.443.879-1.028 1.758-1.582 2.588l-.011.017c-.568.853-1.104 1.659-1.501 2.446-.398.789-.623 1.494-.623 2.136a1.5 1.5 0 1 0 2.333-1.248.75.75 0 0 1 .834-1.246A3 3 0 0 1 13 16H3a3 3 0 0 1-3-3c0-1.582.891-3.135 1.777-4.506.209-.322.418-.637.623-.946.473-.709.923-1.386 1.287-2.048H2.51c-.576 0-1.381-.133-1.907-.783A2.68 2.68 0 0 1 0 2.995a3 3 0 0 1 3-3Zm0 1.5a1.5 1.5 0 0 0-1.5 1.5c0 .476.223.834.667 1.132A.75.75 0 0 1 11.75 5.5H5.368c-.467 1.003-1.141 2.015-1.773 2.963-.192.289-.381.571-.558.845C2.13 10.711 1.5 11.916 1.5 13A1.5 1.5 0 0 0 3 14.5h7.401A2.989 2.989 0 0 1 10 13c0-.979.338-1.928.784-2.812.441-.874 1.023-1.748 1.575-2.576l.017-.026c.568-.853 1.103-1.658 1.501-2.448.398-.79.623-1.497.623-2.143 0-.838-.669-1.5-1.5-1.5Zm-10 0a1.5 1.5 0 0 0-1.5 1.5c0 .321.1.569.27.778.097.12.325.227.74.227h7.674A2.737 2.737 0 0 1 10 2.995c0-.546.146-1.059.401-1.5Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appel-de-fonctions" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Ressources de 1ère NSI" class="md-header__button md-logo" aria-label="Ressources de 1ère NSI" data-md-component="logo">
+      
+  <img src="../../assets/logo-ecole-internationale-paca-manosque.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ressources de 1ère NSI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appel de fonctions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eipaca/NSI-1" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  A propos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Langages et programmation(1)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../langages-et-programmation-2/" class="md-tabs__link">
+          
+  
+    
+  
+  Langages et programmation(2)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../types-construits/" class="md-tabs__link">
+          
+  
+    
+  
+  Types construits
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ressources de 1ère NSI" class="md-nav__button md-logo" aria-label="Ressources de 1ère NSI" data-md-component="logo">
+      
+  <img src="../../assets/logo-ecole-internationale-paca-manosque.png" alt="logo">
+
+    </a>
+    Ressources de 1ère NSI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eipaca/NSI-1" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A propos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Langages et programmation(1)
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Langages et programmation(1)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-variables-affectation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variables et affectation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-operations-comparaisons-expressions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opérations, comparaisons et expressions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-constructions-elementaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Constructions élémentaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Appel de fonctions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Appel de fonctions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#la-fonction-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      La fonction main()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametres-et-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paramètres et arguments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linstruction-return" class="md-nav__link">
+    <span class="md-ellipsis">
+      L’instruction return
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction lambda
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portee-de-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Portée de variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Portée de variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variables-locales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables locales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametres-passes-par-valeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paramètres passés par valeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-globales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables globales
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonction-recursive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonction récursive
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-modules-bibliotheques/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules et bibliothèques
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-mise-au-point-gestion-bugs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mise au point des programmes et gestion des bugs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../langages-et-programmation-2/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Langages et programmation(2)
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Langages et programmation(2)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langages-et-programmation-2/1-types-de-langages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types de langages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../langages-et-programmation-2/2-paradigmes-de-programmation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Paradigmes de programmation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../types-construits/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Types construits
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Types construits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types-construits/1-p-uplets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    p-uplets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types-construits/2-tableaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tableaux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types-construits/3-dictionnaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dictionnaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types-construits/4-comparaisons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Comparaisons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types-construits/5-chaines-de-caracteres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chaînes de caractères
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="5-fonctions.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+  
+  
+
+
+<h1 id="appel-de-fonctions">Appel de fonctions</h1>
+<p>Nous avons déjà utilisé des fonctions comme <code>print()</code> ou <code>len()</code> qui sont des fonctions prédéfinies par Python. Un programme utilise beaucoup de ces fonctions Python, mais il est aussi souvent très utile de créer nos propres fonctions, ce qui présente de nombreux avantages :</p>
+<div class="admonition note inline end">
+<p>Noter ici la différence avec une fonction mathématique.</p>
+</div>
+<ul>
+<li>
+<p>Modularité : Les fonctions permettent de découper un programme en petites parties indépendantes, ce qui facilite la lisibilité et la résolution de problèmes complexes.</p>
+</li>
+<li>
+<p>Réutilisabilité : Une fois qu'une fonction est définie, elle peut être appelée plusieurs fois sans avoir à réécrire le même bloc de code à chaque fois. </p>
+</li>
+<li>
+<p>Testabilité : Les fonctions sont des séquences isolées de code qui peuvent être testées individuellement.</p>
+</li>
+</ul>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une fonction est définie (ou « déclarée ») par :</p>
+<ul>
+<li>le mot réservé <code>def</code> (pour <em>define</em>),</li>
+<li>son nom,</li>
+<li>zéro, un ou plusieurs paramètres écrits entre parenthèses (les parenthèses sont obligatoires même quand il n’y a pas de paramètres) et séparés par des virgules,</li>
+<li>deux-points <code>:</code>,</li>
+<li>une séquence d’instructions indentées (le « corps » de la fonction).</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">nom_dela_fonction</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">instructions</span>
+</code></pre></div>
+</div>
+<p>Comme pour les noms de variables, le nom d'une fonction  :
+- s'écrit en lettres minuscules (« <code>a</code> » à « <code>z</code> ») et majuscules (« <code>A</code> » à « <code>Z</code> ») et peut contenir des chiffres (« <code>0</code> » à « <code>9</code> ») et le caractère blanc souligné (« <code>_</code> ») ;
+- ne doit pas comporter d’espace, de signes d’opération « <code>+</code> », « <code>-</code> », « <code>*</code> » ou « <code>/</code> », ni de caractères spéciaux comme des signes de ponctuation « <code>'</code> », « <code>"</code> », « <code>,</code> », « <code>.</code> », « <code>:</code> », « <code>@</code> », etc.  ;
+- ne doit pas commencer par un chiffre ;
+- ne doit pas être un mot réservé de Python, par exemple « <code>for</code> », « <code>if</code> », « <code>print</code> », etc. ; et
+- est sensible à la casse, ce qui signifie que les fonctions « <code>TesT</code> », « <code>test</code> » ou « <code>TEST</code> » sont différentes.</p>
+<p>De la même façon que dans les constructions élémentaires vues précédemment (<code>if-else</code>, <code>while</code>, <code>for</code>), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.</p>
+<p>Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction comporte une erreur, l’interpréteur Python ne s’en aperçoit pas.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Programme 1</label><label for="__tabbed_1_2">Programme 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>La fonction <code>bonjour</code> n'est pas appelée, ce programme ne fait rien.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction <code>bonjour</code> n'est pas appelée, ce programme ne fait rien, même s'il y une erreur, <img alt="🐛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f41b.svg" title=":bug:" /> il manque des apostrophes ou des guillemets autour de <code>'hello'</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’<strong>appeler</strong> depuis un programme ou depuis la console Python en écrivant son nom suivi des parenthèse. </p>
+<div class="admonition note inline end">
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" title=":warning:" /> Quand la fonction n’a pas de paramètres, il faut quand même mettre les parenthèses pour l'appeller.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Depuis la console</label><label for="__tabbed_2_2">Depuis un programme</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Ici le programme définit une fonction mais ne l'appelle pas. Elle peut être appelée depuis la console :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">hello</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">bonjour</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>Ici le programme définit une fonction et l'appelle immédiatement. Quand le programme est exécuté, il affiche dans la console :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">hello</span>
+</code></pre></div></p>
+</div>
+</div>
+</div>
+<p>Il faut définir une fonction <strong>avant</strong> de l’appeler. Ces deux programmes affichent un message d’erreur :</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Programme 1</label><label for="__tabbed_3_2">Programme 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">bonjour</span><span class="p">()</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+La fonction <code>bonjour</code> est appelée avant d'être définie, le programme affiche un message d'erreur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Traceback (most recent call last):
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>NameError: name &#39;bonjour&#39; is not defined
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>    <span class="n">bonjour</span><span class="p">()</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>    <span class="n">main</span><span class="p">()</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>La fonction <code>bonjour</code> est appelée avant d'être définie, le programme affiche un message d'erreur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Traceback (most recent call last):
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  File &quot;&lt;module1&gt;&quot;, line 5, in &lt;module&gt;
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>  File &quot;&lt;module1&gt;&quot;, line 2, in main
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>NameError: name &#39;bonjour&#39; is not defined
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="la-fonction-main">La fonction <code>main()</code></h2>
+<p><img align="right" alt="Fenêtre PyScripter avec la fonction main() par défaut" src="../assets/5-fonctions-pyscripter.png" width="50%" /></p>
+<p>PyScripter, comme d'autres IDE (<em>Integrated Development Environment</em>), génère automatiquement une fonction appelée <code>main</code> avec le code suivant :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>    <span class="k">pass</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>En Python, comme dans la plupart des langages de programmation, il y a une fonction principale, appelée souvent <code>main()</code>. Elle sert de point de départ de l'exécution d'un programme. </p>
+<p>L'interpréteur Python exécute tout programme linéairement de haut en bas, donc il n'est pas indispensable de définir cette fonction <code>main()</code> dans chaque programme, mais il est recommandé de le faire dans un long programme découpés en plusieurs fonctions afin de mieux comprendre son fonctionnement.</p>
+<h2 id="parametres-et-arguments">Paramètres et arguments</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Même si dans la pratique les deux termes sont souvent confondus par abus de langage, il faut faire la différence entre : </p>
+<ul>
+<li>
+<p>Les <strong>paramètres</strong> (ou paramètres formels) d'une fonction sont des noms de variables écrits entre parenthèses après le nom de la fonction qui sont utilisées par la fonction.</p>
+</li>
+<li>
+<p>Les <strong>arguments</strong> (ou paramètres réels) sont les valeurs qui sont données aux paramètres lorsque la fonction est appelée. </p>
+</li>
+</ul>
+<p>On appelle une fonction en écrivant son nom suivi des arguments entre parenthèses.</p>
+</div>
+<p>Prenons en exemple une fonction simple :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">(</span><span class="n">prenom1</span><span class="p">,</span> <span class="n">prenom2</span><span class="p">):</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">prenom1</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="n">prenom2</span><span class="p">)</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">bonjour</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="s1">&#39;Lea&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>La fonction <code>bonjour</code> est définie en ligne 1 par « <code>def bonjour(prenom1, prenom2):</code> » avec deux  <strong>paramètres</strong> <code>prenom1</code> et <code>prenom2</code>. Elle est ensuite appelée à la ligne 4, <code>bonjour('Tom', 'Lea')</code>,  en lui passant les <strong>arguments</strong> <code>'Tom'</code> et <code>'Lea'</code>,  ce sont les valeurs que prennent les deux paramètres <code>prenom1</code> et <code>prenom2</code> pendant l'exécution de la fonction.</p>
+<p><code>prenom1</code> prend la valeur du premier argument quand on appelle cette fonction <code>bonjour</code> et <code>prenom2</code> la valeur du deuxième. <code>prenom1</code>et <code>prenom2</code> sont appelés des <strong>paramètres positionnels</strong> (en anglais <em>positional arguments</em>). Il est  <strong>obligatoire</strong> de leur donner une valeur quand on appelle une fonction. Par défaut, les paramètres prennent les valeurs des arguments <strong>dans l'ordre de leurs positions respectives</strong>, dans l'exemple ci-dessus <code>prenom1</code> prend la valeur <code>'Tom'</code>  et <code>prenom2</code> la valeur <code>'Lea'</code>, comme indiqué par leur position.</p>
+<p>Néanmoins il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. Par exemple, ces deux appels de fonctions sont identiques :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span> <span class="s1">&#39;Lea&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="ow">and</span> <span class="n">Lea</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="n">prenom2</span> <span class="o">=</span> <span class="s1">&#39;Lea&#39;</span><span class="p">,</span> <span class="n">prenom1</span> <span class="o">=</span> <span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="ow">and</span> <span class="n">Lea</span>
+</code></pre></div>
+<p>Dans tous les cas, il faut appeler une fonction avec <strong>suffisament d'arguments pour tous ses paramètres positionnels</strong>, sinon la fonction ne peut pas s'éxécuter et affiche un message d'erreur <img alt="🐛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f41b.svg" title=":bug:" /> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;interactive input&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">bonjour</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s1">&#39;prenom2&#39;</span>
+</code></pre></div>
+<p>En plus des paramètres positionnels qui sont obligatoires, il existe des paramètres qui sont facultatifs ayant une valeur d'argument par défaut s'il ne sont pas renseignés, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. </p>
+<div class="admonition tip inline end">
+<p class="admonition-title">PEP 8</p>
+<p>Pas d’espace autour du égal (<code>=</code>) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). </p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">(</span><span class="n">prenom1</span><span class="p">,</span> <span class="n">prenom2</span><span class="o">=</span><span class="s1">&#39;Lisa&#39;</span><span class="p">):</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">prenom1</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="n">prenom2</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="o">---</span> <span class="n">Exemple</span> <span class="n">d</span><span class="err">‘</span><span class="n">appel</span> <span class="n">dans</span> <span class="n">l</span><span class="err">‘</span><span class="n">interpreteur</span><span class="o">-----------------</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="ow">and</span> <span class="n">Lisa</span>
+</code></pre></div></td></tr></table></div>
+<p>Ici, lorsque la fonction est définie le ligne 1 par « <code>def bonjour(prenom1, prenom2='Lisa'):</code> », la valeur de <code>prenom2</code> est <code>'Lisa'</code> par défaut, c’est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  <code>prenom2</code> est appelé un <strong>paramètre par mot-clé</strong> (en anglais <em>keyword argument</em>). Le passage d'un tel argument lors de l'appel de la fonction est <strong>facultatif</strong>.<sup id="fnref:5.1"><a class="footnote-ref" href="#fn:5.1">1</a></sup></p>
+<p>Comme les paramètres positionnels, il est possible de changer l'ordre des arguments en précisant le nom du paramètre auquel chacun correspond. </p>
+<p>Prenons l'exemple d'une fonction avec un paramètre positionnel (obligatoire) et deux paramètres (facultatifs) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span> <span class="nf">bonjour</span><span class="p">(</span><span class="n">prenom1</span><span class="p">,</span> <span class="n">prenom2</span><span class="o">=</span><span class="s1">&#39;Lisa&#39;</span><span class="p">,</span> <span class="n">prenom3</span><span class="o">=</span><span class="s1">&#39;Zoe&#39;</span><span class="p">):</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">prenom1</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">prenom2</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span> <span class="n">prenom3</span><span class="p">)</span>
+</code></pre></div>
+<p>et comparons plusieurs appels de la fonction :</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:7"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><input id="__tabbed_4_5" name="__tabbed_4" type="radio" /><input id="__tabbed_4_6" name="__tabbed_4" type="radio" /><input id="__tabbed_4_7" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Appel 1</label><label for="__tabbed_4_2">Appel 2</label><label for="__tabbed_4_3">Appel 3</label><label for="__tabbed_4_4">Appel 4</label><label for="__tabbed_4_5">Appel 5</label><label for="__tabbed_4_6">Appel 6</label><label for="__tabbed_4_7">Appel 7</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>La fonction est appelée avec trois arguments sans mot-clé, ils sont pris dans l'ordre.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="s2">&quot;Lea&quot;</span><span class="p">,</span> <span class="s2">&quot;Jean&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="p">,</span> <span class="n">Lea</span> <span class="ow">and</span> <span class="n">Jean</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée sans arguments alors qu'elle a un paramètre positionnel obligatoire, il y a une erreur : bug:.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">()</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;interactive input&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">bonjour</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s1">&#39;prenom1&#39;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée avec deux arguments sans mot-clé, ils sont pris dans l'ordre. Le troisième paramètre utilise la valeur par défaut.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="s2">&quot;Lea&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="p">,</span> <span class="n">Lea</span> <span class="ow">and</span> <span class="n">Zoe</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée avec deux arguments, le premier est positionnel, le second correspondant au mot-clé du troisième paramètre. Le deuxième paramètre utilise la valeur par défaut.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="n">prenom3</span><span class="o">=</span><span class="s2">&quot;Lea&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="p">,</span> <span class="n">Lisa</span> <span class="ow">and</span> <span class="n">Lea</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée avec les deux arguments par mot-clé, mais il manque l'argument postionnel obligatoire, il y a une erreur : bug:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="n">prenom2</span><span class="o">=</span><span class="s2">&quot;Jean&quot;</span><span class="p">,</span> <span class="n">prenom3</span><span class="o">=</span><span class="s2">&quot;Lea&quot;</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;interactive input&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="ne">TypeError</span><span class="p">:</span> <span class="n">bonjour</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s1">&#39;prenom1&#39;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel. Il y a une erreur car les paramètres positionnels doivent être placés avant.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="n">prenom3</span><span class="o">=</span><span class="s2">&quot;Lea&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">File</span> <span class="s2">&quot;&lt;interactive input&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">bonjour</span><span class="p">(</span><span class="n">prenom3</span><span class="o">=</span><span class="s2">&quot;Lea&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>                            <span class="o">^</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">positional</span> <span class="n">argument</span> <span class="n">follows</span> <span class="n">keyword</span> <span class="n">argument</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>La fonction est appelée avec deux arguments, le premier corresponant au mot-clé du troisième paramètre et le second correspond au paramètre positionnel identifié par son mot-clé. Le deuxième paramètre utilise la valeur par défaut.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">(</span><span class="n">prenom3</span><span class="o">=</span><span class="s2">&quot;Lea&quot;</span><span class="p">,</span> <span class="n">prenom1</span><span class="o">=</span><span class="s2">&quot;Tom&quot;</span><span class="p">)</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">hello</span> <span class="n">Tom</span> <span class="p">,</span> <span class="n">Lisa</span> <span class="ow">and</span> <span class="n">Lea</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>À noter : </p>
+<blockquote>
+<p>Si une fonction est définie avec des paramètres positionnels et des paramètres par mot-clé, les paramètres positionnels doivent toujours être placés avant les paramètres par mot-clé : Ecrire «<code>def bonjour (prenom1='Tim', prenom2):</code>» <img alt="🐛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f41b.svg" title=":bug:" /> est incorrect.</p>
+</blockquote>
+<h2 id="linstruction-return">L’instruction <code>return</code></h2>
+<p>Prenons l'exemple d'une fonction très pratique, <code>prix</code> qui permet d'afficher un prix en ajoutant la TVA. Cette fonction a deux paramètres, <code>prix_ht</code> le prix hors taxe d'un bien et <code>tva</code> le taux de TVA exprimé en pourcent et qui vaut <code>20</code> par défaut :</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">prix_ttc</span><span class="p">)</span>
+</code></pre></div>
+Comment afficher le prix d'un article de 100 euros avec 5% de TVA ? C'est très simple, il suffit de l'appeler :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="mf">105.0</span>
+</code></pre></div>
+<p>Mais comment afficher le prix total de plusieurs articles avec des taux de tva différents ? Par exemple un panier contenant un article de 100 euros à 5% de TVA et un autre article de 50 euros à 20% de TVA ? Cette fonction montre très rapidement ses limites. </p>
+<p>Plutôt que d'afficher le prix calculé, il est plus judicieux de le <strong>renvoyer</strong>.</p>
+<div class="admonition note inline end">
+<p>Il n'y a pas de parenthèse à l'instuction <code>return</code>.</p>
+</div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="k">return</span> <span class="n">prix_ttc</span>
+</code></pre></div>
+et d'afficher les prix qui nous intéressent :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="mf">105.0</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">prix</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="mi">165</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="mf">105.0</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">prix</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="mi">165</span>
+</code></pre></div>
+<p>Voyons plus en détail la différence entre les deux fonctions avec <code>print()</code> et <code>return</code>. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Fonction avec <code>print()</code></label><label for="__tabbed_5_2">Fonction avec <code>return</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">prix_ttc</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="k">return</span> <span class="n">prix_ttc</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Elles affichent toutes les deux le même résultat quand elles sont appelées dans la console :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="mf">105.0</span>
+</code></pre></div>
+<p>Alors quelle est la différence ? Elle apparaît immédiatement si on appelle la fonction depuis le programme avec <code>prix(100, 5)</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Fonction avec <code>print()</code></label><label for="__tabbed_6_2">Fonction avec <code>return</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">prix_ttc</span><span class="p">)</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+Le programme affiche <code>105</code>.</p>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="k">return</span> <span class="n">prix_ttc</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+Le programme n'affiche rien.</p>
+</div>
+</div>
+</div>
+<p>Et si on essaye d'appelle la fonction depuis le programme avec <code>print(prix(100, 5))</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Fonction avec <code>print()</code></label><label for="__tabbed_7_2">Fonction avec <code>return</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">prix_ttc</span><span class="p">)</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre></div>
+Le programme affiche <code>105</code> quand <code>print(prix_ttc)</code> s'exécute puis <code>None</code> quand <code>print(prix(100, 5))</code> s'exécute.</p>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    <span class="k">return</span> <span class="n">prix_ttc</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre></div>
+Le programme affiche <code>105</code> quand <code>print(prix(100, 5))</code> s'exécute.</p>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p>Avec <code>print()</code>, la première fonction <code>prix</code> <strong>affiche</strong> le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;</p>
+</li>
+<li>
+<p>par contre, avec la seconde fonction, le résultat calculé et <strong>renvoyé</strong> par la fonction peut être utilisé, par exemple pour faire des calculs, pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être simplement affiché comme par exemple <code>print(prix(100, 5))</code>. </p>
+</li>
+</ul>
+<p>Appelons <code>prix(100, 5)</code> et affectons la valeur retournée par ces fonctions à une variable :</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Fonction avec <code>print()</code></label><label for="__tabbed_8_2">Fonction avec <code>return</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">prix_ttc</span><span class="p">)</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="n">p</span> <span class="o">=</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+Dans ce cas la variable <code>p</code> a la valeur <code>None</code>, <img alt="🐛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f41b.svg" title=":bug:" /> ce n'est probablement pas ce qui était attendu !</p>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">def</span> <span class="nf">prix</span><span class="p">(</span><span class="n">prix_ht</span><span class="p">,</span> <span class="n">tva</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>    <span class="n">prix_ttc</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">tva</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>    <span class="k">return</span> <span class="n">prix_ttc</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="n">p</span> <span class="o">=</span> <span class="n">prix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+Dans ce cas la variable <code>suivant</code> a la valeur <code>165</code> !</p>
+</div>
+</div>
+</div>
+<p>Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec <code>print()</code> dans une fonction autre que la fonction <code>main()</code> et préfèrer renvoyer le résultat avec <code>return</code>.</p>
+<p>Un autre point important à noter est qu'une fonction se termine immédiatement dès qu’une instruction <code>return</code> est exécutée. </p>
+<p>Par exemple dans la fonction <code>plus_petit(a, b)</code> suivante<sup id="fnref:5.2"><a class="footnote-ref" href="#fn:5.2">2</a></sup>, qui renvoie le plus petit de deux nombres <code>a</code> et <code>b</code> :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="k">def</span> <span class="nf">plus_petit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> 
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a>    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a>        <span class="k">return</span> <span class="n">a</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a>    <span class="k">else</span><span class="p">:</span> 
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a>        <span class="k">return</span> <span class="n">b</span>
+</code></pre></div></td></tr></table></div>
+<p>le <code>else</code> en ligne 4 est inutile. On peut simplement écrire : 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="k">def</span> <span class="nf">plus_petit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span> 
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a>    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a>        <span class="k">return</span> <span class="n">a</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a>    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div></td></tr></table></div>
+En effet, si <code>a</code> est plus petit que <code>b</code>, la fonction se termine à la ligne 3 et le dernier <code>return b</code> ne sera jamais exécuté.</p>
+<p>Pour finir, Une fonction peut aussi renvoyer plusieurs valeurs en même temps, séparées par des virgules, par exemple la fonction <code>carre_cube(x)</code> suivante renvoie le carré le cube d'un nombre <code>x</code> : </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">def</span> <span class="nf">carre_cube</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>   <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">acrre</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<div class="admonition note inline end">
+<p>Le verbe "renvoyer" est préféré à "retourner" (anglicisme pour <em>return</em>).</p>
+</div>
+<p>Une fonction peut <strong>renvoyer</strong> une ou plusieurs valeurs avec l’instruction <strong><code>return</code></strong>.</p>
+<p>La fonction se termine immédiatement dès qu’une instruction <code>return</code> est exécutée. Les instructions suivantes sont ignorées.</p>
+</div>
+<p>À noter :</p>
+<blockquote>
+<p>S’il n’a pas d’instruction <code>return</code> dans une fonction, elle renvoie <code>None</code><sup id="fnref:5.3"><a class="footnote-ref" href="#fn:5.3">3</a></sup>. </p>
+</blockquote>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Écrire une fonction <code>est_premier(nombre)</code> qui renvoie <code>True</code> si <code>nombre</code> est un nomber premier et <code>False</code> sinon.</p>
+<p>Rappel : un nombre est premier s’il n’a que deux diviseurs, 1 et lui-même.</p>
+</div>
+<details class="success">
+<summary>Aide</summary>
+<p>Le fait qu'une fonction se termine immédiatement après une instruction <code>return</code> est bien utile dans ce cas.<br />
+Pour vérifier si <code>nombre</code> est premier, il suffit de tester tous les entiers entre <code>2</code> et <code>n-1</code> les uns après les autres pour trouver un diviseur autre que <code>1</code> et <code>nombre</code>.  Dès qu'un diviseur est trouvé, inutile de continuer, le nombre n'est pas premier et dans ce cas l'instruction <code>return False</code> termine la fonction. Si aucun diviseur n'est trouvé après les avoir tous testés, la fonction se termine en renvoyant <code>True</code>.</p>
+</details>
+<details class="success">
+<summary>Réponse</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Avec une boucle <code>for</code> en testant les entiers allant de 2 à <code>nombre</code> (exclus)</label><label for="__tabbed_9_2">Avec une boucle <code>while</code> en testant les entiers allent de 2 à la racine carrée du nombre</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span>
+<span class="normal"><a href="#__codelineno-41-5">5</a></span>
+<span class="normal"><a href="#__codelineno-41-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="k">def</span> <span class="nf">est_premier</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a>    <span class="c1"># Cherche un diviseur entre 2 et nombre-1</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a>    <span class="k">for</span> <span class="n">div</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a>        <span class="k">if</span> <span class="n">nombre</span> <span class="o">%</span> <span class="n">div</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5"></a>            <span class="k">return</span> <span class="kc">False</span>    <span class="c1"># div est un diviseur, nombre n&#39;est pas premier, la fonction se termine et renvoie False</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6"></a>    <span class="k">return</span> <span class="kc">True</span>   <span class="c1"># si aucun diviseur n&#39;a été trouvé alors le nombre est premier, la fonction renvoie True</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span>
+<span class="normal"><a href="#__codelineno-42-4">4</a></span>
+<span class="normal"><a href="#__codelineno-42-5">5</a></span>
+<span class="normal"><a href="#__codelineno-42-6">6</a></span>
+<span class="normal"><a href="#__codelineno-42-7">7</a></span>
+<span class="normal"><a href="#__codelineno-42-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="k">def</span> <span class="nf">est_premier</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a>    <span class="n">div</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3"></a>    <span class="c1"># Cherche un diviseur entre 2 et la racine carré de nombre</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4"></a>    <span class="k">while</span> <span class="n">div</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">nombre</span><span class="p">:</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5"></a>        <span class="k">if</span> <span class="n">nombre</span> <span class="o">%</span> <span class="n">div</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6"></a>            <span class="k">return</span> <span class="kc">False</span>   <span class="c1"># div est un diviseur, nombre n&#39;est pas premier, la fonction se termine et renvoie False</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7"></a>        <span class="n">div</span> <span class="o">=</span> <span class="n">div</span> <span class="o">+</span> <span class="mi">1</span>    <span class="c1"># essayons le suivant</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8"></a>    <span class="k">return</span> <span class="kc">True</span>   <span class="c1"># si aucun diviseur n&#39;a été trouvé alors le nombre est premier, la fonction renvoie True</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>Appelons la fonction <code>estpremier</code>avec les arguments 13 et 21 :</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Appel <code>estpremier(13)</code></label><label for="__tabbed_10_2">Appel <code>estpremier(21)</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>div</code> prend les valeurs <code>2</code>, <code>3</code>, etc. et aucune de ces valeurs n'est un diviseur de <code>13</code>, l’instruction conditionnelle <code>nombre % div == 0</code> n'est jamais vérifiée, la boucle se termine et la dernière instruction <code>return True</code> est exécutée, la fonction se termine.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">estpremier</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="kc">True</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><code>div</code> prend la valeur <code>2</code>, ce n'est pas un diviseur de <code>21</code> (<code>21 % 2</code> est égal à 1), la boucle continue.
+<code>div</code> prend la valeur <code>3</code>, c'est pas un diviseur de <code>21</code> (<code>21 % 3</code> est égal à 0), l’instruction conditionnelle <code>nombre % div == 0</code> est vérifiée, donc l’instruction <code>return False</code> est exécutée et la fonction se termine, la dernière instruction <code>return True</code> n’est jamais exécutée.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">estpremier</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="kc">False</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<h2 id="fonction-lambda">Fonction lambda</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>En Python, les fonctions lambda sont des fonctions extrêmement courtes, limitées à une seule expression, sans utiliser le mot-clé <code>def</code>.<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">nom_de_fonction</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span><span class="err">…</span><span class="p">:</span> <span class="n">expression</span>
+</code></pre></div></p>
+</div>
+<p>Prenons par exemple une fonction qui ajoute deux valeurs :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">somme</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">somme</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="mi">8</span>
+</code></pre></div></p>
+<p>Ici la fonction lambda est définie par l'expression <code>lambda x, y: x + y</code> qui comporte :</p>
+<ul>
+<li>le mot réservé <code>lambda</code>,</li>
+<li>suivi de deux paramètres <code>x</code> et <code>y</code> placés avant les deux-points,</li>
+<li>deux-points <code>:</code>,</li>
+<li>l'expression de la valeur renvoyée <code>x + y</code>, placée après les deux-points.</li>
+</ul>
+<p>Le signe <code>=</code> affecte cette fonction à une variable, ici <code>somme</code>, c'est le nom de cette fonction.</p>
+<p>L'instruction <code>somme(3, 5)</code> permet ensuite d'appeler la fonction avec deux arguments <code>3</code> et <code>5</code>.</p>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Écrire la fonction cube qui renvoie le cube d’un nombre sous formes classique et lambda.</p>
+</div>
+<details class="success">
+<summary>Réponse</summary>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="n">y</span><span class="p">):</span> 
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>   <span class="k">return</span> <span class="n">y</span><span class="o">**</span><span class="mi">3</span>
+</code></pre></div>
+et </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">cube</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span><span class="o">**</span><span class="mi">3</span> 
+</code></pre></div>
+</details>
+<p>Réduite à une seule expression, les fonctions lambda permettent d'utiliser une instruction conditionnelle écrite sous une forme un peu différente que <a href="../4-constructions-elementaires/#instructions-conditionnelles">vue précedemment</a> : </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">entre_10_et_20</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>                     
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">entre_10_et_20</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="kc">False</span>
+</code></pre></div>
+ </p>
+<h2 id="portee-de-variables">Portée de variables</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>La <strong>portée</strong> d'une variable désigne les endroits du programme où cette variable <strong>existe et peut être utilisée</strong>. En Python, la portée d'une variable commence dès sa première affectation.</p>
+</div>
+<p>Exemple : Les programmes suivants affichent un message d'erreur</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Programme 1</label><label for="__tabbed_11_2">Programme 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+Ce programme essaie d'afficher la variable <code>a</code> avant qu'elle ne soit définie, il affiche un message d'erreur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>Traceback (most recent call last):
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>File &quot;&lt;module1&gt;&quot;, line 1, in &lt;module&gt;
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>NameError: name &#39;a&#39; is not defined
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div>
+Ce programme essaie d'affecter à la variable <code>a</code> une valeur calculée en utilisant <code>a</code> avant qu'elle ne soit définie, il affiche un message d'erreur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>Traceback (most recent call last):
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>File &quot;&lt;module1&gt;&quot;, line 1, in &lt;module&gt;
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>NameError: name &#39;a&#39; is not defined
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="variables-locales">Variables locales</h3>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une variable définie à l’intérieur d’une fonction est appelée <strong>variable locale</strong>. Elle ne peut être utilisée que localement c’est-à-dire qu’à l’intérieur de la fonction qui l’a définie. </p>
+</div>
+<p>Tenter d'utiliser une variable locale depuis l’extérieur de la fonction qui l’a définie provoquera une erreur. </p>
+<p>Exemple : </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">def</span> <span class="nf">affiche_a</span><span class="p">():</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans affiche_a : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="n">affiche_a</span><span class="p">()</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans le programme : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+La variable <code>a</code> elle est locale à <code>affiche_a</code>, le programme suivant affiche un message d'erreur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>Traceback (most recent call last):
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>  File &quot;&lt;module1&gt;&quot;, line 6, in &lt;module&gt;
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>NameError: name &#39;a&#39; is not defined
+</code></pre></div>
+<h3 id="parametres-passes-par-valeur">Paramètres passés par valeur</h3>
+<p>Dans les exemples précédents (<code>est_premier(13</code>), etc.), les arguments utilisés en appelant les fonctions étaient des valeurs. </p>
+<p>Les arguments utilisés dans l'appel d'une fonction peuvent aussi être des variables ou même des expressions. Les trois appels de fonctions suivants font le même chose :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">est_premier</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="kc">True</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">13</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">est_premier</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="kc">True</span>
+<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">nombre</span> <span class="o">=</span> <span class="mi">6</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">est_premier</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">nombre</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="kc">True</span>
+</code></pre></div>
+<p>Quand un argument de fonction est une variable (ou une expression contenant une variable), par exemple dans le cas de <code>est_premier(a)</code>, c'est la valeur de cette variable (ou de cette expression) qui est passée au paramètre correspondant de la fonction. On dit que le paramètre est « passé par valeur ». Des modifications éventuelles de ce paramètre dans la fonction ne modifient pas la valeur de la variable qui a servit d'argument à la fonction. Et c’est le cas même quand le nom de la variable est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction. </p>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution.  <strong>Les paramètres sont passés par valeur</strong>.</p>
+</div>
+<p>Exemple :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">def</span> <span class="nf">ajoute_1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans ajoute_1 : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a><span class="n">ajoute_1</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-57-7" name="__codelineno-57-7" href="#__codelineno-57-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans le programme : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<p>La valeur de a est modifiée en <code>2</code> à l'intérieur de la fonction <code>ajoute_1</code> pendant son exécution, mais pas dans le programme où elle garde sa valeur initiale de  <code>1</code>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>&gt;&gt;&gt; 
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>valeur de a dans ajoute_1 : 2
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>valeur de a dans le programme : 1
+</code></pre></div>
+ </p>
+<h3 id="variables-globales">Variables globales</h3>
+<p>Sauf exception il est préférable d'utiliser uniquement des variables locales pour faciliter la compréhension des programmes et réduire l’utilisation de mémoire inutile, mais dans certains cas leur portée n’est plus suffisante.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une variable définie en dehors de toute fonction est appelée <strong>variable globale</strong>. Elle est utilisable à travers l’ensemble du programme. </p>
+</div>
+<p>Elle peut être affichée par une fonction :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">def</span> <span class="nf">affiche_a</span><span class="p">():</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans affiche_a : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>       
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="n">affiche_a</span><span class="p">()</span>
+</code></pre></div>
+<p>Mais ne peut pas être modifiée. </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">def</span> <span class="nf">affiche_a</span><span class="p">():</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>    <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans affiche_a : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="n">affiche_a</span><span class="p">()</span>
+</code></pre></div>
+Ce programme affiche un message d'erreur <img alt="🐛" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f41b.svg" title=":bug:" /> :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>Traceback (most recent call last):
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>  File &quot;&lt;module1&gt;&quot;, line 6, in &lt;module&gt;
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>  File &quot;&lt;module1&gt;&quot;, line 2, in affiche_a
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>UnboundLocalError: local variable &#39;a&#39; referenced before assignment
+</code></pre></div></p>
+<p>On peut néanmoins essayer de lui assigner une nouvelle valeur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">def</span> <span class="nf">affiche_a</span><span class="p">():</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans affiche_a : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>
+<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a><span class="n">affiche_a</span><span class="p">()</span>
+<a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans le programme : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Mais dans ce cas, Python part du principe que <code>a</code> est locale à la fonction, et non plus une variable globale. L’instruction <code>a = 2</code> a créé un nouvelle variable locale à la fonction, la variable globale n’a pas changé :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>valeur de a dans affiche_a : 2
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>valeur de a dans le programme : 1
+</code></pre></div>
+<p>Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale dans une fonction et que cette nouvelle valeur soit gardée dans le reste du programme. Pour cela, il faut utiliser le mot clef <code>global</code> devant le nom d’une variable globale utilisée localement afin d’indiquer qu'il faut modifier la valeur de la variable globale et non pas créer une variable locale de même nom :</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">def</span> <span class="nf">affiche_a</span><span class="p">():</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>    <span class="k">global</span> <span class="n">a</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans affiche_a : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>
+<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a><span class="n">affiche_a</span><span class="p">()</span>
+<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;valeur de a dans le programme : </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+La variable <code>a</code> a été modifiée dans la fonction et que sa nouvelle valeur est gardée dans le reste du programme :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>&gt;&gt;&gt;
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>valeur de a dans affiche_a : 2
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>valeur de a dans le programme : 2
+</code></pre></div></p>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une variable globale est accessible uniquement en lecture à l’intérieur des fonctions du programme. Pour la modifier il faut utiliser le mot-clé <code>global</code>.</p>
+</div>
+<h2 id="fonction-recursive">Fonction récursive</h2>
+<p>Une fonction peut être appelée n’importe où dans un programme (après sa définition), y compris par elle-même.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>Une fonction récursive est une fonction qui peut s'appeler elle-même au cours de son exécution.</p>
+</div>
+<p>Prenons pour exemple une fonction qui renvoie le produit de tous les nombres entiers entre 1 et <span class="arithmatex">\(n\)</span>. Ce produit est appelé factorielle de <span class="arithmatex">\(n\)</span> et noté <span class="arithmatex">\(n!\)</span>.</p>
+<p><span class="arithmatex">\(n!  =  1  \times 2  \times 3  \times 4  \times ...  \times (n-1)  \times n\)</span> </p>
+<p>Une simple boucle <code>for</code> permet de multiplier tous les entiers allant de <code>1</code> à <code>n</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">def</span> <span class="nf">factorielle</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>    <span class="n">fact</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>        <span class="n">fact</span> <span class="o">=</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">i</span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>    <span class="k">return</span> <span class="n">fact</span>
+</code></pre></div>
+<p>Mais il est aussi possible de remarquer que <span class="arithmatex">\(n!  =  (n - 1)!  \times n\)</span> et que <span class="arithmatex">\(1!  =  1\)</span>, ce qui permet d'écrire un programme récursif suivant : </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">def</span> <span class="nf">factorielle_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>        <span class="k">return</span> <span class="mi">1</span>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>        <span class="k">return</span>  <span class="n">factorielle_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span>         <span class="c1"># le else est facultatif</span>
+</code></pre></div>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" title=":warning:" /> Il est impératif de prévoir une condition d'arrêt à la récursivité, sinon le programme ne s'arrête jamais ! On doit toujours tester en premier la condition d'arrêt, et ensuite, si la condition n'est pas vérifiée, lancer un appel récursif.</p>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Écrire une fonction récursive <code>compte_a_rebours(n)</code> qui affiche les nombres entiers à rebours allant de <code>n</code> à <code>0</code>.</p>
+</div>
+<details class="success">
+<summary>Réponse</summary>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-68-1">1</a></span>
+<span class="normal"><a href="#__codelineno-68-2">2</a></span>
+<span class="normal"><a href="#__codelineno-68-3">3</a></span>
+<span class="normal"><a href="#__codelineno-68-4">4</a></span>
+<span class="normal"><a href="#__codelineno-68-5">5</a></span>
+<span class="normal"><a href="#__codelineno-68-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1"></a><span class="k">def</span> <span class="nf">compte_a_rebours</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3"></a>        <span class="k">pass</span>
+<a id="__codelineno-68-4" name="__codelineno-68-4"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-68-5" name="__codelineno-68-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-68-6" name="__codelineno-68-6"></a>        <span class="n">compte_a_rebours</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+ou plus simplement :  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-69-1">1</a></span>
+<span class="normal"><a href="#__codelineno-69-2">2</a></span>
+<span class="normal"><a href="#__codelineno-69-3">3</a></span>
+<span class="normal"><a href="#__codelineno-69-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1"></a><span class="k">def</span> <span class="nf">compte_a_rebours</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-69-4" name="__codelineno-69-4"></a>        <span class="n">compte_a_rebours</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:5.1">
+<p>Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec <code>end=''</code> dans <code>print('hello', end='')</code>.&#160;<a class="footnote-backref" href="#fnref:5.1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5.2">
+<p>La fonction <code>min()</code> existe dans Python.&#160;<a class="footnote-backref" href="#fnref:5.2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5.3">
+<p>Une fonction qui renvoie <code>None</code> (ou qui ne renvoie rien dans d'autres langages) est appelée une procédure.&#160;<a class="footnote-backref" href="#fnref:5.3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../4-constructions-elementaires/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Constructions élémentaires">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Constructions élémentaires
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../6-modules-bibliotheques/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Modules et bibliothèques">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Modules et bibliothèques
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> Mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.prune", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
