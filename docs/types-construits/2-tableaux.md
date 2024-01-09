@@ -1,4 +1,4 @@
-# Tableaux (type `list`)
+﻿# Tableaux (type `list`)
 
 !!! abstract "Cours" 
     Un **tableau** est une suite **ordonnée** d'éléments qui peuvent être **modifiés** (muables[^2.1]).
@@ -30,13 +30,13 @@ Un tableau est déclaré par une série de valeurs séparées par des virgules, 
 Il est possible decréer un tableau vide :
 
 ``` py
-tableauvide = []      # Creation d'un tableau vide
+t_vide = []      # Creation d'un tableau vide
 ```
 
 ou un tableau contenant un seul élément :
 
 ``` py
-singleton = [5] # Creation d'un tableau avec un seul element
+t_1_elem = [5] # Creation d'un tableau avec un seul element
 ```
 
 ## Fonction `len()`
@@ -81,26 +81,25 @@ L'accès à une partie d'un tableau (une « tranche ») se fait sur le modèle `
 
 ``` py
 >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
->>> t[0:2]
+>>> t[1:3]
+['b', 'c']
+>>> t[1:-2]
+['b', 'c', 'd']
 ```
 
 Lorsqu'aucun indice n'est indiqué à gauche ou à droite du symbole deux-points, Python prend par défaut tous les éléments depuis le début ou tous les éléments jusqu'à la fin respectivement.
 
 ``` py
 >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
->>> t[0:]
-['a', 'b', 'c', 'd', 'e', 'f']
->>> t[:]
-['a', 'b', 'c', 'd', 'e', 'f']
 >>> t[1:]
 ['b', 'c', 'd', 'e', 'f']
 >>> t[:2]
 ['a', 'b']
->>> t[1:-2]
-['b', 'c', 'd']
+>>> t[:]
+['a', 'b', 'c', 'd', 'e', 'f']
 ```
 
-Il est aussi possible de « deballer » ou disperser un tableau en affectant tous ses éléments dans plusieurs variables :
+Il est aussi possible de disperser, ou « déballer », un tableau en affectant tous ses éléments dans plusieurs variables :
 
 ``` py
 >>> a, b, c, d = [1, 2, 3, 4]
@@ -206,65 +205,66 @@ Deux opérations sont possibles, l'addition et la multiplication :
 Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
 
 - `t.append(x)` ajoute un élément `x` à la fin d'un tableau `t`.
-    ``` py
-	>>> t = [1, 2, 3]
-    >>> t.append(4)
-    >>> t
-    [1, 2, 3, 4]
-    ```
+  ``` py
+  >>> t = [1, 2, 3]
+  >>> t.append(4)
+  >>> t
+  [1, 2, 3, 4]
+  ```
 
 - `t.insert(i, x)` insére un élément `x` à la position donnée par l'indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
-    ``` py
-    >>> t = ['a', 'b', 'd']
-    >>> t.insert(2, 'c')
-    >>> t
-    ['a', 'b', 'c', 'd']
-    ```
+   ``` py
+   >>> t = ['a', 'b', 'd']
+   >>> t.insert(2, 'c')
+   >>> t
+   ['a', 'b', 'c', 'd']
+   ```
 
 - `t.extend(autretableau)` étend un tableau `t` en lui ajoutant tous les éléments de `autretableau`.
-    ``` py
-	>>> t = [1, 2, 3]
-    >>> t.extend([4, 5, 6])
-    >>> t
-    [1, 2, 3, 4, 5, 6]
-    ```
+   ``` py
+   >>> t = [1, 2, 3]
+   >>> t.extend([4, 5, 6])
+   >>> t
+   [1, 2, 3, 4, 5, 6]
+   ```
 
-    :warning: Ne pas confondre `append` (ajouter un élément) et `extend` (étendre un tableau). Si on utilise `append` avec un tableau on obtient un tableau de tableaux !
-        ``` py
-        >>> t.append([4, 5, 6])
-        >>> t
-        [1, 2, 3, [4, 5, 6]]
-        ```
+   :warning: Ne pas confondre `append` (ajouter un élément) et `extend` (étendre un tableau). Si on utilise `append` avec un tableau on obtient un tableau de tableaux !
+   ``` py
+   >>> t.append([4, 5, 6])
+   >>> t
+   [1, 2, 3, [4, 5, 6]]
+   ```
 
 
 ###	Supprimer des éléments
 
 Il existe plusieurs méthodes pour supprimer des éléments à un tableau `t`:
 
--`t.remove(x)` supprime le premier élément dont la valeur est égale à `x`. Si le tableau  contient plusieurs fois la valeur `x`, seule la première occurrence trouvée est supprimée :
-    ``` py
-    	>>> t = [12, 13, 14, 15]
-        >>> t.remove(13)
-        >>> t
-        [12, 14, 15]
+- `t.remove(x)` supprime le premier élément dont la valeur est égale à `x`. Si le tableau  contient plusieurs fois la valeur `x`, seule la première occurrence trouvée est supprimée :
 
-- `t.pop(i)` supprime l'élément situé à la position `i` et le renvoie en valeur de retour. Si aucune position n'est spécifiée, `t.pop()` supprime et renvoie le dernier élément du tableau :
     ``` py
-    >>> t = [1,2,3]
-    >>> t.pop()
-    3
+    >>> t = [12, 13, 14, 15]
+    >>> t.remove(13)
     >>> t
-    [1, 2]
+    [12, 14, 15]
     ```
 
+- `t.pop(i)` supprime l'élément situé à la position `i` et le renvoie en valeur de retour. Si aucune position n'est spécifiée, `t.pop()` supprime et renvoie le dernier élément du tableau :
+
+    ``` py
+    >>> t = ['a', 'b', 'c', 'd', 'e']
+    >>> t.pop()
+    'e'
+    >>> t
+    ['a', 'b', 'c', 'd']
+    ```
 
 - L'instruction `del`[^2.5]  permet aussi de supprimer un élément du tableau :
     ```py 
-    >>> t
-    [1, 2, 3, 4, 5]
+    >>> t = [1, 2, 3, 4, 5]
     >>> del t[3]
     >>> t
-    [1, 2, 3]	
+    [1, 2, 3, 5]	
     ```
     Ou encore le tableau entier avec l'instruction `del t`, alors la variable `t` n'existe plus.
 
@@ -301,7 +301,7 @@ Pour trouver un élément dans un tableau :
 
 - `t.index(x)` renvoie la position du premier élément du tableau dont la valeur égale `x`.
     ``` py
-    >>> t = [5 ,0 ,3 ,2 ,8 ,6]
+    >>> t = [5, 0, 3, 2, 8, 6]
     >>> t.index(2)
     3
     >>> ['a', 'c', 'd', 'e'].index('c')
@@ -310,7 +310,7 @@ Pour trouver un élément dans un tableau :
 
 - `t.count(x)`	renvoie le nombre d'éléments ayant la valeur `x` dans le tableau.
     ``` py
-    >>> [1, 1 , 2, 2, 2 ,3 , 4, 4 ,3].count(3)
+    >>> [1, 1, 2, 2, 2, 3, 4, 4, 3].count(3)
     2
     ```
 
@@ -334,7 +334,7 @@ Comme la fonction `tuple()`, la fonction `list()` prend en argument un objet sé
 
 On peut créer un tableau vide avec la fonction list() sans argument.
 ``` py
-tableauvide = list()  
+t_vide = list()  
 ```
 
 Nous avons déjà vu l'utilisation de la fonction `range()` . Lorsqu'elle est utilisée en combinaison avec la fonction list(), on obtient une tableau d'entiers. Par exemple :
@@ -514,12 +514,12 @@ Dans le cas d'un tableau de tableaux avec des sous-tableaux de même taille, on 
 
 
 
-On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments sont donc identifiés par zoo[no de ligne][no de colonne]
+On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments sont donc identifiés par `t[no de ligne][no de colonne]`.
 
 
 
 !!! question "Exercice corrigé" 
-	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  $0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d'Edouard Lucas sous forme d'un tableau de tableaux :
+	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  `0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d'Edouard Lucas sous forme d'un tableau de tableaux :
 
 
     ||||
@@ -529,7 +529,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 5. Les éléments s
     |c – b|c + a + b|c – a|
 
     
-    «  En mathématiques, un carré magique d'ordre n est composé de n² entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
+    «  En mathématiques, un carré magique d'ordre n est composé de $n^2$ entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
 
 
 
