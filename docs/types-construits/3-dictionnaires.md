@@ -84,7 +84,7 @@ La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nomb
 
 ##	Accès aux éléments
 
-Les éléments d'un dictionnaire n'ont **pas d'ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de leur position** (comme avec les p-uplets, tableaux et chaines de caractères). 
+Les éléments d'un dictionnaire n'ont **pas d'ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de leur position (comme avec les p-uplets, tableaux et chaines de caractères). 
 
 ``` py
 >>> capitales[1]
@@ -93,7 +93,7 @@ Traceback (most recent call last):
 KeyError: 1
 ```
 
-Ce sont les **clés** du dictionnaire qui permettent d'accéder aux valeurs. Pour récupérer la valeur associée à une clé donnée, il suffit d'utiliser la syntaxe suivante `dictionnaire[cle]`[^3.2]. 
+Ce sont les **clés** du dictionnaire qui permettent d'accéder aux valeurs. Pour récupérer la valeur associée à la clé `key`  dans un dictionnaire `d`, il suffit d'utiliser la syntaxe suivante `d[key]`[^3.2]. 
 
 [^3.2]: Ou alors utiliser en utilsant la méthode `.get()` qui permet de récupérer la valeur associée à une clé ou afficher un message si elle n'existe pas :
     ``` py
@@ -107,7 +107,7 @@ Ce sont les **clés** du dictionnaire qui permettent d'accéder aux valeurs. Pou
 >>> capitales["France"]
 'Paris'
 ```
-mais un erreur est levée si le clé n'existe pas :
+mais un erreur est levée si la clé n'existe pas :
 
 ```
 >>> capitales['Allemagne']
@@ -138,7 +138,7 @@ De façon très similaire aux p-uplets et tableaux, le mot clé `in` permet auss
 
 ``` py
 >>> for key in capitales:
-...     print(key, capitales[key])
+...     print("La capitale de", key, "est", capitales[key])
 France Paris
 Italie Rome
 Espagne Madrid
@@ -175,7 +175,7 @@ Les mentions `dict_keys`, `dict_values`, `dict_items` indiquent que nous avons a
 
 ##	Modifier un dictionnaire
 
-###	Modifier un élément
+###	Modifier ou ajouter un élément
 
 Comme pour les tableaux, on peut modifier une valeur dans un dictionnaire (mais à la différence des tableaux on la désigne par sa clé, pas par un indice) :
 
@@ -185,7 +185,7 @@ capitales["Italie"] = "Roma"
 {'Espagne': 'Madrid', 'France': 'Paris', 'Italie': 'Roma'}
 ```
 
-Mais si dans un tableau, on ne peut pas modifier une valeur d'un indice qui n'existe pas :
+Alor que dans un tableau on ne peut pas modifier la valeur d'un indice qui n'existe pas :
 
 ``` py
 >>> pays = ['Madrid', 'Paris', 'Roma']
@@ -195,7 +195,7 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ```
 
-dans un dictionnaire, modifier la valeur d'une clé qui n'existe pas revient à ajouter le couple clé-valeur :
+on peut modifier la valeur d'une clé qui n'existe pas dans un dictionnaire. Cela revient à ajouter un nouveau couple clé-valeur :
 
 ``` py
 >>> capitales["Allemagne"] = 'Berlin'
@@ -203,9 +203,7 @@ dans un dictionnaire, modifier la valeur d'une clé qui n'existe pas revient à 
 {'Allemagne': 'Berlin', 'Espagne': 'Madrid',  'France': 'Paris',  'Italie': 'Roma'}
 ```
 
-###	Ajouter de nouveaux éléments
 
-Comme décrit ci-dessus, il est possible d'ajouter un élément en donnant un nouveau couple de clé-valeur.
 
 ###	Supprimer des éléments
 
@@ -214,7 +212,7 @@ Comme pour les tableaux, il est possible d'utiliser les methodes `pop()` et `cle
 
 - `d.pop(key)`[^3.3] supprime du dictionnaire la clé `key`  et renvoie la valeur associée :	
     ``` py
-    >>> d={'one':1, 'two':2, 'three' :3}
+    >>> d = {'one':1, 'two':2, 'three' :3}
     >>> d.pop('two')
     2
     ```
@@ -223,7 +221,7 @@ Comme pour les tableaux, il est possible d'utiliser les methodes `pop()` et `cle
 
 - `d.clear()` supprime tous les éléments du dictionnaire :
     ``` py
-	>>> d={'one':1, 'two' :2, 'three' :3}
+	>>> d = {'one':1, 'two' :2, 'three' :3}
     >>> d.clear()
     ```
 
@@ -238,7 +236,7 @@ Ou encore le dictionnaire entier avec l'instruction `del capitales`, alors la va
 
 ##	Dictionnaires muables
 
-Les dictionnaires, comme les tableaux, sont de type muables donc les mêmes limites s'appliquent.
+Les dictionnaires, comme les tableaux, sont de type muables, donc les mêmes limites s'appliquent.
 
 ###	Copie de dictionnaire
 
@@ -261,7 +259,7 @@ Comme avec les tableaux, `d1` a aussi été modifiée quand on a modifié `d2` !
 Pour copier un dictionnaire , il faut créer une copie explicite du dictionnaire initial[^3.5] :
 
 
-[^3.5]: :warning:Aucune de ces approches ne fonctionne si le dictionnaire contient lui-même des tableaux ou dictionnaire, il faut à nouveau utiliser la méthode `.deepcopy()` du module `copy`. 
+[^3.5]: :warning:Aucune de ces approches ne fonctionne si le dictionnaire contient lui-même des valeurs de type muable (`list` ou `dict`), il faut à nouveau utiliser la méthode `.deepcopy()` du module `copy`. 
 
 - 	Avec  la fonction `dict(itérable)` qui renvoie un dictionnaire formé des éléments de la variable itérable :
     ``` py
@@ -278,7 +276,7 @@ Pour copier un dictionnaire , il faut créer une copie explicite du dictionnaire
 
 Les mêmes effets qu'avec les tableaux peuvent être observés quand on passe un dictionnaire en paramètre d'une fonction : **la fonction peut en modifier le contenu**.
 
-Illustrons cela par deux fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d'un paramètre `x` et appelons ces fonctions en passant des variables `a` et `d` en paramètre : 
+Illustrons cela par deux fonctions `f(x)` et `g(x)` qui modifient simplement la valeur d'un paramètre `x` et appelons ces fonctions en passant des variables `a` (type `int`) et `d` (type `dict`) en paramètre : 
 
 
 === "avec une variable de type "immuable""
