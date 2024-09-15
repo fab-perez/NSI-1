@@ -1,7 +1,7 @@
 # Constructions élémentaires
 
 !!! abstract "Cours" 
-    En Python, l’**indentation**, ou décalage vers la droite du début de ligne, délimite les séquences d’instructions et facilite la lisibilité en permettant d’identifier des **blocs**. La ligne précédant une indentation se termine toujours par le signe deux-points.
+    En Python, l'**indentation**, ou décalage vers la droite du début de ligne, délimite les séquences d'instructions et facilite la lisibilité en permettant d'identifier des **blocs**. La ligne précédant une indentation se termine toujours par le signe deux-points.
 
 
 !!! tip inline end "PEP 8" 
@@ -12,16 +12,16 @@ L'indentation est normalement réalisée par quatre caractères « espace ». Py
 ##	Instructions conditionnelles
 
 !!! abstract "Cours" 
-    Une instruction conditionnelle exécute, ou pas, une séquence d’instructions suivant la valeur d’une condition (une expression booléenne qui prend la valeur `True` ou `False`).
+    Une instruction conditionnelle exécute, ou pas, une séquence d'instructions suivant la valeur d'une condition (une expression booléenne qui prend la valeur `True` ou `False`).
 
     ``` py
     if condition:
         instructions
     ```
-Par exemple, ce programme détermine le stade de la vie d’une personne selon son age.
+Par exemple, ce programme détermine le stade de la vie d'une personne selon son age.
 
 !!! tip inline end "PEP 8" 
-    Pas d’espace avant le deux-points (`:`).
+    Pas d'espace avant le deux-points (`:`).
 
 ``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
@@ -30,11 +30,11 @@ if age >= 18:
     print(f"Vous êtes un {stade}")
     print(f"Vous avez {age} ans")
 ```
-> Ne pas oublier les deux-points « `:` » après la condition et l’indentation sur les lignes suivantes.
+:warning: Ne pas oublier les deux-points « `:` » après la condition et l'indentation sur les lignes suivantes.
 
-L’indentation détermine la séquence à exécuter (ou pas), dans ce cas les instructions qui suivent aux lignes 3, 4 et 5. Quand la condition (l’expression booléenne) `age >= 18` n’est pas vérifiée, aucune des trois instructions n’est exécutée. 
+L'indentation détermine la séquence à exécuter (ou pas), dans ce cas les instructions qui suivent aux lignes 3, 4 et 5. Quand la condition (l'expression booléenne) `age >= 18` n'est pas vérifiée, aucune des trois instructions n'est exécutée. 
 
-Il est possible de ne pas indenter l'instruction en ligne 5 `print(f"Vous avez {age} ans")`, dans ce cas elle ne ferait plus partie de l’instruction conditionnelle et serait alors exécutée dans tous les cas. 
+Il est possible de ne pas indenter l'instruction en ligne 5 `print(f"Vous avez {age} ans")`, dans ce cas elle ne ferait plus partie de l'instruction conditionnelle et serait alors exécutée dans tous les cas. 
 
 ``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
@@ -43,7 +43,7 @@ if age >= 18:
     print(f"Vous êtes {stade}")
 print(f"Vous avez {age} ans")
 ```
-Par contre, si l’instruction en ligne 4 `print(f"Vous êtes {stade}")` n'était pas indentée, la variable `stade` ne serait pas définie quand la condition n’est pas vérifiée et dans ce cas il y aura un message erreur à la ligne 4.
+Par contre, si l'instruction en ligne 4 `print(f"Vous êtes {stade}")` n'était pas indentée, la variable `stade` ne serait pas définie quand la condition n'est pas vérifiée et dans ce cas il y aura un message erreur à la ligne 4.
 
 
 La structure `if-else` permet de gérer le cas où la condition est fausse :
@@ -56,7 +56,7 @@ La structure `if-else` permet de gérer le cas où la condition est fausse :
         instructions_sinon
     ```
 
-> L'instuction `else` n’a pas de condition, elle est toujours suivie des deux-points « `:` » .
+> L'instuction `else` n'a pas de condition, elle est toujours suivie des deux-points « `:` » .
 
 ``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
@@ -67,7 +67,7 @@ else:
 print(f"Vous êtes {stade}")
 print(f"Vous avez {age} ans")
 ```
-Dans ce cas, la variable `stade` est toujours définie, et l’instruction en ligne 6 `print(f"Vous êtes {stade}")` peut ne pas être indentée. 
+Dans ce cas, la variable `stade` est toujours définie, et l'instruction en ligne 6 `print(f"Vous êtes {stade}")` peut ne pas être indentée. 
 
 La structure `if-elif-else` permet de remplacer des instructions conditionnelles imbriquées pour gérer plusieurs cas distincts :
 
@@ -131,7 +131,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
     Par exemple, si on affecte la valeur `15` à la variable `age`,  la première condition en ligne 1 `if age >= 18:` est fausse, le programme passe donc à la conditions suivante `elif age >= 12:…`, celle-ci est vérifiée, il exécute donc la ligne 4  `stade = "ado"` et n'a pas besoin de vérifier la condition suivante en ligne 5 `elif age >=2 :…` ni d'exécuter le `else:…`. Dès que la condition `elif age >= 12:…` a été vérifiée, il sort de toute l'instruction conditionnelle pour reprendre à la ligne 10 et afficher le message `Vous êtes ado, vous avez 15 ans`. 
 
 !!! info "Rappel" 
-    Eviter les conditions d’égalité avec les nombres de type float. Par exemple : 
+    Eviter les conditions d'égalité avec les nombres de type float. Par exemple : 
     ``` py
     if 2.3 - 0.3  == 2:
         print('Python sait bien calculer avec les float')
@@ -203,7 +203,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
         print(annee, "n'est pas bissextile")   # ...donc elle n'est pas bissextile
         
     ```
-    Le programme n’est pas facile à lire. On note ici l'importance de l'indentation !  
+    Le programme n'est pas facile à lire. On note ici l'importance de l'indentation !  
 
         
 ??? Success "Réponse 2.en utilisant une structure `if-elif-else`"
@@ -251,14 +251,14 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
 ## Boucles non bornées
 
 !!! abstract "Cours" 
-    Une boucle non bornée (ou boucle conditionnelle) permet de répéter une instruction ou une séquence d’instructions, tant qu’une condition (une expression booléenne) est vraie.
+    Une boucle non bornée (ou boucle conditionnelle) permet de répéter une instruction ou une séquence d'instructions, tant qu'une condition (une expression booléenne) est vraie.
 
     ``` py
     while condition:
         instructions
     ```
 
-La structure est similaire à l’instruction conditionnelle. La condition qui suit le mot `while` est une expression de type booléen qui prend la valeur `True` ou `False`. Le bloc d’instructions qui suit est exécuté tant que la condition est vraie. Ce bloc d’instruction doit impérativement modifier la valeur de la condition afin qu’elle finisse par ne plus être vérifiée, sinon la boucle est sans fin et le programme ne se terminera jamais !
+La structure est similaire à l'instruction conditionnelle. La condition qui suit le mot `while` est une expression de type booléen qui prend la valeur `True` ou `False`. Le bloc d'instructions qui suit est exécuté tant que la condition est vraie. Ce bloc d'instruction doit impérativement modifier la valeur de la condition afin qu'elle finisse par ne plus être vérifiée, sinon la boucle est sans fin et le programme ne se terminera jamais !
 
 Exemple :
 !!! info inline end "Rappel" 
@@ -278,9 +278,9 @@ Exemple :
 10
 ```
  
-Il faut toujours impérativement **vérifier que la condition ne sera plus vérifiée** après un nombre fini de passage, sinon le programme ne s’arrête jamais, le **programme boucle** ou diverge. Ici, c’est bien le cas grâce à l’instruction `i += 2`, `i` finira bien par être plus grand que 10.
+Il faut toujours impérativement **vérifier que la condition ne sera plus vérifiée** après un nombre fini de passage, sinon le programme ne s'arrête jamais, le **programme boucle** ou diverge. Ici, c'est bien le cas grâce à l'instruction `i += 2`, `i` finira bien par être plus grand que 10.
 
-Exemple de programme qui boucle (erreur d’indentation dans l’instruction `i += 2`):
+Exemple de programme qui boucle (erreur d'indentation dans l'instruction `i += 2`):
 ``` py linenums="1"
 i = 0
 while i <= 10:
@@ -322,14 +322,14 @@ Elle affiche dans la console :
 
 
 !!! abstract "Cours" 
-    Une boucle bornée (ou boucle non conditionnelle) permet de répéter `n`fois, `n` étant un nombre entier connu, une instruction ou une séquence d’instructions.
+    Une boucle bornée (ou boucle non conditionnelle) permet de répéter `n`fois, `n` étant un nombre entier connu, une instruction ou une séquence d'instructions.
 
     ``` py
     for i in range(n):
         instructions
     ```
 
-`i` est appelé l’**indice de boucle ou compteur de boucle**, il prend les `n` valeurs entières comprises **entre 0 et n - 1**.
+`i` est appelé l'**indice de boucle ou compteur de boucle**, il prend les `n` valeurs entières comprises **entre 0 et n - 1**.
  
 :warning: **`i` ne prend pas la valeur n**.
 
@@ -337,7 +337,7 @@ Il est aussi possible d'utiliser :
 
 - `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`. [^4.1]
 
-[^4.1]: `range(d, f)` montre l’avantage d’exclure la borne supérieure, il y `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l’a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
+[^4.1]: `range(d, f)` montre l'avantage d'exclure la borne supérieure, il y `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l'a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
 
 - `range(d, f, p)` qui énumère les nombres entiers compris entre `d` et `f-1` avec un pas de `p` : `d`, `d+p`, `d+2p`, etc. [^4.2]
 
@@ -394,9 +394,9 @@ Pourtant ils sont différents. Ajoutons une instruction `print(i)` à la fin les
     affiche :  ```0 1 2 3 4 5 ```
     La valeur finale de `i` est `5` afin que la condition ne soit plus valide.
 
-Dans le programme 1, la valeur finale de `i` est `4`, alors que dans le programme 2 c’est `5` afin que la condition ne soit plus valide.
+Dans le programme 1, la valeur finale de `i` est `4`, alors que dans le programme 2 c'est `5` afin que la condition ne soit plus valide.
 
-Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, il reprend la valeur suivante à la prochaine répétition. 
+Autre différence, quand on modifie l'indice de boucle dans une boucle `for`, il reprend la valeur suivante à la prochaine répétition. 
 
 === "Programme 1"
     ``` py
@@ -426,7 +426,7 @@ Autre différence, quand on modifie l’indice de boucle dans une boucle `for`, 
     A chaque passage dans une boucle `for`, l'indice de boucle repart de sa valeur au dernier passage dans la boucle, même si cette valeur a changé dans la boucle. En pratique, il n'est pas recommendé de changer sa valeur dans la boucle.
 
 
-La boucle `for` possède d’autres possibilités très utiles, par exemple elle permet d’énumérer chaque caractère d’une chaine de caractères. Le programme ci-dessous affiche chaque lettre d’une variable message l'une après l'autre.
+La boucle `for` possède d'autres possibilités très utiles, par exemple elle permet d'énumérer chaque caractère d'une chaine de caractères. Le programme ci-dessous affiche chaque lettre d'une variable message l'une après l'autre.
 ``` py
 message = 'Hello world'
 for c in message:
@@ -442,7 +442,7 @@ Il existe deux instructions qui permettent de modifier l'exécution des boucles 
 !!! abstract "Cours" 
     ![Instuction break](assets/4-constructions-break-light-mode.png#only-light){align=right}
     ![Instuction break](assets/4-constructions-break-dark-mode.png#only-dark){align=right}
-    L'instruction `break` permet de sortir de la boucle courante et de passer à l’instruction suivante.
+    L'instruction `break` permet de sortir de la boucle courante et de passer à l'instruction suivante.
 
 
 Par exemple, voici un programme qui redemande un mot de passe jusqu'à obtenir le bon :
@@ -476,11 +476,11 @@ for n in range(10):
 !!! abstract "Cours" 
     ![Boucles imbriquées](assets/4-constructions-boucles-imbriquees-light-mode.png#only-light){align=right}
     ![Boucles imbriquées](assets/4-constructions-boucles-imbriquees-dark-mode.png#only-dark){align=right}
-    Il est possible d’imbriquer des boucles. A chaque passage dans la première boucle (la boucle externe), la seconde boucle (la boucle interne) est effectuée entièrement. 
+    Il est possible d'imbriquer des boucles. A chaque passage dans la première boucle (la boucle externe), la seconde boucle (la boucle interne) est effectuée entièrement. 
 
 
 
-:warning: Attention à l’indentation pour déterminer à quelle boucle appartiennent les instructions.  
+:warning: Attention à l'indentation pour déterminer à quelle boucle appartiennent les instructions.  
 
 Par exemple le programme suivant affiche toutes les heures, minutes et seconde de la journée (de 0h0min0s à 23h59min59s) :
 
@@ -496,7 +496,7 @@ for heure in range(24):
 !!! question "Exercice corrigé"
     Exercice corrigé : Écrire un programme en Python qui affiche tous les nombres premiers inférieurs à 100.
 
-    Rappel : un nombre est premier s’il n’a que deux diviseurs, 1 et lui-même.
+    Rappel : un nombre est premier s'il n'a que deux diviseurs, 1 et lui-même.
 
 ??? Success "Réponse"
     On utilise deux boucles for imbriquées : 
