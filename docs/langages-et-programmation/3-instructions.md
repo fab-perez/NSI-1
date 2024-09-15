@@ -1,15 +1,17 @@
 # Instructions
 
 !!! abstract "Cours" 
-	Une **instruction** (ne pas confondre avec une [expression](2-operations-comparaisons-expressions.md#expressions)) est une commande qui doit être effectuée par un programme. 
+	Une **instruction** est une commande dont l'exécution fait quelque chose.  
 	
 	Une **séquence** est une suite d’instructions.
 
+:warning: Attention à ne pas confondre une instruction avec une [expression](2-operations-comparaisons-expressions.md#expressions) dont l'évaluation donne une valeur.
+
 Par exemple :
 
-- `a = 2`	est une instruction qui affecte la valeur `2` à la variable `a`.
-- `print('Hello world')`	est une instruction qui affiche la chaine  `'Hello world'` dans la console.
-- `a == 2`	n'est pas une instruction, c'est une expression qui compare la valeur de `a` à la valeur `2`.
+- `a = 2` est une instruction qui affecte la valeur `2` à la variable `a`.
+- `print('Hello world')` est une instruction qui affiche la chaine  `'Hello world'` dans la console.
+- `a == 2` n'est pas une instruction, c'est une expression qui compare la valeur de `a` à `2`, la valeur de cette expression est `True` ou `False`.
 
 ## `type()`
 La fonction `type()` permet de connaitre le type d’une variable.[^3.1]
