@@ -17,9 +17,9 @@ Nous avons déjà utilisé des fonctions comme `print()` ou `len()` qui sont des
 
     - le mot réservé `def` (pour *define*),
     - son nom,
-    - zéro, un ou plusieurs paramètres écrits entre parenthèses (les parenthèses sont obligatoires même quand il n’y a pas de paramètres) et séparés par des virgules,
+    - zéro, un ou plusieurs paramètres écrits entre parenthèses (les parenthèses sont obligatoires même quand il n'y a pas de paramètres) et séparés par des virgules,
     - deux-points `:`,
-    - une séquence d’instructions indentées (le « corps » de la fonction).
+    - une séquence d'instructions indentées (le « corps » de la fonction).
     
     ``` py
     def nom_dela_fonction(param1, param2, ...):
@@ -27,18 +27,23 @@ Nous avons déjà utilisé des fonctions comme `print()` ou `len()` qui sont des
     ```
 
 
-Comme pour les noms de variables, le nom d'une fonction  :
+Comme pour les noms de variables, le nom d'une fonction :
+
 - s'écrit en lettres minuscules (« `a` » à « `z` ») et majuscules (« `A` » à « `Z` ») et peut contenir des chiffres (« `0` » à « `9` ») et le caractère blanc souligné (« `_` ») ;
-- ne doit pas comporter d’espace, de signes d’opération « `+` », « `-` », « `*` » ou « `/` », ni de caractères spéciaux comme des signes de ponctuation « `'` », « `"` », « `,` », « `.` », « `:` », « `@` », etc.  ;
+
+- ne doit pas comporter d'espace, de signes d'opération « `+` », « `-` », « `*` » ou « `/` », ni de caractères spéciaux comme des signes de ponctuation « `'` », « `"` », « `,` », « `.` », « `:` », « `@` », etc.  ;
+
 - ne doit pas commencer par un chiffre ;
+
 - ne doit pas être un mot réservé de Python, par exemple « `for` », « `if` », « `print` », etc. ; et
+
 - est sensible à la casse, ce qui signifie que les fonctions « `TesT` », « `test` » ou « `TEST` » sont différentes.
 
 
 
-De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c’est l’indentation qui suit les deux-points qui détermine le bloc d’instructions qui forment la fonction.
+De la même façon que dans les constructions élémentaires vues précédemment (`if-else`, `while`, `for`), c'est l'indentation qui suit les deux-points qui détermine le bloc d'instructions qui forment la fonction.
 
-Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction comporte une erreur, l’interpréteur Python ne s’en aperçoit pas.
+Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas automatiquement.  Et ceci même si la fonction comporte une erreur, l'interpréteur Python ne s'en aperçoit pas.
 
 === "Programme 1"
 
@@ -58,10 +63,10 @@ Lorsqu'une fonction est définie dans un programme, elle ne s'exécute pas autom
         print(hello)
     ```
 
-Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l’**appeler** depuis un programme ou depuis la console Python en écrivant son nom suivi des parenthèse. 
+Définir une fonction consiste simplement à décrire son comportement et à lui donner un nom. Pour exécuter la fonction, il faut l'**appeler** depuis un programme ou depuis la console Python en écrivant son nom suivi des parenthèse. 
 
 !!! note inline end "" 
-    :warning: Quand la fonction n’a pas de paramètres, il faut quand même mettre les parenthèses pour l'appeller.
+    :warning: Quand la fonction n'a pas de paramètres, il faut quand même mettre les parenthèses pour l'appeller.
 
 === "Depuis la console"
     ``` py linenums="1"
@@ -90,7 +95,7 @@ Définir une fonction consiste simplement à décrire son comportement et à lui
     ```
 
 
-Il faut définir une fonction **avant** de l’appeler. Ces deux programmes affichent un message d’erreur :
+Il faut définir une fonction **avant** de l'appeler. Ces deux programmes affichent un message d'erreur :
 
 === "Programme 1"
     
@@ -195,7 +200,7 @@ TypeError: bonjour() missing 1 required positional argument: 'prenom2'
 En plus des paramètres positionnels qui sont obligatoires, il existe des paramètres qui sont facultatifs ayant une valeur d'argument par défaut s'il ne sont pas renseignés, c'est-à-dire la valeur que prendra un paramètre si la fonction est appelée sans argument correspondant. 
 
 !!! tip inline end "PEP 8"  
-    Pas d’espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
+    Pas d'espace autour du égal (`=`) dans le cas des arguments par mot-clé (à la différence de l'affectation où ils sont recommandés). 
 
 ``` py linenums="1"
 def bonjour(prenom1, prenom2='Lisa'):
@@ -206,7 +211,7 @@ def bonjour(prenom1, prenom2='Lisa'):
 hello Tom and Lisa
 ```
 
-Ici, lorsque la fonction est définie le ligne 1 par « `def bonjour(prenom1, prenom2='Lisa'):` », la valeur de `prenom2` est `'Lisa'` par défaut, c’est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
+Ici, lorsque la fonction est définie à la ligne 1 par « `def bonjour(prenom1, prenom2='Lisa'):` », la valeur de `prenom2` est `'Lisa'` par défaut, c'est la valeur qui est utilisée par la fonction quand elle est appelée sans argument correspondant.  `prenom2` est appelé un **paramètre par mot-clé** (en anglais *keyword argument*). Le passage d'un tel argument lors de l'appel de la fonction est **facultatif**.[^5.1]
 
 [^5.1]: Nous avons déjà utilisé une fonction avec un paramètre facultatif par mot-clé avec `end=''` dans `print('hello', end='')`.
 
@@ -304,7 +309,7 @@ et comparons plusieurs appels de la fonction :
 
 
 
-##	L’instruction `return`
+##	L'instruction `return`
 
 Prenons l'exemple d'une fonction très pratique, `prix` qui permet d'afficher un prix en ajoutant la TVA. Cette fonction a deux paramètres, `prix_ht` le prix hors taxe d'un bien et `tva` le taux de TVA exprimé en pourcent et qui vaut `20` par défaut :
 
@@ -321,7 +326,18 @@ Comment afficher le prix d'un article de 100 euros avec 5% de TVA ? C'est très 
 105.0
 ```
 
-Mais comment afficher le prix total de plusieurs articles avec des taux de tva différents ? Par exemple un panier contenant un article de 100 euros à 5% de TVA et un autre article de 50 euros à 20% de TVA ? Cette fonction montre très rapidement ses limites. 
+Mais comment afficher le prix total de plusieurs articles avec des taux de tva différents ? Par exemple un panier contenant un article de 100 euros à 5% de TVA et un autre article de 50 euros à 20% de TVA ? 
+
+``` py
+>>> prix(100, 5) + prix(50)
+105.0
+60.0
+Traceback (most recent call last):
+  File "<interactive input>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'NoneType'
+```
+
+Impossible de faire la somme des prix des deux articles ! Cette fonction montre très rapidement ses limites. 
 
 Plutôt que d'afficher le prix calculé, il est plus judicieux de le **renvoyer**.
 
@@ -342,12 +358,6 @@ et d'afficher les prix qui nous intéressent :
 165
 ```
 
-``` py
->>> prix(100, 5)
-105.0
->>> prix(100, 5) + prix(50)
-165
-```
 
 Voyons plus en détail la différence entre les deux fonctions avec `print()` et `return`. 
 
@@ -394,7 +404,7 @@ Alors quelle est la différence ? Elle apparaît immédiatement si on appelle la
     ```
     Le programme n'affiche rien.
 
-Et si on essaye d'appelle la fonction depuis le programme avec `print(prix(100, 5))`:
+Et si on essaye d'appeller la fonction depuis le programme avec `print(prix(100, 5))`:
 
 === "Fonction avec `print()`"
     ``` py 
@@ -417,12 +427,12 @@ Et si on essaye d'appelle la fonction depuis le programme avec `print(prix(100, 
     Le programme affiche `105` quand `print(prix(100, 5))` s'exécute.
 
 
-- Avec `print()`, la première fonction `prix` **affiche** le résultat calculé dans la console mais ce résultat n’est plus utilisable dans la suite du programme, il est perdu ;
+- Avec `print()` la première fonction `prix`  **affiche** le résultat calculé dans la console mais ce résultat n'est plus utilisable dans la suite du programme, il est perdu ;
 
-- par contre, avec la seconde fonction, le résultat calculé et **renvoyé** par la fonction peut être utilisé, par exemple pour faire des calculs, pour l’affecter à une variable ou comme argument d’autres fonctions, voire même pour être simplement affiché comme par exemple `print(prix(100, 5))`. 
+- par contre, avec `return` la seconde fonction  **renvoie** le résultat calculé qui peut être utilisé par exemple pour faire d'autres opérations, pour l'affecter à une variable, ou encore comme argument d'une autre fonction, voire même pour être tout simplement affiché comme par exemple `print(prix(100, 5))`. 
 
 
-Appelons `prix(100, 5)` et affectons la valeur retournée par ces fonctions à une variable :
+Appelons `prix(100, 5)` et essayons d'affecter la valeur renvoyée par ces deux fonctions à une variable :
 
 === "Fonction avec `print()`"
     
@@ -443,11 +453,12 @@ Appelons `prix(100, 5)` et affectons la valeur retournée par ces fonctions à u
 
     p = prix(100, 5)
     ```
-    Dans ce cas la variable `suivant` a la valeur `165` !
+	Dans ce cas la variable `p` a bien la valeur `105` comme attendu.
+	
+	
+Dans le doute, de façon générale, il faut éviter d'afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
 
-Dans le doute, de façon générale, il faut éviter d’afficher un résultat avec `print()` dans une fonction autre que la fonction `main()` et préfèrer renvoyer le résultat avec `return`.
-
-Un autre point important à noter est qu'une fonction se termine immédiatement dès qu’une instruction `return` est exécutée. 
+Un autre point important à noter est qu'une fonction se termine immédiatement dès qu'une instruction `return` est exécutée. 
 
 Par exemple dans la fonction `plus_petit(a, b)` suivante[^5.2], qui renvoie le plus petit de deux nombres `a` et `b` :
 
@@ -476,8 +487,10 @@ Pour finir, Une fonction peut aussi renvoyer plusieurs valeurs en même temps, s
 def carre_cube(x):
    return x**2, x**3
 
-print(acrre)
-``` 
+print(carre_cube(5))
+```
+
+affiche `(25, 125)`.
 
 
 
@@ -485,13 +498,13 @@ print(acrre)
     !!! note inline end "" 
         Le verbe "renvoyer" est préféré à "retourner" (anglicisme pour *return*).
 
-    Une fonction peut **renvoyer** une ou plusieurs valeurs avec l’instruction **`return`**.
+    Une fonction peut **renvoyer** une ou plusieurs valeurs avec l'instruction **`return`**.
         
-    La fonction se termine immédiatement dès qu’une instruction `return` est exécutée. Les instructions suivantes sont ignorées.
+    La fonction se termine immédiatement dès qu'une instruction `return` est exécutée. Les instructions suivantes sont ignorées.
 
 
 À noter :
-> S’il n’a pas d’instruction `return` dans une fonction, elle renvoie `None`[^5.3]. 
+> S'il n'a pas d'instruction `return` dans une fonction, elle renvoie `None`[^5.3]. 
 
 [^5.3]: Une fonction qui renvoie `None` (ou qui ne renvoie rien dans d'autres langages) est appelée une procédure.
 
@@ -502,7 +515,7 @@ print(acrre)
 !!! question "Exercice corrigé" 
 	Écrire une fonction `est_premier(nombre)` qui renvoie `True` si `nombre` est un nomber premier et `False` sinon.
 
-    Rappel : un nombre est premier s’il n’a que deux diviseurs, 1 et lui-même.
+    Rappel : un nombre est premier s'il n'a que deux diviseurs, 1 et lui-même.
 
 
 ??? Success "Aide"
@@ -539,7 +552,7 @@ print(acrre)
     Appelons la fonction `estpremier `avec les arguments 13 et 21 :
 
     === "Appel `estpremier(13)`"
-        `div` prend les valeurs `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l’instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
+        `div` prend les valeurs `2`, `3`, etc. et aucune de ces valeurs n'est un diviseur de `13`, l'instruction conditionnelle `nombre % div == 0` n'est jamais vérifiée, la boucle se termine et la dernière instruction `return True` est exécutée, la fonction se termine.
         
         ``` py 
         >>> estpremier(13)
@@ -548,7 +561,7 @@ print(acrre)
 
     === "Appel `estpremier(21)`"
         `div` prend la valeur `2`, ce n'est pas un diviseur de `21` (`21 % 2` est égal à 1), la boucle continue.
-        `div` prend la valeur `3`, c'est pas un diviseur de `21` (`21 % 3` est égal à 0), l’instruction conditionnelle `nombre % div == 0` est vérifiée, donc l’instruction `return False` est exécutée et la fonction se termine, la dernière instruction `return True` n’est jamais exécutée.
+        `div` prend la valeur `3`, c'est pas un diviseur de `21` (`21 % 3` est égal à 0), l'instruction conditionnelle `nombre % div == 0` est vérifiée, donc l'instruction `return False` est exécutée et la fonction se termine, la dernière instruction `return True` n'est jamais exécutée.
 
         ``` py 
         >>> estpremier(21)
@@ -589,7 +602,7 @@ Le signe `=` affecte cette fonction à une variable, ici `somme`, c'est le nom d
 
 
 !!! question "Exercice corrigé" 
-	Écrire la fonction cube qui renvoie le cube d’un nombre sous formes classique et lambda.
+	Écrire la fonction cube qui renvoie le cube d'un nombre sous formes classique et lambda.
 
 ??? Success "Réponse"
     ``` py 
@@ -651,9 +664,9 @@ Exemple : Les programmes suivants affichent un message d'erreur
 ###	Variables locales
 
 !!! abstract "Cours"
-    Une variable définie à l’intérieur d’une fonction est appelée **variable locale**. Elle ne peut être utilisée que localement c’est-à-dire qu’à l’intérieur de la fonction qui l’a définie. 
+    Une variable définie à l'intérieur d'une fonction est appelée **variable locale**. Elle ne peut être utilisée que localement c'est-à-dire qu'à l'intérieur de la fonction qui l'a définie. 
 
-Tenter d'utiliser une variable locale depuis l’extérieur de la fonction qui l’a définie provoquera une erreur. 
+Tenter d'utiliser une variable locale depuis l'extérieur de la fonction qui l'a définie provoquera une erreur. 
 
 Exemple : 
 
@@ -692,10 +705,10 @@ True
 True
 ```
 
-Quand un argument de fonction est une variable (ou une expression contenant une variable), par exemple dans le cas de `est_premier(a)`, c'est la valeur de cette variable (ou de cette expression) qui est passée au paramètre correspondant de la fonction. On dit que le paramètre est « passé par valeur ». Des modifications éventuelles de ce paramètre dans la fonction ne modifient pas la valeur de la variable qui a servit d'argument à la fonction. Et c’est le cas même quand le nom de la variable est identique au nom du paramètre de la fonction, c’est seulement sa valeur qui est passée à la fonction. 
+Quand un argument de fonction est une variable (ou une expression contenant une variable), par exemple dans le cas de `est_premier(a)`, c'est la valeur de cette variable (ou de cette expression) qui est passée au paramètre correspondant de la fonction. On dit que le paramètre est « passé par valeur ». Des modifications éventuelles de ce paramètre dans la fonction ne modifient pas la valeur de la variable qui a servit d'argument à la fonction. Et c'est le cas même quand le nom de la variable est identique au nom du paramètre de la fonction, c'est seulement sa valeur qui est passée à la fonction. 
 
 !!! abstract "Cours"
-    Une fonction ne peut pas modifier la valeur d’une variable passée en paramètre en dehors de son exécution.  **Les paramètres sont passés par valeur**.
+    Une fonction ne peut pas modifier la valeur d'une variable passée en paramètre en dehors de son exécution.  **Les paramètres sont passés par valeur**.
 
 Exemple :
 ``` py 
@@ -718,10 +731,10 @@ valeur de a dans le programme : 1
  
 ###	Variables globales
 
-Sauf exception il est préférable d'utiliser uniquement des variables locales pour faciliter la compréhension des programmes et réduire l’utilisation de mémoire inutile, mais dans certains cas leur portée n’est plus suffisante.
+Sauf exception il est préférable d'utiliser uniquement des variables locales pour faciliter la compréhension des programmes et réduire l'utilisation de mémoire inutile, mais dans certains cas leur portée n'est plus suffisante.
 
 !!! abstract "Cours"
-    Une variable définie en dehors de toute fonction est appelée **variable globale**. Elle est utilisable à travers l’ensemble du programme. 
+    Une variable définie en dehors de toute fonction est appelée **variable globale**. Elle est utilisable à travers l'ensemble du programme. 
 
 Elle peut être affichée par une fonction :
 
@@ -766,7 +779,7 @@ affiche_a()
 print(f'valeur de a dans le programme : {a}')
 ```
 
-Mais dans ce cas, Python part du principe que `a` est locale à la fonction, et non plus une variable globale. L’instruction `a = 2` a créé un nouvelle variable locale à la fonction, la variable globale n’a pas changé :
+Mais dans ce cas, Python part du principe que `a` est locale à la fonction, et non plus une variable globale. L'instruction `a = 2` a créé un nouvelle variable locale à la fonction, la variable globale n'a pas changé :
 
 ```
 >>>
@@ -776,7 +789,7 @@ valeur de a dans le programme : 1
 
 
 
-Dans certaines situations, il serait utile de pouvoir modifier la valeur d’une variable globale dans une fonction et que cette nouvelle valeur soit gardée dans le reste du programme. Pour cela, il faut utiliser le mot clef `global` devant le nom d’une variable globale utilisée localement afin d’indiquer qu'il faut modifier la valeur de la variable globale et non pas créer une variable locale de même nom :
+Dans certaines situations, il serait utile de pouvoir modifier la valeur d'une variable globale dans une fonction et que cette nouvelle valeur soit gardée dans le reste du programme. Pour cela, il faut utiliser le mot clef `global` devant le nom d'une variable globale utilisée localement afin d'indiquer qu'il faut modifier la valeur de la variable globale et non pas créer une variable locale de même nom :
 
 ``` py 
 def affiche_a():
@@ -796,12 +809,12 @@ valeur de a dans le programme : 2
 ```
 
 !!! abstract "Cours"
-    Une variable globale est accessible uniquement en lecture à l’intérieur des fonctions du programme. Pour la modifier il faut utiliser le mot-clé `global`.
+    Une variable globale est accessible uniquement en lecture à l'intérieur des fonctions du programme. Pour la modifier il faut utiliser le mot-clé `global`.
 
  
 ##	Fonction récursive
 
-Une fonction peut être appelée n’importe où dans un programme (après sa définition), y compris par elle-même.
+Une fonction peut être appelée n'importe où dans un programme (après sa définition), y compris par elle-même.
 
 !!! abstract "Cours"
     Une fonction récursive est une fonction qui peut s'appeler elle-même au cours de son exécution.
@@ -833,7 +846,7 @@ def factorielle_recursive(n):
 :warning: Il est impératif de prévoir une condition d'arrêt à la récursivité, sinon le programme ne s'arrête jamais ! On doit toujours tester en premier la condition d'arrêt, et ensuite, si la condition n'est pas vérifiée, lancer un appel récursif.
 
 
- 
+
 !!! question "Exercice corrigé" 
 	Écrire une fonction récursive `compte_a_rebours(n)` qui affiche les nombres entiers à rebours allant de `n` à `0`.
 
