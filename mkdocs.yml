@@ -67,6 +67,7 @@ theme:
       example: octicons/beaker-16
       quote: octicons/quote-16
 
+
 plugins:
   # An Mkdocs plugin to generate a PDF file for each MkDocs
   # https://github.com/brospars/mkdocs-page-pdf
@@ -85,7 +86,6 @@ plugins:
                           <span class="pageNumber"></span>/<span class="totalPages"></span>
                         </span>
                       </footer>'
-
 
 extra_css:
   - stylesheets/extra.css
@@ -107,8 +107,8 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   # enables native support for Mermaid.js diagrams
   - pymdownx.superfences:
       custom_fences:
@@ -134,8 +134,15 @@ nav:
   #  - types-et-valeurs-de-base/index.md
   #- Types construits: 
   #  - types-construits/index.md
-  #- Traitement des données en table: 
-  #  - donnees-en-tables/index.md
+  - Traitement des données en table: 
+    - donnees-en-tables/index.md
+    - Lecture et écriture dans un fichier: donnees-en-tables/1-lecture-ecriture-dans-un-fichier.md
+    - Table de données: donnees-en-tables/2-table-de-donnees.md
+    - Rechercher dans une table: donnees-en-tables/3-rechercher-dans-une-table.md
+    - Trier une table: donnees-en-tables/4-trier-une-table.md
+    - Fusionner des tables: donnees-en-tables/5-fusionner-des-tables.md
+    
+
   #- Interactions entre l’homme et la machine sur le Web: 
   #  - ihm-sur-web/index.md
   - Langages et programmation(1): 
