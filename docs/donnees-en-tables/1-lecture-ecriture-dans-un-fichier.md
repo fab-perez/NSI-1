@@ -105,16 +105,17 @@ Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en
 [^1.6]: On peut récupérer cette valeur par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
 
 
-=== "f = open()"
+=== "f = open(...)"
     ``` py
     >>> f = open("fichier.txt", "w")
     >>> f.write('France Paris\n')
     13
+	>>> f.close()	
     ```
 
-=== "with open as f:"
+=== "with open(...) as f:"
     ``` py
-    >>> f.close()	>>> with open("fichier.txt", "w") as f
+    >>> with open("fichier.txt", "w") as f
             f.write('France Paris\n')
     13
     >>> 
@@ -143,7 +144,7 @@ Cette fois le fichier a bien été modifié.
 Pour lire les données dans un fichier, on utilise la méthode `read()` qui renvoie l'intégralité du fichier dans une chaine de caractères
 
 
-=== "f = open()"
+=== "f = open(...)"
     ``` py
     >>> f = open("fichier.txt", "r")
     >>> f.read()
@@ -151,7 +152,7 @@ Pour lire les données dans un fichier, on utilise la méthode `read()` qui renv
     >>> f.close()
     ```
 
-=== "with open as f:"
+=== "with open(...) as f:"
     ``` py
 	>>> with open("fichier.txt", "r") as f
         f.read()
@@ -165,7 +166,7 @@ qu'on peut afficher avec `print(f.read())` pour ne pas voir les retours à la li
 A noter, un fichier n'est lu qu'une fois avant d'être refermé.
 
 
-=== "f = open()"
+=== "f = open(...)"
     ``` py
     >>> f = open("fichier.txt", "r")
     >>> print(f.read())
@@ -178,7 +179,7 @@ A noter, un fichier n'est lu qu'une fois avant d'être refermé.
     >>> f.close()
     ```
 
-=== "with open as f:"
+=== "with open(...) as f:"
     ``` py
 	>>> with open("fichier.txt", "r") as f
         print(f.read())
@@ -194,7 +195,7 @@ Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichie
 Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne à la fois avec la méthode `readline()`
 
 
-=== "f = open()"
+=== "f = open(...)"
     ``` py
     >>> f = open("fichier.txt", "r") 
     >>> f.readline()
@@ -204,7 +205,7 @@ Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne
     >>> f.close()
     ```
 
-=== "with open as f:"
+=== "with open(...) as f:"
     ``` py
 	>>> with open("fichier.txt", "r") as f
         f.readline()
@@ -219,7 +220,7 @@ ou itérer sur toutes les lignes avec `for… in …`.
 
 
 
-=== "f = open()"
+=== "f = open(...)"
     ``` py
     >>> f = open("fichier.txt", "r") 
     >>> for li in f:
@@ -233,7 +234,7 @@ ou itérer sur toutes les lignes avec `for… in …`.
     >>> f.close()
     ```
 
-=== "with open as f:"
+=== "with open(...) as f:"
     ``` py
 	>>> with open("fichier.txt", "r") as f
         for li in f:
