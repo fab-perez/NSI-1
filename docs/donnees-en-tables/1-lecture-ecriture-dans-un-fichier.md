@@ -1,31 +1,32 @@
 # Lecture et écriture dans un fichier
 
 ##	Les chemins de fichiers
-Pour décrire l'emplacement d'un fichier, on a deux possibilités : les chemins relatifs et absolus.
+Il y a deux façons de décrire l'emplacement d'un fichier : son chemin absolu ou son chemin relatif :
 
--	Chemin absolu : décrit l'intégralité des dossiers (ou répertoires[^1.1]) menant au fichier, peu importe l'endroit où on se trouve.  Sous Windows, on partira du nom de volume (C:\, D:\…). Sous les systèmes Unix, ce sera depuis /.
+-	Son **chemin absolu** décrit l'intégralité des dossiers (ou répertoires[^1.1]) menant au fichier, peu importe l'endroit où on se trouven, depuis un répertoire dit « racine ».  Sous Windows, la racine  est le nom de volume (C:\, D:\…), sous les systèmes de la famille Unix, c'est « / ».
 
--	Chemin relatif : décrit la succession de répertoires à parcourir en prenant comme point de départ le répertoire dans lequel on se trouve.
+-	Son **chemin relatif** décrit la succession de répertoires à parcourir en prenant comme point de départ le répertoire courrant dans lequel on se trouve.
 
 [^1.1]: Depuis Windows 7, le terme « dossier » remplace « répertoire »
 
-Exemple : 
-Le chemin absolu du fichier explorer.exe est `C:\Windows\explorer.exe`[^1.2].
-Son chemin relatif dépend du répertoire courant où l'on se trouve :
-
-[^1.2]: Python reconnait indifféremment les chemins indiqués avec *backslash* (norme Windows) « `\` » qu'avec *slash* « `/` » (norme Unix).
+Exemple : Quel est le chemin du fichier `explorer.exe` dans l'arborescence suivante ?
 
 ``` mermaid
 graph TD
 A[C:] --> B;
 A --> C[Program Files];
-B[Windows] -->  D[explorer.exe];
-B--> E[notepad.exe];
+B[Windows] --> D{{explorer.exe}};
+B --> E{{notepad.exe}};
 A --> F["Program Files(x86)"];
 A --> G[Users];
 ```
 
-|Rép. courant|Chemin relatif|
+- Son chemin absolu est `C:\Windows\explorer.exe`.
+
+- Son chemin relatif dépend du répertoire courant dans lequel on se trouve :
+
+
+|Répertoire courant|Chemin relatif|
 |:--|:-|
 |Windows|`explorer.exe`|
 |C:|`Windows\explorer.exe`|
@@ -41,7 +42,8 @@ En Python, on peut déterminer le répertoire courant avec l'instruction `getcwd
 'C:\\Program Files\\PyScripter'
 ```
 
-Sur les systèmes UNIX le caractère de séparation est un *slash*  « `/` ». Exemple : `/usr/bin/mozilla-firefox`. Les protocoles internet, initialement développés sous UNIX, utilisent donc la même convention.
+
+Python reconnait indifféremment les chemins indiqués avec *backslash* (norme Windows) « `\` » qu'avec *slash* « `/` » (norme Unix et protocoles Internet).
 
 ##	f = open() et f.close()
 
@@ -62,7 +64,7 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: 'fichier.txt'
 ```
 
-Par contre en mode écriture ou ajout, si le fichier n'existe pas quand il est ouvert alors il est créé :
+Par contre en mode écriture ou ajout, si le fichier n'existe pas quand il est ouvert, alors il est créé.
 
 ``` py
 f = open('fichier.txt', 'w')
@@ -75,7 +77,7 @@ Si `fichier.txt` ne se trouve pas dans le répertoire du programme Python, il fa
 >>> f2 = open("C:\\…\\…\\…\\fichier2.txt ", "r")
 ```
 
-:warning: Attention, il faut **toujours fermer un fichier après l'avoir ouvert**[^1.4]. La méthode à utiliser est `close()` :
+:warning: Attention, il faut **toujours fermer un fichier après l'avoir ouvert**[^1.4]. La méthode à utiliser est `close()`.
 
 [^1.4]: On peut essayer de supprimer un fichier ouvert depuis Windows explorer pour s’en convaincre.
 
@@ -96,7 +98,7 @@ Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instr
 
 ##	Écrire dans un fichier
 
-Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en paramètre **une chaîne de caractères**[^1.5] à écrire. La fonction renvoie le nombre de caractères qui ont été écrits[^1.6].
+Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en paramètre une **chaîne de caractères**[^1.5] à écrire. `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier[^1.6].
 
 [^1.5]: La méthode `write()` n'accepte en paramètre que des chaînes de caractères, pour écrire des nombres il faut les convertir en chaîne avant.
 
@@ -118,9 +120,9 @@ Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en
     >>> 
     ```
 
-Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir fichier.txt avec le blocnote et vérifier que le texte est présent.
+Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `fichier.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
 
-On peut écrire deux autres lignes à la suite en mode `a` :
+On peut ensuite écrire deux autres lignes à la suite en mode `a`.
 
 ``` py
 >>> f = open("fichier.txt", "a")
@@ -128,7 +130,7 @@ On peut écrire deux autres lignes à la suite en mode `a` :
 29
 ```
 
-Si on ouvre le fichier.txt dans le blocnote on constate que rien n'a été écrit ! En effet, il faut d'abord fermer le fichier :
+Si on ouvre `fichier.txt` dans le blocnote on constate que rien n'a été écrit ! En effet, il faut d'abord fermer le fichier.
 
 ```
 >>> f.close()
@@ -138,7 +140,7 @@ Cette fois le fichier a bien été modifié.
 
 ##	Lire un fichier
 
-Pour lire dans un fichier, on utilise la méthode `read()` qui renvoie l'intégralité du fichier dans une chaine de caractères :
+Pour lire les données dans un fichier, on utilise la méthode `read()` qui renvoie l'intégralité du fichier dans une chaine de caractères
 
 
 === "f = open()"
@@ -158,7 +160,7 @@ Pour lire dans un fichier, on utilise la méthode `read()` qui renvoie l'intégr
     ```
 
 
-Qu'on peut imprimer avec `print(f.read())` pour ne pas voir les retours à la ligne `\n`.
+qu'on peut afficher avec `print(f.read())` pour ne pas voir les retours à la ligne `\n`.
 
 A noter, un fichier n'est lu qu'une fois avant d'être refermé.
 
@@ -187,9 +189,9 @@ A noter, un fichier n'est lu qu'une fois avant d'être refermé.
     >>> 
     ```
 
-Après le premier `read()`, Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et rien n'apparait après le second `read()`. Pour recommencer au début, il faut fermer le fichier.
+Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et rien n'apparait après le second `read()`. Pour recommencer au début du fichier, il faut le fermer et le rouvrir.
 
-Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne à la fois avec la méthode `readline()` :
+Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne à la fois avec la méthode `readline()`
 
 
 === "f = open()"
@@ -213,7 +215,7 @@ Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne
     ```
 
 
-Ou itérer sur les toutes lignes avec `for… in …` :
+ou itérer sur toutes les lignes avec `for… in …`.
 
 
 
@@ -244,10 +246,10 @@ Ou itérer sur les toutes lignes avec `for… in …` :
     ```
 
 
-ici la variable `li` est une chaine de caractère qui va prendre la valeur de chaque ligne de fichier.txt.
+Ici, la variable `li` est une chaine de caractère qui prend la valeur de chaque ligne de `fichier.txt`.
 
 
-On peut aussi mentionner la méthode `readlines()` qui permet lire l'intégralité d'un fichier dans une tableau (possible que si le fichier à lire n'est pas trop gros : puisqu'il est copié intégralement dans une variable, c'est-à-dire dans la mémoire vive de l'ordinateur, il faut que la taille de celle-ci soit suffisante).
+On peut aussi mentionner la méthode `readlines()` qui permet lire l'intégralité d'un fichier dans une tableau (possible quand le fichier à lire n'est pas trop gros puisqu'il est copié intégralement dans une variable, c'est-à-dire dans la mémoire vive de l'ordinateur, il faut que la taille de celle-ci soit suffisante).
 
 ``` py
 >>> with open("fichier.txt", "r") as f:
