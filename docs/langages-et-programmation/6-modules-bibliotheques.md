@@ -1,4 +1,4 @@
-##	Modules et bibliothèques
+﻿##	Modules et bibliothèques
 
 Nous avons vu dans l'exercice précédent comment écrire un programme qui affiche la décomposition d’un nombre en facteurs premiers en utilisant la fonction `est_premier`. 
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 !!! info inline end "Rappel" 
     La fonction `est_premier` doit être est écrite au début du programme, elle doit être définie **avant** d'être appelée.
 
-Ici le programme est écrit dans le même fichier Python que la fonction `est_premier`. Mais se passerait'il si un programme écrit dans un autre fichier Python appelle cette même fonction ? 
+Ici le programme est écrit dans le même fichier Python que la fonction `est_premier`. Mais que se passerait-il si un programme écrit dans un autre fichier Python appelle cette même fonction ? 
 
 Ecrivons un nouveau programme Python qui appelle `est_premier` :
 
@@ -336,7 +336,7 @@ cos(...)
 
 !!! question "Exercice corrigé" 
 	Réaliser le dessins suivant (dix carrés rouges de 50 pixels de coté), à l'aide du module turtle.
-    [![10-carre-rouge](../assets/turtle-10-carres-rouges.png "Dix carrés rouges de 50 pixels de cotés dans une fenêtre turtle")]
+    [![10-carre-rouge](assets/6-turtle-10-carres-rouges.png "Dix carrés rouges de 50 pixels de cotés dans une fenêtre turtle")]
 
 ??? Success "Réponse"
 
