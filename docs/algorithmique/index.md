@@ -1,7 +1,8 @@
 
 # Algorithmique
 
-Le concept de méthode algorithmique est introduit ; de nouveaux exemples seront vus en terminale. Quelques algorithmes classiques sont étudiés. L’étude de leurs coûts respectifs prend tout son sens dans le cas de données nombreuses, qui peuvent être préférentiellement des données ouvertes.
-Il est nécessaire de montrer l’intérêt de prouver la correction d’un algorithme pour lequel on dispose d’une spécification précise, notamment en mobilisant la notion d’invariant sur des exemples simples. La nécessité de prouver la terminaison d’un programme est mise en évidence dès qu’on utilise une boucle non bornée (ou, en terminale, des fonctions récursives) grâce à la mobilisation de la notion de variant sur des exemples simples.
+Un algorithme est une suite finie et non ambiguë d'instructions et d’opérations permettant de résoudre une classe de problèmes.
 
-*cours à suivre...*
+Le domaine qui étudie les algorithmes est appelé l'algorithmique. On retrouve aujourd'hui des algorithmes dans de nombreuses applications informatiques, dont dans les systèmes permettant le fonctionnement des ordinateurs, la cryptographie, le routage d'informations, la planification et l'utilisation optimale des ressources, le traitement d'images, le traitement de textes, la bio-informatique, l'intelligence artificielle, l'automatique, etc.
+
+Les ordinateurs sur lesquels s'exécutent ces algorithmes ne sont pas infiniment rapides, car le temps de machine reste une ressource limitée, malgré une augmentation constante des performances des ordinateurs. L’analyse de la **complexité**, ou coût** d'algorithmique permet de prédire l'évolution en temps calcul nécessaire pour amener un algorithme à son terme, en fonction de la quantité de données à traiter.
