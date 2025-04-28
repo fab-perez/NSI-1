@@ -166,3 +166,7 @@ nav:
     - Dictionnaires: types-construits/3-dictionnaires.md
     - Comparaisons: types-construits/4-comparaisons.md
     - Chaînes de caractères: types-construits/5-chaines-de-caracteres.md
+
+  - Algorithmique: 
+    - algorithmique/index.md
+    - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
