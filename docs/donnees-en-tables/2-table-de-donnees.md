@@ -5,8 +5,8 @@ La notion de table est apparue dans les années 1970 chez IBM avec l'algèbre re
 !!! abstract "Cours" 
     Une table de données est un ensemble d'éléments organisés sous forme d'une table :
     
-    -	où chaque ligne correspond à un élément (appelé aussi  une entité ou une entrée)
-    -	où chaque colonne correspond à une catégorie d'information de même type, appelé un champs ou attribut  (une colonne peut stocker des numéros de téléphone, une autre des noms...) 
+    -	où chaque **ligne** correspond à un **élément**, appelé aussi une **entité** ou une **entrée** de la table,
+    -	où chaque **colonne** correspond à une catégorie d'information de même type, appelé un **champs** ou **attribut**. 
 
 Exemple : une liste d'information sur les pays utilisée au chapitre 'Types construits':
 
@@ -18,15 +18,15 @@ Exemple : une liste d'information sur les pays utilisée au chapitre 'Types cons
 
 
 !!! abstract "Cours" 
-    Les titres des colonnes (Pays, Capitale, ...) sont appelés les **descripteurs** de la table.
+    Les noms des colonnes, ici Pays, Capitale et Population (ml), sont appelés les **descripteurs** de la table.
 
-De nombreux formats de données en table sont disponibles : txt, csv, json, excel, etc. 
+De nombreux formats de fichiers sont utilisés pour stocker des donnéess en table : txt, csv, json, excel, etc. 
 
 
 ##	Le format csv
 
 !!! abstract "Cours" 
-    Le format csv (*Comma-Separated Values*), est un format texte représentant des données en table séparées par des virgules (comme son nom l'indique) ou d'autres séparateurs, par exemple point-virgule (« `;` »), tabulation (« `\t` »), etc. 
+    Le format **csv**, pour ***Comma-Separated Values***, est un format texte représentant des données en table séparées par des virgules (comme son nom l'indique) ou d'autres séparateurs, par exemple point-virgule (« `;` »), tabulation (« `\t` »), etc. 
 
 Chaque ligne du texte correspond à une ligne du tableau et les virgules correspondent aux séparations entre les colonnes. Un fichier csv est un fichier texte mais on utilise l'extension .csv pour indiquer la nature de ses données.
 
@@ -39,7 +39,9 @@ Allemagne,Berlin,82
 Italie,Rome,60
 ```
 
-On peut utiliser des logiciels comme Microsoft Excel[^2.1] ou OpenOffice Calc permettent de visualiser un fichier csv directement. D'autres formats de données structurées existent, par exemple  JSO N , XML, etc.
+Le format csv est un format de fichier texte, ouvert qui peut être créé, lu et modifié par tous les logiciels, en particulier des éditeurs de texte (bloc note), mais aussi des tableurs comme Microsoft Excel[^2.1] ou OpenOffice Calc.
+
+Il existe d'autres formats de données structurées, par exemple JSON ou XML.
 
 [^2.1]: Avec le menu Fichier/Ouvrir puis utiliser la fenêtre « Assistant d'importation du texte » pour choisir le séparateur utilisé ou Données/Récupérer des données externes/fichier texte.
 
@@ -210,7 +212,7 @@ De la même façon qu'on a importer des données en table dans un tableau de tab
 
 ##	Lire et écrire dans un fichier csv avec le module csv
 
-Le module `csv` permet de lire et écrire facilement des données en table dans un fichier csv.
+Le module Python `csv` permet de lire et écrire facilement des données en table dans un fichier csv.
 
 On commence par créer un objet permettant l'écriture dans le fichier avec la fonction `writer()` du module `csv`. `writerows()` [^2.5]   permet ensuite d'écrire un tableau de tableaux directement dans un fichier csv :
 
@@ -246,54 +248,48 @@ with open('pays.csv', 'r', newline='') as f:
 <_csv.reader object at 0x00000224603A0BE0>
 ```
 
-Mais on peut le parcourir : 
+Mais on peut le parcourir, on dit que c'est un objet « itérable » : 
 
 ``` py
-    for li in lecture:
-        print(li)
+    for ligne in lecture:
+        print(ligne)
 ```
-
-affiche :
-
-``` py
-['Pays', 'Capitale', 'Population (ml)']
-['France', 'Paris', '68']
-['Allemagne', 'Berlin', '82']
-['Italie', 'Rome', '60']
-```
-
-Une autre méthode bien utile du module `csv` est la méthode `DictReader` qui prend en argument un ficher csv et le séparateur utilisé et extrait les données dans un tableau de dictionnaires. 
+ou le convertir en tableau avec `list()` :
 
 ``` py
 import csv
 
 with open('pays.csv', 'r', newline='') as f:
-    lecture = csv.DictReader(f, delimiter=',')
+    donnees = list(csv.reader(f, delimiter=';'))
 ```
-`lecture` est un objet qui ne peut pas être affiché directement : 
+On obtient un tableau de tableaux :
 
 ``` py
->>> lecture
-<csv.DictReader object at 0x00000278966781C0>
+>>> donnees
+[['Pays', 'Capitale', 'Population (millions)'],
+ ['France', 'Paris', '68'],
+ ['Allemagne', 'Berlin', '82'],
+ ['Italie', 'Rome', '60']]
 ```
 
-Mais on peut le parcourir ou le mettre dans un tableau: 
+:warning: À noter que toutes les valeurs sont au format `str`, y compris les nombres, il faudra en tenir compte dans l'utilisation de ces données par la suite programme.
+
+Le tableau de tableaux, n'est pas toujours idéal, en particulier la première ligne de descripteurs n'est pas séparée du reste des données.  La méthode `DictReader` permet de garder les descripteurs en créant un tableau de dictionnaires. 
+
 
 ``` py
 import csv
 
 with open('pays.csv', 'r', newline='') as f:
-    lecture = csv.DictReader(f, delimiter=',')
-    print(list(lecture))
-```
-affiche le tableau de dictionnaire
-``` py
-[{'Pays;Capitale;Population (millions)': 'France;Paris;68'},
- {'Pays;Capitale;Population (millions)': 'Allemagne;Berlin;82'}, 
- {'Pays;Capitale;Population (millions)': 'Italie;Rome;60'}]
+    donnees = list(csv.DictReader(f, delimiter=','))
 ```
 
-:warning: il faut créer le tableau `dico` avant de refermer le fichier !
+On obtient ici un tableau de dictionnaires :
+
+``` py
+>>> donnees
+[{'Pays': 'France', 'Capitale': 'Paris', 'Population (millions)': '68'}, {'Pays': 'Allemagne', 'Capitale': 'Berlin', 'Population (millions)': '82'}, {'Pays': 'Italie', 'Capitale': 'Rome', 'Population (millions)': '60'}]
+```
 
 On trouvera de nombreuses fonctionnalités dans le module `csv`[^2.6]:. 
 

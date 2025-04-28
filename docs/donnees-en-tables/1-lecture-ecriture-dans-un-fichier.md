@@ -87,51 +87,52 @@ Si `fichier.txt` ne se trouve pas dans le répertoire du programme Python, il fa
 
 ##	with open() as f:
 
-Une autre façon de travailler sur un fichier est d'utiliser la structure suivante :
+Une autre façon d'ouvrir un fichier est d'utiliser la construction suivante :
 
 ``` py
 >>> with open("fichier.txt ", "w") as f:
          # bloc d'instructions
 ```
     
-Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instructions (attention à l'indentation), il n'y a pas besoin de le fermer (et cela limite les erreurs).
+Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instructions (attention à l'indentation), il n'y a pas besoin de le fermer, cela évite beaucoup d'erreurs.
 
 ##	Écrire dans un fichier
 
 Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en paramètre une **chaîne de caractères**[^1.5] à écrire. `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier[^1.6].
 
-[^1.5]: La méthode `write()` n'accepte en paramètre que des chaînes de caractères, pour écrire des nombres il faut les convertir en chaîne avant.
+[^1.5]: La méthode `write()` n'accepte en paramètre que des chaînes de caractères, pour écrire des nombres il faut les convertir en `str` avant.
 
 [^1.6]: On peut récupérer cette valeur par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
 
+Créons un fichier qui contient les capitales de plusieurs pays :
 
 === "f = open(...)"
     ``` py
-    >>> f = open("fichier.txt", "w")
-    >>> f.write('France Paris\n')
+    >>> f = open("capitales.txt", "w")
+    >>> f.write('France, Paris\n')
     13
 	>>> f.close()	
     ```
 
 === "with open(...) as f:"
     ``` py
-    >>> with open("fichier.txt", "w") as f
-            f.write('France Paris\n')
+    >>> with open("capitales.txt", "w") as f
+            f.write('France, Paris\n')
     13
     >>> 
     ```
 
-Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `fichier.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
+Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `capitales.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
 
 On peut ensuite écrire deux autres lignes à la suite en mode `a`.
 
 ``` py
->>> f = open("fichier.txt", "a")
->>> f.write('Allemagne Berlin\nItalie Rome\n')
+>>> f = open("capitales.txt", "a")
+>>> f.write('Allemagne, Berlin\nItalie, Rome\n')
 29
 ```
 
-Si on ouvre `fichier.txt` dans le blocnote on constate que rien n'a été écrit ! En effet, il faut d'abord fermer le fichier.
+Si on ouvre `capitales.txt` dans le blocnote on constate que rien n'a été écrit ! En effet, il faut d'abord fermer le fichier.
 
 ```
 >>> f.close()
@@ -146,17 +147,17 @@ Pour lire les données dans un fichier, on utilise la méthode `read()` qui renv
 
 === "f = open(...)"
     ``` py
-    >>> f = open("fichier.txt", "r")
+    >>> f = open("capitales.txt", "r")
     >>> f.read()
-    'France Paris\nAllemagne Berlin\nItalie Rome\n'
+    'France, Paris\nAllemagne, Berlin\nItalie, Rome\n'
     >>> f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("fichier.txt", "r") as f
+	>>> with open("capitales.txt", "r") as f
         f.read()
-    'France Paris\nAllemagne Berlin\nItalie Rome\n'
+    'France, Paris\nAllemagne, Berlin\nItalie, Rome\n'
     >>> 
     ```
 
@@ -168,11 +169,11 @@ A noter, un fichier n'est lu qu'une fois avant d'être refermé.
 
 === "f = open(...)"
     ``` py
-    >>> f = open("fichier.txt", "r")
+    >>> f = open("capitales.txt", "r")
     >>> print(f.read())
-    France Paris
-    Allemagne Berlin
-    Italie Rome
+    France, Paris
+    Allemagne, Berlin
+    Italie, Rome
 
     >>> print(f.read())
 
@@ -181,7 +182,7 @@ A noter, un fichier n'est lu qu'une fois avant d'être refermé.
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("fichier.txt", "r") as f
+	>>> with open("capitales.txt", "r") as f
         print(f.read())
         print(f.read())
     France Paris
@@ -197,21 +198,21 @@ Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne
 
 === "f = open(...)"
     ``` py
-    >>> f = open("fichier.txt", "r") 
+    >>> f = open("capitales.txt", "r") 
     >>> f.readline()
-    'France Paris\n'
+    'France, Paris\n'
     >>> f.readline()
-    'Allemagne Berlin\n'
+    'Allemagne, Berlin\n'
     >>> f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("fichier.txt", "r") as f
+	>>> with open("capitales.txt", "r") as f
         f.readline()
         f.readline()
-    'France Paris\n'
-    'Allemagne Berlin\n'
+    'France, Paris\n'
+    'Allemagne, Berlin\n'
     >>> 
     ```
 
@@ -222,40 +223,40 @@ ou itérer sur toutes les lignes avec `for… in …`.
 
 === "f = open(...)"
     ``` py
-    >>> f = open("fichier.txt", "r") 
+    >>> f = open("capitales.txt", "r") 
     >>> for li in f:
             print(li)
-    France Paris
+    France, Paris
 
-    Allemagne Berlin
+    Allemagne, Berlin
 
-    Italie Rome
+    Italie, Rome
 
     >>> f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("fichier.txt", "r") as f
+	>>> with open("capitales.txt", "r") as f
         for li in f:
              print(li)
     France Paris
 
-    Allemagne Berlin
+    Allemagne, Berlin
 
-    Italie Rome
+    Italie, Rome
     ```
 
 
-Ici, la variable `li` est une chaine de caractère qui prend la valeur de chaque ligne de `fichier.txt`.
+Ici, la variable `li` est une chaine de caractère qui prend la valeur de chaque ligne de `capitales.txt`.
 
 
 On peut aussi mentionner la méthode `readlines()` qui permet lire l'intégralité d'un fichier dans une tableau (possible quand le fichier à lire n'est pas trop gros puisqu'il est copié intégralement dans une variable, c'est-à-dire dans la mémoire vive de l'ordinateur, il faut que la taille de celle-ci soit suffisante).
 
 ``` py
->>> with open("fichier.txt", "r") as f:
+>>> with open("capitales.txt", "r") as f:
          f.readlines()
-['France Paris\n', 'Allemagne Berlin\n', 'Italie Rome\n']
+['France, Paris\n', 'Allemagne, Berlin\n', 'Italie, Rome\n']
 ```
 
 :warning: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.

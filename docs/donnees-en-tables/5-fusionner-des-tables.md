@@ -75,7 +75,7 @@ Et éviter des incohérences en vérifiant les **domaines** de valeur , par exem
 
 ##	Fusion (ou Jointure)
 
-On peut aussi vouloir ajouter des colonnes pour chacun des pays du tableau, par exemple :
+On peut aussi vouloir réunir les informations concernant les mêmes pays à travers plusieurs tables, par exemple :
 
 ``` py
 pib = [['France', 2.5], ['Allemagne', 3.7]]
@@ -123,7 +123,7 @@ for ligne_pays in range(len(pays)):           # pour chaque ligne de pays
 
 Et pour un tableau de dictionnaire, on rajoute un couple de clé-valeur à chaque dictionnaire du tableau :
 
-```
+``` py
 pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': 68}, \
         {'Capitale': 'Berlin', 'Pays': 'Allemagne', 'Population (ml)': 82}, \
         {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': 60}]
