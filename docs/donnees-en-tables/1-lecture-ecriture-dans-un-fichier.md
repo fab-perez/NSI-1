@@ -108,14 +108,14 @@ Créons un fichier qui contient des noms de pays avec leur capitale :
 === "f = open(...)"
     ``` py
     f = open('capitales.txt, 'w')
-    f.write('France, Paris\n')
+    f.write('France;Paris\n')
     f.close()	
     ```
 
 === "with open(...) as f:"
     ``` py
     with open('capitales.txt', 'w') as f
-        f.write('France, Paris\n')
+        f.write('France;Paris\n')
     ```
 
 Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `capitales.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
@@ -125,8 +125,8 @@ On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 === "f = open(...)"
     ``` py
     f = open('capitales.txt', 'a')
-    f.write('Allemagne; Berlin\n')
-    f.write('Italie; Rome\n')
+    f.write('Allemagne;Berlin\n')
+    f.write('Italie;Rome\n')
 
     f.close()	
     ```
@@ -134,8 +134,8 @@ On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 === "with open(...) as f:"
     ``` py
     with open('capitales.txt', 'a') as f
-        f.write('Allemagne; Berlin\n')
-        f.write('Italie; Rome\n')
+        f.write('Allemagne;Berlin\n')
+        f.write('Italie;Rome\n')
 
     ```
 
@@ -145,9 +145,9 @@ On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 
 !!! question "Exercice corrigé" 
     Ecrire un programme qui crée un fichier 'parite.txt' contenant tous les nombres entre 0 et 100 suivis de pair ou impair :
-    0; pair
-    1; impair
-    2; pair
+    0;pair
+    1;impair
+    2;pair
     etc.
 
 ??? Success "Réponse"
@@ -156,7 +156,7 @@ On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
     ``` py
     with open("parite.txt", 'w') as f:
         for i in range(101):
-            ligne = str(i) + "; "
+            ligne = str(i) + ";"
             if i%2 == 0:
                 ligne = ligne + "pair\n"
             else:
