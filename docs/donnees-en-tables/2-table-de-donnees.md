@@ -297,7 +297,7 @@ On trouvera de nombreuses fonctionnalités dans le module `csv`[^2.6]:.
 
 
 !!! question "Exercice corrigé" 
-    Importer dans un tableau de dictionnaires les données du fichier des codes postaux depuis [https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/](https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/).
+    Importer dans un tableau de dictionnaires les données du fichier des 197 pays et capitales [https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/](https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/).
 
 ??? Success "Réponse"
 

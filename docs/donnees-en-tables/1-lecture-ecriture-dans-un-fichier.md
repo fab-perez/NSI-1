@@ -23,8 +23,16 @@ A --> G[Users];
 
 - Son chemin absolu est `C:\Windows\explorer.exe`.
 
-- Son chemin relatif dépend du répertoire courant dans lequel on se trouve :
+- Son chemin relatif dépend du répertoire courant[^1.2] dans lequel on se trouve :
 
+[^1.2]:
+    En Python, on peut déterminer le répertoire courant avec l'instruction `getcwd()` du module `os` (noter le  double `\\` dans la chaîne de caractère pour ‘échapper' le caractère `\`)
+
+    ``` py
+    >>> import os
+    >>> os.getcwd()
+    'C:\\Program Files\\PyScripter'
+    ```
 
 |Répertoire courant|Chemin relatif|
 |:--|:-|
@@ -34,14 +42,6 @@ A --> G[Users];
 
 [^1.3]: « `..` » désigne le répertoire parent.
 
-En Python, on peut déterminer le répertoire courant avec l'instruction `getcwd()` du module `os` (noter le  double `\\` dans la chaîne de caractère pour ‘échapper' le caractère `\`)
-
-``` py
->>> import os
->>> os.getcwd()
-'C:\\Program Files\\PyScripter'
-```
-
 
 Python reconnait indifféremment les chemins indiqués avec *backslash* (norme Windows) « `\` » qu'avec *slash* « `/` » (norme Unix et protocoles Internet).
 
@@ -49,32 +49,33 @@ Python reconnait indifféremment les chemins indiqués avec *backslash* (norme W
 
 Pour lire ou écrire dans un fichier depuis un programme Python, il faut d'abord **ouvrir le fichier**. On utilise la fonction `open()` qui prend pour paramètre le chemin (absolu ou relatif) du fichier et le mode d'ouverture :
 
--	`'r'` pour ouvrir le fichier en mode lecture (*read-only*)  est l'option par défaut.
--	`'w'` en mode écrite (*write*),  le contenu éventuel déjà présent dans le fichier est écrasé.
--	`'a'` en mode ajout (*append*), ce que l'on écrit est ajouté à la fin du fichier.
+-	`'r'` pour ouvrir un fichier existant en mode lecture (*read-only*) est l'option par défaut.
+-	`'w'` en mode écrite (*write*) pour écrire dans un nouveau fichier (ou écraser un fichier déjà existant).
+-	`'a'` en mode ajout (*append*) pour écrire à la fin d'un fichier déjà existant (ou le créer s'il n'existe pas).
 
 On peut compléter le mode d'ouverture avec `b` pour un fichier binaire (image ou son par exemple), on obtient `rb'`, `'wb'`, `'ab'`.
 
-:warning: On ne peut pas ouvrir en mode lecture un fichier qui n'existe pas.
+:warning: On ne peut pas ouvrir en mode lecture un fichier, par exemple « fichier.txt » , qui n'existe pas.
 
 ``` py
->>> f = open("fichier.txt ", "r")
-Traceback (most recent call last):
+f = open('fichier.txt', 'r')
+
+>>> Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
 FileNotFoundError: [Errno 2] No such file or directory: 'fichier.txt'
 ```
 
-Par contre en mode écriture ou ajout, si le fichier n'existe pas quand il est ouvert, alors il est créé.
+Par contre, en mode écriture `'w'` ou ajout `'a'`, si le fichier n'existe pas quand il est ouvert, alors il est créé.
 
 ``` py
 f = open('fichier.txt', 'w')
 ```
 
-Si `fichier.txt` ne se trouve pas dans le répertoire du programme Python, il faut donner son chemin pour y accéder avec `/` ou `\\`.
+Si fichier « fichier.txt » ne se trouve pas dans le répertoire du programme Python, il faut donner son chemin pour y accéder avec `/` ou `\\`.
 
 ``` py
->>> f1 = open("C:/…/…/…/fichier1.txt ", "r")
->>> f2 = open("C:\\…\\…\\…\\fichier2.txt ", "r")
+f = open('C:/…/…/…/fichier.txt', 'r')
+f = open('C:\\…\\…\\…\\fichier.txt', 'r')
 ```
 
 :warning: Attention, il faut **toujours fermer un fichier après l'avoir ouvert**[^1.4]. La méthode à utiliser est `close()`.
@@ -87,176 +88,201 @@ Si `fichier.txt` ne se trouve pas dans le répertoire du programme Python, il fa
 
 ##	with open() as f:
 
-Une autre façon d'ouvrir un fichier est d'utiliser la construction suivante :
+Une autre façon d'ouvrir un fichier « fichier.txt »  est d'utiliser la construction suivante :
 
 ``` py
->>> with open("fichier.txt ", "w") as f:
-         # bloc d'instructions
+with open('fichier.txt', 'w') as f:
+    # bloc d'instructions
 ```
     
 Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instructions (attention à l'indentation), il n'y a pas besoin de le fermer, cela évite beaucoup d'erreurs.
 
 ##	Écrire dans un fichier
 
-Pour écrire dans un fichier, on utilise la méthode `write()` en lui passant en paramètre une **chaîne de caractères**[^1.5] à écrire. `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier[^1.6].
+Pour écrire dans un fichier, on utilise la méthode `.write()` en lui passant en paramètre une **chaîne de caractères** à écrire[^1.6].  Pour écrire des nombres il faut les convertir en `str` avant.
 
-[^1.5]: La méthode `write()` n'accepte en paramètre que des chaînes de caractères, pour écrire des nombres il faut les convertir en `str` avant.
+[^1.6]: `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier, utile par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
 
-[^1.6]: On peut récupérer cette valeur par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
-
-Créons un fichier qui contient les capitales de plusieurs pays :
+Créons un fichier qui contient des noms de pays avec leur capitale :
 
 === "f = open(...)"
     ``` py
-    >>> f = open("capitales.txt", "w")
-    >>> f.write('France, Paris\n')
-    13
-	>>> f.close()	
+    f = open('capitales.txt, 'w')
+    f.write('France, Paris\n')
+    f.close()	
     ```
 
 === "with open(...) as f:"
     ``` py
-    >>> with open("capitales.txt", "w") as f
-            f.write('France, Paris\n')
-    13
-    >>> 
+    with open('capitales.txt', 'w') as f
+        f.write('France, Paris\n')
     ```
 
 Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `capitales.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
 
-On peut ensuite écrire deux autres lignes à la suite en mode `a`.
+On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 
-``` py
->>> f = open("capitales.txt", "a")
->>> f.write('Allemagne, Berlin\nItalie, Rome\n')
-29
-```
+=== "f = open(...)"
+    ``` py
+    f = open('capitales.txt', 'a')
+    f.write('Allemagne; Berlin\n')
+    f.write('Italie; Rome\n')
 
-Si on ouvre `capitales.txt` dans le blocnote on constate que rien n'a été écrit ! En effet, il faut d'abord fermer le fichier.
+    f.close()	
+    ```
 
-```
->>> f.close()
-```
-Cette fois le fichier a bien été modifié.
+=== "with open(...) as f:"
+    ``` py
+    with open('capitales.txt', 'a') as f
+        f.write('Allemagne; Berlin\n')
+        f.write('Italie; Rome\n')
+
+    ```
+
+:warning: Noter qu'en utilisant l'instruction `f = open('capitales.txt', 'a')`, rien n'est écrit dans le fichier si on oublie de fermer le fichier avec `f.close()` !
+
+
+
+!!! question "Exercice corrigé" 
+    Ecrire un programme qui crée un fichier 'parite.txt' contenant tous les nombres entre 0 et 100 suivis de pair ou impair :
+    0; pair
+    1; impair
+    2; pair
+    etc.
+
+??? Success "Réponse"
+
+
+    ``` py
+    with open("parite.txt", 'w') as f:
+        for i in range(101):
+            ligne = str(i) + "; "
+            if i%2 == 0:
+                ligne = ligne + "pair\n"
+            else:
+                ligne = ligne + "impair\n"
+            f.write(ligne)
+
+    ```
+
 
 
 ##	Lire un fichier
 
-Pour lire les données dans un fichier, on utilise la méthode `read()` qui renvoie l'intégralité du fichier dans une chaine de caractères
+Il ewiste plusieurs approches pour lire les données dans un fichier.
+
+### La méthode `.read()`
+
+La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de caractères :
 
 
 === "f = open(...)"
     ``` py
-    >>> f = open("capitales.txt", "r")
-    >>> f.read()
-    'France, Paris\nAllemagne, Berlin\nItalie, Rome\n'
-    >>> f.close()
+    f = open("capitales.txt", "r")
+    data = f.read()
+    f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("capitales.txt", "r") as f
-        f.read()
-    'France, Paris\nAllemagne, Berlin\nItalie, Rome\n'
+	with open("capitales.txt", "r") as f
+        data = f.read()
     >>> 
     ```
 
-
-qu'on peut afficher avec `print(f.read())` pour ne pas voir les retours à la ligne `\n`.
-
-A noter, un fichier n'est lu qu'une fois avant d'être refermé.
-
-
-=== "f = open(...)"
-    ``` py
-    >>> f = open("capitales.txt", "r")
-    >>> print(f.read())
-    France, Paris
-    Allemagne, Berlin
-    Italie, Rome
-
-    >>> print(f.read())
-
-    >>> f.close()
-    ```
-
-=== "with open(...) as f:"
-    ``` py
-	>>> with open("capitales.txt", "r") as f
-        print(f.read())
-        print(f.read())
-    France Paris
-    Allemagne Berlin
-    Italie Rome
-    >>> 
-    ```
-
-Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et rien n'apparait après le second `read()`. Pour recommencer au début du fichier, il faut le fermer et le rouvrir.
-
-Au lieu de `.read()` qui lit tout le fichier, on peut ne lire qu'une seule ligne à la fois avec la méthode `readline()`
-
-
-=== "f = open(...)"
-    ``` py
-    >>> f = open("capitales.txt", "r") 
-    >>> f.readline()
-    'France, Paris\n'
-    >>> f.readline()
-    'Allemagne, Berlin\n'
-    >>> f.close()
-    ```
-
-=== "with open(...) as f:"
-    ``` py
-	>>> with open("capitales.txt", "r") as f
-        f.readline()
-        f.readline()
-    'France, Paris\n'
-    'Allemagne, Berlin\n'
-    >>> 
-    ```
-
-
-ou itérer sur toutes les lignes avec `for… in …`.
-
-
-
-=== "f = open(...)"
-    ``` py
-    >>> f = open("capitales.txt", "r") 
-    >>> for li in f:
-            print(li)
-    France, Paris
-
-    Allemagne, Berlin
-
-    Italie, Rome
-
-    >>> f.close()
-    ```
-
-=== "with open(...) as f:"
-    ``` py
-	>>> with open("capitales.txt", "r") as f
-        for li in f:
-             print(li)
-    France Paris
-
-    Allemagne, Berlin
-
-    Italie, Rome
-    ```
-
-
-Ici, la variable `li` est une chaine de caractère qui prend la valeur de chaque ligne de `capitales.txt`.
-
-
-On peut aussi mentionner la méthode `readlines()` qui permet lire l'intégralité d'un fichier dans une tableau (possible quand le fichier à lire n'est pas trop gros puisqu'il est copié intégralement dans une variable, c'est-à-dire dans la mémoire vive de l'ordinateur, il faut que la taille de celle-ci soit suffisante).
-
+:warning: À noter, le fichier n'est lu qu'**une seule fois** avant d'être refermé. Par exemple, suite au programme
 ``` py
->>> with open("capitales.txt", "r") as f:
-         f.readlines()
-['France, Paris\n', 'Allemagne, Berlin\n', 'Italie, Rome\n']
+f = open("capitales.txt", "r")
+data = f.read()
+data2 = f.read()
+f.close()
+```
+la variable `data2` sera une chaîne de caratcères vide. Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et rien n'apparait après le second `read()`. Pour recommencer au début du fichier, il faut le fermer et le rouvrir.
+
+
+### La méthode `.readline()`
+
+La méthode `.readline()` permet de lire une seule ligne d'un fichier
+
+
+
+=== "f = open(...)"
+    ``` py
+    f = open("capitales.txt", "r") 
+    ligne1= f.readline()
+    f.close()
+    ```
+
+=== "with open(...) as f:"
+    ``` py
+	>>> with open("capitales.txt", "r") as f
+        ligne1 = f.readline()
+    >>> 
+    ```
+
+
+:warning: À noter, une fois la première ligne lue, l'instruction `.readline()` suivante lit la seconde ligne et ainsi de suite jusqu'à la fin du fichier. Pour recommencer au début du fichier il faut fermer et rouvrir le fichier
+``` py
+f = open("capitales.txt", "r")
+ligne1 = f.read()
+ligne2 = f.read()
+f.close()
 ```
 
 :warning: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.
+
+
+
+
+## La boucle `for… in …`
+
+Une boucle  `for… in …` permet d'itérer sur toutes les lignes d'un fichier.
+
+
+=== "f = open(...)"
+    ``` py
+    f = open("capitales.txt", "r") 
+    for ligne in f:
+        print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
+    f.close()
+    ```
+
+=== "with open(...) as f:"
+    ``` py
+	with open("capitales.txt", "r") as f
+        for ligne in f:
+            print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
+    ```
+
+
+Ici, la variable `ligne` est une chaine de caractère qui prend la valeur de chaque ligne de `capitales.txt`.
+
+
+!!! question "Exercice corrigé" 
+    « Green Eggs and Ham is one of Seuss's "Beginner Books", written with very simple vocabulary for beginning readers. The vocabulary of the text consists of just 50 words and was the result of a bet between Seuss and Bennett Cerf, Dr. Seuss's publisher » Source : Wikipedia. 
+
+    Ecrire un programme pour vérifier si Dr. Seuss a gagné son pari d'écrire un livre en utilisant moins de 50 mots dans son livre :  [https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt](https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt)    
+
+    Aide : Utiliser les méthodes `.lower()` pour convertir une chaîne de caractères en minuscule, `.replace()` pour rempalcer les les signes de ponctuation (. , - ! et ? ) par des espaces, et `.split()` pour séparer les mots dans une chaîne de caractères. 
+
+??? Success "Réponse"
+
+
+    ``` py
+    mots_utilises = {}  #dictionnaire des mots utilisés et de leur nombre d'occurence
+    with open("green eggs and ham.txt", "r") as f:
+        texte = f.read()
+        texte = texte.lower()   # met le texte en minuscule
+        # supprime la ponctuation
+        for c in ".,-!?":
+            texte = texte.replace(c, ' ')
+        # sépare les mots du texte dans un tableau de str
+        mots = texte.split()
+        # ajoute et compte les mots dans le dictionnaire mots_utilises
+        for m in mots:
+            if m not in mots_utilises:
+                mots_utilises[m] = 1
+            else:
+                mots_utilises[m] += 1
+    print(len(mots_utilises))
+    ```
