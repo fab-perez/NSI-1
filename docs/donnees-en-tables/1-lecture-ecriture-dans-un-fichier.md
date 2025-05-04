@@ -99,47 +99,56 @@ Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instr
 
 ##	Écrire dans un fichier
 
-Pour écrire dans un fichier, on utilise la méthode `.write()` en lui passant en paramètre une **chaîne de caractères** à écrire[^1.6].  Pour écrire des nombres il faut les convertir en `str` avant.
+Pour écrire dans un fichier, on utilise la méthode `.write()` en lui passant en paramètre une **chaîne de caractères** à écrire[^1.5].  Pour écrire des nombres il faut les convertir en `str` avant.
 
-[^1.6]: `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier, utile par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
+[^1.5]: `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier, utile par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
 
-Créons un fichier qui contient des noms de pays avec leur capitale :
+Créons un fichier qui contient des noms de pays avec leur capitale et leur population :
 
 === "f = open(...)"
     ``` py
-    f = open('capitales.txt, 'w')
-    f.write('France;Paris\n')
+    f = open('pays.txt, 'w')
+    f.write('France;Paris;68\n')
     f.close()	
     ```
 
 === "with open(...) as f:"
     ``` py
-    with open('capitales.txt', 'w') as f
-        f.write('France;Paris\n')
+    with open('pays.txt', 'w') as f:
+        f.write('France;Paris;68\n')
     ```
 
-Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `capitales.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
+Noter le caractère « `\n` » pour indiquer un retour à la ligne. On peut ouvrir `pays.txt` par exemple avec le blocnote et vérifier que le texte a bien été écrit.
 
 On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 
 === "f = open(...)"
     ``` py
-    f = open('capitales.txt', 'a')
-    f.write('Allemagne;Berlin\n')
-    f.write('Italie;Rome\n')
+    f = open('pays.txt', 'a')
+    f.write('Espagne;Madrid;48\n')
+    f.write('Italie;Rome;60\n')
 
     f.close()	
     ```
 
 === "with open(...) as f:"
     ``` py
-    with open('capitales.txt', 'a') as f
-        f.write('Allemagne;Berlin\n')
-        f.write('Italie;Rome\n')
+    with open('pays.txt', 'a') as f:
+        f.write('Espagne;Madrid;48\n')
+        f.write('Italie;Rome;60\n')
 
     ```
 
-:warning: Noter qu'en utilisant l'instruction `f = open('capitales.txt', 'a')`, rien n'est écrit dans le fichier si on oublie de fermer le fichier avec `f.close()` !
+On peut maintenant ouvrir le fichier texte dans un éditeur de texte quelconque :
+
+```py
+France;Paris;68
+Espagne;Madrid;48
+Italie;Rome;60
+```
+
+
+:warning: Noter qu'en utilisant l'instruction `f = open('pays.txt', 'a')`, rien n'est écrit dans le fichier si on oublie de fermer le fichier avec `f.close()` !
 
 
 
@@ -169,7 +178,7 @@ On peut ensuite écrire deux autres lignes à la suite en mode `'a'`.
 
 ##	Lire un fichier
 
-Il ewiste plusieurs approches pour lire les données dans un fichier.
+Il existe plusieurs approches pour lire les données dans un fichier.
 
 ### La méthode `.read()`
 
@@ -178,21 +187,21 @@ La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de car
 
 === "f = open(...)"
     ``` py
-    f = open("capitales.txt", "r")
+    f = open("pays.txt", "r")
     data = f.read()
     f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	with open("capitales.txt", "r") as f
+	with open("pays.txt", "r") as f:
         data = f.read()
     >>> 
     ```
 
 :warning: À noter, le fichier n'est lu qu'**une seule fois** avant d'être refermé. Par exemple, suite au programme
 ``` py
-f = open("capitales.txt", "r")
+f = open("pays.txt", "r")
 data = f.read()
 data2 = f.read()
 f.close()
@@ -202,34 +211,35 @@ la variable `data2` sera une chaîne de caratcères vide. Après le premier `rea
 
 ### La méthode `.readline()`
 
-La méthode `.readline()` permet de lire une seule ligne d'un fichier
+La méthode `.readline()` permet de lire une seule ligne d'un fichier[^1.6] : 
 
+[^1.6]: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.
 
 
 === "f = open(...)"
     ``` py
-    f = open("capitales.txt", "r") 
+    f = open("pays.txt", "r") 
     ligne1= f.readline()
     f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("capitales.txt", "r") as f
+	>>> with open("pays.txt", "r") as f:
         ligne1 = f.readline()
     >>> 
     ```
 
 
-:warning: À noter, une fois la première ligne lue, l'instruction `.readline()` suivante lit la seconde ligne et ainsi de suite jusqu'à la fin du fichier. Pour recommencer au début du fichier il faut fermer et rouvrir le fichier
+:warning: À noter, une fois la première ligne lue, l'instruction `.readline()` suivante lit la seconde ligne et ainsi de suite jusqu'à la fin du fichier. Pour recommencer au début du fichier il faut fermer et rouvrir le fichier :
+
 ``` py
-f = open("capitales.txt", "r")
-ligne1 = f.read()
-ligne2 = f.read()
+f = open("pays.txt", "r")
+ligne1 = f.readline()   # première ligne du fichier
+ligne2 = f.readline()   # deuxième ligne du fichier
 f.close()
 ```
 
-:warning: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.
 
 
 
@@ -241,7 +251,7 @@ Une boucle  `for… in …` permet d'itérer sur toutes les lignes d'un fichier.
 
 === "f = open(...)"
     ``` py
-    f = open("capitales.txt", "r") 
+    f = open("pays.txt", "r") 
     for ligne in f:
         print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
     f.close()
@@ -249,13 +259,13 @@ Une boucle  `for… in …` permet d'itérer sur toutes les lignes d'un fichier.
 
 === "with open(...) as f:"
     ``` py
-	with open("capitales.txt", "r") as f
+	with open("pays.txt", "r") as f:
         for ligne in f:
             print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
     ```
 
 
-Ici, la variable `ligne` est une chaine de caractère qui prend la valeur de chaque ligne de `capitales.txt`.
+Ici, la variable `ligne` est une chaine de caractère qui prend la valeur de chaque ligne de `pays.txt`.
 
 
 !!! question "Exercice corrigé" 

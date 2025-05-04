@@ -4,28 +4,25 @@
 
 ### Dans un tableau de de tableaux ou tableau de p-uplets
 
-Un tableau de tableau ou tableau de p-uplets est itérable avec l'instruction `for … in …` et on peut chercher un élément avec le mot clé `in`. Une recherche est donc très simple.
+On peut parcourir un tableau de tableau ou un tableau de p-uplets avec l'instruction `for … in …` pour chercher un élément avec le mot clé `in`. Les recherches sont donc très simples.
 
-Reprenons notre tableau de p-uplets de pays et cherchons dans quel pays se trouve 'Rome' :
+Reprenons notre tableau de tableaux des pays et cherchons dans quel pays se trouve 'Rome' :
+
 
 ``` py
-pays = [('France', 'Paris', 68), 
-        ('Allemagne', 'Berlin', 82),
-        ('Italie', 'Rome', 60)]
+>>> pays
+[['Pays', 'Capitale', 'Population (ml)'],
+ ['France', 'Paris', '68'],
+ ['Espagne', 'Madrid', '48'],
+ ['Italie', 'Rome', '60']]
+
 for ligne in pays:
     if 'Rome' in ligne:
         print('Rome est en ', ligne[0])
+
 ```
 
-Pour comprendre ce qu'il se passe, ici `ligne` itère sur chaque ligne de `pays` prenant tour à tour les valeurs des p-uplets  :
-
-``` py
-('France', 'Paris', 68)
-('Allemagne', 'Berlin', 82)
-('Italie', 'Rome', 60)
-```
-
-Et pour chaque p-uplet, l'instruction conditionnelle `if 'Rome' in ligne` vérifie si `'Rome'` est présent ou pas. 
+Pour comprendre ce qu'il se passe, ici `ligne` itère sur chaque ligne de `pays` prenant tour à tour les valeurs des tableaux `['France', 'Paris', '68']`, `['Espagne', 'Madrid', '48']` puis `['Italie', 'Rome', '60']`. Pour chaque tableau, l'instruction conditionnelle `if 'Rome' in ligne` vérifie si `'Rome'` est présent ou pas. 
 
 ###	Dans un tableau de dictionnaires
 
@@ -34,9 +31,10 @@ Un tableau de dictionnaires est aussi itérable avec l'instruction `for … in �
 Cherchons dans quel pays se trouve 'Rome'.
 
 ``` py
-pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': 68},
-        {'Capitale': 'Berlin', 'Pays': 'Allemagne', 'Population (ml)': 82},
-        {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': 60}]
+pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': '68'},
+        {'Capitale': 'Madrid', 'Pays': 'Espagne', 'Population (ml)': '48'},
+        {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': '60'}]
+
 for ligne in pays:
     if 'Rome' in ligne.values():
         print('Rome est en ', ligne['Pays'])
@@ -53,7 +51,7 @@ for ligne in pays:
 
 
 !!! question "Exercice corrigé" 
-    En pratique: En utilisant le tableaux de dictionnaires des codes postaux précédent, écrire une fonction qui renvoie :
+    En utilisant le tableau de dictionnaires des codes postaux précédant, écrire une fonction qui renvoie :
     1. le code postal d'une ville	
     2. un tableau des villes ayant un code postal donné
 
@@ -67,7 +65,7 @@ for ligne in pays:
                 return ligne['Code_postal'] 
 
 
-    def chercher_villes(codes_postaux, code ): 
+    def chercher_villes(codes_postaux, code): 
         villes = [] 
         for ligne in codes_postaux:
             if ligne['Code_postal'] == code:
@@ -82,19 +80,24 @@ for ligne in pays:
 
 Pour un tableau de tableaux,  de p-uplets ou de dictionnaires, le mot clé `in` ne suffit plus pour tester la présence d'un élément avec des conditions. Il faut tester les conditions sur chacun des tableaux, p-uplets ou dictionnaires.
 
-Reprenons notre tableau de p-uplets de pays et cherchons les pays qui ont plus de 65 millions d'habitants :
+Reprenons notre tableau de tableaux de pays et cherchons les pays qui ont plus de 65 millions d'habitants :
 
 ``` py
-pays = [('France', 'Paris', 68),
-        ('Allemagne', 'Berlin', 82),
-        ('Italie', 'Rome', 60)]
+>>> pays
+[['Pays', 'Capitale', 'Population (ml)'],
+ ['France', 'Paris', '68'],
+ ['Espagne', 'Madrid', '48'],
+ ['Italie', 'Rome', '60']]
+
 for ligne in pays:
-    if ligne[2] > 65: 
-        print(ligne[0], 'a plus de 65 millions d'habitants')
+    if int(ligne[2]) > 50:     # convertir la population en entier
+        print(ligne[0], "a plus de 50 millions d'habitants")
+
 ```
 
+
 !!! question "Exercice corrigé" 
-    En utilisant le tableaux de dictionnaires des codes postaux précédent , écrire une fonction qui renvoie :
+    En utilisant le tableau de dictionnaires des codes postaux précédent , écrire une fonction qui renvoie :
 
     1. le tableau de toutes les villes d'un département	
     2. Toutes les villes qui commencent par ‘MAN'
@@ -141,7 +144,8 @@ def coherence_villes(table_code):
 True
 ```
 
-On peut aussi rechercher des doublons dans la table. Par exemple , on a fait l'hypothèse au paragrpahe 3.1 qu'une ville n'apparait qu'une fois (et donc n'a qu'un code postal), mais on ne l'a pas testé.
+On peut aussi rechercher des doublons dans la table. Par exemple, on a fait l'hypothèse au paragraphe précédant qu'une ville n'apparait qu'une fois (et donc n'a qu'un code postal), mais on ne l'a pas vérifié.
+
 La table n'est pas triée, il faut donc tester toutes les possibilités de doublons :
 
 ``` py

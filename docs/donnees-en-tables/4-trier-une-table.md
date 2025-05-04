@@ -18,10 +18,10 @@ Ici on a trié un tableau de nombres entiers. On peut faire la même chose avec 
 ['banane', 'fraise', 'orange', 'pomme']
 ```
 
-On peut aussi trier un p-uplet ou les clés d'un dictionnaire, la fonction renvoie toujours un tableau :
+On peut aussi trier un p-uplet ou **les clés** d'un dictionnaire, la fonction renvoie toujours un tableau :
 
 ``` py
->>> sorted((5,2,3,1,4))
+>>> sorted((5, 2, 3, 1, 4))
 [1, 2, 3, 4, 5]
 >>> sorted({'un':1, 'deux':2, 'trois':3 })
 ['deux', 'trois', 'un']
@@ -49,10 +49,14 @@ AttributeError: 'dict' object has no attribute 'sort'
 
 On peut trier sur des types construits, dans ce cas le tri est fait par ordre des éléments. Par exemple, on peut trier une liste de p-uplets contenant les pays.
 
-```
->>> pays = [('France', 'Paris', 68), ('Allemagne', 'Berlin', 82), ('Italie', 'Rome', 60)]
+``` py
+>>> pays
+[['Pays', 'Capitale', 'Population (ml)'],
+ ['France', 'Paris', '68'],
+ ['Espagne', 'Madrid', '48'],
+ ['Italie', 'Rome', '60']]
 >>> sorted(pays)
-[('Allemagne', 'Berlin', 82), ('France', 'Paris', 68), ('Italie', 'Rome', 60)]
+['Espagne', 'Madrid', '48'], 'France', 'Paris', '68'], ['Italie', 'Rome', '60']]]
 ```
 
 Dans ce cas, le tri est fait par `pays[0]` (type str) donc par ordre alphabétique :  `'Allemagne' < 'France'< 'Italie' `.
@@ -60,9 +64,9 @@ Dans ce cas, le tri est fait par `pays[0]` (type str) donc par ordre alphabétiq
 Par contre, on ne peut pas trier un tableau de dictionnaires :
 
 ``` py
->>> pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': 68}, 
-    {'Capitale': 'Berlin', 'Pays': 'Allemagne', 'Population (ml)': 82}, 
-    {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': 60}]
+>>> pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': '68'}, 
+    {'Capitale': 'Madrid', 'Pays': 'Espagne', 'Population (ml)': '48'}, 
+    {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': '60'}]
 >>> sorted(pays)
 Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
@@ -87,55 +91,48 @@ en précisant que les données doivent être converties en entier par la fonctio
 ['1', '3', '5', '11', '21']
 ```
 
-De la même façon, le paramètre `key` permet de trier une table en précisant les colonnes selon lesquelles on veut trier. Par exemple, si on veut trier le tableau de p-uplets des pays selon leur population :
+De la même façon, le paramètre `key` permet de trier une table en précisant les colonnes selon lesquelles on veut trier. Par exemple, si on veut trier le tableau de tableaux des pays selon leur population :
 
 ``` py
->>> pays = [('France', 'Paris', 68), ('Allemagne', 'Berlin', 82), ('Italie', 'Rome', 60)]
+>>> pays
+[['Pays', 'Capitale', 'Population (ml)'],
+ ['France', 'Paris', '68'],
+ ['Espagne', 'Madrid', '48'],
+ ['Italie', 'Rome', '60']]
+
 ```
 
-On peut utiliser une fonction `popul` qui renvoie la population :
+On peut utiliser une fonction `popul` qui renvoie la population convertie en nombre entier :
 
 ``` py
 def popul(x): 
-    return x[2]
+    return int(x[2])
 ```
 
 et qui sert de clé de `sorted()` :
 
 ``` py
 >>> sorted(pays, key=popul)
-[('Italie', 'Rome', 60), ('France', 'Paris', 68), ('Allemagne', 'Berlin', 82)]
+[['Espagne', 'Madrid', '48'], ['Italie', 'Rome', '60'],  ['France', 'Paris', '68']]
+ 
 ```
 
 Ou bien l'écrire directement dans une fonction lambda :
 
 ``` py
->>> sorted(pays, key=lambda x:x[2])
-[('Italie', 'Rome', 60), ('France', 'Paris', 68), ('Allemagne', 'Berlin', 82)]
+>>> sorted(pays, key=lambda x:int(x[2]))
+[['Espagne', 'Madrid', '48'], ['Italie', 'Rome', '60'],  ['France', 'Paris', '68']]
 ```
 
-Pour trier selon plusieurs colonnes, il suffit que la fonction de tri renvoie un p-uplet, par exemple les pays par population et par capital on fera : 
+De la même façon, une fonction lambda va permettre de trier le tableau de dictionnaires en ordre croissant de population :  
 
 ``` py
->>> pays = [('France', 'Paris', 68), ('Allemagne', 'Berlin', 82), ('Italie', 'Rome', 60), ('Royaume-Uni', 'Londres', 68),]
->>> sorted(pays, key=lambda x:(x[2], x[1]))
-[('Italie', 'Rome', 60),
- ('Royaume-Uni', 'Londres', 68),
- ('France', 'Paris', 68),
- ('Allemagne', 'Berlin', 82)
- ```
+>>> pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': '68'}, \
+            {'Capitale': 'MAdrid', 'Pays': 'Espage', 'Population (ml)': '48'}, \
+            {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': '60'}]
 
-A noter que dans ce cas la fonction `lambda x:x[2]` renvoie un itérable (tableau des populations) qui est trié par la fonction `sorted()`. De la même façon, on peut ainsi trier un tableau de dictionnaires en ordre croissant de population (alors qu'on ne pouvait pas le faire sans le paramètre `key`) :  
-
-``` py
->>> pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': 68}, \
-            {'Capitale': 'Berlin', 'Pays': 'Allemagne', 'Population (ml)': 82}, \
-            {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': 60}]
-
->>> sorted(pays, key= lambda x:x['Population (ml)'])
-[{'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': 60},
- {'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': 68},
- {'Capitale': 'Berlin', 'Pays': 'Allemagne', 'Population (ml)': 82}]
+>>> sorted(pays, key=lambda x:int(x['Population (ml)']))
+[{'Capitale': 'Madrid', 'Pays': 'Espagne', 'Population (ml)': '48'}, {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': '60'}, {'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': '68'}]
 ```
 
 ## Paramètre reverse
@@ -143,9 +140,9 @@ A noter que dans ce cas la fonction `lambda x:x[2]` renvoie un itérable (tablea
 `.sort()` et `sorted()` acceptent aussi un paramètre nommé `reverse` avec une valeur booléenne. Par défaut, `reverse` est `False`, c'est-à-dire qu'on tri en ordre croissant, mais on peut le changer pour indiquer un ordre décroissant des tris. 
 Par exemple, pour avoir les pays dans par population décroissante :
 
-```
->>> sorted(pays, key = lambda x:x[2], reverse = True)
-[('Allemagne', 'Berlin', 82), ('France', 'Paris', 68), ('Italie', 'Rome', 60)]
+``` py
+>>> sorted(pays, key=lambda x:int(x[2]), reverse=True)
+[['France', 'Paris', '68'], ['Italie', 'Rome', '60'], ['Espagne', 'Madrid', '48']]
 ```
 
 
