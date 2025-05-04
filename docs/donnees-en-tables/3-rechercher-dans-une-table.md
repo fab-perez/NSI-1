@@ -51,7 +51,7 @@ for ligne in pays:
 
 
 !!! question "Exercice corrigé" 
-    En utilisant le tableau de dictionnaires des codes postaux précédant, écrire une fonction qui renvoie :
+    En utilisant le tableau de dictionnaires des codes postaux précédent, écrire une fonction qui renvoie :
     1. le code postal d'une ville	
     2. un tableau des villes ayant un code postal donné
 
@@ -131,7 +131,11 @@ for ligne in pays:
 ## 	Tests de cohérence et recherche de doublons
 
 Jusqu'ici on a fait l'hypothèse que tous les champs du fichier sont remplis et corrects sans vérifier leur cohérence. Ce n'est pas toujours le cas et un fichier mal renseigné, ou avec des valeurs vides peut ensuite générer des problèmes. 
-Pour l'éviter, on peut faire des tests de cohérence, par exemple vérifier que tous les noms de villes sont renseignés et qu'aucun n'est laissé vide (comme les coordonnées GPS)
+Pour l'éviter, on peut faire des **tests de cohérence** et des **recherches de doublons**.
+
+Prenons l'exemple du fichier des codes postaux importé dans l'exercice précédent. 
+
+Commençons par vérifier que tous les noms de villes sont renseignés et qu'aucun n'est laissé vide (comme les coordonnées GPS) :
 
 ``` py
 def coherence_villes(table_code):
@@ -144,7 +148,7 @@ def coherence_villes(table_code):
 True
 ```
 
-On peut aussi rechercher des doublons dans la table. Par exemple, on a fait l'hypothèse au paragraphe précédant qu'une ville n'apparait qu'une fois (et donc n'a qu'un code postal), mais on ne l'a pas vérifié.
+Cherchons maintenant les doublons. Par exemple, on a fait l'hypothèse au paragraphe précédent qu'une ville n'apparait qu'une fois (et donc n'a qu'un code postal), mais on ne l'a pas vérifié.
 
 La table n'est pas triée, il faut donc tester toutes les possibilités de doublons :
 

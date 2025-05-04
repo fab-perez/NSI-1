@@ -3,7 +3,7 @@
 ##	Les chemins de fichiers
 Il y a deux façons de décrire l'emplacement d'un fichier : son chemin absolu ou son chemin relatif :
 
--	Son **chemin absolu** décrit l'intégralité des dossiers (ou répertoires[^1.1]) menant au fichier, peu importe l'endroit où on se trouven, depuis un répertoire dit « racine ».  Sous Windows, la racine  est le nom de volume (C:\, D:\…), sous les systèmes de la famille Unix, c'est « / ».
+-	Son **chemin absolu** décrit l'intégralité des dossiers (ou répertoires[^1.1]) menant au fichier, peu importe le répertoire courant, depuis un répertoire dit « racine ». Sous Windows, la racine  est le nom de volume (C:\, D:\…), sous les systèmes de la famille Unix, c'est « / ».
 
 -	Son **chemin relatif** décrit la succession de répertoires à parcourir en prenant comme point de départ le répertoire courrant dans lequel on se trouve.
 
@@ -23,7 +23,7 @@ A --> G[Users];
 
 - Son chemin absolu est `C:\Windows\explorer.exe`.
 
-- Son chemin relatif dépend du répertoire courant[^1.2] dans lequel on se trouve :
+- Son chemin relatif dépend du répertoire courant[^1.2], par exemple  :
 
 [^1.2]:
     En Python, on peut déterminer le répertoire courant avec l'instruction `getcwd()` du module `os` (noter le  double `\\` dans la chaîne de caractère pour ‘échapper' le caractère `\`)
@@ -55,7 +55,7 @@ Pour lire ou écrire dans un fichier depuis un programme Python, il faut d'abord
 
 On peut compléter le mode d'ouverture avec `b` pour un fichier binaire (image ou son par exemple), on obtient `rb'`, `'wb'`, `'ab'`.
 
-:warning: On ne peut pas ouvrir en mode lecture un fichier, par exemple « fichier.txt » , qui n'existe pas.
+:warning: On ne peut pas ouvrir en mode lecture un fichier qui n'existe pas.
 
 ``` py
 f = open('fichier.txt', 'r')
@@ -71,7 +71,7 @@ Par contre, en mode écriture `'w'` ou ajout `'a'`, si le fichier n'existe pas q
 f = open('fichier.txt', 'w')
 ```
 
-Si fichier « fichier.txt » ne se trouve pas dans le répertoire du programme Python, il faut donner son chemin pour y accéder avec `/` ou `\\`.
+Si « fichier.txt » ne se trouve pas dans le répertoire du programme Python, il faut donner son chemin pour y accéder avec `/` ou `\\`.
 
 ``` py
 f = open('C:/…/…/…/fichier.txt', 'r')
@@ -88,7 +88,7 @@ f = open('C:\\…\\…\\…\\fichier.txt', 'r')
 
 ##	with open() as f:
 
-Une autre façon d'ouvrir un fichier « fichier.txt »  est d'utiliser la construction suivante :
+Une autre façon d'ouvrir « fichier.txt »  est d'utiliser la construction suivante :
 
 ``` py
 with open('fichier.txt', 'w') as f:
@@ -99,9 +99,9 @@ Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instr
 
 ##	Écrire dans un fichier
 
-Pour écrire dans un fichier, on utilise la méthode `.write()` en lui passant en paramètre une **chaîne de caractères** à écrire[^1.5].  Pour écrire des nombres il faut les convertir en `str` avant.
+Pour écrire dans un fichier, on utilise la méthode `.write()` en lui passant en paramètre une **chaîne de caractères** à écrire[^1.6].  Pour écrire des nombres il faut les convertir en `str` avant.
 
-[^1.5]: `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier, utile par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
+[^1.6]: `write()` renvoie le nombre de caractères qui ont été écrits dans le fichier, utile par exemple pour vérifier que le fichier contient bien le texte qu'on y a écrit.
 
 Créons un fichier qui contient des noms de pays avec leur capitale et leur population :
 
@@ -154,10 +154,13 @@ Italie;Rome;60
 
 !!! question "Exercice corrigé" 
     Ecrire un programme qui crée un fichier 'parite.txt' contenant tous les nombres entre 0 et 100 suivis de pair ou impair :
+
+    ```
     0;pair
     1;impair
     2;pair
     etc.
+    ```
 
 ??? Success "Réponse"
 
@@ -178,7 +181,7 @@ Italie;Rome;60
 
 ##	Lire un fichier
 
-Il existe plusieurs approches pour lire les données dans un fichier.
+Il ewiste plusieurs approches pour lire les données dans un fichier.
 
 ### La méthode `.read()`
 
@@ -199,21 +202,21 @@ La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de car
     >>> 
     ```
 
-:warning: À noter, le fichier n'est lu qu'**une seule fois** avant d'être refermé. Par exemple, suite au programme
+:warning: À noter, le fichier n'est lu qu'**une seule fois** avant d'être refermé. Par exemple, suite au programme :
+
 ``` py
 f = open("pays.txt", "r")
 data = f.read()
 data2 = f.read()
 f.close()
 ```
-la variable `data2` sera une chaîne de caratcères vide. Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et rien n'apparait après le second `read()`. Pour recommencer au début du fichier, il faut le fermer et le rouvrir.
+la variable `data2` sera une chaîne de caractères vide. Après le premier `read()`, l'interpréteur Python est arrivé au bout du fichier. Il ne recommence pas à le lire depuis le début et le second `read()` ne lit plus rien. Pour recommencer à lire au début du fichier, il faut le fermer et le rouvrir.
 
 
 ### La méthode `.readline()`
 
-La méthode `.readline()` permet de lire une seule ligne d'un fichier[^1.6] : 
+La méthode `.readline()` permet de lire une seule ligne d'un fichier
 
-[^1.6]: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.
 
 
 === "f = open(...)"
@@ -225,7 +228,7 @@ La méthode `.readline()` permet de lire une seule ligne d'un fichier[^1.6] :
 
 === "with open(...) as f:"
     ``` py
-	>>> with open("pays.txt", "r") as f:
+	with open("pays.txt", "r") as f:
         ligne1 = f.readline()
     >>> 
     ```
@@ -240,6 +243,7 @@ ligne2 = f.readline()   # deuxième ligne du fichier
 f.close()
 ```
 
+:warning: Attention donc à ne pas confondre `readline()` qui renvoie une seule ligne dans une chaîne de caractères, avec `readlines()` qui renvoie un tableau de toutes les lignes.
 
 
 

@@ -11,7 +11,7 @@ Les tables de données sont le moyen le plus repandu de stocker et traiter de l'
 Exemple : une liste d'information sur les pays utilisée au chapitre 'Types construits':
 
 |Pays|Capitale|	Population (ml)|
-|:-:|:-:|:-:|
+|:-|:-|:-|
 |France|Paris|68|
 |Espagne|Madrid|48|
 |Italie|Rome|60|
@@ -239,7 +239,7 @@ La fonction`reader()` du module  `csv` permet de lire les données contenues dan
 ``` py
 import csv
 
-with open('pays.csv', 'r', newline='') as f:
+with open('pays.csv', 'r') as f:
     pays = csv.reader(f, delimiter=';')
 ```
 
@@ -261,7 +261,7 @@ ou la convertir directement en tableau avec la fonction `list()` :
 ``` py
 import csv
 
-with open('pays.csv', 'r', newline='') as f:
+with open('pays.csv', 'r') as f:
     pays = list(csv.reader(f, delimiter=';'))
 ```
 On obtient un tableau de tableaux :
@@ -281,7 +281,7 @@ Le tableau de tableaux, n'est pas toujours idéal, en particulier la première l
 ``` py
 import csv
 
-with open('pays.csv', 'r', newline='') as f:
+with open('pays.csv', 'r') as f:
     pays = list(csv.DictReader(f, delimiter=','))
 ```
 
