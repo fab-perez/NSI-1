@@ -80,7 +80,7 @@ On peut lire les données depuis un fichier csv et enregistrer ses données dans
 
 === "f = open()"
     ``` py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
     pays = []
     for li in f:
         pays.append(li)
@@ -90,7 +90,7 @@ On peut lire les données depuis un fichier csv et enregistrer ses données dans
 
 === "with open as f:"
     ``` py
-    with open("pays.csv", "r") as f:
+    with open('pays.csv', 'r') as f:
         pays = []
         for li in f:
             pays.append(li)
@@ -113,7 +113,7 @@ et ajouter une instruction `f.readline()` après l'ouverture du fichier pour sup
 
 === "f = open()"
     ``` py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
 	f.readline()          # supprime la ligne de descripteurs
     pays = []
     for li in f:
@@ -124,7 +124,7 @@ et ajouter une instruction `f.readline()` après l'ouverture du fichier pour sup
 
 === "with open as f:"
     ``` py
-    with open("pays.csv", "r") as f:
+    with open('pays.csv', 'r') as f:
 	    f.readline()          # supprime la ligne de descripteurs
         pays = []
         for li in f:
@@ -141,27 +141,27 @@ On obtient un tableau de chaînes de caractères contenant seulement les donnée
 ```
 
 Les données de chaque pays dans une seule chaîne de caractères ne seront pas faciles à manipuler, 
-une dernière modification consiste à les « découper » en tableau avec `.split()`, en indiquant le séparateur utilisé, ici « ";" » :
+une dernière modification consiste à les « découper » en tableau avec `.split()`, en indiquant le séparateur utilisé, ici « ';' » :
 
 
 === "f = open()"
     ``` py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
 	f.readline()          # supprime la ligne de descripteurs
 	pays = []
     for li in f:
-        pays.append(li[:-1].split(";"))
+        pays.append(li[:-1].split(';'))
     f.close()
 
     ```
 
 === "with open as f:"
     ``` py
-    with open("pays.csv", "r") as f:
+    with open('pays.csv', 'r') as f:
 		f.readline()          # supprime la ligne de descripteurs
         pays = []
         for li in f:
-            pays.append(li[:-1].split(";"))
+            pays.append(li[:-1].split(';'))
     ```
 
 
@@ -179,17 +179,17 @@ On pouvait aussi écrire la même chose directement par compréhension :
 
 === "f = open()"
     ``` py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
     f.readline()          # supprime la ligne de descripteurs
-    pays = [li[:-1].split(";") for li in f]
+    pays = [li[:-1].split(';') for li in f]
     f.close()
     ```
 
 === "with open as f:"
     ``` py
-    with open("pays.csv", "r") as f:
+    with open('pays.csv', 'r') as f:
 	    f.readline()          # supprime la ligne de descripteurs
-        pays = [li[:-1].split(";") for li in f]
+        pays = [li[:-1].split(';') for li in f]
     ```
 
 
@@ -209,7 +209,7 @@ On pouvait aussi écrire la même chose directement par compréhension :
 	
 
     ``` py
-    f = open("laposte_hexasmal.csv", "r)   # on ouvre le fichier en lecture 
+    f = open('laposte_hexasmal.csv', 'r')   # on ouvre le fichier en lecture 
     f.readline()      # on lit la 1ere ligne de descripteur séparément
     codes = []
     for li in f: 
@@ -230,7 +230,7 @@ De la même façon qu'on a importé des données en table dans un tableau de tab
 [^2.3]:
     Par exemple avec le code suivant :
     ```py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
     f.readline()         # ligne de descripteurs ignorée
     pays = []
     for li in f:
@@ -244,7 +244,7 @@ De la même façon qu'on a importé des données en table dans un tableau de tab
 [^2.4]: 
     Par exemple avec le code suivant :
     ```py
-    f = open("pays.csv", "r")
+    f = open('pays.csv', 'r')
     descripteurs = f.readline()[:-1].split( ',')   # tableau des descripteurs
     pays = []
     for li in f:
@@ -312,7 +312,7 @@ import csv
 
 with open('pays.csv', 'r') as f:
     # on ne supprime pas les descripteurs
-    pays = list(csv.DictReader(f, delimiter=','))
+    pays = list(csv.DictReader(f, delimiter=';'))
 ```
 
 On obtient un tableau de dictionnaires :
@@ -334,7 +334,7 @@ On trouvera de nombreuses autres fonctionnalités du module `csv` dans la  [docu
     ``` py
     import csv
 
-    with open("laposte_hexasmal.csv", 'r') as f:
+    with open('laposte_hexasmal.csv', 'r') as f:
         codes = list(csv.DictReader(f, delimiter=';'))
     >>> codes
     [{'Code_commune_INSEE': '90093',

@@ -166,13 +166,13 @@ Italie;Rome;60
 
 
     ``` py
-    with open("parite.txt", 'w') as f:
+    with open('parite.txt', 'w') as f:
         for i in range(101):
-            ligne = str(i) + ";"
+            ligne = str(i) + ';'
             if i%2 == 0:
-                ligne = ligne + "pair\n"
+                ligne = ligne + 'pair\n'
             else:
-                ligne = ligne + "impair\n"
+                ligne = ligne + 'impair\n'
             f.write(ligne)
 
     ```
@@ -190,14 +190,14 @@ La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de car
 
 === "f = open(...)"
     ``` py
-    f = open("pays.txt", "r")
+    f = open('pays.txt', 'r')
     data = f.read()
     f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	with open("pays.txt", "r") as f:
+	with open('pays.txt', 'r') as f:
         data = f.read()
     >>> 
     ```
@@ -205,7 +205,7 @@ La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de car
 :warning: À noter, le fichier n'est lu qu'**une seule fois** avant d'être refermé. Par exemple, suite au programme :
 
 ``` py
-f = open("pays.txt", "r")
+f = open('pays.txt', 'r')
 data = f.read()
 data2 = f.read()
 f.close()
@@ -221,14 +221,14 @@ La méthode `.readline()` permet de lire une seule ligne d'un fichier
 
 === "f = open(...)"
     ``` py
-    f = open("pays.txt", "r") 
+    f = open('pays.txt', 'r') 
     ligne1= f.readline()
     f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	with open("pays.txt", "r") as f:
+	with open('pays.txt', 'r') as f:
         ligne1 = f.readline()
     >>> 
     ```
@@ -237,7 +237,7 @@ La méthode `.readline()` permet de lire une seule ligne d'un fichier
 :warning: À noter, une fois la première ligne lue, l'instruction `.readline()` suivante lit la seconde ligne et ainsi de suite jusqu'à la fin du fichier. Pour recommencer au début du fichier il faut fermer et rouvrir le fichier :
 
 ``` py
-f = open("pays.txt", "r")
+f = open('pays.txt', 'r')
 ligne1 = f.readline()   # première ligne du fichier
 ligne2 = f.readline()   # deuxième ligne du fichier
 f.close()
@@ -255,17 +255,17 @@ Une boucle  `for… in …` permet d'itérer sur toutes les lignes d'un fichier.
 
 === "f = open(...)"
     ``` py
-    f = open("pays.txt", "r") 
+    f = open('pays.txt', 'r') 
     for ligne in f:
-        print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
+        print(ligne)
     f.close()
     ```
 
 === "with open(...) as f:"
     ``` py
-	with open("pays.txt", "r") as f:
+	with open('pays.txt', 'r') as f:
         for ligne in f:
-            print(ligne[:-1])     # supprime le caractère \n à la fin de la ligne
+            print(ligne)
     ```
 
 
@@ -284,11 +284,11 @@ Ici, la variable `ligne` est une chaine de caractère qui prend la valeur de cha
 
     ``` py
     mots_utilises = {}  #dictionnaire des mots utilisés et de leur nombre d'occurence
-    with open("green eggs and ham.txt", "r") as f:
+    with open('green eggs and ham.txt', 'r') as f:
         texte = f.read()
         texte = texte.lower()   # met le texte en minuscule
         # supprime la ponctuation
-        for c in ".,-!?":
+        for c in '.,-!?':
             texte = texte.replace(c, ' ')
         # sépare les mots du texte dans un tableau de str
         mots = texte.split()
