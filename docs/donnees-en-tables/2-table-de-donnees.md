@@ -75,7 +75,7 @@ Il existe d'autres formats de données structurées, par exemple JSON ou XML.
 
 ##	Lire une table de données depuis un fichier csv
 
-On peut lire les données depuis un fichier csv et enregistrer ses données dans un tableau de tableaux en le lisant ligne par ligne :
+On peut lire les données depuis un fichier csv et enregistrer ses données dans un tableau en le lisant ligne par ligne :
 
 
 === "f = open()"
@@ -83,7 +83,7 @@ On peut lire les données depuis un fichier csv et enregistrer ses données dans
     f = open("pays.csv", "r")
     pays = []
     for li in f:
-        pays.append(li.split(';'))
+        pays.append(li)
     f.close()
 
     ```
@@ -93,77 +93,102 @@ On peut lire les données depuis un fichier csv et enregistrer ses données dans
     with open("pays.csv", "r") as f:
         pays = []
         for li in f:
-            pays.append(li.split(';'))
+            pays.append(li)
     ```
 
-ou même par compréhension :
+On obtient un tableau de chaînes de caractères, un longue chaîne par ligne :
+
+``` py
+>>> pays
+['Pays;Capitale;Population (ml)\n',
+'France;Paris;68\n',
+'Espagne;Madrid;48\n',
+'Italie;Rome;60\n']
+```
+
+On peut maintenant remplacer `li` par `li[:-1]` pour supprimer les retours à la ligne « `\n` » en fin de ligne 
+et ajouter une instruction `f.readline()` après l'ouverture du fichier pour supprimons la première ligne contenant les descripteurs :
+
+
 
 === "f = open()"
     ``` py
     f = open("pays.csv", "r")
-    pays = [li.split(';') for li in f]
+	f.readline()
+    pays = []
+    for li in f:
+        pays.append(li[:-1])
+    f.close()
+
+    ```
+
+=== "with open as f:"
+    ``` py
+    with open("pays.csv", "r") as f:
+		f.readline()
+        pays = []
+        for li in f:
+            pays.append(li[:-1])
+    ```
+
+On obtient un tableau de chaînes de caractères contenant les données qui nous intéressent :
+
+``` py
+>>> pays
+['France;Paris;68',
+'Espagne;Madrid;48',
+'Italie;Rome;60']
+```
+
+La dernière modification consiste à « découper » les chaînes de caractères sur chaque ligne avec `.split()` en indiquant le séparateur utilisé, ici « ";" » :
+
+
+=== "f = open()"
+    ``` py
+    f = open("pays.csv", "r")
+	f.readline()
+	pays = []
+    for li in f:
+        pays.append(li[:-1].split(";"))
+    f.close()
+
+    ```
+
+=== "with open as f:"
+    ``` py
+    with open("pays.csv", "r") as f:
+		f.readline()
+        pays = []
+        for li in f:
+            pays.append(li[:-1].split(";"))
+    ```
+
+
+On obtient un tableau de tableaux qui permettra de manipuler les données efficacement (en prenant soin de convertir les nombres en  `int` ou `float` si besoin) :
+
+``` py
+>>> pays
+[['France', 'Paris', '68'],
+['Espagne', 'Madrid', '48'],
+['Italie', 'Rome', '60']]
+```
+
+
+On pouvait aussi écrire la même chose directement par compréhension :
+
+=== "f = open()"
+    ``` py
+    f = open("pays.csv", "r")
+	f.readline()
+    pays = [li[:-1].split(";") for li in f]
     f.close()
     ```
 
 === "with open as f:"
     ``` py
     with open("pays.csv", "r") as f:
-        pays = [li.split(';') for li in f]
-    ```
-
-On obtient le tableau de tableaux suivant:
-
-``` py
->>> pays
-[['Pays', 'Capitale', 'Population (ml)\n'],
- ['France', 'Paris', '68\n'],
- ['Espagne', 'Madrid', '48\n'],
- ['Italie', 'Rome', '60\n']]
-```
-
-On peut utiliser `li[:-1]` pour supprimer les retours à la ligne « `\n` »[^2.2]::
-
-[^2.2]: Ou encore en utilisant la méthode `splitlines()` on peut écrire `>>> pays = [li.split(';') for li in f.read().splitlines()]`.
-
-=== "f = open()"
-    ``` py
-    f = open("pays.csv", "r")
-    pays = [li[:-1].split(';') for li in f]
-    f.close()
-    ```
-
-=== "with open as f:"
-    ``` py
-    with open("pays.csv", "r") as f:
-        pays = [li[:-1].split(';') for li in f]
-    ```
-
-
-On obtient alors le tableau suivant :
-
-``` py
->>> pays
-[['Pays', 'Capitale', 'Population (ml)'],
- ['France', 'Paris', '68'],
- ['Espagne', 'Madrid', '48'],
- ['Italie', 'Rome', '60']]
-```
-
-Et si on veut supprimer la première ligne pour ignorer les descripteurs, il suffit de la lire avec `f.readline()` après l'ouverture du fichier : 
-
-=== "f = open()"
-    ``` py
-    f = open("pays.csv", "r")
-    f.readline()
-    pays = [li[:-1].split(';') for li in f]
-    f.close()	
-    ```
-
-=== "with open as f:"
-    ``` py
-    with open("pays.csv", "r") as f:
-        f.readline()
-        pays = [li[:-1].split(';') for li in f]
+		f.readline()
+        pays = [li[:-1].split(";") for li in f]
     ```
 
 
@@ -269,8 +294,8 @@ On obtient un tableau de tableaux :
 ``` py
 >>> pays
 [['Pays', 'Capitale', 'Population (millions)'],
- ['France', 'Paris', '68'],
- ['Italie', 'Rome', '60']]
+['France', 'Paris', '68'],
+['Italie', 'Rome', '60']]
 ```
 
 :warning: À noter que toutes les valeurs sont au format `str`, y compris les nombres, il faudra en tenir compte dans l'utilisation de ces données par la suite programme.
