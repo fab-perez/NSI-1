@@ -106,8 +106,8 @@ On obtient un tableau de chaînes de caractères, un longue chaîne par ligne :
 'Italie;Rome;60\n']
 ```
 
-On peut maintenant remplacer `li` par `li[:-1]` pour supprimer les retours à la ligne « `\n` » en fin de ligne 
-et ajouter une instruction `f.readline()` après l'ouverture du fichier pour supprimons la première ligne contenant les descripteurs :
+On peut maintenant remplacer `li` par `li[:-1]` pour supprimer les retours à la ligne « `\n` » à la fin des chaînes de caractères 
+et ajouter une instruction `f.readline()` après l'ouverture du fichier pour supprimer la première ligne contenant les descripteurs :
 
 
 
@@ -140,7 +140,7 @@ On obtient un tableau de chaînes de caractères contenant les données qui nous
 'Italie;Rome;60']
 ```
 
-La dernière modification consiste à « découper » les chaînes de caractères sur chaque ligne avec `.split()` en indiquant le séparateur utilisé, ici « ";" » :
+La dernière modification consiste à « découper » chaque chaîne de caractères en tableau avec `.split()` en indiquant le séparateur utilisé, ici « ";" » :
 
 
 === "f = open()"
@@ -194,7 +194,9 @@ On pouvait aussi écrire la même chose directement par compréhension :
 
 
 !!! question "Exercice corrigé" 
-    Importer dans un tableau de tableaux les données du fichier des codes postaux depuis [https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/](https://www.data.gouv.fr/fr/datasets/base-officielle-des-codes-postaux/).
+    Importer dans un tableau de tableaux les données du fichier des codes postaux depuis 
+	[https://public.opendatasoft.com/explore/dataset/laposte_hexasmal/export](https://public.opendatasoft.com/explore/dataset/laposte_hexasmal/export)
+
 
 ??? Success "Réponse"
 
@@ -211,17 +213,12 @@ On pouvait aussi écrire la même chose directement par compréhension :
         codes.append(li[:-1].split(';'))
 
     # ou alors par comprehension:
-    codes2 = [li[:-1].split(';') for li in f]   
+    codes = [li[:-1].split(';') for li in f]   
 
     f.close()           # ne pas oublier de fermer le fichier
     >>> codes
-    [['90093',
-    'SERMAMAGNY',
-    '90300',
-    'SERMAMAGNY',
-    '',
-    '47.687801557,6.8309146345\n'],
-    …
+	[['47078', 'DAMAZAN', '47160', '', 'DAMAZAN', '44.289185426, 0.27533534800000004'], ['95500', 'PONTOISE', '95300', '', 'PONTOISE', '49.051577748, 2.094574042']...]
+	    …
     ```
 
 De la même façon qu'on a importé des données en table dans un tableau de tableaux, on peut très bien les importer dans un tableau de p-uplets (pour avoir des données de types différents)[^2.3] ou un tableau de dictionnaires (pour utiliser les descripteurs)[^2.4].
