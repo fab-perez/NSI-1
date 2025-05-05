@@ -33,7 +33,7 @@ Chaque ligne du texte correspond à une ligne du tableau et les virgules corresp
 
 ##	Ecrire une table de données dans un fichier csv
 
-Un fichier csv est un simple fichier texte, on peut enregister des données structurées dans un fichier csv comme on l'a fait avec un fichier texte en séparant les données par une virgule ou un autre séparateur et les lignes par `\n`. Il suffit juste de changer l'extension du fichier et d'ajouter une ligne de descipteurs : 
+Un fichier csv est un simple fichier texte, on peut enregister des données structurées dans un fichier csv comme on l'a fait avec un fichier texte en séparant les données par une virgule ou un autre séparateur et les lignes par `\n`. Il suffit juste de changer l'extension du fichier et d'ajouter une ligne de descripteurs : 
 
 === "f = open(...)"
     ``` py
@@ -106,7 +106,7 @@ On obtient un tableau de chaînes de caractères, un longue chaîne par ligne :
 'Italie;Rome;60\n']
 ```
 
-On peut maintenant remplacer `li` par `li[:-1]` pour supprimer les retours à la ligne « `\n` » à la fin des chaînes de caractères 
+On peut maintenant remplacer `li` par `li[:-1]` pour supprimer les caractères de retour à la ligne « `\n` » à la fin de chaque chaîne
 et ajouter une instruction `f.readline()` après l'ouverture du fichier pour supprimer la première ligne contenant les descripteurs :
 
 
@@ -114,7 +114,7 @@ et ajouter une instruction `f.readline()` après l'ouverture du fichier pour sup
 === "f = open()"
     ``` py
     f = open("pays.csv", "r")
-	f.readline()
+	f.readline()          # supprime la ligne de descripteurs
     pays = []
     for li in f:
         pays.append(li[:-1])
@@ -125,13 +125,13 @@ et ajouter une instruction `f.readline()` après l'ouverture du fichier pour sup
 === "with open as f:"
     ``` py
     with open("pays.csv", "r") as f:
-		f.readline()
+	    f.readline()          # supprime la ligne de descripteurs
         pays = []
         for li in f:
             pays.append(li[:-1])
     ```
 
-On obtient un tableau de chaînes de caractères contenant les données qui nous intéressent :
+On obtient un tableau de chaînes de caractères contenant seulement les données qui nous intéressent :
 
 ``` py
 >>> pays
@@ -140,13 +140,14 @@ On obtient un tableau de chaînes de caractères contenant les données qui nous
 'Italie;Rome;60']
 ```
 
-La dernière modification consiste à « découper » chaque chaîne de caractères en tableau avec `.split()` en indiquant le séparateur utilisé, ici « ";" » :
+Les données de chaque pays dans une seule chaîne de caractères ne seront pas faciles à manipuler, 
+une dernière modification consiste à les « découper » en tableau avec `.split()`, en indiquant le séparateur utilisé, ici « ";" » :
 
 
 === "f = open()"
     ``` py
     f = open("pays.csv", "r")
-	f.readline()
+	f.readline()          # supprime la ligne de descripteurs
 	pays = []
     for li in f:
         pays.append(li[:-1].split(";"))
@@ -157,7 +158,7 @@ La dernière modification consiste à « découper » chaque chaîne de caractè
 === "with open as f:"
     ``` py
     with open("pays.csv", "r") as f:
-		f.readline()
+		f.readline()          # supprime la ligne de descripteurs
         pays = []
         for li in f:
             pays.append(li[:-1].split(";"))
@@ -179,7 +180,7 @@ On pouvait aussi écrire la même chose directement par compréhension :
 === "f = open()"
     ``` py
     f = open("pays.csv", "r")
-	f.readline()
+    f.readline()          # supprime la ligne de descripteurs
     pays = [li[:-1].split(";") for li in f]
     f.close()
     ```
@@ -187,7 +188,7 @@ On pouvait aussi écrire la même chose directement par compréhension :
 === "with open as f:"
     ``` py
     with open("pays.csv", "r") as f:
-		f.readline()
+	    f.readline()          # supprime la ligne de descripteurs
         pays = [li[:-1].split(";") for li in f]
     ```
 
@@ -200,10 +201,12 @@ On pouvait aussi écrire la même chose directement par compréhension :
 
 ??? Success "Réponse"
 
-    Une fois les données sauvegardées dans le ficher "laposte_hexasmal.csv" dans le répertoire "documents", on peut les visualiser par exemple dans le blocnote, dans Excel ou sur le site internet directement. On remarque que :
+    Une fois les données sauvegardées dans le ficher "laposte_hexasmal.csv", on peut les visualiser par exemple dans le blocnote. On remarque que :
     
-    -	la première ligne du fichier contient les six descripteurs de données (Code_commune_INSEE,  Nom_commune, …)
-    -	les séparateurs sont des points-virgules
+    -	la première ligne du fichier contient les six descripteurs de données (Code_commune_INSEE,  Nom_commune, etc.)
+    -	les séparateurs sont des points-virgules.
+	
+	
 
     ``` py
     f = open("laposte_hexasmal.csv", "r)   # on ouvre le fichier en lecture 
@@ -216,6 +219,7 @@ On pouvait aussi écrire la même chose directement par compréhension :
     codes = [li[:-1].split(';') for li in f]   
 
     f.close()           # ne pas oublier de fermer le fichier
+	
     >>> codes
 	[['47078', 'DAMAZAN', '47160', '', 'DAMAZAN', '44.289185426, 0.27533534800000004'], ['95500', 'PONTOISE', '95300', '', 'PONTOISE', '49.051577748, 2.094574042']...]
 	    …
@@ -262,6 +266,7 @@ La fonction`reader()` du module  `csv` permet de lire les données contenues dan
 import csv
 
 with open('pays.csv', 'r') as f:
+    f.readline()          # supprime la ligne de descripteurs
     pays = csv.reader(f, delimiter=';')
 ```
 
@@ -284,26 +289,29 @@ ou la convertir directement en tableau avec la fonction `list()` :
 import csv
 
 with open('pays.csv', 'r') as f:
+    f.readline()          # supprime la ligne de descripteurs
     pays = list(csv.reader(f, delimiter=';'))
 ```
 On obtient un tableau de tableaux :
 
 ``` py
 >>> pays
-[['Pays', 'Capitale', 'Population (millions)'],
-['France', 'Paris', '68'],
+[['France', 'Paris', '68'],
+['Espagne', 'Madrid', '48'],
 ['Italie', 'Rome', '60']]
 ```
 
 :warning: À noter que toutes les valeurs sont au format `str`, y compris les nombres, il faudra en tenir compte dans l'utilisation de ces données par la suite programme.
 
-Le tableau de tableaux, n'est pas toujours idéal, en particulier la première ligne de descripteurs n'est pas séparée du reste des données.  La méthode `DictReader` permet de garder les descripteurs en créant un tableau de dictionnaires. Comme avec `reader`, on utilise `list()` pour convertir le résultat en tableau.
+Le tableau de tableaux, n'est pas toujours idéal, en particulier la première ligne de descripteurs n'est pas séparée du reste des données.  
+La méthode `DictReader` permet de garder les descripteurs en créant un tableau de dictionnaires. Comme avec `reader`, on utilise `list()` pour convertir le résultat en tableau.
 
 
 ``` py
 import csv
 
 with open('pays.csv', 'r') as f:
+    # on ne supprime pas les descripteurs
     pays = list(csv.DictReader(f, delimiter=','))
 ```
 
