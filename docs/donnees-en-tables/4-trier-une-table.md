@@ -47,12 +47,11 @@ Traceback (most recent call last):
 AttributeError: 'dict' object has no attribute 'sort'
 ```
 
-On peut trier sur des types construits, dans ce cas le tri est fait par ordre des éléments. Par exemple, on peut trier une liste de p-uplets contenant les pays.
+On peut trier sur des types construits, dans ce cas le tri est fait par ordre des éléments. Par exemple, on peut trier une liste de tableaux contenant les pays.
 
 ``` py
 >>> pays
-[['Pays', 'Capitale', 'Population (ml)'],
- ['France', 'Paris', '68'],
+[['France', 'Paris', '68'],
  ['Espagne', 'Madrid', '48'],
  ['Italie', 'Rome', '60']]
 >>> sorted(pays)
@@ -95,8 +94,7 @@ De la même façon, le paramètre `key` permet de trier une table en précisant 
 
 ``` py
 >>> pays
-[['Pays', 'Capitale', 'Population (ml)'],
- ['France', 'Paris', '68'],
+[['France', 'Paris', '68'],
  ['Espagne', 'Madrid', '48'],
  ['Italie', 'Rome', '60']]
 
@@ -147,7 +145,55 @@ Par exemple, pour avoir les pays dans par population décroissante :
 
 
 !!! question "Exercice corrigé" 
-    En utilisant le tableau de dictionnaires des codes postaux, écrire une fonction qui renvoie la commune qui a le plus petit code postal, le plus grand code postal, la plus grande longitude, la plus éloignée de Manosque. 
+    On a importé un tableau de dictionnaires des codes postaux avec :
+    ``` py
+    with open('laposte_hexasmal.csv', 'r', encoding='utf-8-sig') as f:
+        codes = list(csv.DictReader(f, delimiter=';'))
+    ```
+
+    1. Ecrire les fonctions `plus_petit_code` et `plus_grand_code` qui renvoient la commune qui a le plus petit code postal et celle qui a le plus grand code postal.
+
+    2. Ecrire les fonctions `plus_grande_latitude` qui renvoie la commune qui a la plus grande latitude.
+
+
+??? Success "Réponse"
+
+    ``` py
+    def plus_petit_code():
+        return sorted(codes, key = lambda x:x['code_postal'])[0]
+
+    def plus_grand_code():
+        return sorted(codes, key = lambda x:x['code_postal'])[-1]
+
+    def gps(gps_str):
+        """ str -> float, float
+        Renvoie la longitude et latitude d'une chaine de caractère de coordonnées gps
+        """
+        long, lat = gps_str.split(',')
+        return float(long), float(lat)
+
+
+    def plus_grande_latitude():
+        # filtre les communes dont les coordonnées gps sont données
+        codes_avec_gps = list(filter(lambda x:x['coordonnees_gps'] !='',codes))
+        return sorted(codes_avec_gps, key = lambda x:gps(x['coordonnees_gps'])[1], reverse= True)[0]
+    ```
+
+
+!!! question "Exercice corrigé - Pour aller plus loin" 
+    3. Ecrire les fonctions `plus_loin(longA, latA)` qui renvoie la commune la plus éloignée du point GPS de coordonnées (longA, latA).
+
+    Exemple:
+    ``` py
+    >>> plus_loin(0,0)
+    {'code_commune_insee': '98612',
+    'code_postal': '98620',
+    'coordonnees_gps': '-14.270411199, -178.155263035',
+    'libelle_d_acheminement': 'SIGAVE',
+    'ligne_5': '',
+    'nom_de_la_commune': 'SIGAVE'}
+    ```
+
     Note : La distance  en mètres entre les points de coordonnées ($Long_A$;$Lat_A$) et ($Long_B$; $Lat_B$ ) est donnée par la formule de Pythagore : 
 
     - $x =({Long_B - Long_A )} \times {cos⁡{ {Lat_A + Lat_B} \over 2}}$
@@ -163,44 +209,19 @@ Par exemple, pour avoir les pays dans par population décroissante :
 ??? Success "Réponse"
 
     ``` py
+ 
     from math import cos, sqrt
-
-    communes = []
-    with open("laposte_hexasmal.csv", "r",) as f:
-        cles = f.readline()[:-1].split( ';')    #note [:-1] to remove the \n at the end of the line
-        for li in f  :
-            c = {cles[0] : li.split(';')[0],
-                cles[1] : li.split(';')[1],
-                cles[2] : int(li.split(';')[2]),        # code postal
-                cles[3] : li.split(';')[3],
-                cles[4] : li.split(';')[4],
-                }
-            gps = li.split(';')[5][:-1]  # coordonnées GPS
-            if gps != '':
-                c['gps'] = (float(gps.split(',')[0]), float(gps.split(',')[1]))
-                communes.append(c)
-
-    plus_petit_code_postal = sorted(communes, key = lambda x:x['Code_postal'])[0]
-    print(f'la commune qui a le plus petit code postal est {plus_petit_code_postal["Nom_commune"]} \
-        son code postal est {plus_petit_code_postal["Code_postal"]}')
-    plus_grand_code_postal = sorted(communes, key = lambda x:x['Code_postal'], reverse= True)[0]
-    print(f'la commune qui a le plus grand code postal est {plus_grand_code_postal["Nom_commune"]} \
-        son code postal est {plus_grand_code_postal["Code_postal"]}')
-    plus_grande_longitude = sorted(communes, key = lambda x:x['gps'][0], reverse= True)[0]
-    print(f'la commune qui a la plus grande longitude est {plus_grande_longitude["Nom_commune"]} sa longitude est {plus_grande_longitude["gps"][0]}')
-
-    for c in communes:
-        if c["Nom_commune"] == "MANOSQUE": manosque = c
-
-    def distance(ville):
-        longA, latA = manosque["gps"]
-        longB, latB = ville["gps"]
+    def distance(longA, latA, longB, latB):
         x = (longB - longA) * cos((latA+latB)/2)
         y = latB - latA
         z = sqrt(x**2 + y**2)
         d = 1852 * 60 * z
         return d
-    plus_loin_manosque = sorted(communes, key = lambda x:distance(x), reverse= True)[0]
-    print(f'la commune qui a la plus loin de Manosque est {plus_loin_manosque["Nom_commune"]}, elle est à {distance(plus_loin_manosque)/1000} km')
+
+
+    def plus_loin(longA, latA):
+        # filtre les communes dont les coordonnées gps sont données
+        codes_avec_gps = list(filter(lambda x:x['coordonnees_gps'] !='',codes))
+        return sorted(codes_avec_gps, key = lambda x:distance(longA, latA, gps(x['coordonnees_gps'])[0], gps(x['coordonnees_gps'])[1]), reverse= True)[0]
     ```
 

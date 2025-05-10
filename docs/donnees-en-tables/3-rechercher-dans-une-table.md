@@ -11,8 +11,7 @@ Reprenons notre tableau de tableaux des pays et cherchons dans quel pays se trou
 
 ``` py
 >>> pays
-[['Pays', 'Capitale', 'Population (ml)'],
- ['France', 'Paris', '68'],
+[['France', 'Paris', '68'],
  ['Espagne', 'Madrid', '48'],
  ['Italie', 'Rome', '60']]
 
@@ -51,26 +50,53 @@ for ligne in pays:
 
 
 !!! question "Exercice corrigé" 
-    En utilisant le tableau de dictionnaires des codes postaux précédent, écrire une fonction qui renvoie :
-    1. le code postal d'une ville	
-    2. un tableau des villes ayant un code postal donné
+    On a importé un tableau de dictionnaires des codes postaux avec :
+    
+    ``` py
+    with open('laposte_hexasmal.csv', 'r', encoding='utf-8-sig') as f:
+        codes = list(csv.DictReader(f, delimiter=';'))
+    ```
+
+    1.  Ecrire une fonction `coord_gps` qui prend en paramètre un nom de commune et renvoie les coordonnées gps de cette commune. 
+
+        Exemple : 
+        ``` py
+        >>> coord_gps('MANOSQUE')
+        '43.835211125, 5.791029867'
+        ```
+
+    2.  Ecrire une fonction `chercher_communes` qui prend en paramètre un code postal et renvoie le tableau des communes qui ont ce code postal.
+
+        Exemple : 
+        ``` py
+        >>> chercher_communes('04000')
+        ['ENTRAGES',
+        'LA ROBINE SUR GALABRE',
+        'LA ROBINE SUR GALABRE',
+        'LA ROBINE SUR GALABRE',
+        'DIGNE LES BAINS',
+        'DIGNE LES BAINS',
+        'LA JAVIE',
+        'LA ROBINE SUR GALABRE']
+        ```
+   
 
 ??? Success "Réponse"
 
 
     ``` py
-    def chercher_code(codes_postaux, ville ):
-        for ligne in codes_postaux: 
-            if ligne['Nom_commune'] == ville:
-                return ligne['Code_postal'] 
+    def coord_gps(commune):
+        for ligne in codes:
+            if ligne['nom_de_la_commune'] == commune:
+                return ligne['coordonnees_gps']
 
 
-    def chercher_villes(codes_postaux, code): 
-        villes = [] 
-        for ligne in codes_postaux:
-            if ligne['Code_postal'] == code:
-                villes.append(ligne['Nom_commune'])
-        return villes 
+    def chercher_communes(code_postal):
+        communes = []
+        for ligne in codes:
+            if ligne['code_postal'] == code_postal:
+                communes.append(ligne['nom_de_la_commune'])
+        return communes
         
     ```
 
@@ -84,8 +110,7 @@ Reprenons notre tableau de tableaux de pays et cherchons les pays qui ont plus d
 
 ``` py
 >>> pays
-[['Pays', 'Capitale', 'Population (ml)'],
- ['France', 'Paris', '68'],
+[['France', 'Paris', '68'],
  ['Espagne', 'Madrid', '48'],
  ['Italie', 'Rome', '60']]
 
@@ -97,33 +122,37 @@ for ligne in pays:
 
 
 !!! question "Exercice corrigé" 
-    En utilisant le tableau de dictionnaires des codes postaux précédent , écrire une fonction qui renvoie :
 
-    1. le tableau de toutes les villes d'un département	
-    2. Toutes les villes qui commencent par ‘MAN'
+    On a importé un tableau de dictionnaires des codes postaux avec :
+    ``` py
+    with open('laposte_hexasmal.csv', 'r', encoding='utf-8-sig') as f:
+        codes = list(csv.DictReader(f, delimiter=';'))
+    ```
+
+    1. Ecrire une fonction `tout_departement` qui prend en paramètre un numéro de département et renvoie un tableau avec toutes les communes de ce département.
+
+        Exemple : 
+        ``` py
+        >>> tout_departement('04')
+        ['LE CAIRE',
+        'PIERREVERT',
+        'STE CROIX DU VERDON',
+        'ENTRAGES',
+        'LA MOTTE DU CAIRE',
+        'SIMIANE LA ROTONDE',
+        ...]
+        ```
+
 
 ??? Success "Réponse"
 
     ``` py
-    def chercher_departement(table_code, dep ):
-        villes = []
-        for li in table_code:
-            if li['Code_postal'] >= dep * 1000 and li['Code_postal'] < (dep+1) * 1000:
-                villes.append( li['Nom_commune'] )
-        return villes
-    >>> chercher_departement(c,13)
-    ['MARTIGUES',
-    ….
-    'ST ANDIOL',
-    'SAUSSET LES PINS',
-    'MARSEILLE 09']
-
-    def chercher_MAN(table_code):
-    villes = []
-    for li in table_code:
-        if li['Nom_commune'][0:3] == 'MAN':
-            villes.append( li['Nom_commune'] )
-    return villes
+    def tout_departement(dep):
+        communes = []
+        for ligne in codes:
+            if ligne['code_postal'][:2] == dep:
+                communes.append(ligne['nom_de_la_commune'] )
+        return communes
         
     ```
 
@@ -133,31 +162,75 @@ for ligne in pays:
 Jusqu'ici on a fait l'hypothèse que tous les champs du fichier sont remplis et corrects sans vérifier leur cohérence. Ce n'est pas toujours le cas et un fichier mal renseigné, ou avec des valeurs vides peut ensuite générer des problèmes. 
 Pour l'éviter, on peut faire des **tests de cohérence** et des **recherches de doublons**.
 
-Prenons l'exemple du fichier des codes postaux importé dans l'exercice précédent. 
 
-Commençons par vérifier que tous les noms de villes sont renseignés et qu'aucun n'est laissé vide (comme les coordonnées GPS) :
+ tableau de tableaux des pays et cherchons dans quel pays se trouve 'Rome' :
 
-``` py
-def coherence_villes(table_code):
-    for li in table_code:
-        if li['Nom_commune'] == '':
-            return False
-    return True
-
->>> coherence_villes(importer())
-True
-```
-
-Cherchons maintenant les doublons. Par exemple, on a fait l'hypothèse au paragraphe précédent qu'une ville n'apparait qu'une fois (et donc n'a qu'un code postal), mais on ne l'a pas vérifié.
-
-La table n'est pas triée, il faut donc tester toutes les possibilités de doublons :
+Prenons l'exemple tableau de tableaux des pays qui aurait été importé avec des données peu fiables :
 
 ``` py
-def chercher_doublons(table_code):
-    for i in range(len(table_code)-1):
-        for j in range(i+1, len(table_code)) :
-            if table_code[j]['Nom_commune']  == table_code[i]['Nom_commune']:
-                print(table_code[i]['Nom_commune'], 'apparait à la ligne', i, 'et', j)
+>>> pays
+[['France', 'Paris', '68.0'],
+ ['Espagne', '48'],
+ ['Italie', 'Rome', '60'],
+ ['Italie', 'Rome', '61']]
+
+```
+Ces données vont créer plusieurs problèmes :
+
+-   La donnée de population de la France, `'68.0'`, va lever une erreur quand on va la convertir en nombre entier :
+    
+    ``` py
+    >>> int(pays[0][2])
+    Traceback (most recent call last):
+    File "<interactive input>", line 1, in <module>
+    ValueError: invalid literal for int() with base 10: '68.0'
+    ```
+- La capitale de l'Espagne n'est pas renseignée, c'est la valeur suivante, `'48'` qui sera utilisée à la place. Si on ne veut pas renseigner cette capitale, il faudrait écrire `..., ['Espagne', '', '48'], ...` ou `..., ['Espagne', None, '48'], ...` pour respecter les colonnes. Ici on peut noter l'avantage d'utiliser un tableau de dictionnaire où il suffirait d'omettre la clé d'une valeur qui n'est pas renseignée.
+
+- Il y a un doublon sur l'Italie, quelle valeur utiliser pour sa capitale `Rome` ou `Roma`, et pour sa population dans les programmes ?
+
+
+
+
+
+!!! question "Exercice corrigé" 
+    On a importé un tableau de dictionnaires des codes postaux avec :
+    
+    ``` py
+    with open('laposte_hexasmal.csv', 'r', encoding='utf-8-sig') as f:
+        codes = list(csv.DictReader(f, delimiter=';'))
+    ```
+
+    1.  Ecrire une fonction `coherence` qui vérifie que tous les noms de communes sont renseignés et qu'aucun n'est laissé vide.
+
+        Exemple : 
+        ``` py
+        >>> coherence()
+        True
+        ```
+
+    2.   Ecrire une fonction `doublons` qui affiche les doublons.
+
+
+
+??? Success "Réponse"
+    ``` py
+
+    def coherence():
+        for ligne in codes:
+            if ligne['nom_de_la_commune'] == '':
+                return False
+        return True
+    ```
+
+    La table n'est pas triée, il faut donc tester toutes les possibilités de doublons :
+
+    def doublons():
+        for i in range(len(codes)-1):
+            for j in range(i+1, len(codes)) :
+                if codes[i] == codes[j]:
+                    print(i, j)
+
+
 ```
 
-On s'aperçoit qu'il y a énormément de doublons dans cette table. Par exemple CHAMONIX MONT-BLANC apparait plusieurs fois (avec le même code postal) ou CHALAIS apparait plusieurs fois dans des département différents.
