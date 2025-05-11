@@ -17,7 +17,7 @@ Et un  tableau de nouveaux pays.
 >>> nouveau_pays = [['Allemagne', 'Berlin', '82'], ['Portugal', 'Lisbonne', None]]
 ```
 
-Remarque : Pour un tableau de tableaux ou de p-uplets, il faut veiller à ce que les colonnes soient les mêmes. S'il manque une information, on complète avec `` ou `None`[^5.1]. 
+Remarque : Pour un tableau de tableaux ou de p-uplets, il faut veiller à ce que les données sur une même colonne correspondent à leur descripteur. S'il manque une donnée, on complète avec `''` ou `None`[^5.1]. 
 
 [^5.1]: Ce n'est pas necessaire pour un tableau de dictionnaires.
 
@@ -30,7 +30,7 @@ On peut simplement utiliser l'opérateur `+` qui créé un nouveau tableau :
  ['Italie', 'Rome', '60'],
  ['Allemagne', 'Berlin', '82'], 
  ['Portugal', 'Lisbonne', None]]
- ```
+```
 
 Ou encore la méthode `.extend()` qui modifie la variable `pays` : 
 
@@ -68,7 +68,8 @@ Note: On peut supprimer la ligne avec `del(pays[6])` et pour éviter les doublon
 >>> pays = pays + [p for p in pays_sud if p not in pays]
 ```
 
-Et éviter des incohérences en vérifiant les **domaines** de valeur , par exemple que la population contient uniquement des chiffres.
+Et éviter des incohérences par exemple en vérifiant les **domaines** de valeur. 
+Pour les pays, on peut vérifier que les données de population contiennent bien des chiffres.
 
 ``` py
 >>> pays.extend([p for p in pays_sud if p[2].isdigit()]) 
@@ -82,7 +83,7 @@ On peut aussi vouloir réunir les informations concernant les mêmes pays à tra
 pib = [['France', '2900'], ['Espagne', '1600']]
 ```
 
-il faut alors rajouter le nouveau champs ligne par ligne (avec None pour les informations manquantes) : 
+il faut alors rajouter le nouveau champs ligne par ligne (avec `None` pour les informations manquantes) : 
 
 ``` py
 pays = [['France', 'Paris', '68'],
@@ -92,12 +93,13 @@ pays = [['France', 'Paris', '68'],
 pib = [('France', '2900'),
  ('Espagne', '1600')]
 
-for ligne_pays in pays:                       # pour chaque ligne de pays
-    for ligne_pib in pib:                     # parcourir les lignes de pib
-        if ligne_pays[0] == ligne_pib[0]:     # si c'est le meme pays
-            ligne_pays.append( ligne_pib[1] ) # alors on ajoute le pib à la fin
-            break                             # inutile de continuer à parcourir pib
-    if len(ligne_pays) == 3 : ligne_pays.append(None)   # on n'a pas trouvé de pib
+for ligne_pays in pays:      # pour chaque ligne de pays
+    for ligne_pib in pib:         # parcourir les lignes de pib
+        if ligne_pays[0] == ligne_pib[0]:   # si c'est le meme pays
+            ligne_pays.append(ligne_pib[1] )     # alors on ajoute le pib à la fin
+            break            # inutile de continuer à parcourir pib
+    if len(ligne_pays) == 3:     # si on n'a pas trouvé de pib pour ce pays
+        ligne_pays.append(None)     # on renseigne avec None
 ```
 
 A noter la dernière ligne qui permet de conserver l'intégrité de la table en ajoutant un champ `None` si le PIB d'un pays n'est pas présent.
