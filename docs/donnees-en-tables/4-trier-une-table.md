@@ -2,52 +2,76 @@
 
 ## sorted() et .sort()
 
-Pour trier en ordre croissant de façon simple et facile, il suffit d'appeler la fonction `sorted()`. Elle renvoie un nouveau tableau trié :
+Pour trier en ordre croissant de façon simple et facile, le type `list` offre une méthode `.sort()` qui permet de modifier un tableau en le triant.
 
 ``` py
->>> sorted([5, 2, 3, 1, 4])
+>>> tab = [5, 2, 3, 1, 4]
+>>> tab.sort()
+>>> tab
 [1, 2, 3, 4, 5]
 ```
+Notr que `tab.sort()` a modifié le tableau `tab` et a renvoyé `None`.
 
-Ici on a trié un tableau de nombres entiers. On peut faire la même chose avec un tableau de nombres decimaux (`float`)  ou de chaines de caractères. :warning: Les chaines de caractères sont triées par ordre lexicographique[^4.1].
+
+Dans cet exemple, on a trié un tableau de nombres entiers. On peut faire la même chose avec un tableau de nombres decimaux (`float`)  ou de chaines de caractères. :warning: Les chaines de caractères sont triées par ordre lexicographique[^4.1].
 
 [^4.1]: On commence par comparer les  codes Unicode du premier caractère de chaque chaîne, puis en cas d'égalité le second caractère, et ainsi de suite comme dans un dictionnaire. Attention aux majuscules et aux nombres, '11' est plus petit que '2' !
 
 ``` py
->>> sorted(['pomme', 'banane', 'orange', 'fraise'])
+>>> tab = ['pomme', 'banane', 'orange', 'fraise']
+>>> tab.sort()
+>>> tab
 ['banane', 'fraise', 'orange', 'pomme']
 ```
 
-On peut aussi trier un p-uplet ou **les clés** d'un dictionnaire, la fonction renvoie toujours un tableau :
+
+Noter que  `.sort()` est une méthode reservée aux tableaux, c'est-à-dire aux variables de type `list`. Elle ne s'applique pas aux vp-uplets ou aux dictionnaires :
 
 ``` py
->>> sorted((5, 2, 3, 1, 4))
-[1, 2, 3, 4, 5]
->>> sorted({'un':1, 'deux':2, 'trois':3 })
-['deux', 'trois', 'un']
-```
-
-On peut aussi utiliser la méthode `.sort()` qui elle modifie le tableau (et renvoie `None` pour éviter les confusions).
-
-``` py
->>> a = [5, 2, 3, 1, 4]
->>> a.sort()
->>> a
-[1, 2, 3, 4, 5]
-```
-
-Une autre différence est que la méthode `.sort()` est seulement utilisées pour les tableaux. Au contraire, la fonction `sorted()` accepte n'importe quel itérable, par exemple les clé d'un dictionnaire.
-
-``` py
->>> sorted({1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'})
-[1, 2, 3, 4, 5]
->>> {1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'}.sort()
+>>> puplet  = (5, 2, 3, 1, 4)
+>>> puplet.sort()
+Traceback (most recent call last):
+  File "<interactive input>", line 1, in <module>
+AttributeError: 'tuple' object has no attribute 'sort'
+>>> dico = {1: 'D', 2: 'B', 3: 'B', 4: 'E', 5: 'A'}
+>>> dico.sort()
 Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
 AttributeError: 'dict' object has no attribute 'sort'
 ```
 
-On peut trier sur des types construits, dans ce cas le tri est fait par ordre des éléments. Par exemple, on peut trier une liste de tableaux contenant les pays.
+
+Au contraire de `.sort()`, la fonction `sorted()` accepte n'importe quel itérable et renvoie un nouveau tableau trié  :
+
+``` py
+>>> sorted((5, 2, 3, 1, 4))
+[1, 2, 3, 4, 5]
+>>> sorted([5, 2, 3, 1, 4])
+[1, 2, 3, 4, 5]
+>>> sorted({'un':1, 'deux':2, 'trois':3 })
+['deux', 'trois', 'un']
+```
+Noter que `sorted()` renvoie toujours un tableau, même pour trier un p-uplet ou un dictionnaire. Et dans le cas d'un dictionnaire, ce sont les clés qui sont triées et renvoyées.
+
+:warning: Attention pour les tableaux, à la différence de `.sort()`, le tableau trié n'est pas modifié, c'est un nouveau tableau trié qui renvoyé par `sorted()` :
+
+
+``` py
+>>> tab = [5, 2, 3, 1, 4]
+>>> sorted(tab)
+[1, 2, 3, 4, 5]
+>>> tab
+[5, 2, 3, 1, 4]
+>>> tab = [5, 2, 3, 1, 4]
+>>> tab_trie = sorted(tab)
+>>> tab
+[5, 2, 3, 1, 4]
+>>> tab_trie
+[1, 2, 3, 4, 5]
+```
+
+
+On peut trier sur des types construits, dans ce cas le tri est fait par ordre des éléments. Par exemple, pour trier notre tableau de tableaux `pays`.
 
 ``` py
 >>> pays
@@ -57,8 +81,7 @@ On peut trier sur des types construits, dans ce cas le tri est fait par ordre de
 >>> sorted(pays)
 ['Espagne', 'Madrid', '48'], 'France', 'Paris', '68'], ['Italie', 'Rome', '60']]]
 ```
-
-Dans ce cas, le tri est fait par `pays[0]` (type str) donc par ordre alphabétique :  `'Allemagne' < 'France'< 'Italie' `.
+Dans ce cas, le tri se fait en comparant les premières valeurs de chaque sous-tableau  :  `'Espagne' < 'France'< 'Italie' `. 
 
 Par contre, on ne peut pas trier un tableau de dictionnaires :
 
@@ -71,11 +94,12 @@ Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
 TypeError: '<' not supported between instances of 'dict' and 'dict' 
 ```
-
+On ne peut pas comparer les dictionnaire, il faut préciser une clé de tri.
 
 ## Paramètre key
 
 `.sort()` et `sorted()` acceptent un paramètre nommé `key` permettant de spécifier une fonction à appeler sur chaque élément du tableau afin d'effectuer des comparaisons. 
+
 Par exemple, on peut modifier l'ordre de tri d'un tableau de nombres au format `str` :
 
 ``` py
@@ -100,7 +124,7 @@ De la même façon, le paramètre `key` permet de trier une table en précisant 
 
 ```
 
-On peut utiliser une fonction `popul` qui renvoie la population convertie en nombre entier :
+On peut écrire une fonction `popul` qui renvoie le champs population de chaque pays converti en nombre entier :
 
 ``` py
 def popul(x): 

@@ -334,7 +334,7 @@ On trouvera de nombreuses autres fonctionnalités du module `csv` dans la  [docu
     ``` py
     import csv
 
-    with open('laposte_hexasmal.csv', 'r') as f:
+    with open('laposte_hexasmal.csv', 'r', encoding='utf-8-sig') as f:
         codes = list(csv.DictReader(f, delimiter=';'))
     >>> codes
     [{'Code_commune_INSEE': '90093',

@@ -106,7 +106,7 @@ for ligne in pays:
 
 Pour un tableau de tableaux,  de p-uplets ou de dictionnaires, le mot clé `in` ne suffit plus pour tester la présence d'un élément avec des conditions. Il faut tester les conditions sur chacun des tableaux, p-uplets ou dictionnaires.
 
-Reprenons notre tableau de tableaux de pays et cherchons les pays qui ont plus de 65 millions d'habitants :
+Reprenons notre tableau de tableaux de pays et cherchons les pays qui ont plus de 50 millions d'habitants :
 
 ``` py
 >>> pays
@@ -129,7 +129,7 @@ for ligne in pays:
         codes = list(csv.DictReader(f, delimiter=';'))
     ```
 
-    1. Ecrire une fonction `tout_departement` qui prend en paramètre un numéro de département et renvoie un tableau avec toutes les communes de ce département.
+    Ecrire une fonction `tout_departement` qui prend en paramètre un numéro de département et renvoie un tableau avec toutes les communes de ce département.
 
         Exemple : 
         ``` py
@@ -163,7 +163,6 @@ Jusqu'ici on a fait l'hypothèse que tous les champs du fichier sont remplis et 
 Pour l'éviter, on peut faire des **tests de cohérence** et des **recherches de doublons**.
 
 
- tableau de tableaux des pays et cherchons dans quel pays se trouve 'Rome' :
 
 Prenons l'exemple tableau de tableaux des pays qui aurait été importé avec des données peu fiables :
 
@@ -185,9 +184,9 @@ Ces données vont créer plusieurs problèmes :
     File "<interactive input>", line 1, in <module>
     ValueError: invalid literal for int() with base 10: '68.0'
     ```
-- La capitale de l'Espagne n'est pas renseignée, c'est la valeur suivante, `'48'` qui sera utilisée à la place. Si on ne veut pas renseigner cette capitale, il faudrait écrire `..., ['Espagne', '', '48'], ...` ou `..., ['Espagne', None, '48'], ...` pour respecter les colonnes. Ici on peut noter l'avantage d'utiliser un tableau de dictionnaire où il suffirait d'omettre la clé d'une valeur qui n'est pas renseignée.
+- La capitale de l'Espagne n'est pas renseignée, c'est la valeur suivante, `'48'` qui sera utilisée à la place. Si on ne veut pas renseigner cette capitale, il faudrait écrire `..., ['Espagne', '', '48'], ...` ou `..., ['Espagne', None, '48'], ...` pour respecter les descriteurs de colonne. Ici on peut noter l'avantage d'utiliser un tableau de dictionnaire où il suffirait d'omettre la clé d'une valeur qui n'est pas renseignée.
 
-- Il y a un doublon sur l'Italie, quelle valeur utiliser pour sa capitale `Rome` ou `Roma`, et pour sa population dans les programmes ?
+- Il y a un doublon sur l'Italie, quelle valeur utiliser dans un programme pour la capitale, `Rome` ou `Roma`, et pour la population ?
 
 
 
@@ -224,13 +223,13 @@ Ces données vont créer plusieurs problèmes :
     ```
 
     La table n'est pas triée, il faut donc tester toutes les possibilités de doublons :
-
+    
+    ``` py
     def doublons():
         for i in range(len(codes)-1):
             for j in range(i+1, len(codes)) :
                 if codes[i] == codes[j]:
                     print(i, j)
 
-
-```
+    ```
 
