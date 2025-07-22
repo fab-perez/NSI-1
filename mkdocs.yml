@@ -169,5 +169,6 @@ nav:
 
   - Algorithmique: 
     - algorithmique/index.md
-    - Tris: algorithmique/2-tris.md 
+    - Tris: algorithmique/2-tris.md
+    - k plus proches voisins: algorithmique/3-kppv.md 
     - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
