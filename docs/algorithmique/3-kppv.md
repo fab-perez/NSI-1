@@ -2,118 +2,130 @@
 
 ## Apprentissage automatique (*machine learning *)
 
-L'apprentissage automatique, ou *machine learning* en anglais, est un domaine clé de l'intelligence artificielle. Il repose sur des méthodes mathématiques et statistiques qui permettent aux ordinateurs **d'apprendre à partir de données** : autrement dit, à améliorer leurs performances dans l'exécution de certaines tâches, sans que chaque étape soit explicitement programmée.
+L'apprentissage automatique, ou *machine learning* en anglais, est un domaine clé de l'**intelligence artificielle**. Il repose sur des méthodes mathématiques et statistiques qui permettent aux ordinateurs **d'apprendre à partir de données** : autrement dit, à améliorer leurs performances dans l'exécution de certaines tâches, sans que chaque étape soit explicitement programmée.
 
-### Les deux grandes étapes de l'apprentissage automatique
+L'apprentissage automatique se fait en deux étapes :
 
-1. **Phase d'apprentissage (ou entraînement)** : Le système analyse un ensemble de données connues (données d'entraînement) afin de construire un modèle. Ce modèle représente des relations ou des règles apprises à partir de ces données.
+1. Une phase d'**apprentissage (ou entraînement)** : Le système analyse un ensemble de données connues (données d'entraînement) afin de construire un modèle. Ce modèle représente des relations ou des règles apprises à partir de ces données.
 
-2. **Phase de mise en production (ou d'inférence)** : Une fois le modèle construit, on peut lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision selon la tâche ciblée.
-
-
+2. Une phase de **mise en production (ou d'inférence)** : Une fois le modèle construit, on peut lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision selon la tâche ciblée.
 
 
 
-### 🔍 Les trois types principaux d'apprentissage automatique
+On distingue trois principaux types d'apprentissage automatique :
 
 |Type d'apprentissage|Description|Exemples|
 |:-|:-|:-|
-|🧩 Apprentissage supervisé|Les données d'entraînement incluent les réponses attendues (« étiquettes »)|Prédiction météo, reconnaissance d'images|
-|🔍 Apprentissage non supervisé|Les données sont brutes, sans étiquettes ; l'algorithme doit trouver des structures cachées|Regroupement de clients, segmentation marketing|
-|🎮 Apprentissage par renforcement|Un agent autonome apprend en interagissant avec son environnement ; il reçoit des récompenses ou pénalités|Jeux d'échecs, optimisation robotique|
+|🧩 L'apprentissage supervisé|Les données d'entraînement incluent les réponses attendues (« étiquettes »)|Prédiction météo, reconnaissance d'images|
+|🔍 L'apprentissage non supervisé|Les données sont brutes, sans étiquettes ; l'algorithme doit trouver des structures cachées|Regroupement de clients, segmentation marketing|
+|🎮 L'apprentissage par renforcement|Un agent autonome apprend en interagissant avec son environnement ; il reçoit des récompenses ou pénalités|Jeux d'échecs, optimisation robotique|
 
 
-L'algorithme des k plus proches voisins (KPPV) (ou KNN pour *k-nearest neighbors*) fait partie de la famille des **apprentissages automatiques supervisés**. Il est souvent utilisé pour résoudre des problèmes de régression[^3.1] ou de classification[^3.2]. 
-
-[^3.1]: Un problème de régression consiste à estimer la valeur d'une donnée à partir des valeurs d'autres données connues,  par exemple prédire le prix d'un bien immobilier selon ses caractéristiques.
-
-[^3.2]: Un problème de classification consiste à déterminer à quelle classe appartient une donnée à partir des classes d'autres données connues, par exemple déterminer à quelle famille appartient un iris à partir de la longueur et la largeur des sépales et des pétales (Iris de Fischer).
+L'algorithme des k plus proches voisins (KPPV) (ou KNN pour *k-nearest neighbors*) fait partie de la famille des **apprentissages automatiques supervisés**. 
 
 
 Il existe d'autres formes d'apprentissage automatique, par exemple les algorithmes d'apprentissage profond (ou *deep learning*) qui s'appuient sur des réseaux de neurones artificiels à plusieurs couches, d'où le nom « profond », tels que les grands modèles de langages (ou LLLM pour *large language models*) : ChatGPT, Gemini, Mistral, etc.
 
 
-## Principe des KPPV
+## Principe de l'algorithme
 
 
 !!! abstract "Cours" 
-    L'algorithme des k plus proches voisins (KPPV) ou *k-nearest neigbors* (KNN) prédit la valeur ou la classe d'une nouvelle donnée à partir des k plus proches données parmi des données d'entraînement. La proximité est souvent mesurée à l'aide de la **distance euclidienne**[^3.3].
-
-[^3.3]: D'autres distances existent, par exemple la distance de Manhattan calculée en utilisant les déplacements horizontaux et verticaux.
-
-Prenons un exemple simple simple de classification : On dispose de 6 données d'entraînement identifiées par des valeurs x et y et appartenant à deux classes: des carrés bleus et des triangles rouges. On peut représenter ces données dans un plan :
-
-![Données d'apprentissage contenant 3 triangles rouges et 3 carrés bleus](assets/3-kppv-donnees-d-apprentissage.png){width=45% align=right}
+    L'algorithme des k plus proches voisins (KPPV) ou *k-nearest neigbors* (KNN) permet de résoudre des problèmes de **régression** (estimer la valeur d'une nouvelle donnée) ou de **classification** (déterminer à quelle classe appartient une nouvelle donnée) à partir des k plus proches parmi des **données d'entraînement**. La proximité est souvent mesurée à l'aide de la **distance euclidienne**[^3.1].
+ 
 
 
-|(x, y)|Classe|
-|:-:|:-|
-| (1, 2) |Carré bleu|
-| (2, 5) |Triangle rouge|
-| (4, 1) |Carré bleu|
-| (5, 4) |Triangle rouge|
-| (6, 2) |Carré bleu|
-| (6, 6) |Triangle rouge|
+[^3.1]: D'autres distances existent, par exemple la distance de Manhattan calculée en utilisant les déplacements horizontaux et verticaux.
 
-On cherche maintenant à déterminer la classe d'une nouvelle donnée, de valeur x = 4 et y = 3. Est-ce que cette nouvelle donnée est un carré bleu ou triangle rouge ?  Pour l'instant on la représente dans le plan par une étoile verte.
+Prenons un exemple simple de classification. Les bonbons rouges d'un célèbre confiseur appartiennent à deux **classes** différentes, certains sont au goût fraise, d'autres sont au goût framboise. On veut déterminer la classe d'un bonbon rouge inconnu. Pour nous aider, on dispose de 5 bonbons de chaque classe, ce sont les **données d'entraînement**, dont on a mesuré le poids et la taille. Il est très difficile de les différencier à vue d'oeil mais Les bonbons au goût fraise sont souvent un peu plus grands et plus légers que ceux au goût framboise.  
+
+
+On a mesuré les valeurs suivantes sur les données d'entraînement :
+
+
+![Données d'entraînement contenant 5 bonbons fraises et 6 bonbons framboises ](assets/3-kppv-donnees-d-entrainement.png){width=50% align=right}
+
+
+|poids (g)|taille (mm)|classe|
+|:-:|:-:|:-|
+| 5 | 7 | fraise |
+| 6 | 8 | fraise |
+| 6 | 6 | fraise |
+| 7 | 5 | framboise |
+| 7 | 9 | fraise |
+| 8 | 8 | fraise |
+| 9 | 6 | framboise |
+| 9 | 8 | framboise |
+| 10 | 5 | framboise |
+| 11 | 7 | framboise |
+
+
+On veut déterminer la classe d'une nouvelle donnée: un bonbon rouge inconnu. On sait qu'il pèse 8 g et mesure 7 mm mais est-ce un bonbon au goût fraise ou au goût framboise ?  
 
 🔍 Étape 1 : calcul des distances
 
-La distance euclidienne entre deux points de coordonnées $(x_1, y_1)$ et $(x_2,y_2)$ est donnée par la formule :  $d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ [^3.4].
+La distance euclidienne entre deux points de coordonnées $(x_1, y_1)$ et $(x_2,y_2)$ dans le plan[^3.2] est donnée par la formule :  $d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ .
 
-Calculons les distances entre les données d'entraînement et la nouvelle donnée :
+Calculons les distances entre chaque donnée d'entraînement et cette nouvelle donnée :
 
-[^3.4]: Dans un repère orthnormé.
+[^3.2]: avec un repère orthonormé.
 
-![Calcul des distances](assets/3-kppv-calcul-des-distances-2.png){width=45% align=right}
+![Calcul des distances](assets/3-kppv-calcul-des-distances.png){width=50% align=right}
 
-|(x,y)|Classe|Distance de (4, 3)|
-|:-:|:-|:-:|
-| (1, 2) |Carré bleu|3.2|
-| (2, 5) |Triangle rouge|2.8|
-| (4, 1) |Carré bleu|2.0|
-| (5, 4) |Triangle rouge|1.4|
-| (6, 2) |Carré bleu|2.2|
-| (6, 6) |Triangle rouge|3.6|
+|poids (g)|taille (mm)|classe|distance|
+|:-:|:-:|:-|:-:|
+| 5 | 7 | fraise | 3.0 |
+| 6 | 8 | fraise | 2.24 |
+| 6 | 6 | fraise | 2.24 |
+| 7 | 5 | framboise | 2.24 |
+| 7 | 9 | fraise | 2.24 |
+| 8 | 8 | fraise | 1.0 |
+| 9 | 6 | framboise | 1.41 |
+| 9 | 8 | framboise | 1.41 |
+| 10 | 5 | framboise | 2.83 |
+| 11 | 7 | framboise | 3.0 |
 
 
 
 🎨 Étape 2 : vote des k voisins
 
-![Classement avec les 3 plus proches voisins](assets/3-kppv-choix-k-1-3.png){width=45% align=right}
+![Classement avec les 3 plus proches voisins](assets/3-kppv-choix-k-1-3.png){width=50% align=right}
 
-L'approche la plus simple consiste à utiliser la classe du voisin le plus proche, c'est-à-dire prendre k = 1. C'est la donnée d'entraînement en (5, 4) qui se trouve à une distance de 1.4 de la nouvelle donnée: c'est un triangle rouge. 👉 On en déduit que la nouvelle donnée de valeurs (4, 3) est de la même classe, c'est donc un « triangle rouge ».
+L'approche la plus simple consiste à utiliser la classe du voisin le plus proche parmi les données d'entraînement, c'est-à-dire k = 1. C'est le bonbon qui pèse 8 g et mesure 8 mm qui se trouve à une distance de 1 de la nouvelle donnée: il est au goût fraise. 
 
-
-Une autre approche consiste à prendre compte plusieurs voisins, par exemple 3 voisins, c'est-à-dire prendre k = 3. Les 3 données d'entraînement les plus proches sont : 
-
-- (4, 5) → Triangle rouge
-
-- (4, 1) → Carré bleu
-
-- (6, 2) → Carré bleu
+👉 Le bonbon inconnu est de la même classe que son voisin le plus proche, il est donc au goût fraise.
 
 
-Parmi ces 3 voisins, non trouve donc 2 carrés bleus contre 1 seul triangle rouge.  👉 On en déduit que la nouvelle donnée de valeurs (4, 3) est un carré bleu.
+Mais on peut aussi prendre une autre approche qui consiste à prendre compte plusieurs voisins, par exemple les 3 voisins les plus proches, c'est-à-dire k = 3. Parmi les 3 bonbons les plus proches, un est au goût fraise et deux au goût framboise.  
 
-Comme on peut le voir, le choix de la valeur de k utilisée dans l'algorithme est déterminant sur le résultat obtenu ! 
+👉 Le bonbon inconnu est de la classe majoritaire de ses 3 voisins les plus proches, il est donc au goût framboise.
 
-Note: On choisit en principe une valeur impaire de k pour éviter les cas d'égalité entre plusieurs classes.
+Comme on peut le voir, le choix de la valeur de k utilisée dans l'algorithme est déterminant sur le résultat obtenu ! La phase d'apprentissage permet de choisir la meilleure valeur de k[^3.3]. On choisit en principe un nombre impair pour éviter les cas d'égalité entre plusieurs classes.
 
+[^3.3] une méthode classique est la validation croisée (*cross validation*).
 
+Dans cette exemple, nous avons étudié un problème de classification. Dans le cas d'un problème de régression, l'approche est la même en calculant la valeur moyenne des k plus proches voisins plutôt que la classe majoritaire.
+
+## Coût de l'algorithme
+Etudions le côut de l'algorithme des k plus proches voisins. Pour $n$ données d'entraînement, l'algorithme consiste à parcourir chaque donnée pour calculer sa distance avec la donnée inconnue. Le coût est donc **linéaire en $O(n)$**. 
+
+Le tri du tableau des distance rajoute ici une compléxité supplémentaire, en $O(n^2)$ pour les tris les moins efficaces. Néanmoins on peut très bien se passer de ce tri pour optimiser l'algorithme et enregistrer directement les classes ou les valeurs des k plus proches voisins pendant le calcul des distances.
+
+## Exemple : Iris de Fisher
+
+Le jeu de données Iris connu aussi sous le nom de Iris de Fisher est un jeu de données multivariées présenté en 1936 par Ronald Fisher dans son papier « The use of multiple measurements in taxonomic problems » comme un exemple d'application de l'analyse discriminante linéaire. […]
+
+Le jeu de données comprend 50 échantillons de chacune des trois espèces d'iris (Iris setosa, Iris virginica et Iris versicolor).  Quatre caractéristiques ont été mesurées à partir de chaque échantillon : la longueur et la largeur des sépales et des pétales, en centimètres. Sur la base de la combinaison de ces quatre variables, Fisher a élaboré un modèle d'analyse discriminante linéaire permettant de distinguer les espèces les unes des autres.
+
+||||
+|:-:|:-:|:-:|
+|![Iris setosa](assets/500px-Kosaciec_szczecinkowaty_Iris_setosa.jpg)Iris setosa|![Iris versicolor](assets/960px-Iris_versicolor_3.jpg)Iris versicolor|![Iris setosa](assets/960px-Iris_virginica.jpg)Iris virginica|
+
+Basé sur le modèle d'analyse linéaire discriminante de Fisher, ce jeu de données est devenu un cas typique pour de nombreuses techniques de classification automatique en apprentissage automatique (*machine learning*).
+
+Source : [https://fr.wikipedia.org/wiki/Iris_de_Fisher](https://fr.wikipedia.org/wiki/Iris_de_Fisher)
 
 !!! question "Exercice corrigé" 
-    Le jeu de données Iris connu aussi sous le nom de Iris de Fisher est un jeu de données multivariées présenté en 1936 par Ronald Fisher dans son papier « The use of multiple measurements in taxonomic problems » comme un exemple d'application de l'analyse discriminante linéaire. […]
-
-    Le jeu de données comprend 50 échantillons de chacune des trois espèces d'iris (Iris setosa, Iris virginica et Iris versicolor).  Quatre caractéristiques ont été mesurées à partir de chaque échantillon : la longueur et la largeur des sépales et des pétales, en centimètres. Sur la base de la combinaison de ces quatre variables, Fisher a élaboré un modèle d'analyse discriminante linéaire permettant de distinguer les espèces les unes des autres.
-
-    ||||
-    |:-:|:-:|:-:|
-    |![Iris setosa](assets/500px-Kosaciec_szczecinkowaty_Iris_setosa.jpg)Iris setosa|![Iris versicolor](assets/960px-Iris_versicolor_3.jpg)Iris versicolor|![Iris setosa](assets/960px-Iris_virginica.jpg)Iris virginica|
-  
-    Basé sur le modèle d'analyse linéaire discriminante de Fisher, ce jeu de données est devenu un cas typique pour de nombreuses techniques de classification automatique en apprentissage automatique (*machine learning*).
-
-    Source : [https://fr.wikipedia.org/wiki/Iris_de_Fisher](https://fr.wikipedia.org/wiki/Iris_de_Fisher)
 
     1.  Copier le fichier [« iris.csv »](assets/iris.csv) dans vos documents et visualiser avec le blocnote son contenu. Quel est le caractère utilisé pour séparer les données dans le fichier ? Quels sont les descripteurs des données ?
 
@@ -200,7 +212,7 @@ Note: On choisit en principe une valeur impaire de k pour éviter les cas d'éga
         def trier_par_distance(inconnu):
             """ dict -> list[dict]
             Renvoie un tableau de dictionnaires {'id':_, 'distance':_, 'espece':_}
-            pour chaque iris d'entrainement, triés par distance décroissantes
+            pour chaque iris d'entrainement, triés par distances croissantes
             """
             distances = []
             for i in iris:
