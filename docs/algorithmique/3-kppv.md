@@ -4,27 +4,26 @@
 
 L'apprentissage automatique, ou *machine learning* en anglais, est un domaine clé de l'**intelligence artificielle**. Il repose sur des méthodes mathématiques et statistiques qui permettent aux ordinateurs **d'apprendre à partir de données** : autrement dit, à améliorer leurs performances dans l'exécution de certaines tâches, sans que chaque étape soit explicitement programmée.
 
-L'apprentissage automatique se fait en deux étapes :
-
-1. Une phase d'**apprentissage (ou entraînement)** : Le système analyse un ensemble de données connues (données d'entraînement) afin de construire un modèle. Ce modèle représente des relations ou des règles apprises à partir de ces données.
-
-2. Une phase de **mise en production (ou d'inférence)** : Une fois le modèle construit, on peut lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision selon la tâche ciblée.
-
+L'apprentissage automatique comporte généralement deux phases. Une première phase d'**apprentissage (ou entraînement)** consiste à analyser un ensemble de données connues (données d'entraînement) afin de construire un modèle. Une fois ce modèle déterminé, la seconde phase de **production (ou d'inférence)** consiste à lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision.
 
 
 On distingue trois principaux types d'apprentissage automatique :
 
 |Type d'apprentissage|Description|Exemples|
 |:-|:-|:-|
-|🧩 L'apprentissage supervisé|Les données d'entraînement incluent les réponses attendues (« étiquettes »)|Prédiction météo, reconnaissance d'images|
-|🔍 L'apprentissage non supervisé|Les données sont brutes, sans étiquettes ; l'algorithme doit trouver des structures cachées|Regroupement de clients, segmentation marketing|
-|🎮 L'apprentissage par renforcement|Un agent autonome apprend en interagissant avec son environnement ; il reçoit des récompenses ou pénalités|Jeux d'échecs, optimisation robotique|
+|🧩 L'apprentissage supervisé|Les données d'entraînement incluent les réponses attendues|Prédiction météo, reconnaissance d'images|
+|🔍 L'apprentissage non supervisé|Les données sont brutes, l'algorithme doit trouver des structures cachées|Regroupement de clients, segmentation marketing|
+|🎮 L'apprentissage par renforcement|L'algorithme apprend en interagissant avec son environnement, il reçoit des récompenses ou pénalités|Jeux d'échecs, optimisation robotique|
 
 
-L'algorithme des k plus proches voisins (KPPV) (ou KNN pour *k-nearest neighbors*) fait partie de la famille des **apprentissages automatiques supervisés**. 
+![L'apprentissage automatique en AI et les types d'apprentissage](assets/3-kppv-apprentissage-automatique-light-mode.png#only-light)
+![L'apprentissage automatique en AI et les types d'apprentissage](assets/3-kppv-apprentissage-automatique-dark-mode.png#only-dark)
 
 
-Il existe d'autres formes d'apprentissage automatique, par exemple les algorithmes d'apprentissage profond (ou *deep learning*) qui s'appuient sur des réseaux de neurones artificiels à plusieurs couches, d'où le nom « profond », tels que les grands modèles de langages (ou LLLM pour *large language models*) : ChatGPT, Gemini, Mistral, etc.
+L'algorithme des k plus proches voisins (KPPV) est un algorithme d'**apprentissage automatique supervisé**. 
+
+
+Il existe d'autres formes d'apprentissage automatique, par exemple les algorithmes d'apprentissage profond (ou *deep learning*) qui s'appuient sur des réseaux de neurones artificiels à plusieurs couches (d'où le nom « profond »), tels que les grands modèles de langages (ou LLM pour *large language models*) : ChatGPT, Gemini, Le Chat Mistral, etc.
 
 
 ## Principe de l'algorithme
