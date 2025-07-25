@@ -3,81 +3,79 @@
 ![Exemple de rectangle de 13x11](assets/5-rectangle-vide.png){width=30% align=right}
 
 
-Prenons un premier exemple simple : comment recouvrir un rectangle, par exemple de dimension 13x11, avec un minimum de carrés, pas forcément tous identiques ? C'est un problème de « pavage » du plan.
+Prenons un premier exemple simple, un pavage de plan : comment recouvrir un rectangle, par exemple de dimension 13x11, avec un minimum de carrés, pas forcément tous identiques ? 
 
+Pour minimiser le nombre de carrés recouvrant le rectangle, une idée simple consiste à :
 
-On retrouve une caractéristique des nombreux problèmes pour lesquels les algorithmes gloutons sont utilisés : lorsqu'on a une **sélection** à effectuer sur un ensemble d'objets en cherchant à **maximiser** ou **minimiser** une certaine grandeur tout en respectant certaines **contraintes**. C'est un problème d'optimisation par contrainte.
+1. Placer le plus grand carré possible dans le rectangle à recouvrir.
 
-L'algorithme glouton consiste à utiliser à chaque étape le plus grand carré possible, afin de recouvrir d'un coup la plus grande partie possible du rectangle, et ainsi d'utiliser le minimum de carrés possibles. Dans notre exemple, on a donc les étapes suivantes :
+2. Recommencer l'étape 1 sur la partie du rectangle qui n'est pas recouvert, jusqu'à ce que tout soit recouvert. 
 
-1. On place donc un carré de dimension 11x11.
+C'est le principe d'un **algorithme glouton**.
 
-2. Ensuite, on considère la surface vide restante. Les plus grands carrés que l'on peut placer ont une dimension de 2x2. On en place 5. 
+Dans notre exemple, l'algorithme va recouvrir le rectangle en 8 étapes :
 
-3. Enfin, il ne reste qu'une petite surface à couvrir dans laquelle on doit placer 2 petits carrés de dimension 1x1.
-
-
-|Etape 1|Etape 2|Etape 3|
+|Etape 1|Etapes 2 à 6|Etapes 7 et 8|
 |:-:|:-:|:-:|
 |![Exemple de rectangle de 13x11 rempli avec un carré de 11x11](assets/5-rectangle-glouton-1.png)|![Exemple de rectangle de 13x11 rempli avec un carré de 11x11 et 5 carrés de 2x2](assets/5-rectangle-glouton-2.png)|![Exemple de rectangle de 13x11 rempli avec un carré de 11x11, 5 carrés de 2x2 et 2 carrés 1x1](assets/5-rectangle-glouton-3.png)|
-|On place d'abord le plus grand carré possible 11x11|Puis 5 carrés 2x2 dans l'espace restant| Et enfin 2 carrés 1x1.|
+|On place d'abord le plus grand carré possible de dimension 11x11|Puis 5 carrés de dimension 2x2 dans l'espace restant| Et enfin 2 carrés de dimension 1x1.|
 
-Au final on a donc trouvé une solution au problème en utilisant 8 carrés.
+L’algorithme glouton trouve une solution au problème en utilisant 8 carrés. 
 
-On observe dans cette exemple un deuxième caractéristique des algorithmes gloutons : à chaque étape de l'algorithme on prend **la meilleure décision possible**  (choisir le plus grand carré possible), puis on continue avec un problème **de plus en plus petit** à résoudre (on diminue la taille du rectangle). Dans ce type de résolution, il n'y a **pas de retour en arrière**. Lorsqu'un choix est fait, il n'est pas modifié par la suite. 
+Quelques remarques :
 
-Mais est-ce la meilleure solution, c'est-à-dire le nombre minimum de carrés utilisés ?
-La réponse est non, lon pouvait faire mieux !
+- Le problème posé est ce qu'on appelle un problème d'optimisation sous contrainte, autrement dit un problème qui consiste à faire une **sélection** en cherchant à **maximiser** ou **minimiser** une certaine quantité tout, en respectant certaines **contraintes**. Les algorithmes gloutons se prêtent bien à la résolution de tels problèmes.
+
+- On observe qu'à chaque étape, l'algorithme choisit **la meilleure décision possible**  (le plus grand carré possible), puis continue avec un problème **de plus en plus petit** à résoudre (la taille du rectangle à recouvrir diminue). Il n'y a **pas de retour en arrière**. Lorsqu'un choix est fait, il n'est pas modifié par la suite. 
+
+- Mais est-ce la meilleure solution, c'est-à-dire le nombre minimum de carrés utilisés ? La réponse est non car on pouvait faire mieux !
+
 ![Solution optimale avec 6 carrés](assets/5-rectangle-optimal.png){width=30%}
 
-On observe sur cet exemple une dernière caractéristique des algorithmes gloutons : ils **ne donnent pas toujours la solution optimale** à un problème.
+C'est le propre des algorithmes gloutons : ils **ne trouvent pas toujours la solution optimale** à un problème.
 
 
 !!! abstract "Cours" 
-    Un algorithme glouton est un algorithme dans lequel on procède étape par étape en prenant à chaque étape **la meilleure décision possible**  pour mener à un problème **de plus en plus petit** à résoudre, sans ce soucier de la forme du problème global et sans « retourner » en arrière. Lorsqu'un choix est fait, il n'est pas modifié par la suite.
+    Un algorithme glouton procède étape par étape en prenant à chaque étape **la meilleure décision possible**  pour mener à un problème **de plus en plus petit** à résoudre, sans ce soucier de la forme du problème global et sans « retourner » en arrière. Lorsqu'un choix est fait, il n'est pas modifié par la suite.
 
-    Un algorithme glouton **ne donnent pas systématiquement la solution optimale** à un problème.
+    :warning:Un algorithme glouton **ne trouve pas toujours la solution optimale** à un problème.
     
   
 
 
-Voyons maintenant quelques exemples classiques et leur programmation en Python.
+Voyons maintenant quelques exemples classiques de résolution de problème par un algorithme glouton et leur programmation en Python.
 
 ## Rendu de monnaie
 
-Dans le système monétaire de la zone euro, les pièces et billets prennent pour valeurs 1, 2, 5, 10, 20, 50, 100, 200 et 500 euros. Dans la suite de l'activité on ne fait pas de différence entre billets et pièces.
-
-Le système de monnaie peut être représenté par le tableau de pièces suivant :
+Dans le système monétaire de la zone euro, les pièces et billets prennent pour valeurs 1, 2, 5, 10, 20, 50, 100, 200 et 500 euros, que l'on peut représenter par le tableau de pièces (et billets) suivant :
 
 ``` py
 pieces = [1, 2, 5, 10, 20, 50, 100, 200, 500]
 ```
 
-Supposons maintenant qu'on doive rendre 49 euros de monnaie. Quelles pièces peuvent être rendues ? Il existe plusieurs réponses, par exemple deux pièces de 20, 1 pièce de 5 et deux pièces de 2 conviennent. Mais quarante-neuf pièces de 1 conviennent aussi.
+Le problème est le suivant : Comment rendre un montant donné, par exemple 49 euros, en utilisant des pièces (et billets) de ces valeurs. Il existe plusieurs réponses, par exemple deux pièces de 20, 1 pièce de 5 et deux pièces de 2 conviennent. Mais quarante-neuf pièces de 1 conviennent aussi. Mais si le problème consiste maintenant à rendre 49 euros avec un minimum de pièces, il n'y a alors qu'une solution. 
 
-Mais si on souhaite rendre 49 euros avec un minimum de pièces, il n'y a qu'une solution. C'est le problème du **rendu de monnaie**, un problème d'algorithmique qui consiste à **rendre un montant avec le nombre minimal de pièces** (et billets) choisies parmi une liste de valeurs donnée. Ici on retrouve les caractéristiques d'un problème qun problème d'optimisation par contrainte : Sélectionner des pièces en nombre minimum avec une contrainte sur les valeurs de pièces que l'on peut utiliser.
+C'est le problème du **rendu de monnaie**, un problème d'optimisation par contrainte qui consiste à **rendre un montant avec le nombre minimal de pièces** (et billets) choisies parmi une liste de valeurs donnée.
 
 
 Analysons le problème en prenant quelques exemples :
 
 - Le minimum de pièces pour rendre 9 est de 3 pièces : 5 + 2 + 2.
 
-- Le minimum de pièces pour rendre 37 est de 4 pièces : 20 + 10 + 5 + 2.
+- Le minimum de pièces pour rendre 37 est de 4 pièces et billets : 20 + 10 + 5 + 2.
 
-- Le minimum de pièces pour rendre 743 est de 6 pièces : 500 + 200 + 20 + 20 + 2 + 1.
+- Le minimum de pièces pour rendre 743 est de 6 pièces et billets : 500 + 200 + 20 + 20 + 2 + 1.
 
 On observer qu'on trouve les pièces en ordre décroissant. En effet, l'algorithme suivi écrit en langage naturel est le suivant :
 
-- liste_rendu = liste vide
+- `liste_rendu` = liste vide
 
-- Tant que a_rendre > 0:
-    - choisir la plus grande pièce inférieure à a_rendre
-    - mettre cette pièce dans liste_rendu
-    - diminuer a_rendre de la valeur de la pièce
+- Tant que `a_rendre` > 0:
+    - choisir la plus grande valeur de `pieces` inférieure à `a_rendre`
+    - mettre cette valeur dans `liste_rendu`
+    - diminuer `a_rendre` de la valeur
 
-
-A chaque étape de l'algorithme on prend **la meilleure décision possible**  (choisir la plus grande pièce inférieure à la somme à rendre), puis on continue avec un problème **de plus en plus petit** à résoudre (on diminue la somme à rendre). Dans ce type de résolution, il n'y a **pas de retour en arrière**. Lorsqu'un choix est fait, il n'est pas modifié par la suite. C'est bien le principe d'un algorithme glouton.
-
+C'est bien un algorithme glouton. A chaque étape, l'algorithme prend **la meilleure décision possible**  (choisir la plus grande pièce inférieure à la somme à rendre), puis continue avec un problème **de plus en plus petit** à résoudre (la somme à rendre diminue de la dernière pièce choisie). Il n'y a **pas de retour en arrière**, lorsqu'un choix est fait, il n'est pas modifié par la suite. 
 
 Traduit en Python, on obtient le programme suivant :
 
@@ -113,7 +111,7 @@ assert rendre_monnaie(pieces, 37) == [20, 10, 5, 2]
 assert rendre_monnaie(pieces, 743) == [500, 200, 20, 20, 2, 1]
 ```
 
-On utilise maintenant un système de pièces différents de celui de la zone euro :
+Prenons maintenant un système de pièces différents de celui de la zone euro :
 
 ``` py
 pieces2 = [1, 3, 6, 12, 24, 30]
@@ -130,7 +128,6 @@ Essayons quelques montants à rendre :
 On observe rapidement que l'algorithme glouton ne renvoie pas le nombre minimal de pièces à rendre, on pouvait rendre 48 avec deux pièces de 24; 49 avec deux pièces de 24 et une pièce de 1, etc. 
 
 
-
 ## Problème du sac à dos
 
 On dispose d'un sac à dos avec une capacité maximum de poids à transporter de 15 kg. On a le choix d'emporter certains des objets dont on connait le poids et la valeur :
@@ -142,18 +139,18 @@ On dispose d'un sac à dos avec une capacité maximum de poids à transporter de
 |Poids (kg)| 12 | 4 | 2 |1 | 1 | 
 |Prix (€) |  40 | 100 | 20 | 20 | 10 | 
 
-Quels objets faut-il choisir pour obtenir une valeur totale maximale tout en ne dépassant pas 15 kg ? C'est un problème d'optimisation par contrainte.
+Quels objets faut-il choisir pour obtenir une valeur totale maximale tout en ne dépassant pas 15 kg ? C'est encore un problème d'optimisation par contrainte.
 
-On voit tout de suite que l'objet 1 est intéressant car il n'est pas lourd mais a beaucoup de valeur. Par contre l'objet 0 est beaucoup moins intéressant car il est lourd et n'a pas beaucoup de valeur. Une règle de choix pertinente pour un algorithme glouton consiste donc à choisir en premier les objets qui ont la plus grande valeur par unité de poids. Ainsi l'objet 1 a une valeur de 25 €/kg (100/4 = 25) alors que l'objet de 0 a une valeur d'environ 3.3 €/kg (40/12 = 3.333…).
+On voit tout de suite que l'objet 1 est intéressant car il n'est pas lourd mais a beaucoup de valeur. Par contre l'objet 0 est beaucoup moins intéressant car il est lourd et n'a pas beaucoup de valeur. Une règle de choix pertinente pour un algorithme glouton consiste donc à choisir en premier les objets qui ont la plus grande valeur par unité de poids. Ainsi, l'objet 1 a une valeur de 25 €/kg (100/4 = 25) alors que l'objet de 0 a une valeur d'environ 3.3 €/kg (40/12 = 3.333…).
 
 L'algorithme glouton est le suivant :
 
-- poids_sac = 0
-- valeur_sac = 0
+- `poids_sac` = 0
+- `valeur_sac` = 0
 - Parcourir les objets triés en ordre décroissant de valeur/poids :
-    - Si le poids de l'objet plus le poids des objets déjà dans le sac ne dépasse pas le poids autorisé : ajouter le poids de l'objet à poids_sac et sa valeur à valeur_sac.
+    - Si le poids de l'objet plus le poids des objets déjà dans le sac ne dépasse pas le poids autorisé : ajouter le poids de l'objet à `poids_sac` et sa valeur à `valeur_sac`.
     - Sinon, ne pas mettre l'objet dans le sac.
-- Renvoyer valeur_sac.
+- Renvoyer `valeur_sac`.
 
 Traduit en Python, on obtient le programme suivant :
 
