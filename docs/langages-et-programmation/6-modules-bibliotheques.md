@@ -121,7 +121,7 @@ Help on module mesfonctions:
 
 ##	`from … import …`
 
-Il existe une autre méthode pour importer des fonctions ou constantes depuis un module. Admettons que le module `mesfonctions` contienne des dizaines de fonctions, mais que nous ayons uniquement besoin dans notre programme de la fonction `est_premier`, dans ce cas il est préfèrable d'importer uniquement cette fonction plutôt que tout le module en utilisant l'instruction ``from mesfonctions import est_premier`. 
+Il existe une autre méthode pour importer des fonctions ou constantes depuis un module. Admettons que le module `mesfonctions` contienne des dizaines de fonctions, mais que nous ayons uniquement besoin dans notre programme de la fonction `est_premier`, dans ce cas il est préférable d'importer uniquement cette fonction plutôt que tout le module en utilisant l'instruction ``from mesfonctions import est_premier`. 
 
 ``` py linenums="1"
 from  mesfonctions import est_premier
@@ -176,7 +176,7 @@ voire même toutes les fonctions d'un module en tapant « `*` » à la place du 
 from mesfonctions import *
 ```
 
-Mais cette dernière utilisation est vivement déconseillée, hormis dans des cas très particuliers par exemple des programmes très courts, car il peut y avoir des conflits entre des fonctions qui ont le même nom. Pour s’en convaincre, imaginons un programme écrit en utilisant l'instruction `pow(1, 2, 3)` qui fonctionnerait parfaitement jusqu'à ce qu'une modification necessitant le module `math` ajoute l'instruction `from math import *` en début de programme et génère une erreur inattendue [^6.2] là où il n'y en avait pas.
+Mais cette dernière utilisation est vivement déconseillée, hormis dans des cas très particuliers par exemple des programmes très courts, car il peut y avoir des conflits entre des fonctions qui ont le même nom. Pour s’en convaincre, imaginons un programme écrit en utilisant l'instruction `pow(1, 2, 3)` qui fonctionnerait parfaitement jusqu'à ce qu'une modification nécessitant le module `math` ajoute l'instruction `from math import *` en début de programme et génère une erreur inattendue [^6.2] là où il n'y en avait pas.
 
 [^6.2]: La fonction standard Python `pow()` prend trois paramètres alors que la fonction `pow()` du module `math` n'en a que deux ! L'import de `from math import *` a importé la seconde fonction probablement à l'insu du programmeur.
 
@@ -185,7 +185,7 @@ Python offre des centaines de modules avec des milliers de fonctions déjà prog
 
 - ceux que l’on peut faire soi-même (comme `mesfonctions`).
 - ceux qui sont inclus dans la bibliothèque standard de Python comme `random` ou `math`,
-- ceux que l’on peut rajouter en les installant séparemment comme `numpy` ou `matplotlib`.
+- ceux que l’on peut rajouter en les installant séparément comme `numpy` ou `matplotlib`.
 
 ##	De l'utilité de la fonction 'main()'
 
@@ -302,7 +302,7 @@ Il y en a beaucoup d’autres, tant dans la nature (https://github.com/search?q=
 |`numpy`|Permet de faire du calcul scientifique.|
 |`time`|Fonctions permettant de travailler avec le temps.|
 |`turtle`|Fonctions de dessin.|
-|`doctest`|Execute des tests ecrits dans la docstring d’une fonction.|
+|`doctest`|Execute des tests écrits dans la docstring d’une fonction.|
 
 La fonction `dir` permet d’explorer le contenu d’un module :
 

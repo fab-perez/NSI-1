@@ -56,7 +56,7 @@ La structure `if-else` permet de gérer le cas où la condition est fausse :
         instructions_sinon
     ```
 
-> L'instuction `else` n'a pas de condition, elle est toujours suivie des deux-points « `:` » .
+> L’instruction `else` n'a pas de condition, elle est toujours suivie des deux-points « `:` » .
 
 ``` py linenums="1"
 age = int(input("Quel age avez-vous ?"))
@@ -131,7 +131,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
     Par exemple, si on affecte la valeur `15` à la variable `age`,  la première condition en ligne 1 `if age >= 18:` est fausse, le programme passe donc à la conditions suivante `elif age >= 12:…`, celle-ci est vérifiée, il exécute donc la ligne 4  `stade = "ado"` et n'a pas besoin de vérifier la condition suivante en ligne 5 `elif age >=2 :…` ni d'exécuter le `else:…`. Dès que la condition `elif age >= 12:…` a été vérifiée, il sort de toute l'instruction conditionnelle pour reprendre à la ligne 10 et afficher le message `Vous êtes ado, vous avez 15 ans`. 
 
 !!! info "Rappel" 
-    Eviter les conditions d'égalité avec les nombres de type float. Par exemple : 
+    Éviter les conditions d'égalité avec les nombres de type float. Par exemple : 
     ``` py
     if 2.3 - 0.3  == 2:
         print('Python sait bien calculer avec les float')
@@ -140,7 +140,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
     ```
 
 !!! tip "PEP 8" 
-    Eviter de comparer des variables booléennes à `True` ou `False` avec `==` ou avec `is`. 
+    Éviter de comparer des variables booléennes à `True` ou `False` avec `==` ou avec `is`. 
     
     On écrit :
     ``` py
@@ -335,13 +335,13 @@ Elle affiche dans la console :
 
 Il est aussi possible d'utiliser :
 
-- `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`. [^4.1]
+- `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`.[^4.1]
 
-[^4.1]: `range(d, f)` montre l'avantage d'exclure la borne supérieure, il y `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l'a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
+[^4.1]: L'avantage d'exclure la borne supérieure apparait clairement dans l'instruction `range(d, f)` qui comprend `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l'a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
 
 - `range(d, f, p)` qui énumère les nombres entiers compris entre `d` et `f-1` avec un pas de `p` : `d`, `d+p`, `d+2p`, etc. [^4.2]
 
-[^4.2]:L'instruction `range()` fonctionne sur le modèle `range([début,] fin [, pas])`. Les arguments entre crochets sont optionnels.
+[^4.2]: L'instruction `range()` fonctionne sur le modèle `range([début,] fin [, pas])`. Les arguments entre crochets sont optionnels.
 
 
 La boucle bornée ci-dessus est très similaire à la boucle non bornée suivante :
@@ -423,7 +423,7 @@ Autre différence, quand on modifie l'indice de boucle dans une boucle `for`, il
     La valeur de `i` est modifiée à l'intérieur de la boucle.
 
 
-    A chaque passage dans une boucle `for`, l'indice de boucle repart de sa valeur au dernier passage dans la boucle, même si cette valeur a changé dans la boucle. En pratique, il n'est pas recommendé de changer sa valeur dans la boucle.
+    A chaque passage dans une boucle `for`, l'indice de boucle repart de sa valeur au dernier passage dans la boucle, même si cette valeur a changé dans la boucle. En pratique, il n'est pas recommandé de changer sa valeur dans la boucle.
 
 
 La boucle `for` possède d'autres possibilités très utiles, par exemple elle permet d'énumérer chaque caractère d'une chaine de caractères. Le programme ci-dessous affiche chaque lettre d'une variable message l'une après l'autre.
@@ -440,8 +440,8 @@ Il existe deux instructions qui permettent de modifier l'exécution des boucles 
 
 
 !!! abstract "Cours" 
-    ![Instuction break](assets/4-constructions-break-light-mode.png#only-light){align=right}
-    ![Instuction break](assets/4-constructions-break-dark-mode.png#only-dark){align=right}
+    ![Instruction break](assets/4-constructions-break-light-mode.png#only-light){align=right}
+    ![Instruction break](assets/4-constructions-break-dark-mode.png#only-dark){align=right}
     L'instruction `break` permet de sortir de la boucle courante et de passer à l'instruction suivante.
 
 
@@ -455,8 +455,8 @@ print('trouvé')
 ```
 
 !!! abstract "Cours" 
-    ![Instuction continue](assets/4-constructions-continue-light-mode.png#only-light){align=right}
-    ![Instuction continue](assets/4-constructions-continue-dark-mode.png#only-dark){align=right}
+    ![Instruction continue](assets/4-constructions-continue-light-mode.png#only-light){align=right}
+    ![Instruction continue](assets/4-constructions-continue-dark-mode.png#only-dark){align=right}
 
     L'instruction `continue` permet de sauter les instructions qui restent jusqu'à la fin de la boucle et de reprendre à la prochaine itération de boucle.
 

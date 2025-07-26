@@ -120,12 +120,12 @@ et encore plus lisible avec des commentaires :
 ```py linenums="1"
 def parfait(nombre):
     somme_diviseurs = 0
-    # Iterer sur tous les entiers i compris entre 1 et nombre - 1
+    # Itérer sur tous les entiers i compris entre 1 et nombre - 1
     for i in range(1, nombre):
         # Si i est un diviseur de nombre on l'ajoute à somme_diviseur
         if nombre % i == 0:
             somme_diviseurs = somme_diviseurs + i
-    # Si nombre est egal à la somme de ses diviseurs, c'est un nombre parfait
+    # Si nombre est égal à la somme de ses diviseurs, c'est un nombre parfait
     return nombre == somme_diviseurs
 ```
 
@@ -142,9 +142,9 @@ def parfait(nombre):
 
     ```py
     # Commentaire sur un bloc
-    instruction           # Commentaire sur une instruction particuliere
+    instruction           # Commentaire sur une instruction particulière
     ```
-    3. Eviter les répétition de code et diviser les programmes en fonctions logiques, plus modulaires, plus faciles à comprendre et à déboguer.
+    3. Éviter les répétition de code et diviser les programmes en fonctions logiques, plus modulaires, plus faciles à comprendre et à déboguer.
 
 [^7.7]: Comme le disait Guido van Rossum: “*Code is read much more often than it is written.*”
 
@@ -229,8 +229,8 @@ est_premier(nombre)
 :warning: Ne pas confondre la spécification encadrée par `"""` avec les commentaires qui commencent par `#`. D’ailleurs il est possible d'ajouter des commentaires commençant par `#`  dans une *docstring* qui ne seront pas affichés par `help`. La spécification sera lue par le programmeur qui utilise la fonction, les commentaires par celui qui lira et modifiera le code de la fonction. 
 
 !!! note inline end "" 
-    Remarquer l'affichage dans la console ou dans la zone de programme PyScriter la spécification qui s’affiche après avoir saisi le nom de la fonction, par exemple `parfait(`.
-    ![pyscripter affiche la docstring](../assets/pyscripter-docstring.png )
+    Remarquer l'affichage dans la console ou dans la zone de programmation de l'IDE la spécification qui s’affiche après avoir saisi le nom de la fonction, par exemple `parfait(`.
+    ![PyScripter affiche la docstring](../assets/pyscripter-docstring.png )
 
 
 ##	Préconditions, postconditions
@@ -474,7 +474,7 @@ AssertionError: nombre doit être positif
 [^7.8]: La programmation défensive est un mode de programmation qui vise à créer des programmes et des applications robustes face aux erreurs et aux entrées de données inattendues.
 
 
-L'instruction `try...…except...` (hors programme) permet de gérer efficament les erreurs prévisibles d’utilisateur, lors d’une saisie par exemple : 
+L'instruction `try...…except...` (hors programme) permet de gérer efficacement les erreurs prévisibles d’utilisateur, lors d’une saisie par exemple : 
 
 ```py
 while True:
