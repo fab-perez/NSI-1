@@ -52,7 +52,7 @@ La fonction `len()` renvoie la longueur d'un tableau, c'est-à-dire le nombre d'
 
 ## Accès aux éléments
 
-Comme pour les chaines de caractères et les p-uplets, les éléments d'un tableau `t` sont indexés à partir de `0` jusqu'à `len(t)` **exclus**, c'est-à-dire le dernier élément est en position `len(t) - 1`. Il est possible d'accèder aux éléments par leur index entre crochets. 
+Comme pour les chaines de caractères et les p-uplets, les éléments d'un tableau `t` sont indexés à partir de `0` jusqu'à `len(t)` **exclus**, c'est-à-dire le dernier élément est en position `len(t) - 1`. Il est possible d’accéder aux éléments par leur index entre crochets. 
 
 
 ``` py
@@ -120,7 +120,7 @@ De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire 
 
 
 === "Avec une boucle non bornée `while`"
-    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `t`, c'est-à-dire l'intialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(t) - 1`.  `t[i]` permet d'accéder à la valeur du tableau qui se trouve à la position `i`.
+    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `t`, c'est-à-dire l'initialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(t) - 1`.  `t[i]` permet d'accéder à la valeur du tableau qui se trouve à la position `i`.
 
     ``` py
     >>> t = [1, 3, 8]
@@ -212,7 +212,7 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
   [1, 2, 3, 4]
   ```
 
-- `t.insert(i, x)` insére un élément `x` à la position donnée par l'indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
+- `t.insert(i, x)` insère un élément `x` à la position donnée par l'indice `i`. `i` est la position de l'élément courant avant lequel l'insertion doit s'effectuer.  	
    ``` py
    >>> t = ['a', 'b', 'd']
    >>> t.insert(2, 'c')
@@ -544,7 +544,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments s
 
 
 !!! question "Exercice corrigé" 
-	Ecrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  `0 < a < b < c – a` et `b ≠ 2a` puis ernvoie le carré magique 3x3 en utilisant la méthode d'Edouard Lucas sous forme d'un tableau de tableaux :
+	Écrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  `0 < a < b < c – a` et `b ≠ 2a` puis renvoie le carré magique 3x3 en utilisant la méthode d’Édouard Lucas sous forme d'un tableau de tableaux :
 
 
     ||||
@@ -573,7 +573,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments s
 
 
 !!! question "Exercice corrigé" 
-	Ecrire une fonction qui vérifie qu'un carré est magique (ou pas).
+	Écrire une fonction qui vérifie qu'un carré est magique (ou pas).
     «  En mathématiques, un carré magique d'ordre $n$ est composé de $n^2$ entiers strictement positifs, écrits sous la forme d'un tableau carré. Ces nombres sont disposés de sorte que leurs sommes sur chaque rangée, sur chaque colonne et sur chaque diagonale principale soient égales. » source : [https://fr.wikipedia.org/wiki/Carré_magique_(mathématiques)](https://fr.wikipedia.org/wiki/Carr%C3%A9_magique_(math%C3%A9matiques)) 
 
 ??? Success "Réponse"

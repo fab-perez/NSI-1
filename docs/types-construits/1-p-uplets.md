@@ -5,7 +5,7 @@
 
     En Python les p-uplets sont du type `tuple`.
 
-Deux élements ensembles forment un couple, trois élements un triplet, quatre éléments un quadruplet, etc., et par extension *p* élements ensembles forment un p-uplet.
+Deux éléments ensembles forment un couple, trois éléments un triplet, quatre éléments un quadruplet, etc., et par extension *p* éléments ensembles forment un p-uplet.
 
 
 [^1.1]: ou *immutable* en anglais.
@@ -92,7 +92,7 @@ La fonction `len()` renvoie la longueur d'un p-uplet, c'est-à-dire le nombre d'
 
 Comme pour les chaines de caractères, la position de chaque élément d'un p-uplet `p` est indexée à partir **de `0` jusqu'à `len(p)` exclu**, c'est-à-dire le dernier élément est en position `len(p) - 1`. Il y a donc bien `len(p)` élements dans le p-uplet.
 
-Il est possible d'accèder aux éléments par leur indice entre crochets. 
+Il est possible d’accéder aux éléments par leur indice entre crochets. 
 
 ``` py 
 >>> p = (1, 2.5, 'hello', True)
@@ -103,7 +103,7 @@ Il est possible d'accèder aux éléments par leur indice entre crochets.
 
 :warning: Le premier élément est à l'indice 0.
 
-Les positions des élements d'un p-uplet peuvent également être indexées avec des nombres négatifs selon le modèle suivant :
+Les positions des éléments d'un p-uplet peuvent également être indexées avec des nombres négatifs selon le modèle suivant :
 
 |`>>> p = `    | `(` | `1,` | `2.5,` | `'hello,'` | `True` | `)`|
 |---           |-:   |:-:   |:-:   |:-:         |:-:     |:- |
@@ -177,7 +177,7 @@ Comparons différentes façons pour parcourir un p-uplet `p` :
 
 === "Avec une boucle non bornée `while`"
     
-    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `p`, c'est-à-dire l'intialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(p) - 1`.  `p[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
+    Il faut gérer l'indice de boucle `i` pour qu'il parcourt toutes les positions des valeurs de `p`, c'est-à-dire l’initialiser à `0` puis l'incrémenter à chaque passage dans la boucle (`i = i + 1`) jusqu'à ce qu'il dépasse `len(p) - 1`.  `p[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
 
     ``` py
     >>> p = (1, 2.5, 'hello', True)
@@ -270,7 +270,21 @@ def cercle_info(r):
 ```
 La dernière ligne `return c, a` peut tout aussi bien s'écrire `return (c, a)`, dans les deux cas la fonction renvoie exactement le même p-uplet.
 
-Appelons maintenant la fonction `cercle_info()` :
+Appelons maintenant la fonction `cercle_info()`, par exemple pour avoir la circonférence et l'aire d'un cercle de rayon 10 :
+``` py
+>>> cercle_info(10)
+(62.83185307179586, 314.1592653589793)
+```
+La fonction renvoie un p-uplet de deux valeurs, la circonférence et l'aire du cercle, pour n'avoir que l'un des deux il faut accéder au premier et au deuxième élément du p-uplet :
+
+``` py
+>>> cercle_info(10)[0]            # circonférence d'un cercle de rayon 10
+62.83185307179586
+>>> cercle_info(10)[1]            # aire d'un cercle de rayon 10
+314.1592653589793
+```
+
+Complétons le programme précédent pour demander à l'utilisateur de saisir le rayon du cercle :
 
 ``` py linenums="10"
 rayon = float(input('Rayon du cercle ?'))
@@ -279,9 +293,7 @@ print("L'aire du cercle est", cercle_info(rayon)[1])
 ```
 
 Ici `cercle_info(rayon)[0])` et `cercle_info(rayon)[1])` permettent de récupérer la première et la seconde valeur du p-uplet renvoyé
-par l'appel de la fonction `cercle_info(rayon)`.
-
-Le p-uplet renvoyé par la fonction peut aussi être dispersé dans deux variables, ce qui permet de rendre le code plus lisible : 
+par l'appel de la fonction `cercle_info(rayon)`.  Ce p-uplet peut aussi être dispersé dans deux variables, ce qui rend le code plus lisible : 
 
 ``` py linenums="10"
 rayon = float(input('Rayon du cercle ?'))
