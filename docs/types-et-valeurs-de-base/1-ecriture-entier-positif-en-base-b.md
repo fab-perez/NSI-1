@@ -2,7 +2,7 @@
 
 ## Système décimal ou base 10
 
-Dans le système décimal, on écrit les nombres à l'aide de nos 10 chiffres bien connus : 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9. 
+Dans le système décimal que l'on utilise tous les jours, les nombres sont écrit à l'aide des 10 chiffres bien connus : 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9. 
 
 
 C'est la position du chiffre dans l'écriture d'un nombre qui indique sa valeur. Par exemple, le nombre qui s'écrit 2083 est égal à 2 milliers plus 8 dizaines plus 3 unités. 
@@ -18,7 +18,7 @@ Tout nombre entier naturel peut s’écrire comme combinaison linéaire de puiss
 
 $2083 = 2 \times 10^3 + 0 \times 10^2 + 8 \times 10^1 + 3 \times 10^0$
 
-De manière générale, le nombre $n$ qui s'écrit dans le système décimal avec $p$ chiffres $d_{p−1}d_{p−2}...d_2d_1d_0$  (chaque $d_i$ est un chiffre valant entre 0 et 9)[^1.1] est égal à : 
+De manière générale, un nombre $n$ qui s'écrit dans le système décimal avec $p$ chiffres $d_{p−1}d_{p−2}...d_2d_1d_0$  (chaque $d_i$ est un chiffre valant entre 0 et 9)[^1.1] a une valeur égale à : 
 
 [^1.1]: Dans l'écriture $d_{p−1}d_{p−2}...d_2d_1d_0$, le chiffre $d_{p−1}$ est dit de « poids fort » et $d_0$ de « poids faible ». On a l'habitude d'écrire les nombres en partant du poids le plus fort à gauche jusqu'au poids le plus faible à droite, cette représentation est appelée « gros boutisme », ou « *big endian* », mais certains systèmes d'exploitation utilisent la convention inverse, appelée « petit boutisme », ou « *little endian* ».
 
@@ -38,9 +38,11 @@ Réciproquement, on peut écrire chacun des chiffres d'un nombre décimal $n$ qu
 	L'opérateur de division entière ```//``` et l’opération modulo ```%``` utilisés avec des entiers (de type ```int```) donnent respectivement le quotient et le reste d'une division euclidienne : si `a` et `b` sont des entiers tels que $a = b \times q + r$,  alors ```a // b``` renvoie $q$ et ```a % b``` renvoie $r$.
 
 
-- Le reste de la division entière de $n$ par $10$, `n%10` en Python, renvoie $d_0$.
 
-- Le quotient de la division entière de $n$ par $10$, `n//10` en Python, renvoie $d_{p−1}d_{p−2}...d_2d_1$.
+- Le reste de la division entière de $n$ par $10$, `n%10` en Python, renvoie $d_0$. Cela permet d'obtenir le dernier chiffre de l'écriture décimale de $n$.
+
+- Le quotient de la division entière de $n$ par $10$, `n//10` en Python, renvoie $d_{p−1}d_{p−2}...d_2b_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres.
+
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les chiffres de l'écriture décimale de $n$. 
 
@@ -158,7 +160,7 @@ def etoile(n):
 ## Système binaire ou base 2
 
 !!! abstract "Cours" 
-	En binaire, ou base 2, les seuls chiffres utilisés pour écrire des nombres sont 0 et 1, aussi appelés « bits » pour *binary digits*, autrement dit « chiffres binaires » en français. 
+	En binaire, ou base 2, les seuls chiffres utilisés pour écrire des nombres sont 0 et 1, aussi appelés « bits » pour *binary digits*, ou « chiffres binaires » en français. 
 
 	8 bits forment un **octet**.
 
@@ -185,7 +187,7 @@ Noter le $..._{10}$ pour indiquer que $13$ est un nombre en base 10.
 
 !!! abstract "Cours" 
 
-	De manière générale, le nombre $n$ qui s'écrit dans le système binaire avec $p$ bits $b_{p−1}b_{p−2}...b_2b_1b_0$  (chaque $b_i$ est un bit valant 0 ou 1) est égal en décimal à : 
+	De manière générale, un nombre $n$ qui s'écrit dans le système binaire avec $p$ bits $b_{p−1}b_{p−2}...b_2b_1b_0$  (chaque $b_i$ est un bit valant 0 ou 1) a une valeur décimale égale à : 
 
 	$n = b_{p−1} \times 2^{p−1}  + b_{p−2} \times 2^{p−2} + ... +  b_2 \times 2^2 + b_1 \times 2^1  + b_0 \times 2^0$
 
@@ -288,9 +290,9 @@ En Python, les nombres binaires s'écrivent avec le préfixe ```0b``` et l'équi
 
 De la même manière qu'on a précédemment écrit tous les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des divisions entières par 2 :
 
-- le reste de la division entière de $n$ par $2$, `n%2` en Python, renvoie $b_0$.
+- Le reste de la division entière de $n$ par $2$, `n%2` en Python, renvoie $b_0$. Cela permet d'obtenir le dernier bit de l'écriture binaire de $n$.
 
-- Le quotient de la division entière de $n$ par $2$, `n//2` en Python, renvoie $b_{p−1}b_{p−2}...b_2b_1$.
+- Le quotient de la division entière de $n$ par $2$, `n//2` en Python, renvoie $b_{p−1}b_{p−2}...b_2b_1$. On remplace $n$ par ce nombre pour trouver les autres bits.
 
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les bits de l'écriture binaire de $n$. 
@@ -393,7 +395,7 @@ def dec_to_bin(n):
 '1101'
 ```
 
-:warning: Il faut écrire `bin =  str(n%2) + bin` et non pas `bin =  bin + str(n%2)`, c''est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}.
+:warning: Il faut écrire `bin =  str(n%2) + bin` et non pas `bin =  bin + str(n%2)`, c''est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}$.
 
 On note que le cas ou `n` est égal à `0`, la fonction n'entre pas dans la boucle `while` et renvoie une chaîne vide. On peut traiter le cas séparément au début de la fonction :
 
@@ -537,7 +539,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 	$2 \times(1 \times 2^4 + 1 \times 2^3 + 1 \times 2^1) = 1 \times 2^5 + 1 \times 2^4 + 1 \times 2^2 = 110100_2$
 
-	autrement dit $52_{10}$.
+	qui s'écrit $52_{10}$ en décimal.
 
 	!!! abstract "Cours" 
 		Quand on ajoute un bit 0 à droite d'un nombre, tous les bits sont décalés vers la droite, les puissances de 2 correspondantes sont augmentées d'une unité, donc le nombre est multiplié par 2.
@@ -567,10 +569,10 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 ## Hexadécimal ou base 16
 
-Le système hexadécimal, ou base 16, est beaucoup utilisé en informatique car il offre un bon compromis entre le système binaire utilisé par les machines tout en restant lisible pour les informaticiens.  En effet, chaque chiffre hexadécimal correspond exactement à quatre chiffres binaires (ou bits), rendant les conversions très simples et fournissant une écriture plus compacte.
+Le système hexadécimal, ou base 16, est beaucoup utilisé en informatique car il offre un bon compromis entre le système binaire utilisé par les machines tout en restant lisible pour les informaticiens.  
 
 
-Le système hexadécimal nécessite 16 symboles, appelés chiffres hexadécimaux : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E et F. Voilà leur équivalent décimal et binaire :
+Le système hexadécimal, ou en base 16, nécessite 16 symboles, appelés chiffres hexadécimaux : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E et F. Voilà leur équivalent décimal et binaire :
 
 
 |hexadécimal|décimal|binaire||hexadécimal|décimal|binaire|
@@ -608,7 +610,7 @@ $B0D5_{16} = 11 × 16^3 + 0 × 16^2 + 13 × 16^1 + 5 × 16^0 = 45269{10}$
 
 !!! abstract "Cours" 
 
-	De manière générale, le nombre $n$ qui s'écrit dans le système hexadécimal avec $p$ chiffres hexadécimaux $h_{p−1}h_{p−2}...h_2h_1h_0$  (chaque $h_i$ est un chiffre hexadécimal valant 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E ou F) est égal en décimal à : 
+	De manière générale, un nombre $n$ qui s'écrit dans le système hexadécimal avec $p$ chiffres hexadécimaux $h_{p−1}h_{p−2}...h_2h_1h_0$  (chaque $h_i$ est un chiffre hexadécimal valant 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E ou F) a une valeur décimale égale à : 
 
 	$n = h_{p−1} \times 16^{p−1}  + h_{p−2} \times 16^{p−2} + ... +  h_2 \times 16^2 + h_1 \times 16^1  + h_0 \times 16^0$
 
@@ -674,9 +676,12 @@ En Python, les nombres hexadécimaux s'écrivent avec le préfixe ```0x``` (les 
 ### Écrire un nombre décimal en hexadécimal
 Comme pour le binaire, on peut écrire un nombre décimal $n$ sous sa forme hexadécimale, $h_{p−1}h_{p−2}...h_2b_1h_0$, par une suite de divisions entières par 16 : 
 
-- le reste de la division entière de $n$ par $16$, `n%16` en Python, renvoie $h_0$.
 
-- Le quotient de la division entière de $n$ par $16$, `n//16` en Python, renvoie $h_{p−1}h_{p−2}...h_2h_1$.
+
+- Le reste de la division entière de $n$ par $16$, `n%16` en Python, renvoie $h_0$. Cela permet d'obtenir le dernier chiffre  de l'écriture hexadécimale de $n$.
+
+- Le quotient de la division entière de $n$ par $16$, `n//16` en Python, renvoie $h_{p−1}h_{p−2}...h_2h_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres hexadécimaux.
+
 
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les chiffres de l'écriture hexadécimale de $n$. 
@@ -799,7 +804,9 @@ En Python, la fonction `hex` permet d'écrire un nombre décimal en binaire :
 
 ### Écrire un nombre binaire en hexadécimal et réciproquement
 
-Ce qui rend l'hexadécimal particulièrement utile en informatique c'est que la position de chaque chiffre hexadécimal correspond à 4 bits en binaire du fait que $2^4 = 16$. La conversion de binaire en hexadécimal se fait donc tout simplement en lisant les bits groupés quatre par quatre, et inversement en remplaçant chaque chiffre hexadécimal par ses 4 bits équivalents.
+Chaque chiffre hexadécimal correspond à 4 bits en binaire, car $2^4 = 16$, ce qui rend l'hexadécimal particulièrement utile en informatique offrant une écriture plus compacte et des conversions très simples. Avec un peu d'habitude, la conversion de binaire en hexadécimal se fait donc tout simplement en lisant les bits quatre par quatre, et inversement on passe de l'hexadécimal au binaire en remplaçant chaque chiffre hexadécimal par les 4 bits équivalents.
+
+
 
 Par exemple un octet, sur 8 bits, s'écrit simplement avec 2 chiffres hexadécimaux : On peut écrire directement $E8_{16}$ en binaire, c'est $1110 \space 1000_2$, $1110$ pour E et $1000$ pour 8; et inversement, $110 \space 1101_2$ peut s'écrire $6D$ en hexadécimal, $6$ pour $0110$ et $D$ pour $1101$.
 
@@ -822,22 +829,22 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-light-mode.png#only-light){width=10% align=right}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-dark-mode.png#only-dark){width=10% align=right}
 
-	On aligne d'abord à gauche les chiffres hexadécimaux des deux nombres l'un au dessus de l'autre. Puis on commence par ajouter les deux chiffres les plus à droite, $3 + 5 = 8$, puis on continue vers la gauche, $B + 2 = D (car $11 + 2 = 13$ en décimal).
+	On aligne d'abord à gauche les chiffres hexadécimaux des deux nombres l'un au dessus de l'autre. Puis on commence par ajouter les deux chiffres les plus à droite, $3 + 5 = 8$, puis on continue vers la gauche, $B + 2 = D$ (car $11 + 2 = 13$ en décimal).
 	
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-light-mode.png#only-light){width=10% align=left}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-dark-mode.png#only-dark){width=10% align=left}
 
-	On arrive à $8 + A$. En decimal, on peut calculer l'équivalent en décimal, $8 + 10 = 18$, autrement dit $12$ en hexadécimal. On peut faire la conversion avec `18//16 = 1` et `18%16 = 2` ou tout simplement en faisant `18-16` pour trouver le chiffre des unités. On écrit le $2$ et on ajoute une retenue de $1$ à gauche.
+	On arrive à $8 + A$. On peut calculer l'équivalent en décimal, $8 + 10 = 18$, qui s'écrit $12$ en hexadécimal. On peut faire la conversion avec `18//16 = 1` et `18%16 = 2` ou tout simplement en faisant `18-16` pour trouver le chiffre des unités. On écrit le $2$ et on ajoute une retenue de $1$ à gauche.
 
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-light-mode.png#only-light){width=10% align=right}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-dark-mode.png#only-dark){width=10% align=right}
 	 
-	On ajoute les chiffres hexadécimaux suivants, avec cette retenue doit calculer $1 + E + 1$, c'est l'équivalent en décimal de $1 + 14 + 1 = 16$,  autrement dit $10$ en hexadécimal. On garde le $0$ et on ajoute une nouvelle retenue de $1$ encore à gauche.
+	On ajoute les chiffres hexadécimaux suivants, avec cette retenue doit calculer $1 + E + 1$, c'est l'équivalent en décimal de $1 + 14 + 1 = 16$,  qui s'écrit $10$ en hexadécimal. On garde le $0$ et on ajoute une nouvelle retenue de $1$ encore à gauche.
 	 
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-light-mode.png#only-light){width=10% align=left}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-dark-mode.png#only-dark){width=10% align=left}
 
-	On arrive à  $1 + D + C$, équivalent en décimal de $1 + 13 + 12  = 26$,  autrement dit $1A$ en hexadécimal. On écrit le $A$ et on ajoute une nouvelle retenue de $1$ encore à gauche
+	On arrive à  $1 + D + C$, équivalent en décimal de $1 + 13 + 12  = 26$,  qui s'écrit $1A$ en hexadécimal. On écrit le $A$ et on ajoute une nouvelle retenue de $1$ encore à gauche
 	
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-light-mode.png#only-light){width=10% align=right}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-dark-mode.png#only-dark){width=10% align=right}
@@ -930,7 +937,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 	$2 \times(1 \times 2^4 + 1 \times 2^3 + 1 \times 2^1) = 1 \times 2^5 + 1 \times 2^4 + 1 \times 2^2 = 110100_2$
 
-	autrement dit $52_{10}$.
+	qui s'écrit $52_{10}$ en décimal.
 
 	!!! abstract "Cours" 
 		Quand on ajoute un bit 0 à droite d'un nombre, tous les bits sont décalés vers la droite, les puissances de 2 correspondantes sont augmentées d'une unité, donc le nombre est multiplié par 2.
