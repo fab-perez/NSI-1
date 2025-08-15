@@ -4,9 +4,7 @@
 
 Dans le système décimal que l'on utilise tous les jours, les nombres sont écrit à l'aide des 10 chiffres bien connus : 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9. 
 
-
-C'est la position du chiffre dans l'écriture d'un nombre qui indique sa valeur. Par exemple, le nombre qui s'écrit 2083 est égal à 2 milliers plus 8 dizaines plus 3 unités. 
-Il n'a pas la même valeur que 8320, même s'il s'écrit avec les mêmes chiffres 0, 2, 8 et 3.
+C'est la position d'un chiffre dans un nombre qui indique son importance, ou **poids**, dans ce nombre. Par exemple, le nombre qui s'écrit 2083 est égal à 2 milliers plus 8 dizaines plus 3 unités. Il n'est pas égal au nombre 8320, même s'il s'écrit avec les mêmes chiffres 0, 2, 8 et 3.
 
 Tout nombre entier naturel peut s’écrire comme combinaison linéaire de puissance de 10. Par exemple, les chiffres du nombre 2083 correspondent à :
 
@@ -18,7 +16,7 @@ Tout nombre entier naturel peut s’écrire comme combinaison linéaire de puiss
 
 $2083 = 2 \times 10^3 + 0 \times 10^2 + 8 \times 10^1 + 3 \times 10^0$
 
-De manière générale, un nombre $n$ qui s'écrit dans le système décimal avec $p$ chiffres $d_{p−1}d_{p−2}...d_2d_1d_0$  (chaque $d_i$ est un chiffre valant entre 0 et 9)[^1.1] a une valeur égale à : 
+De manière générale, un nombre $n$ qui s'écrit dans le système décimal avec $p$ chiffres $d_{p−1}d_{p−2}...d_2d_1d_0$  (chaque $d_i$ est un chiffre valant entre 0 et 9)[^1.1] est égal à : 
 
 [^1.1]: Dans l'écriture $d_{p−1}d_{p−2}...d_2d_1d_0$, le chiffre $d_{p−1}$ est dit de « poids fort » et $d_0$ de « poids faible ». On a l'habitude d'écrire les nombres en partant du poids le plus fort à gauche jusqu'au poids le plus faible à droite, cette représentation est appelée « gros boutisme », ou « *big endian* », mais certains systèmes d'exploitation utilisent la convention inverse, appelée « petit boutisme », ou « *little endian* ».
 
@@ -26,6 +24,7 @@ $n = d_{p−1} \times 10^{p−1}  + d_{p−2} \times 10^{p−2} + ... +  d_2 \ti
 
 ou encore avec la formule mathématique d'une somme de $0$ à $p-1$ :
 $n = \sum_{i=0}^{p-1} d_i × 10^i$
+
 
 Noter qu'on peut écrire 10 nombres allant de 0 à 9 avec 1 seul chiffre, 100 nombres allant de 0 à 99 avec 2 chiffres, 1000 nombres allant de 0 à 999 avec 3 chiffres, ... $10^p$ nombres allant de 0 à $10^p-1$ avec $p$ chiffres.
 
@@ -169,7 +168,7 @@ def etoile(n):
 Par exemple on peut écrire $1101$, que l'on note aussi $1101_2$ pour indiquer qu'il est écrit en binaire.
 Il convient également de ne pas lire ces nombres comme on lirait des nombres décimaux. Ainsi, $1101_2$ ne se dit pas « mille cent un » mais plutôt « un un zéro un ».
 
-Comme dans le système décimal, c'est la position qui indique la valeur de chaque chiffre. Mais en binaire, c'est une combinaison linéaire de puissances de 2. Par exemple, les bits du nombre $1101_2$ correspondent à :
+Comme dans le système décimal, c'est la position de chaque chiffre qui indique le poids de chaque chiffre dans un nombre. Mais en binaire, c'est une combinaison linéaire de puissances de 2. Par exemple, les bits du nombre $1101_2$ correspondent à :
 
 |bits|1|1|0|1|
 |:-:|:-:|:-:|:-:|:-:|
@@ -429,7 +428,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 -	Addition
 
-	On additionne bit à bit en prenant soin d'aligner les bits de même poids et on calcule de la gauche vers la droite en passant la retenue si nécessaire. 
+	On additionne bit à bit en prenant soin d'aligner les bits de même poids à droite et on calcule de la droite vers la gauche en passant la retenue si nécessaire. 
 
 	Les additions bit à bit sont simples :
 
@@ -442,8 +441,8 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	
 
 		
-	![Exemple d'addition posée en binaire : 101101+1100](assets/1-addition-binaire-light-mode.png#only-light){width=10% align=right}
-	![Exemple d'addition posée en binaire : 101101+1100](assets/1-addition-binaire-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple d'addition posée en binaire : 101101+1100](assets/1-addition-binaire-light-mode.png#only-light){width=15% align=right}
+	![Exemple d'addition posée en binaire : 101101+1100](assets/1-addition-binaire-dark-mode.png#only-dark){width=15% align=right}
 
 	On aligne d'abord à gauche les bits des deux nombres l'un au dessus de l'autre. Puis on commence par ajouter les deux bits les plus à droite, $1 + 0 = 1$, puis on continue vers la gauche, $0 + 0 = 0$. On arrive à $1 + 1$, ce qui fait $10$, on garde le $0$ et on ajoute une retenue de $1$ à gauche. On ajoute les bits suivants, avec cette retenue on a $1 + 1 + 1$, ce qui fait $11$, on garde le $1$ et on ajoute une nouvelle retenue de $1$ encore à gauche. Les deux derniers bits ne sont que sur le premier nombre, on fait comme si c'était des $0$ sur le second pour terminer l'addition. On trouve le résultat final, $101101 + 1100 = 111011$, c'est l'équivalent binaire de $45+12=57$ en décimal.
 	
@@ -474,7 +473,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
  
 -	Soustraction
 
-	Comme pour l'addition, on soustrait bit à bit en prenant soin d'aligner les bits de même poids et on calcule de la gauche vers la droite en passant la retenue si nécessaire. 
+	Comme pour l'addition, on soustrait bit à bit en prenant soin d'aligner les bits de même poids à droite et on calcule de la droite vers la gauche en passant la retenue si nécessaire. 
 
 	Les soustractions bit à bit sont simples :
 
@@ -486,10 +485,10 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	Exemple : Calculer  $110001 - 11100$
 
 		
-	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-light-mode.png#only-light){width=10% align=right}
-	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-light-mode.png#only-light){width=15% align=right}
+	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-dark-mode.png#only-dark){width=15% align=right}
 
-	On aligne d'abord à gauche les bits des deux nombres l'un au dessus de l'autre. Puis on commence par soustraire les deux bits les plus à droite, $1 - 0 = 1$, et on remonte vers la gauche, $0 - 0 = 0$. On arrive à $0 - 1$, on garde le $0$ et on ajoute la retenue de $1$ à droite. Ici on applique la méthode française (ou méthode « par compensation »)[^1.2] qui consiste à ajouter la retenue à la gauche du nombre en bas : $11 + 1 = 100$. On continue la soustraction en remplaçant ces deux bits $11$ par $100$. On obtient $0 - 0 = 0$, puis $1-0=1$, et enfin $1-1=0$. On trouve le résultat final, $110001 - 11100 = 010101$, ou $10101$ en omettant le $0$ inutile à gauche, c'est l'équivalent binaire de $49-28=21$ en décimal.
+	On aligne d'abord à gauche les bits des deux nombres le plus grand au dessus de l'autre. Puis on commence par soustraire les deux bits les plus à droite, $1 - 0 = 1$, et on remonte vers la gauche, $0 - 0 = 0$. On arrive à $0 - 1$, on garde le $0$ et on ajoute la retenue de $1$ au chiffre du bas à droite. Ici on applique la méthode française (ou méthode « par compensation »)[^1.2] qui consiste à ajouter la retenue à la gauche du nombre en bas : $11 + 1 = 100$. On continue la soustraction en remplaçant ces deux bits $11$ par $100$. On obtient $0 - 0 = 0$, puis $1-0=1$, et enfin $1-1=0$. On trouve le résultat final, $110001 - 11100 = 010101$, ou $10101$ en omettant le $0$ inutile à gauche, c'est l'équivalent binaire de $49-28=21$ en décimal.
 
 	[^1.2]: Il existe une autre méthode, appelée méthode anglo-saxonne « par emprunt » ou « par cassage », qui consiste à soustraire la retenue du nombre du haut.
 
@@ -524,8 +523,8 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	On aurait pu aussi poser cette multiplication bit à bit comme pour une multiplication dans le système décimal, en notant que 2 s'écrit 10 en binaire :
 
 			
-	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-light-mode.png#only-light){width=10% align=right}
-	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-light-mode.png#only-light){width=15% align=right}
+	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-dark-mode.png#only-dark){width=15% align=right}
 
 	On commence par multiplier $11010$ par le $0$ de $10$ et on écrit le résultat, $0$, sur la première ligne. Puis on multiplie $11010$ par le $1$ de $10$ et on écrit le résultat, $11010$, sur la seconde ligne en décalant d'un bit vers la gauche. On fait ensuite la somme des deux lignes et on obtient le résultat final $110100$.
 
@@ -596,7 +595,7 @@ Le système hexadécimal, ou en base 16, nécessite 16 symboles, appelés chiffr
 
 Par exemple on peut écrire $B0D5$, que l'on note aussi $B0D5_{16}$ pour indiquer qu'il est écrit en hexadécimal.
 
-Comme dans les systèmes décimal et binaire, c'est la position qui indique la valeur de chaque chiffre hexadécimal. Mais en hexadécimal, c'est une combinaison linéaire de puissances de 16. Par exemple, les chiffres du nombre $B0D5_{16}$ correspondent à :
+Comme dans les systèmes décimal et binaire, c'est la position qui indique le poids de chaque chiffre hexadécimal dans un nombre. Mais en hexadécimal, c'est une combinaison linéaire de puissances de 16. Par exemple, les chiffres du nombre $B0D5_{16}$ correspondent à :
 
 |hexadec.|B|0|D|5|
 |:-:|:-:|:-:|:-:|:-:|
@@ -819,35 +818,34 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 -	Addition
 
-	On additionne les chiffres hexadécimaux en prenant soin d'aligner ceux qui sont de même poids et on calcule de la gauche vers la droite en passant la retenue si nécessaire. 
+	On additionne les chiffres hexadécimaux en prenant soin d'aligner les chiffres de même poids à droite et on calcule de la droite vers la gauche en passant la retenue si nécessaire. 
 
 	
 	Exemple : Calculer  $CDE8B3 + FC1A25$
 	
-
 		
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-light-mode.png#only-light){width=10% align=right}
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-light-mode.png#only-light){width=15% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-1-dark-mode.png#only-dark){width=15% align=right}
 
 	On aligne d'abord à gauche les chiffres hexadécimaux des deux nombres l'un au dessus de l'autre. Puis on commence par ajouter les deux chiffres les plus à droite, $3 + 5 = 8$, puis on continue vers la gauche, $B + 2 = D$ (car $11 + 2 = 13$ en décimal).
 	
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-light-mode.png#only-light){width=10% align=left}
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-dark-mode.png#only-dark){width=10% align=left}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-light-mode.png#only-light){width=15% align=left}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-dark-mode.png#only-dark){width=15% align=left}
 
 	On arrive à $8 + A$. On peut calculer l'équivalent en décimal, $8 + 10 = 18$, qui s'écrit $12$ en hexadécimal. On peut faire la conversion avec `18//16 = 1` et `18%16 = 2` ou tout simplement en faisant `18-16` pour trouver le chiffre des unités. On écrit le $2$ et on ajoute une retenue de $1$ à gauche.
 
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-light-mode.png#only-light){width=10% align=right}
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-light-mode.png#only-light){width=15% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-dark-mode.png#only-dark){width=15% align=right}
 	 
 	On ajoute les chiffres hexadécimaux suivants, avec cette retenue doit calculer $1 + E + 1$, c'est l'équivalent en décimal de $1 + 14 + 1 = 16$,  qui s'écrit $10$ en hexadécimal. On garde le $0$ et on ajoute une nouvelle retenue de $1$ encore à gauche.
 	 
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-light-mode.png#only-light){width=10% align=left}
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-dark-mode.png#only-dark){width=10% align=left}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-light-mode.png#only-light){width=15% align=left}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-4-dark-mode.png#only-dark){width=15% align=left}
 
 	On arrive à  $1 + D + C$, équivalent en décimal de $1 + 13 + 12  = 26$,  qui s'écrit $1A$ en hexadécimal. On écrit le $A$ et on ajoute une nouvelle retenue de $1$ encore à gauche
 	
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-light-mode.png#only-light){width=10% align=right}
-	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-light-mode.png#only-light){width=15% align=right}
+	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-5-dark-mode.png#only-dark){width=15% align=right}
 
 	Finalement, l'addition des derniers chiffres $1 + C + F = 1C$, ou 28 en décimal, permet d'obtenir le résultat final, $CDE8B3 + FC1A25 = 1CA02D8$, c'est l'équivalent hexadécimal de $13 \space 494 \space 451+16 \space 521 \space 765=30 \space 016 \space 216$ en décimal.
 	
@@ -878,113 +876,57 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
  
 -	Soustraction
 
-	Comme pour l'addition, on soustrait les chiffres hexadécimaux en prenant soin d'aligner ceux de même poids et on calcule de la gauche vers la droite en passant la retenue si nécessaire. 
+	Comme pour l'addition, on soustrait les chiffres hexadécimaux en prenant soin d'aligner ceux de même poids à droite et on calcule de la droite vers la gauche en passant la retenue si nécessaire. 
 
 	
-	Exemple : Calculer  $110001 - 11100$
+	Exemple : Calculer  $F32A - 2B48$
 
 		
-	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-light-mode.png#only-light){width=10% align=right}
-	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-dark-mode.png#only-dark){width=10% align=right}
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-1-light-mode.png#only-light){width=15% align=right}
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-1-dark-mode.png#only-dark){width=15% align=right}
 
-	On aligne d'abord à gauche les bits des deux nombres l'un au dessus de l'autre. Puis on commence par soustraire les deux bits les plus à droite, $1 - 0 = 1$, et on remonte vers la gauche, $0 - 0 = 0$. On arrive à $0 - 1$, on garde le $0$ et on ajoute la retenue de $1$ à droite. Ici on applique la méthode française (ou méthode « par compensation »)[^1.2] qui consiste à ajouter la retenue à la gauche du nombre en bas : $11 + 1 = 100$. On continue la soustraction en remplaçant ces deux bits $11$ par $100$. On obtient $0 - 0 = 0$, puis $1-0=1$, et enfin $1-1=0$. On trouve le résultat final, $110001 - 11100 = 010101$, ou $10101$ en omettant le $0$ inutile à gauche, c'est l'équivalent binaire de $49-28=21$ en décimal.
+	On aligne d'abord à droite les chiffres hexadécimaux des deux nombres le plus grand au dessus de l'autre. Puis on commence par soustraire les deux chiffres les plus à droite, $A - 8 = 2$ (car $10 - 8 = 2$ en décimal), et on remonte vers la gauche.
+	
+		
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-2-light-mode.png#only-light){width=15% align=left}
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-2-dark-mode.png#only-dark){width=15% align=left}
 
-	[^1.2]: Il existe une autre méthode, appelée méthode anglo-saxonne « par emprunt » ou « par cassage », qui consiste à soustraire la retenue du nombre du haut.
+
+	On arrive à $2 - 4$. $2$ est plus grand que $4$, il faut calculer $12-4$ et ajouter une retenue de $1$ au chiffre du bas à droite. :warning: Attention au bug classique, en hexadécimal $12-4=E$ (car $12_{16}=18_{10}$ et $18 - 4 = 14$ en décimal) et pas $6$ ! On garde le $E$ et on ajoute la retenue de $1$ au chiffre du bas à droite : $B+1=C$.
+	
+
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-3-light-mode.png#only-light){width=15% align=right}
+	![Exemple de soustraction posée en hexadécimal : F32A-2B48](assets/1-soustraction-hexa-3-dark-mode.png#only-dark){width=15% align=right}
+	
+	On continue la soustraction en remplaçant $B$ par $C$. Calculons $13 - C0$. Une fois de plus, il faut calculer $13-C$ et ajouter une retenue de $1$ au chiffre du bas à droite. :warning: Attention encore, en hexadécimal $13-C=7$ (car $13_{16}=19_{10}$, $C_{16}=12_{10}$ et $19 - 12 = 7$ en décimal) !
+	
+
+	Il ne reste plus qu'à soustraire les deux derniers chiffres en remplaçant $2$ par $3$ : $F - 3 = C$ (car $15 - 3 = 12$ en décimal) pour obtenir le résultat final, $F32A-2B48 = C7E2$, c'est l'équivalent hexadécimal de $62 \space 250 - 11 \space 080=51 \space 170$ en décimal.
+	
+
 
 
 	!!! question "Exercice corrigé" 
 		Calculer les additions suivantes en binaire :
 
-		- $10101 - 1001$
+		- $8AD - 272$
 		
-		- $10000 - 1$
+		- $ED4F - A1B2$
 
-		- $1101001 - 1011011$
+		- $9A4F3 - 7B8E7$
 
 
 		
 
 	??? Success "Réponse"
 
-		$10101 - 1001 = 1100$
+		$8AD - 272 = 63B$
 		
-		$10000 - 1 = 111000$
+		$ED4F - A1B2 = 4B9D$
 
-		$1101001 - 1011011 = 1110$
-
-
+		$9A4F3 - 7B8E7 = 1EC0C$
 
 
-- Multiplication
-
-	On a fait dans un exercice précédant la multiplication d'un nombre binaire par 2 en l'ajoutant à lui-même :	$11010 + 11010 = 110100$
-
-	On aurait pu aussi poser cette multiplication bit à bit comme pour une multiplication dans le système décimal, en notant que 2 s'écrit 10 en binaire :
-
-			
-	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-light-mode.png#only-light){width=10% align=right}
-	![Exemple de multiplication posée en binaire : 11010x10](assets/1-multiplication-binaire-dark-mode.png#only-dark){width=10% align=right}
-
-	On commence par multiplier $11010$ par le $0$ de $10$ et on écrit le résultat, $0$, sur la première ligne. Puis on multiplie $11010$ par le $1$ de $10$ et on écrit le résultat, $11010$, sur la seconde ligne en décalant d'un bit vers la gauche. On fait ensuite la somme des deux lignes et on obtient le résultat final $110100$.
-
-	On constate que multiplier un nombre binaire par 2 ($= 10_2$ en binaire) se fait en ajoutant un zéro à droite.
-	
-	En effet, si on reprend la décomposition en puissances de 2 de $11010_2$ (ou $26_{10}$) :
-	
-	$11010_2 = 1 \times 2^4 + 1 \times 2^3 + 1 \times 2^1$
-
-	quand on le multiplie par 2, toutes les puissances augmentent d'une unité. On obtient bien le nombre binaire :
-
-	$2 \times(1 \times 2^4 + 1 \times 2^3 + 1 \times 2^1) = 1 \times 2^5 + 1 \times 2^4 + 1 \times 2^2 = 110100_2$
-
-	qui s'écrit $52_{10}$ en décimal.
-
-	!!! abstract "Cours" 
-		Quand on ajoute un bit 0 à droite d'un nombre, tous les bits sont décalés vers la droite, les puissances de 2 correspondantes sont augmentées d'une unité, donc le nombre est multiplié par 2.
-
-	De la même façon, on peut multiplier deux nombres binaires ensembles.
-
-	!!! question "Exercice corrigé" 
-		Calculer les additions suivantes en binaire :
-
-		- $1101 \times 11$
-		
-		- $10101 \times 101$
-
-		- $1000 \times 1000$
-
-		
-
-	??? Success "Réponse"
-
-		$1101 \times 11 = 100111$
-
-		$10101 \times 101 = 1101001$
-
-		$1000 \times 1000 = 1000000$
-
-
-
-
-# Opérations 
-
-
-1E7A+B894
-
-En hexadécimal (base 16), quelle est la valeur de la différence CBD - BAC ?
-Réponses
-A AB
-B TB
-C FF
-D 111
-Question A.2
-Deux entiers positifs ont pour écriture en base 16 : A7 et 84.
-Quelle est l'écriture en base 16 de leur somme ?
-Réponses
-A 1811
-B 12B
-C 13A
-D A784
 
 
 
