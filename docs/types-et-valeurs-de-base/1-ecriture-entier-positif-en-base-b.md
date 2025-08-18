@@ -165,7 +165,8 @@ def etoile(n):
 
 
 
-Par exemple on peut écrire $1101$, que l'on note aussi $1101_2$ pour indiquer qu'il est écrit en binaire.
+Par exemple on peut écrire $1101$, que l'on note aussi $1101_2$, pour indiquer qu'il est écrit en binaire.
+
 Il convient également de ne pas lire ces nombres comme on lirait des nombres décimaux. Ainsi, $1101_2$ ne se dit pas « mille cent un » mais plutôt « un un zéro un ».
 
 Comme dans le système décimal, c'est la position de chaque chiffre qui indique le poids de chaque chiffre dans un nombre. Mais en binaire, c'est une combinaison linéaire de puissances de 2. Par exemple, les bits du nombre $1101_2$ correspondent à :
@@ -286,8 +287,125 @@ En Python, les nombres binaires s'écrivent avec le préfixe ```0b``` et l'équi
 
 ### Écrire un nombre décimal en binaire
 
+Il existe plusieurs méthodes pour écrire un nombre décimal en binaire : 
 
-De la même manière qu'on a précédemment écrit tous les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des divisions entières par 2 :
+- Trouver les puissances de 2 est la méthode la plus simple qui aide à comprendre la structure du binaire, mais elle est peu utilisée en pratique.
+
+- Effectuer des divisions successives par 2 est pratique pour un calcul algorithmique.
+
+- Utiliser une fonction Python.
+
+#### Trouver les puissances de 2
+
+On peut faire l'opération inverse de l'écriture d'un nombre binaire en décimal en essayant de retrouver la combinaison linéaire de puissances de 2 d'un nombre binaire.
+
+Cherchons pas exemple, l'écriture binaire du nombre $13_{10}. Il faut remplir le tableau des puissances de 2 suivant :
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|?|?|?|?|?|
+
+On pourrait commencer par remplir le tableau à droite, du côté des petites puissances de 2 : $2^0 = 1$
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|?|?|?|?|1|
+
+Puis on continue :  $2^0 + 2^1 = 1+2=3$
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|?|?|?|1|1|
+
+Et encore :  $2^0 + 2^1 + 2^2  = 1+2+4=7$
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|?|?|1|1|1|
+
+Mais quand on arrive là, on est coincé ! La puissance suivante est $2^3 = 8$, c'est trop grand pour obtenir $13$ et toutes les autres puissances seront encore plus grande. 
+
+Il faut donc procéder dans l'autre sens, en partant de la gauche, du côté des grandes puissances[^1.2].
+
+[^1.2]: Ce type d'algorithme appartient à la famille des « algorithmes gloutons ».
+
+$2^4 = 16$, c'est grand que $13$, on ne peut pas prendre le bit correspondant, on met 0 ! 
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|0|?|?|?|?|
+
+$2^3 = 8$, c'est plus petit que $13$, on met 1 pour le bit correspondant. Il reste $13-8=5$ à trouver. 
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|0|1|?|?|?|
+
+$2^2 = 4$, c'est plus petit que $5$, on met 1 pour le bit correspondant. Il reste $5-4=1$ à trouver. 
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|0|1|1|?|?|
+
+$2^1 = 2$, c'est plus grand que  $1$,  on ne peut pas prendre le bit correspondant, on met 0. 
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|0|1|1|0|?|
+
+$2^0 = 1$, c'est le dernier bit que l'on cherchait, on met 1. 
+
+|i|4|3|2|1|0|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+|binaire|0|1|1|0|1|
+
+On a bien trouvé l'écriture binaire de $13_{10}$, c'est $1101_2$.
+
+Voilà l'algorithme que l'on a suivi :
+
+- On repère la plus grande puissance de 2 plus petite ou égale au nombre.
+- On soustrait, puis on continue avec le reste.
+- On met 1 si la puissance est utilisée, 0 sinon.
+
+
+!!! question "Exercice corrigé" 
+    Compléter le tableau pour écrire $22_{10}$ et $29_{10}$ en binaire :
+
+	|i|4|3|2|1|0|
+	|:-:|:-:|:-:|:-:|:-:|:-:|
+	|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$|
+	|$22_{10}$||||||
+	|$29_{10}$||||||
+
+
+	
+
+??? Success "Réponse"
+    
+	|i|4|3|2|1|0||
+	|:-:|:-:|:-:|:-:|:-:|:-:||
+	|$2^i$|$2^4=16$|$2^3=8$|$2^2=4$|$2^1=2$|$2^0=1$||
+	|$22_{10}$|1|0|1|1|0|$= 10110_2$|
+	|$29_{10}$|1|1|1|0|1|$= 11101_2$|
+
+	
+	
+
+
+C'est une méthode simple et intuitive, mais en pratique elle est inefficace et peu utilisée, en particulier pour les grands nombres, car elle consiste à calculer et garder en mémoire de nombreuses puissances de 2 inutiles. 
+
+#### Effectuer des divisions successives par 2
+
+De la même manière qu'on a utilisée précédemment pour trouver les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des divisions entières par 2 :
 
 - Le reste de la division entière de $n$ par $2$, `n%2` en Python, renvoie $b_0$. Cela permet d'obtenir le dernier bit de l'écriture binaire de $n$.
 
@@ -414,8 +532,9 @@ def dec_to_bin(n):
    
 ```
 
+#### Fonction Python `bin`
 
-En Python, la fonction `bin` permet d'écrire un nombre décimal en binaire :
+En Python, il existe bien sûr une fonction `bin` qui permet d'écrire un nombre décimal en binaire, mais il est souvent interdit de l'utiliser dans le cadre de NSI :
 
 ``` py
 >>> bin(13)
@@ -488,9 +607,9 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-light-mode.png#only-light){width=15% align=right}
 	![Exemple de soustraction posée en binaire : 110001-11100](assets/1-soustraction-binaire-dark-mode.png#only-dark){width=15% align=right}
 
-	On aligne d'abord à gauche les bits des deux nombres le plus grand au dessus de l'autre. Puis on commence par soustraire les deux bits les plus à droite, $1 - 0 = 1$, et on remonte vers la gauche, $0 - 0 = 0$. On arrive à $0 - 1$, on garde le $0$ et on ajoute la retenue de $1$ au chiffre du bas à droite. Ici on applique la méthode française (ou méthode « par compensation »)[^1.2] qui consiste à ajouter la retenue à la gauche du nombre en bas : $11 + 1 = 100$. On continue la soustraction en remplaçant ces deux bits $11$ par $100$. On obtient $0 - 0 = 0$, puis $1-0=1$, et enfin $1-1=0$. On trouve le résultat final, $110001 - 11100 = 010101$, ou $10101$ en omettant le $0$ inutile à gauche, c'est l'équivalent binaire de $49-28=21$ en décimal.
+	On aligne d'abord à gauche les bits des deux nombres le plus grand au dessus de l'autre. Puis on commence par soustraire les deux bits les plus à droite, $1 - 0 = 1$, et on remonte vers la gauche, $0 - 0 = 0$. On arrive à $0 - 1$, on garde le $0$ et on ajoute la retenue de $1$ au chiffre du bas à droite. Ici on applique la méthode française (ou méthode « par compensation »)[^1.3] qui consiste à ajouter la retenue à la gauche du nombre en bas : $11 + 1 = 100$. On continue la soustraction en remplaçant ces deux bits $11$ par $100$. On obtient $0 - 0 = 0$, puis $1-0=1$, et enfin $1-1=0$. On trouve le résultat final, $110001 - 11100 = 010101$, ou $10101$ en omettant le $0$ inutile à gauche, c'est l'équivalent binaire de $49-28=21$ en décimal.
 
-	[^1.2]: Il existe une autre méthode, appelée méthode anglo-saxonne « par emprunt » ou « par cassage », qui consiste à soustraire la retenue du nombre du haut.
+	[^1.3]: Il existe une autre méthode, appelée méthode anglo-saxonne « par emprunt » ou « par cassage », qui consiste à soustraire la retenue du nombre du haut.
 
 
 	!!! question "Exercice corrigé" 
@@ -568,10 +687,10 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 ## Hexadécimal ou base 16
 
-Le système hexadécimal, ou base 16, est beaucoup utilisé en informatique car il offre un bon compromis entre le système binaire utilisé par les machines tout en restant lisible pour les informaticiens.  
+Le système hexadécimal, ou base 16, est souvent utilisé en informatique, par exemple dans les adresses IPv6 ou pour définir les couleurs dans un fichier CSS, car il offre un bon compromis entre le système binaire utilisé par les machines tout en restant lisible pour les informaticiens.  
 
 
-Le système hexadécimal, ou en base 16, nécessite 16 symboles, appelés chiffres hexadécimaux : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E et F. Voilà leur équivalent décimal et binaire :
+Dans le système hexadécimal, ou en base 16, on utilise 16 symboles, appelés chiffres hexadécimaux : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E et F. Voilà leur équivalent décimal et binaire :
 
 
 |hexadécimal|décimal|binaire||hexadécimal|décimal|binaire|
@@ -673,7 +792,9 @@ En Python, les nombres hexadécimaux s'écrivent avec le préfixe ```0x``` (les 
 
 
 ### Écrire un nombre décimal en hexadécimal
-Comme pour le binaire, on peut écrire un nombre décimal $n$ sous sa forme hexadécimale, $h_{p−1}h_{p−2}...h_2b_1h_0$, par une suite de divisions entières par 16 : 
+
+
+Comme pour le binaire, on peut écrire un nombre décimal $n$ sous sa forme hexadécimale, $h_{p−1}h_{p−2}...h_2h_1h_0$, par une suite de divisions entières par 16 : 
 
 
 
@@ -932,6 +1053,79 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 
 
 ## Autres bases
+
+
+On peut généraliser l'écriture de nombre en base 2, 10 et 16 vue précédemment à une base dans un nombre entier $b$ ($b \ge 2$) qui utilise des puissances successives de $b$.
+
+
+En base $b$, on utilise $b$ symboles, appelés chiffres, de valeurs allant de 0 à $b-1$ :
+
+- Pour les bases usuelles jusqu'à dix inclus, on utilise généralement les chiffres 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9. 
+
+- Pour les bases entre 11 et 36, on utilise ces mêmes 10 chiffres et les chiffres suivants sont les lettres de l'alphabet en capitales dans l'ordre de A à Z. Par exemple, pour la base 16, les chiffres utilisés sont : 0, 1, 2, 3... 8, 9, A, B, C, D, E, F. Pour la base 36, on utilise les chiffres : 0,1, 2, 3...8, 9, A, B, C...X,Y, Z.
+
+- Pour les bases entre 37 et 62, on peut utiliser les 10 chiffres de 0 à 9, les lettres capitales, puis les lettres minuscules. Par exemple, pour la base 62, on peut utiliser les chiffres : 0,1, 2, 3...8, 9, A, B, C...X,Y, Z, a, b, c,...x, y, z. 
+
+- Et pour n'importe quelle base, on peut utiliser une notation sans lettres en séparant les chiffres par des points virgules. Par exemple, en base soixante, on peut utiliser les chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,..., 59. Dans ce cas on écrira par exemple $5112_{10}$  s'écrit en base 60 $(1; 25; 12 )_{60}$ (=$1 \times 60^2 + 25 \times 60^1 + 12 \times 60^0=5112$).
+
+
+
+
+!!! abstract "Cours" 
+
+	Un nombre $n$ qui s'écrit en base $b$ ($b \ge 2$) avec $p$ chiffres $a_{p−1}a_{p−2}...a_2a_1a_0$  (chaque $a_i$ est un chiffre de la base tel que : $0 \leqslant a_i \leqslant b-1$) a une valeur décimale égale à : 
+
+	$n = a_{p−1} \times b^{p−1}  + a_{p−2} \times b^{p−2} + ... +  a_2 \times b^2 + a_1 \times b^1  + a_0 \times b^0$
+
+	ou encore avec la formule mathématique d'une somme de $0$ à $p-1$ :
+	$n = \sum_{i=0}^{p-1} a_i × b^i$
+
+
+On peut écrire les $b$ premiers nombres entre 0 et $b-1$ avec 1 seul chiffre, $b^2$ nombres allant de 0 à $b^2-1$ avec 2 chiffres, ... $b^p$ nombres allant de 0 à $b^p-1$ avec $p$ chiffres.
+
+
+
+
+## Écrire un nombre en base b en décimal et réciproquement
+
+De la même 
+La formule précédente permet d'écrire facilement un nombre hexadécimal en décimal. Il suffit de multiplier chaque chiffre hexadécimal par la puissance de 16 correspondante et de faire la somme des valeurs obtenues. 
+
+Comme pour le binaire et l'hexadécimal, on peut écrire un nombre en base $b$ en décimal en calculant la formule avec les puissances de $b$ et retrouver l'écriture en base $b$ d'un nombre décimal par une suite de divisions entières par $b$.
+
+Par exemple, on peut facilement calculer la valeur décimale de $6103$ en base $7$ : $6103_7 = 6 \times 7^3 + 1 \times 7^2 + 3 \times 7^0 = 2058 +  49 + 3 = 2110_{10}$
+
+Réciproquement, on peut écrire $64_{10}$ en base 3 par une succession de divisions par 3 :
+``` py
+>>> 64%3
+1
+>>> 64//3
+21
+>>> 21%3
+0
+>>> 21//3
+7
+>>> 7%3
+1
+>>> 7//3
+2
+>>> 2%3
+2
+>>> 2//3
+0
+```
+
+En utilisant les restes de divisions successives par $3$, en remontant à partir du dernier calculé jusqu'au premier, on obtient $64_{10} = 2101_3$
+
+
+En Python, la fonction `int()` permet de convertir une chaine de caractère en précisant la base avec le paramètre par mot clé `base`. 
+
+Exemple 45 en base 6 est égal à 29 en base 10 ($4 \times 6  + 5$) : 
+``` py
+>>> int('6103', base=7)
+2110
+```
+
 
 
 
