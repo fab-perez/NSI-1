@@ -38,9 +38,9 @@ Réciproquement, on peut écrire chacun des chiffres d'un nombre décimal $n$ qu
 
 
 
-- Le reste de la division entière de $n$ par $10$, `n%10` en Python, renvoie $d_0$. Cela permet d'obtenir le dernier chiffre de l'écriture décimale de $n$.
+- Le reste de la division entière de $n$ par $10$, `n % 10` en Python, renvoie $d_0$. Cela permet d'obtenir le dernier chiffre de l'écriture décimale de $n$.
 
-- Le quotient de la division entière de $n$ par $10$, `n//10` en Python, renvoie $d_{p−1}d_{p−2}...d_2b_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres.
+- Le quotient de la division entière de $n$ par $10$, `n // 10` en Python, renvoie $d_{p−1}d_{p−2}...d_2b_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres.
 
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les chiffres de l'écriture décimale de $n$. 
@@ -52,9 +52,9 @@ Prenons l'exemple du nombre $n = 2083$, le reste de la division entière par 10 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-1-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 2083%10
+>>> 2083 % 10
 3
->>> 2083//10
+>>> 2083 // 10
 208
 ```
 
@@ -65,9 +65,9 @@ On a déjà trouvé le dernier chiffre : 3. Continuons avec 208. Le reste de la 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-2-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 208%10
+>>> 208 % 10
 8
->>> 208//10
+>>> 208 // 10
 20
 ```
 
@@ -77,22 +77,22 @@ On obtient le 8. Continuons avec 20. Le reste de la division entière de 20 par 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-3-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 20%10
+>>> 20 % 10
 0
->>> 20//10
+>>> 20 // 10
 2
 ```
 
 On obtient le 0. Continuons avec 2. Le reste de la division entière de 2 par 10 est 2 et le quotient 0.
 
-![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-4-light-mode.png#only-light){width=25% align=right}
+![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-4-light-mode.png#only-light){width=25%  align=right}
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-4-dark-mode.png#only-dark){width=25% align=right}
 
 
 ``` py
->>> 2%10
+>>> 2 % 10
 2
->>> 2//10
+>>> 2 // 10
 0
 ```
 On a obtenu le dernier chiffre 2.  Le quotient est 0, inutile de continuer les divisions, tous les chiffres ont été trouvés.
@@ -109,8 +109,8 @@ On peut traduire cet algorithme en Python, par exemple pour écrire une fonction
 def etoile(n):
 	n_etoile = ''
 	while n > 0:
-		n_etoile =  str(n%10) + '*' + n_etoile
-		n = n//10
+		n_etoile =  str(n % 10) + '*' + n_etoile
+		n = n // 10
 	return n_etoile
 
 >>> etoile(2083)
@@ -146,9 +146,9 @@ def etoile(n):
 	n = int(input())
 	somme = 0
 	while n > 0:
-		somme = somme + n%10
-		n = n//10
-	if n%somme == 0:
+		somme = somme + n % 10
+		n = n // 10
+	if n % somme == 0:
 		print(n, "est un nombre de harshad")
 	else:
 		print(n, "n'est pas un nombre de harshad")
@@ -169,7 +169,7 @@ Par exemple on peut écrire $1101$, que l'on note aussi $1101_2$, pour indiquer 
 
 Il convient également de ne pas lire ces nombres comme on lirait des nombres décimaux. Ainsi, $1101_2$ ne se dit pas « mille cent un » mais plutôt « un un zéro un ».
 
-Comme dans le système décimal, c'est la position de chaque chiffre qui indique le poids de chaque chiffre dans un nombre. Mais en binaire, c'est une combinaison linéaire de puissances de 2. Par exemple, les bits du nombre $1101_2$ correspondent à :
+Comme dans le système décimal, c'est la position qui indique le poids de chaque bit dans un nombre. Mais en binaire, c'est une combinaison linéaire de puissances de 2. Par exemple, les bits du nombre $1101_2$ correspondent à :
 
 |bits|1|1|0|1|
 |:-:|:-:|:-:|:-:|:-:|
@@ -196,22 +196,7 @@ Noter le $..._{10}$ pour indiquer que $13$ est un nombre en base 10.
 
 
 
-	On peut écrire les 2 nombres 0 et 1 avec 1 seul bit, 4 nombres allant de 0 à 3 avec 2 bits, 8 nombres allant de 0 à 7 avec 3 bits, ... $2^p$ nombres allant de 0 à $2^p-1$ avec $p$ bits.
 
-!!! question "Exercice corrigé" 
-
-	1. Quel est le plus nombre représentable en binaire sur 16 bits (2 octets) ?
-
-	2. Combien de bits doit-on utiliser au minimum pour représenter en base 2 le nombre entier 72 ?
-
-		
-
-??? Success "Réponse"
-    
-	1. $2^{16}-1 = 65535$
-
-	2. 7 bits permettent de représenter les 128 nombres allant de 0 à 127.
-	
 	
 
 
@@ -299,7 +284,7 @@ Il existe plusieurs méthodes pour écrire un nombre décimal en binaire :
 
 On peut faire l'opération inverse de l'écriture d'un nombre binaire en décimal en essayant de retrouver la combinaison linéaire de puissances de 2 d'un nombre binaire.
 
-Cherchons pas exemple, l'écriture binaire du nombre $13_{10}. Il faut remplir le tableau des puissances de 2 suivant :
+Cherchons pas exemple, l'écriture binaire du nombre $13_{10}$. Il faut remplir le tableau des puissances de 2 suivant :
 
 |i|4|3|2|1|0|
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -333,7 +318,7 @@ Il faut donc procéder dans l'autre sens, en partant de la gauche, du côté des
 
 [^1.2]: Ce type d'algorithme appartient à la famille des « algorithmes gloutons ».
 
-$2^4 = 16$, c'est grand que $13$, on ne peut pas prendre le bit correspondant, on met 0 ! 
+$2^4 = 16$, c'est plus grand que $13$, on ne peut pas prendre le bit correspondant, on met 0 ! 
 
 |i|4|3|2|1|0|
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -407,9 +392,9 @@ C'est une méthode simple et intuitive, mais en pratique elle est inefficace et 
 
 De la même manière qu'on a utilisée précédemment pour trouver les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des divisions entières par 2 :
 
-- Le reste de la division entière de $n$ par $2$, `n%2` en Python, renvoie $b_0$. Cela permet d'obtenir le dernier bit de l'écriture binaire de $n$.
+- Le reste de la division entière de $n$ par $2$, `n % 2` en Python, renvoie $b_0$. Cela permet d'obtenir le dernier bit de l'écriture binaire de $n$.
 
-- Le quotient de la division entière de $n$ par $2$, `n//2` en Python, renvoie $b_{p−1}b_{p−2}...b_2b_1$. On remplace $n$ par ce nombre pour trouver les autres bits.
+- Le quotient de la division entière de $n$ par $2$, `n // 2` en Python, renvoie $b_{p−1}b_{p−2}...b_2b_1$. On remplace $n$ par ce nombre pour trouver les autres bits.
 
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les bits de l'écriture binaire de $n$. 
@@ -422,9 +407,9 @@ Prenons l'exemple de $n_{10} = 13$,  le reste de la division entière par 2 est 
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-1-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 13%2
+>>> 13 % 2
 1
->>> 13//2
+>>> 13 // 2
 6
 ```
 
@@ -435,21 +420,21 @@ On a déjà trouvé le dernier bit : 1. Continuons avec 6. Le reste de la divisi
 
 
 ``` py
->>> 6%2
+>>> 6 % 2
 0
->>> 6//2
+>>> 6 // 2
 3
 ```
 
 On obtient le bit 0. Continuons avec 3. Le reste de la division entière de 3 par 2 est 1 et le quotient 1.
 
-![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-3-light-mode.png#only-light){width=25% align=right}
+![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-3-light-mode.png#only-light){width=25%  align=right}
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-3-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 3%2
+>>> 3 % 2
 1
->>> 3//2
+>>> 3 // 2
 1
 ```
 
@@ -460,12 +445,12 @@ On obtient le bit 1. Continuons avec 1. Le reste de la division entière de 1 pa
 
 
 ``` py
->>> 1%2
+>>> 1 % 2
 1
->>> 1//2
+>>> 1 // 2
 0
 ```
-On a obtenu le dernier bit 2.  Le quotient est 0, inutile de continuer les divisions, tous les bits ont été trouvés.
+On a obtenu le dernier bit, c'est encore 1.  Le quotient est 0, inutile de continuer les divisions, tous les bits ont été trouvés.
 
 
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-5-light-mode.png#only-light){width=25% align=right}
@@ -503,8 +488,8 @@ def dec_to_bin(n):
 	"""
     bin = ''
     while n > 0:
-		bin =  str(n%2) + bin     
-		n = n//2
+		bin =  str(n % 2) + bin     
+		n = n // 2
 	return bin
    
 
@@ -512,7 +497,7 @@ def dec_to_bin(n):
 '1101'
 ```
 
-:warning: Il faut écrire `bin =  str(n%2) + bin` et non pas `bin =  bin + str(n%2)`, c''est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}$.
+:warning: Il faut écrire `bin =  str(n % 2) + bin` et non pas `bin =  bin + str(n % 2)`, c''est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}$.
 
 On note que le cas ou `n` est égal à `0`, la fonction n'entre pas dans la boucle `while` et renvoie une chaîne vide. On peut traiter le cas séparément au début de la fonction :
 
@@ -526,8 +511,8 @@ def dec_to_bin(n):
 		return '0'
     bin = ''
     while n > 0:
-		bin =  str(n%2) + bin
-		n = n//2
+		bin =  str(n % 2) + bin
+		n = n // 2
 	return bin
    
 ```
@@ -736,10 +721,6 @@ $B0D5_{16} = 11 × 16^3 + 0 × 16^2 + 13 × 16^1 + 5 × 16^0 = 45269{10}$
 	$n = \sum_{i=0}^{p-1} h_i × 16^i$
 
 
-	On peut écrire les 16 premiers nombres entre 0 et 15 avec 1 seul chiffre hexadécimal, 256 nombres allant de 0 à 255 avec 2 chiffres hexadécimaux, ... $16^p$ nombres allant de 0 à $16^p-1$ avec $p$ chiffres hexadécimaux.
-
-
-
 
 ### Écrire un nombre hexadécimal en décimal
 
@@ -798,9 +779,9 @@ Comme pour le binaire, on peut écrire un nombre décimal $n$ sous sa forme hexa
 
 
 
-- Le reste de la division entière de $n$ par $16$, `n%16` en Python, renvoie $h_0$. Cela permet d'obtenir le dernier chiffre  de l'écriture hexadécimale de $n$.
+- Le reste de la division entière de $n$ par $16$, `n % 16` en Python, renvoie $h_0$. Cela permet d'obtenir le dernier chiffre  de l'écriture hexadécimale de $n$.
 
-- Le quotient de la division entière de $n$ par $16$, `n//16` en Python, renvoie $h_{p−1}h_{p−2}...h_2h_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres hexadécimaux.
+- Le quotient de la division entière de $n$ par $16$, `n // 16` en Python, renvoie $h_{p−1}h_{p−2}...h_2h_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres hexadécimaux.
 
 
 
@@ -814,9 +795,9 @@ Prenons l'exemple de $n_{10} = 45269$,  le reste de la division entière par 16 
 ![Divisions euclidiennes successives de 45269 par 16](assets/1-45269-divise-par-16-1-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 45269%16
+>>> 45269 % 16
 5
->>> 45269//16
+>>> 45269 // 16
 2829
 ```
 
@@ -826,21 +807,21 @@ On a déjà trouvé le dernier chiffre hexadécimal : 5. Continuons avec 2829. L
 
 
 ``` py
->>> 2829%16
+>>> 2829 % 16
 13
->>> 2829//16
+>>> 2829 // 16
 176
 ```
 
 :warning: Attention, ici le chiffre 13 est en décimal, il faut écrire D en hexadécimal ! Continuons avec 176. Le reste de la division entière de 176 par 16 est 0 et le quotient 11.
 
-![Divisions euclidiennes successives de 45269 par 16](assets/1-45269-divise-par-16-3-light-mode.png#only-light){width=25% align=right}
+![Divisions euclidiennes successives de 45269 par 16](assets/1-45269-divise-par-16-3-light-mode.png#only-light){width=25%  align=right}
 ![Divisions euclidiennes successives de 45269 par 16](assets/1-45269-divise-par-16-3-dark-mode.png#only-dark){width=25% align=right}
 
 ``` py
->>> 176%16
+>>> 176 % 16
 0
->>> 176//16
+>>> 176 // 16
 11
 ```
 
@@ -851,9 +832,9 @@ On obtient le chiffre hexadécimal 0. Continuons avec 11. Le reste de la divisio
 
 
 ``` py
->>> 11%16
+>>> 11 % 16
 11
->>> 11//16
+>>> 11 // 16
 0
 ```
 On a obtenu le dernier chiffre hexadécimal, c'est B (11 en décimal).  Le quotient est 0, inutile de continuer les divisions, tous les chiffres hexadécimaux ont été trouvés.
@@ -903,8 +884,8 @@ def dec_to_hex(n):
 		return '0'
     hex = ''
     while n > 0:
-		hex = chiffre_hex[n%16] + hex     
-		n = n//16
+		hex = chiffre_hex[n % 16] + hex     
+		n = n // 16
 	return hex
    
 
@@ -953,7 +934,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-light-mode.png#only-light){width=15% align=left}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-2-dark-mode.png#only-dark){width=15% align=left}
 
-	On arrive à $8 + A$. On peut calculer l'équivalent en décimal, $8 + 10 = 18$, qui s'écrit $12$ en hexadécimal. On peut faire la conversion avec `18//16 = 1` et `18%16 = 2` ou tout simplement en faisant `18-16` pour trouver le chiffre des unités. On écrit le $2$ et on ajoute une retenue de $1$ à gauche.
+	On arrive à $8 + A$. On peut calculer l'équivalent en décimal, $8 + 10 = 18$, qui s'écrit $12$ en hexadécimal. On peut faire la conversion avec `18 // 16 = 1` et `18 % 16 = 2` ou tout simplement en faisant `18-16` pour trouver le chiffre des unités. On écrit le $2$ et on ajoute une retenue de $1$ à gauche.
 
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-light-mode.png#only-light){width=15% align=right}
 	![Exemple d'addition posée en hexadécimal : CDE8B3 + FC1A25](assets/1-addition-hexadecimale-3-dark-mode.png#only-dark){width=15% align=right}
@@ -1097,21 +1078,21 @@ Par exemple, on peut facilement calculer la valeur décimale de $6103$ en base $
 
 Réciproquement, on peut écrire $64_{10}$ en base 3 par une succession de divisions par 3 :
 ``` py
->>> 64%3
+>>> 64 % 3
 1
->>> 64//3
+>>> 64 // 3
 21
->>> 21%3
+>>> 21 % 3
 0
->>> 21//3
+>>> 21 // 3
 7
->>> 7%3
+>>> 7 % 3
 1
->>> 7//3
+>>> 7 // 3
 2
->>> 2%3
+>>> 2 % 3
 2
->>> 2//3
+>>> 2 // 3
 0
 ```
 
