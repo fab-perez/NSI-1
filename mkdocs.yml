@@ -139,7 +139,6 @@ nav:
     - Valeurs, opérateurs et expressions booléens: types-et-valeurs-de-base/4-valeurs-expressions-booleennes.md
     - Représentation d'un texte en machine: types-et-valeurs-de-base/5-representation-texte.md
 
-
   - Types construits: 
     - types-construits/index.md
     - p-uplets: types-construits/1-p-uplets.md
@@ -148,7 +147,6 @@ nav:
     - Comparaisons: types-construits/4-comparaisons.md
     - Chaînes de caractères: types-construits/5-chaines-de-caracteres.md
 
-
   - Traitement des données en table: 
     - donnees-en-tables/index.md
     - Lecture et écriture dans un fichier: donnees-en-tables/1-lecture-ecriture-dans-un-fichier.md
@@ -156,7 +154,6 @@ nav:
     - Rechercher dans une table: donnees-en-tables/3-rechercher-dans-une-table.md
     - Trier une table: donnees-en-tables/4-trier-une-table.md
     - Fusionner des tables: donnees-en-tables/5-fusionner-des-tables.md
-
 
   #- Interactions entre l’homme et la machine sur le Web: 
   #  - ihm-sur-web/index.md
@@ -170,11 +167,11 @@ nav:
     - Appel de fonctions: langages-et-programmation/5-fonctions.md
     - Modules et bibliothèques: langages-et-programmation/6-modules-bibliotheques.md
     - Mise au point des programmes et gestion des bugs: langages-et-programmation/7-mise-au-point-gestion-bugs.md
+    
   - Langages et programmation(2): 
     - langages-et-programmation-2/index.md
     - Types de langages: langages-et-programmation-2/1-types-de-langages.md
     - Paradigmes de programmation: langages-et-programmation-2/2-paradigmes-de-programmation.md
-
 
   - Algorithmique: 
     - algorithmique/index.md
@@ -182,3 +179,4 @@ nav:
     - k plus proches voisins: algorithmique/3-kppv.md 
     - Recherche dichotomique dans un tableau trié: algorithmique/4-recherche-dichotomique-tableau-trie.md
     - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
+
