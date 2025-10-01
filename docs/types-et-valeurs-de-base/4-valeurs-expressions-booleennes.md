@@ -16,6 +16,7 @@ En Python, ces deux valeurs s'écrivent `False` et `True` (avec une majuscule et
 >>> type(True)
 <class 'bool'>
 ```
+
 ---
 
 ## Opérateurs booléens
@@ -97,7 +98,7 @@ True
 ```
 
 
-## XOR
+### XOR
 
 !!! abstract "Cours" 
     L'opérateur **XOR** (*eXclusive OR*), « OU exclusif » en français,  renvoie 1 uniquement si les deux valeurs sont **différentes**.
@@ -151,7 +152,7 @@ Si A = 1, B = 0 et C = 1, alors :
 - NOT(A OR B) AND C = 0 AND 1 = 0
 
 
-## Table de vérité d'une expression
+### Table de vérité d'une expression
 
 Pour dresser la table de vérité d'une expression, on liste toutes les combinaisons possibles des variables d'entrée et on calcule le résultat.
 
@@ -170,7 +171,7 @@ Prenons l'exemple de l'expression booléenne A AND (B OR C). On commence par lis
 
 ---
 
-## Application : l'addition binaire
+### Application : l'addition binaire
 
 L'addition binaire utilise directement les opérateurs booléens XOR et AND. 
 
@@ -199,7 +200,7 @@ Par exemple calculons, avec la retenue, l'addition: 1 + 1 + 1 (A = B = C<sub>in<
 - C<sub>out</sub> = (1 AND 1) OR (1 AND 0) = 1 OR 0 = 1
 - Résultat : 11 en binaire (3 en décimal) 
 
-## Priorités et caractère séquentiel des opérateurs
+### Priorités et caractère séquentiel des opérateurs
 
 !!! abstract "Cours" 
     En Python, les opérateurs logiques `not`, `and` et `or` s'éxecutent par ordre de priorité :
