@@ -261,6 +261,5 @@ Le premier bit est 1, c'est donc un nombre négatif
 1110 0111 est donc -25.
 
 
-https://www.infoforall.fr/act/donnees/encodage-des-entiers-relatifs/
 
 
