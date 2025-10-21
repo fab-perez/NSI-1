@@ -134,7 +134,7 @@ nav:
   - Types et valeurs de base:
     - types-et-valeurs-de-base/index.md
     - Écriture d'un entier positif dans une base b >= 2: types-et-valeurs-de-base/1-ecriture-entier-positif-en-base-b.md
-    - Représentation binaire d'un entier relatif: types-et-valeurs-de-base/2-representation-binaire-entier-relatif.md
+    - Représentation des nombres entiers en machine et entiers relatifs: types-et-valeurs-de-base/2-representation-des-entiers-en-machine-entiers-relatifs.md
     - Représentation approximative des nombres réels: types-et-valeurs-de-base/3-representation-approximative-nombres-reels.md
     - Valeurs, opérateurs et expressions booléens: types-et-valeurs-de-base/4-valeurs-expressions-booleennes.md
     - Représentation d'un texte en machine: types-et-valeurs-de-base/5-representation-texte.md
@@ -179,4 +179,5 @@ nav:
     - k plus proches voisins: algorithmique/3-kppv.md 
     - Recherche dichotomique dans un tableau trié: algorithmique/4-recherche-dichotomique-tableau-trie.md
     - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
+
 
