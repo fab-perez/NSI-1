@@ -181,7 +181,7 @@ Noter qu'il y a toujours un nombre négatif de plus que les positifs car $0$ est
 ### Avantage du complément à 2
 
 
-L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme des bits d'un nombre et de son opposé donne bien 0.
+L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme bit à bit d'un nombre et de son opposé, en ignorant le dépassement éventuel, est égale à 0.
 
 Par exemple $5_{10}$ = $0101_{2}$ et $−5_{10}$ = $1011_{2}$ donne $−5_{10} + 5_{10}$ = $1011_{2} + 0101_{2}$ = $0000_{2}$ (noter que la dernière retenue disparait sur 4 bits). Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
 
@@ -203,7 +203,7 @@ Mais un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations
 
 !!! abstract "Cours"
 
-    Les entiers **positifs** (y compris 0) s'écrivent comme d’habitude en binaire. On a juste un bit en moins pour stocker la valeur du nombre. Sur un octet (8 bits), on a donc 1 bit de signe et 7 bits de valeur.
+    Les entiers **positifs** (y compris 0) s'écrivent comme d’habitude en binaire en faisant attention de ne pas faire de dépassement. Il y a un bit en moins pour stocker la valeur du nombre. Sur un octet (8 bits), il y a 1 bit de signe et 7 bits de valeur, le plus grand nombre que l'on peut coder est 7 (et pas 15).
 
     Les entiers **négatifs** s'écrivent en complément à 2 avec la règle suivante :
 
@@ -259,7 +259,7 @@ Noter que sur 8 bits (1 octet) on obtient  :
 	
 
 
-### Décoder un entier signé sur bits^
+### Décoder un entier signé sur n bits
 
 De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2n$. Par exemple la valeur de $1011$ est 11 à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
  
@@ -267,17 +267,17 @@ De la même façon que pour l'encodage, on pourrait convertir un nombre négatif
 !!! abstract "Cours"
     Pour retrouver la valeur décimale d'un nombre binaire, on commence par regarder le premier bit, le bit de signe :
 
-    - si le premier bit est 0, c'est un nombre positif, on décode comme s'il s'agissait d'un entier naturel.
+    Si le **bit de signe est 0**, c'est un nombre positif, on décode comme s'il s'agissait d'un entier naturel.
 
-    - si le premier bit est 1, c'est donc un nombre négatif, on applique la règle suivante :
+    Si le ** bit de signe est 1**, c'est donc un nombre négatif, on applique la règle suivante :
 
-        1.  Inverser tous les bits (« **complément à 1** ») :
-            -   0  devient  1 
-            -   1  devient  0 
+    1.  Inverser tous les bits (« **complément à 1** ») :
+        -   0  devient  1 
+        -   1  devient  0 
 
-        2.  Ajouter 1, en ignorant le dépassement éventuel (« **complément à 2** »)
+    2.  Ajouter 1, en ignorant le dépassement éventuel (« **complément à 2** »)
 
-        3.  Décoder le nombre binaire et prendre son opposé.
+    3.  Décoder le nombre binaire et prendre son opposé.
 
 Exemple : Trouver la valeur du nombre binaire 1110 0111
 
