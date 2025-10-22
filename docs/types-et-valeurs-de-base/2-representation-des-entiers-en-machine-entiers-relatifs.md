@@ -2,7 +2,7 @@
 
 ## Représentation en machine et dépassement
 
-En Python, le type `int` permet de représenter des nombre entiers de taille arbitraire (*Big Integers*) sans limite de taille. Lorsqu'on stocke un entier dans une variable, Python alloue dynamiquement de la mémoire pour contenir tous les bits nécessaires à la représentation du nombre. Cela permet d'effectuer des calculs avec des nombres extrêmement grands, limités uniquement par la mémoire disponible sur votre machine.
+En Python, le type `int` permet de représenter des nombre entiers de taille arbitraire (*Big Integers*) sans limite de taille. Lorsqu'on stocke un entier dans une variable, Python alloue dynamiquement un nombre de bits suffisants pour le représenter en mémoire. Cela permet d'effectuer des calculs avec des nombres entiers extrêmement grands, limités uniquement par la mémoire disponible sur l'ordinateur.
 
 ``` py
 >>> 2**100
@@ -12,14 +12,14 @@ En Python, le type `int` permet de représenter des nombre entiers de taille arb
 ```
 
 
-Mais ce n'est pas le cas de tous les langages informatiques. Dans la plupart des langages (C, Java, etc.), **les entiers sont généralement stockés dans un nombre de bits fixe prédéfini**. Les tailles standard sont des puissances de 2 en bits, correspondant souvent à la taille des registres du processeur, souvent 32 ou 64 bits. 
+Mais ce n'est pas le cas de tous les langages informatiques. Dans la plupart des langages (C, Java, etc.), **les entiers sont généralement stockés en utilisant un nombre de bits fixe prédéfini**. Les tailles standard sont des puissances de 2 en bits, correspondant souvent à la taille des registres du processeur, souvent 32 ou 64 bits. 
 
-L'utilisation d'une taille fixe pose le problème du **dépassement** (*overflow*). Lorsqu'une opération arithmétique (comme l'addition ou la multiplication) produit un résultat qui sort de la plage de valeurs permise par le nombre de bits alloué, il y a dépassement. 
+L'utilisation d'une taille fixe pose le problème du **dépassement** (*overflow*). Lorsqu'une opération arithmétique (comme l'addition ou la multiplication) produit un résultat qui sort de la plage de valeurs permise par le nombre de bits alloués, il y a dépassement. 
 
-Prenons l'exemple d'une addition de deux entiers naturels stockés sur 8 bits : $150+150=300$. L'ordinateur effectue le calcul suivant en binaire : $​1001\ 0110 ​ +1001\ 0110 ​= 1\ 0010\ 1100_2$. ​Le premier bit (dit de  « poids fort ») du résultat calculé est $1$, mais il dépasse la capacité de stockage de 8 bits, il est donc ignoré. L'ordinateur ne garde que les 8 derniers bits, $00101100$, c'est-à-dire $44_{10}$ ce qui est faux. 
+Prenons l'exemple d'une addition de deux entiers naturels stockés sur 8 bits : $150+150=300$. L'ordinateur effectue une somme en binaire équivalente, ​1001 0110 + 1001 0110, mais le résultat comporte 9 bits à cause de la retenue : 1 0010 1100. Cela dépasse la capacité de stockage de 8 bits, le premier bit est alors ignoré et l'ordinateur ne garde que les 8 derniers bits, 0010 1100, c'est-à-dire 44 ce qui est bien sûr faux ! 
 
+Même si certains langages informatique offrent des types d'entiers *Big Integer* équivalents à `int` en Python qui offrent l'avantage d'éliminer les erreurs de dépassement, les opérations sont plus lentes que les opérations natives d'un processeur sur des entiers tailles fixes et il n'est pas toujours intéressant de les utiliser. Il est souvent préférable de comprendre le nombre de bits utilisés et de choisir un type d'entier adapté à la taille des nombres manipulés.
 
-Si des types *Big Integer* équivalents à `int` en Python existent dans d'autres langages informatiques, il ne doivent pas toujours être utilisés. En effet, ils offrent l'avantage d'éliminer les erreurs de dépassement, mais les opérations sont plus lentes que les opérations natives d'un processeur sur des tailles fixes, car elles nécessitent plus d'instructions logicielles et de gestion de mémoire. Il est donc important de comprendre le nombre de bits utilisés pour choisir un type d'entier adapté à la taille des nombres manipulés.
 
 ## Nombres de bits
 
@@ -114,7 +114,7 @@ $a \times b = 91$ et $91 <= 2^7 - 1$ ($2^7 = 128$), donc 7 bits suffisent.
 
 ## Représentation binaire des entiers relatifs
 
-On a vu comment les ordinateurs peuvent représenter naturellement les entiers positifs en binaire. Mais comment faire pour les entiers relatifs qui peuvent être positifs ou négatifs ? En informatique on dit que ces entiers sont **signés**, car ils ont un signe  « + » ou  « - ». Dans ce cas, il faut une convention et la plus utilisée est celle du complément à 2, car elle permet de simplifier les calculs en ne distinguant pas le signe et de la valeur. 
+On a vu comment les ordinateurs encodent naturellement les entiers positifs en binaire. Mais comment faire pour les entiers relatifs qui peuvent être positifs ou négatifs ? En informatique on dit que ces entiers sont **signés**, car ils ont un signe  « + » ou  « - ». Dans ce cas, l'encodage le plus souvent utilisé est le **complément à 2** qui offre l'avantage de simplifier les calculs en ne distinguant pas le signe et de la valeur. 
 
 ### Principe du complément à 2
 
@@ -124,16 +124,17 @@ On a vu qu'avec $n$ bits on peut représenter les $2^n$ entiers positifs entre $
 |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
 |0   |1   |2   |3   |4   |5   |6   |7   |8   |9   |10  |11  |12  |13  |14  |15  |
 
-L'idée du complément à 2 et de partager la plage de nombres binaires disponibles sur n bits en deux parties : 
 
--   La première moitié contenant les $2^{n-1}$ premiers nombres binaires pour représenter les entiers positifs entre 0 et $2^{n-1} - 1$. Par exemple sur 4 bits :
+L'idée du complément à 2 et de partager la plage de nombres binaires disponibles sur n bits en deux parties égales : 
+
+-   La première moitié, contenant les $2^{n-1}$ premiers nombres binaires, permet de représenter les entiers positifs entre 0 et $2^{n-1} - 1$. Par exemple sur 4 bits :
 
     |0000|0001|0010|0011|0100|0101|0110|0111|
     |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
     |0   |1   |2   |3   |4   |5   |6   |7   |
 
 
--   La seconde moitié contenant les $2^{n-1}$ nombres binaires suivants pour représenter les entiers positifs entre $-2^{n-1}$ et $-1$. Par exemple sur 4 bits :
+-   La seconde moitié, contenant les $2^{n-1}$ nombres binaires suivants, permet de représenter les entiers positifs entre $-2^{n-1}$ et $-1$. Par exemple sur 4 bits :
 
     |1000|1001|1010|1011|1100|1101|1110|1111|
     |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
@@ -148,19 +149,9 @@ Autrement dit, on ajoute $2^n$ aux nombres négatifs pour obtenir leur représen
 
 Noter que le complément à 2 permet d'identifier immédiatement le signe d'un nombre en observant son premier bit :  $0$ pour less nombres négatifs, $1$ pour les positifs. C'est le « **bit de signe** ».
 
+On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1}-1$.
 
-
-### Plage de valeurs
-
-On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1}-1$.
-
-!!! abstract "Cours" 
-    Avec $n$ bits, on peut écrire $2^n$ nombres entiers **relatifs**, allant de  $−2^{n-1}$ à $2^{n-1}-1$.
-
-
-Noter qu'il y a un entier de plus en négatif qu'en positif car $0$ est représenté avec les positifs.
-
-Exemple :
+Voici les plages d'entiers que l'on peut représenter avec les nombres de bits les plus courants :
 
 |n bits|Plage d'entiers naturels (non signés)|Plage d'entiers relatifs (complément à 2)|
 |:-:|:-:|:-:|
@@ -170,12 +161,27 @@ Exemple :
 |32 bits|$[0, \approx 4,29 \times 10^9]$|$[\approx -2,14 \times 10^9, \approx 2,14 \times 10^9]$|
 |64 bits|$[0, \approx 1,84 \times 10^{19}]$|$[\approx -9,22 \times 10^{18}, \approx 9,22 \times 10^{18}]$|
 
+Noter qu'il y a toujours un nombre négatif de plus que les positifs car $0$ est représenté avec les positifs.
+
+
+!!! abstract "Cours" 
+    Le **complément à 2** permet d'encoder les entiers relatifs, dit « **entiers signés** ».
+
+    - Les entiers positif sont représentés par leur valeur encodée en binaire.
+
+    - Les entiers négatifs sont représentés par leur valeur à laquelle on a ajouté $2^n$ encodée en binaire.
+
+    Le premier bit, dit « **bit de signe** », indique le signe de l'entier : **0 s'il est positif, 1 s'il est négatif**.
+
+    Avec $n$ bits, on peut écrire $2^n$ nombres entiers **relatifs**, allant de  $−2^{n-1}$ à $2^{n-1}-1$.
+
+    
 
 
 ### Avantage du complément à 2
 
 
-L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme des bits d'un nombre et de son opposé donne bien un ensemble de bits à 0.
+L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme des bits d'un nombre et de son opposé donne bien 0.
 
 Par exemple $5_{10}$ = $0101_{2}$ et $−5_{10}$ = $1011_{2}$ donne $−5_{10} + 5_{10}$ = $1011_{2} + 0101_{2}$ = $0000_{2}$ (noter que la dernière retenue disparait sur 4 bits). Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
 
@@ -188,7 +194,12 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 - Somme binaire : 1011 + 0010 = 1101. On obtient le résultat attendu, −3 !
 
 
-### Écrire d'un nombre décimal en binaire sur n bits
+### Encoder un entier signé sur n bits
+
+Bien sûr on peut encoder un entier négatif sur n bits en écrivant en binaire sa valeur ajoutée de $2^n$. Par exemple pour écrire -5 sur 4 bits, il suffit décrire $-5 + 2^4 = -5 + 16 = 11$ en binaire. On obtient $1011$.
+
+Mais un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
+
 
 !!! abstract "Cours"
 
@@ -198,11 +209,11 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
     1. Écrire en binaire le nombre positif correspondant.
 
-    2. Faire un « **complément à 1** »  qui consiste à inverser tous les bits :
+    2. Inverser tous les bits (« **complément à 1** ») :
         -   0  devient  1 
         -   1  devient  0 
 
-    3.  Rajouter 1 (en ignorant le dépassement éventuel).
+    3. Ajouter 1, en ignorant le dépassement éventuel (« **complément à 2** »).
 
 Par exemple, pour coder -5 sur 4 bits : 
 
@@ -210,7 +221,7 @@ Par exemple, pour coder -5 sur 4 bits :
 2. Complément à 1 → 1010
 3. +1 → 1011
 
-Donc -5 s'écrit 1011 sur 4 bits.
+Donc -26 est encodé par 1011 sur 4 bits.
 
 Noter que sur 8 bits (1 octet) on obtient  :
 
@@ -221,36 +232,54 @@ Noter que sur 8 bits (1 octet) on obtient  :
 
 !!! question "Exercice corrigé" 
 
-	Écrire -26 en binaire sur 1 octet  ?
+	Encoder -3, -13 et -26  sur 1 octet  ?
 
 
 
 ??? Success "Réponse"
+    1. 3 en binaire  → 0000 0011
+    2. Complément à 1 → 1111 1100
+    3. +1 → 1111 1101
+
+    -3 s'encode 1111 1101 sur 1 octet.
+
+    1. 13 en binaire  → 0000 1101
+    2. Complément à 1 → 1111 0010
+    3. +1 → 1111 0011
+
+    -13 s'encode 1111 0011 sur 1 octet.
+
+
     1. 26 en binaire  → 0001 1010
     2. Complément à 1 → 1110 0101
     3. +1 → 1110 0110
 
-    Donc -26 s'écrit 1110 0110 sur 1 octet.
+    -26 s'encode 1110 0110 sur 1 octet.
+    
 	
 
 
-### Écrire d'un nombre binaire en décimal sur n bits
+### Décoder un entier signé sur bits^
 
-Pour retrouver la valeur décimale d'un nombre binaire, on commence par regarder le premier bit, le bit de signe :
+De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2n$. Par exemple la valeur de $1011$ est 11 à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
+ 
 
-- si le premier bit est 0, c'est un nombre positif, on décode comme s'il s'agissait d'un entier naturel.
+!!! abstract "Cours"
+    Pour retrouver la valeur décimale d'un nombre binaire, on commence par regarder le premier bit, le bit de signe :
 
-- si le premier bit est 1, c'est donc un nombre négatif, on applique la règle suivante :
+    - si le premier bit est 0, c'est un nombre positif, on décode comme s'il s'agissait d'un entier naturel.
 
-    1.  Faire un « **complément à 1** »  qui consiste à inverser tous les bits :
-        -   0  devient  1 
-        -   1  devient  0 
+    - si le premier bit est 1, c'est donc un nombre négatif, on applique la règle suivante :
 
-    2.  Rajouter 1 (en ignorant le dépassement éventuel).
+        1.  Inverser tous les bits (« **complément à 1** ») :
+            -   0  devient  1 
+            -   1  devient  0 
 
-    3.  Décoder le nombre binaire et prendre son opposé.
+        2.  Ajouter 1, en ignorant le dépassement éventuel (« **complément à 2** »)
 
-Exemple : Trouver la valeur décimale du nombre binaire 1110 0111
+        3.  Décoder le nombre binaire et prendre son opposé.
+
+Exemple : Trouver la valeur du nombre binaire 1110 0111
 
 Le premier bit est 1, c'est donc un nombre négatif
 
@@ -258,8 +287,6 @@ Le premier bit est 1, c'est donc un nombre négatif
 2. +1 → 0001 1001
 3. 0001 1001 → $2^4 + 2^3 + 2^0 = 16 + 8 + 1 = 25$
 
-1110 0111 est donc -25.
-
-
+1110 0111 est donc décodé en -25.
 
 
