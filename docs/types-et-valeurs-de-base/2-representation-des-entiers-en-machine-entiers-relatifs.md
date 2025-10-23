@@ -203,9 +203,12 @@ Mais un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations
 
 !!! abstract "Cours"
 
-    Les entiers **positifs** (y compris 0) s'écrivent comme d’habitude en binaire en faisant attention de ne pas faire de dépassement. Il y a un bit en moins pour stocker la valeur du nombre. Sur un octet (8 bits), il y a 1 bit de signe et 7 bits de valeur, le plus grand nombre que l'on peut coder est 7 (et pas 15).
+    
+    En machine, les nombres entiers **signés** sont stockés en binaire sur n bits : 1 bit de signe et n-1 bits de valeurs (:warning: attention au risque de dépassement). 
+ 
+    Les entiers **positifs** (y compris 0) sont encodé directement en binaire sur n-1 bits. 
 
-    Les entiers **négatifs** s'écrivent en complément à 2 avec la règle suivante :
+    Les entiers **négatifs** sont encodés en binaire par la méthode du **complément à 2** :
 
     1. Écrire en binaire le nombre positif correspondant.
 
@@ -261,7 +264,7 @@ Noter que sur 8 bits (1 octet) on obtient  :
 
 ### Décoder un entier signé sur n bits
 
-De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2n$. Par exemple la valeur de $1011$ est 11 à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
+De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2n$. Par exemple la valeur de $1011$ est 11 à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long ! Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
  
 
 !!! abstract "Cours"
