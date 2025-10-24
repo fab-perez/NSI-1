@@ -40,7 +40,7 @@ On peut écrire les 2 nombres 0 et 1 avec 1 seul bit, 4 nombres allant de 0 à 3
 
 	1. En C, le type `unsigned short int` permet de stocker les entiers positifs sur 2 octets (16 bits). Quel est le plus grand nombre entier accepté ?
 
-	2. On donne les puissances de 2 suivantes : $2^0 = 1, 2^1 = 2, 2^2 = 4, 2^3 = 8, 2^4 = 16, 2^5 = 32, 2^6 = 64, 2^7 = 128,  2^8 = 256$.     Combien de bits doit-on utiliser au minimum pour représenter le nombre entier 72 ?
+	2. On donne les puissances de 2 suivantes : $2^0 = 1$, $2^1 = 2$, $2^2 = 4$, $2^3 = 8$, $2^4 = 16$, $2^5 = 32$, $2^6 = 64$, $2^7 = 128$ et $2^8 = 256$.     Combien de bits doit-on utiliser au minimum pour représenter le nombre entier 72 ?
 
 
 ??? Success "Réponse"
@@ -51,37 +51,27 @@ On peut écrire les 2 nombres 0 et 1 avec 1 seul bit, 4 nombres allant de 0 à 3
 
 ### Nombre de bits nécessaires pour une somme et un produit
 
-![Nombre de bits d'une somme](assets/2-nombre-de-bits-somme-light-mode.png#only-light){width=15% align=right}
-![Nombre de bits d'une somme](assets/2-nombre-de-bits-somme-dark-mode.png#only-dark){width=15% align=right}
+![Nombre de bits d'une somme](assets/2-nombre-de-bits-somme-light-mode.png#only-light){width=13% align=right}
+![Nombre de bits d'une somme](assets/2-nombre-de-bits-somme-dark-mode.png#only-dark){width=13% align=right}
 
 
 
-Si on additionne deux nombres entiers qui s'écrivent respectivement dans le système binaire avec $p$ et $q$ bits, la somme s'écrit avec le plus grand nombre de bits entre $p$ et $q$ plus 1 pour prendre en compte le cas d'une retenue sur le bit de poids le plus fort :
-
-$bits(a + b) ≤ max(bits(a), bits(b)) + 1$
-
-où $bits(n)$ est le nombre de bits nécessaires pour écrire $n$ en binaire.
+Si on additionne deux nombres entiers qui s'écrivent respectivement dans le système binaire avec $p$ et $q$ bits, la somme s'écrit avec le plus grand nombre de bits entre $p$ et $q$, auquel on ajoute éventuellement 1 pour prendre en compte le cas d'une retenue sur le bit de poids le plus fort. La somme s'écrit donc avec au maximum $max(p, q) + 1$ bits.
 
 
-Prenons par exemple $a = 13$ et $b = 7$. On sait que les nombre $13$ s'écrit sur 4 bits car il est inférieur ou égal à $2^4 - 1  = 15$ et le nombre $7$ s'écrit sur 3 bits car il est inférieur ou égal à $2^3 -1 = 7$. La somme de $a$ et $b$ s'écrit donc sur $max(4, 3) + 1 = 5$ bits ou moins. En effet $a + b = 20$ et $20$ est inférieur ou égal à $2^5 - 1 = 31$.
+
+Prenons par exemple $a = 13$ (4 bits) et $b = 7$ (3 bits). D'après cette formule, la somme de $a$ et $b$ s'écrit donc sur $max(4, 3) + 1 = 5$ bits ou moins. En effet $a + b = 20$ et $20$ est inférieur ou égal à $2^5 - 1 = 31$, donc 5 bits suffisent.
+
+![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-light-mode.png#only-light){width=22% align=right}
+![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-dark-mode.png#only-dark){width=22% align=right}
 
 
-$a = 13$ (4 bits) et $b = 7$ (3 bits).
-
-$a + b = 20$, et  $20 < 2^5$ ($2^5 = 32$), donc 5 bits suffisent.
-
-![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-light-mode.png#only-light){width=25% align=right}
-![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-dark-mode.png#only-dark){width=25% align=right}
-
-
-De la même façon, si on multiplie deux nombres entiers qui s'écrivent respectivement dans le système binaire avec $p$ et $q$ bits, on obtient le produit en ajoutant jusqu'à $q-1$ bits aux $p$ bits du premier nombre auxquels il faut encore ajouter 1 1 pour prendre en compte le cas d'une retenue sur le bit de poids le plus fort. Le produit s'écrit donc avec au maximum $p+q$ bits :
-
-$bits(a×b) ≤ bits(a) + bits(b)$
+De la même façon, si on multiplie deux nombres entiers qui s'écrivent respectivement dans le système binaire avec $p$ et $q$ bits, on obtient le produit en ajoutant jusqu'à $q-1$ bits aux $p$ bits du premier nombre auxquels il faut encore ajouter 1 pour prendre en compte le cas d'une retenue sur le bit de poids le plus fort. Le produit s'écrit donc avec au maximum $p+q$ bits.
 
 
 !!! abstract "Cours" 
 
-    Si a et b sont deux nombres entiers, le nombre de bits nécessaire pour écrire leur somme et leur produit est au maximum :
+    Si $a$ et $b$ sont deux nombres entiers, les nombres de bits nécessaires pour écrire leur somme et leur produit vérifient :
 
     - $bits(a + b) \leq max(bits(a), bits(b)) + 1$
     
@@ -118,7 +108,7 @@ On a vu comment les ordinateurs encodent naturellement les entiers positifs en b
 
 ### Principe du complément à 2
 
-On a vu qu'avec $n$ bits on peut représenter les $2^n$ entiers positifs entre $0$ et $2^n - 1$. Par exemple sur 4 bits, on peut représenter les 16 (=$2^4$) entiers positifs compris entre 0 et 15 :
+Avec $n$ bits on peut représenter les $2^n$ entiers positifs entre $0$ et $2^n - 1$. Par exemple sur 4 bits, on peut représenter les 16 (=$2^4$) entiers positifs compris entre 0 et 15 :
 
 |0000|0001|0010|0011|0100|0101|0110|0111|1000|1001|1010|1011|1100|1101|1110|1111|
 |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
@@ -140,16 +130,18 @@ L'idée du complément à 2 et de partager la plage de nombres binaires disponib
     |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
     |-8  |-7  |-6  |-5  |-4  |-3  |-2  |-1  |
 
-Autrement dit, on ajoute $2^n$ aux nombres négatifs pour obtenir leur représentation binaire. Par exemple sur 4 bits :
+Autrement dit, on ajoute $2^n$ aux nombres négatifs pour obtenir leur représentation binaire[^2.1]. Par exemple sur 4 bits :
 
 - $-1$ est représenté par $-1 + 16 = 15$ en binaire : 1111.
 - $-2$ est représenté par $-2 + 16 = 14$ en binaire : 1110.
 - ...
 - $-8$ est représenté par $-8 + 16 = 8$ en binaire : 1000.
 
-Noter que le complément à 2 permet d'identifier immédiatement le signe d'un nombre en observant son premier bit :  $0$ pour less nombres négatifs, $1$ pour les positifs. C'est le « **bit de signe** ».
+[^2.1]: D'où le nom « complément à 2 puissance n », tronqué en « complément à 2 ».
 
-On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1}-1$.
+On observe immédiatement un premier avantage du complément à 2 : il permet d'identifier immédiatement le signe d'un nombre juste en observant son premier bit :  $0$ pour les nombres négatifs, $1$ pour les positifs. Ce premier bit est appelé « **bit de signe** ».
+
+On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1} - 1$.
 
 Voici les plages d'entiers que l'on peut représenter avec les nombres de bits les plus courants :
 
@@ -165,17 +157,19 @@ Noter qu'il y a toujours un nombre négatif de plus que les positifs car $0$ est
 
 
 !!! abstract "Cours" 
-    Le **complément à 2** permet d'encoder les entiers relatifs, dit « **entiers signés** ».
 
-    - Les entiers positif sont représentés par leur valeur encodée en binaire.
-
-    - Les entiers négatifs sont représentés par leur valeur à laquelle on a ajouté $2^n$ encodée en binaire.
-
-    Le premier bit, dit « **bit de signe** », indique le signe de l'entier : **0 s'il est positif, 1 s'il est négatif**.
-
-    Avec $n$ bits, on peut écrire $2^n$ nombres entiers **relatifs**, allant de  $−2^{n-1}$ à $2^{n-1}-1$.
-
+    Le **complément à 2** permet de stocker en machine les nombres entiers relatifs, dit « entiers **signés** », en binaire sur un nombre de bits fixé. 
     
+    Avec un codage sur $n$  bits :
+    
+    - Les entiers **positifs** (y compris 0) sont représentés de manière usuelle par **leur valeur**. 
+
+    - Les entiers **négatifs** sont représentés par **leur valeur à laquelle on ajoute $2^n$**. 
+    
+    - Le premier bit, dit « **bit de signe** », indique le signe du nombre : **0 s'il est positif, 1 s'il est négatif**. Les $n-1$ bits suivants indiquent la valeur du nombre (:warning: attention au risque de dépassement). 
+    
+    - Cette méthode permet de représenter les $2^n$ nombres entiers de $−2^{n-1}$ à $2^{n-1}-1$.
+
 
 
 ### Avantage du complément à 2
@@ -194,7 +188,7 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 - Somme binaire : 1011 + 0010 = 1101. On obtient le résultat attendu, −3 !
 
 
-### Encoder un entier signé sur n bits
+### Encoder un entier négatif sur n bits
 
 Bien sûr on peut encoder un entier négatif sur n bits en écrivant en binaire sa valeur ajoutée de $2^n$. Par exemple pour écrire -5 sur 4 bits, il suffit décrire $-5 + 2^4 = -5 + 16 = 11$ en binaire. On obtient $1011$.
 
@@ -204,11 +198,7 @@ Mais un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations
 !!! abstract "Cours"
 
     
-    En machine, les nombres entiers **signés** sont stockés en binaire sur n bits : 1 bit de signe et n-1 bits de valeurs (:warning: attention au risque de dépassement). 
- 
-    Les entiers **positifs** (y compris 0) sont encodé directement en binaire sur n-1 bits. 
-
-    Les entiers **négatifs** sont encodés en binaire par la méthode du **complément à 2** :
+    En machine, le complément à 2 d'un nombre négatif est obtenu en effectuant les opérations suivantes :
 
     1. Écrire en binaire le nombre positif correspondant.
 
@@ -259,20 +249,19 @@ Noter que sur 8 bits (1 octet) on obtient  :
 
     -26 s'encode 1110 0110 sur 1 octet.
     
-	
 
 
-### Décoder un entier signé sur n bits
+### Décoder un nombre négatif sur n bits
 
-De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2n$. Par exemple la valeur de $1011$ est 11 à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long ! Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
+De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2^n$. Par exemple la valeur de $1011$ est 11 sur 4 bits, à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long ! 
+
+On peut constater que répéter deux fois les opérations bit à bit du complément à 2 (inverser tous les bit puis ajouter 1) sur un nombre, revient à ajouter deux fois $2^n$ à ce nombre, c'est à dire lui ajouter $2 \times 2^n = 2^{n+1}$. Or $2^{n+1}$ correspond à un bit en dehors des $n$ premiers bits, cela n'affecte donc pas le codage en $n$ bits du nombre, on retrouve donc son codage de départ. Pour décoder un nombre négatif, il suffit donc d'appliquer une nouvelle fois la méthode du complément à 2.
+
  
 
 !!! abstract "Cours"
-    Pour retrouver la valeur décimale d'un nombre binaire, on commence par regarder le premier bit, le bit de signe :
 
-    Si le **bit de signe est 0**, c'est un nombre positif, on décode comme s'il s'agissait d'un entier naturel.
-
-    Si le ** bit de signe est 1**, c'est donc un nombre négatif, on applique la règle suivante :
+    En machine, le complément à 2 d'un nombre négatif (dont le bit de signe est 1) est obtenu en effectuant les opérations suivantes :
 
     1.  Inverser tous les bits (« **complément à 1** ») :
         -   0  devient  1 
@@ -282,14 +271,20 @@ De la même façon que pour l'encodage, on pourrait convertir un nombre négatif
 
     3.  Décoder le nombre binaire et prendre son opposé.
 
-Exemple : Trouver la valeur du nombre binaire 1110 0111
+    
+!!! question "Exercice corrigé" 
+    Trouver la valeur du nombre binaire 1110 0111
 
-Le premier bit est 1, c'est donc un nombre négatif
+??? Success "Réponse"
+    Le premier bit est 1, c'est donc un nombre négatif
 
-1. Complément à 1 → 0001 1000
-2. +1 → 0001 1001
-3. 0001 1001 → $2^4 + 2^3 + 2^0 = 16 + 8 + 1 = 25$
+    1. Complément à 1 → 0001 1000
+    2. +1 → 0001 1001
+    3. 0001 1001 → $2^4 + 2^3 + 2^0 = 16 + 8 + 1 = 25$
 
-1110 0111 est donc décodé en -25.
+    1110 0111 est donc décodé en -25.
+
+
+
 
 
