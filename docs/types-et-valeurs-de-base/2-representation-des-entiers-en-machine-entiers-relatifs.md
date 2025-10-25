@@ -60,13 +60,16 @@ Si on additionne deux nombres entiers qui s'écrivent respectivement dans le sys
 
 
 
-Prenons par exemple $a = 13$ (4 bits) et $b = 7$ (3 bits). D'après cette formule, la somme de $a$ et $b$ s'écrit donc sur $max(4, 3) + 1 = 5$ bits ou moins. En effet $a + b = 20$ et $20$ est inférieur ou égal à $2^5 - 1 = 31$, donc 5 bits suffisent.
+Prenons par exemple $a = 13$ (4 bits) et $b = 7$ (3 bits). D'après cette formule, la somme de $a$ et $b$ s'écrit donc sur $max(4, 3) + 1 = 5$ bits ou moins. En effet, $a + b = 20$ et $20$ est inférieur ou égal à $2^5 - 1 = 31$, donc 5 bits suffisent.
 
 ![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-light-mode.png#only-light){width=22% align=right}
 ![Nombre de bits d'un produit](assets/2-nombre-de-bits-produit-dark-mode.png#only-dark){width=22% align=right}
 
 
 De la même façon, si on multiplie deux nombres entiers qui s'écrivent respectivement dans le système binaire avec $p$ et $q$ bits, on obtient le produit en ajoutant jusqu'à $q-1$ bits aux $p$ bits du premier nombre auxquels il faut encore ajouter 1 pour prendre en compte le cas d'une retenue sur le bit de poids le plus fort. Le produit s'écrit donc avec au maximum $p+q$ bits.
+
+
+Reprenons notre exemple $a = 13$ (4 bits) et $b = 7$ (3 bits). D'après cette formule, le produit de $a$ et $b$ s'écrit donc sur $4 +3  = 7$ bits ou moins. En effet, $a \times b = 91$ et $91$ est inférieur ou égal à $2^7 - 1$ ($2^7 = 128$), donc 7 bits suffisent.
 
 
 !!! abstract "Cours" 
@@ -82,13 +85,6 @@ De la même façon, si on multiplie deux nombres entiers qui s'écrivent respect
 
 
 
-Exemple :
-
-Si $a = 13$ (4 bits) et $b = 7$ (3 bits).
-
-$a + b = 20$ et  $20 <= 2^5 - 1$ ($2^5 = 32$), donc 5 bits suffisent.
-
-$a \times b = 91$ et $91 <= 2^7 - 1$ ($2^7 = 128$), donc 7 bits suffisent.
 
 
 !!! question "Exercice corrigé" 
@@ -130,7 +126,7 @@ L'idée du complément à 2 et de partager la plage de nombres binaires disponib
     |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
     |-8  |-7  |-6  |-5  |-4  |-3  |-2  |-1  |
 
-Autrement dit, on ajoute $2^n$ aux nombres négatifs pour obtenir leur représentation binaire[^2.1]. Par exemple sur 4 bits :
+Autrement dit, on convertit en binaire un nombre négatif en ajoutant $2^n$ à sa valeur[^2.1]. Par exemple sur 4 bits :
 
 - $-1$ est représenté par $-1 + 16 = 15$ en binaire : 1111.
 - $-2$ est représenté par $-2 + 16 = 14$ en binaire : 1110.
@@ -139,7 +135,7 @@ Autrement dit, on ajoute $2^n$ aux nombres négatifs pour obtenir leur représen
 
 [^2.1]: D'où le nom « complément à 2 puissance n », tronqué en « complément à 2 ».
 
-On observe immédiatement un premier avantage du complément à 2 : il permet d'identifier immédiatement le signe d'un nombre juste en observant son premier bit :  $0$ pour les nombres négatifs, $1$ pour les positifs. Ce premier bit est appelé « **bit de signe** ».
+On observe immédiatement un premier avantage du complément à 2 : il permet d'identifier directement le signe d'un nombre juste avec son premier bit :  $0$ pour les nombres négatifs, $1$ pour les positifs. Ce premier bit est appelé « **bit de signe** ».
 
 On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1} - 1$.
 
@@ -177,7 +173,7 @@ Noter qu'il y a toujours un nombre négatif de plus que les positifs car $0$ est
 
 L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme bit à bit d'un nombre et de son opposé, en ignorant le dépassement éventuel, est égale à 0.
 
-Par exemple $5_{10}$ = $0101_{2}$ et $−5_{10}$ = $1011_{2}$ donne $−5_{10} + 5_{10}$ = $1011_{2} + 0101_{2}$ = $0000_{2}$ (noter que la dernière retenue disparait sur 4 bits). Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
+Par exemple 5 et encodé en 0101 sur 4 bits et −5 en 1011. Quand on ajoute 5 et -5 en binaire, on obtient bien 1011 + 0101 = 0000 car la dernière retenue disparait sur 4 bits. Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
 
 Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
@@ -190,9 +186,7 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
 ### Encoder un entier négatif sur n bits
 
-Bien sûr on peut encoder un entier négatif sur n bits en écrivant en binaire sa valeur ajoutée de $2^n$. Par exemple pour écrire -5 sur 4 bits, il suffit décrire $-5 + 2^4 = -5 + 16 = 11$ en binaire. On obtient $1011$.
-
-Mais un ordinateur ne fait pas comme ça, cela serait trop long. Les opérations bits à bits du complément à 2 sont beaucoup plus rapide.
+Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permt d'ajoute $2^n$ à une valeur avec la technique du complément à 2.
 
 
 !!! abstract "Cours"
@@ -253,11 +247,16 @@ Noter que sur 8 bits (1 octet) on obtient  :
 
 ### Décoder un nombre négatif sur n bits
 
-De la même façon que pour l'encodage, on pourrait convertir un nombre négatif codé en complément à 2 sur n bits en calculant sa valeur entière puis en soustrayant $2^n$. Par exemple la valeur de $1011$ est 11 sur 4 bits, à laquelle on soustrait $2^4 = 16$ pour obtenir -3. Une fois de plus, un ordinateur ne fait pas comme ça, cela serait trop long ! 
+On constate que si on fait deux fois le complément à 2 d'un nombre, on retrouve le nombre original ! 
 
-On peut constater que répéter deux fois les opérations bit à bit du complément à 2 (inverser tous les bit puis ajouter 1) sur un nombre, revient à ajouter deux fois $2^n$ à ce nombre, c'est à dire lui ajouter $2 \times 2^n = 2^{n+1}$. Or $2^{n+1}$ correspond à un bit en dehors des $n$ premiers bits, cela n'affecte donc pas le codage en $n$ bits du nombre, on retrouve donc son codage de départ. Pour décoder un nombre négatif, il suffit donc d'appliquer une nouvelle fois la méthode du complément à 2.
+Prenons par exemple le nombre 5 sur 4 bits, il s'écrit 0101. Si on effectue un premier complément à 2, on obtient 1011, c'est à dire -5. Effectuons un second complément à 2, on obtient à nouveau 0101, c'est à dire le nombre de départ, 5.
 
- 
+Mathématiquement c'est logique puisque le complément à 2 est une opération qui calcule l'opposé d'un nombre : si x est un nombre, son complément à 2 donne -x [^2.2]. 
+
+[^2.2]: Il y a une exception avec le nombre le plus négatif représentable (par exemple -8 sur 4 bits : 1000). Si on fait son complément à 2, on obtient... 1000 à nouveau, car il n'y a pas de +8 représentable en complément à 2 sur 4 bits (le maximum est +7).
+
+Pour décoder un nombre négatif, il suffit donc d'appliquer une nouvelle fois le complément à 2.
+
 
 !!! abstract "Cours"
 
