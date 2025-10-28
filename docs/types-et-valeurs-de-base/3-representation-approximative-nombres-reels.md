@@ -277,7 +277,7 @@ else:
 
 
 
-## Le format des nombres flottants 
+## Le format des nombres flottants en machine
 
 Les ordinateurs utilisent généralement la norme IEEE 754 pour représenter les nombres flottants. L'idée ressemble à l'écriture scientifique en mathématiques, par exemple : $1234,56 = 1,23456 \times 10^3$
 
@@ -305,7 +305,7 @@ où :
 La valeur stockée est donc : $(-1)^{S} \times 1,mantisse \times 2^{exposant}$.
 
 
-Prenons par exemple 5,75 codé sur 32 bits. $5.75_{10}$ s'écrit en binaire $101.11_2$ = 1.0111 \times  2^3$. On obtient :
+Prenons par exemple 5,75 codé sur 32 bits. $5.75_{10}$ s'écrit en binaire $101.11_2 = 1.0111 \times  2^3$. On obtient :
 
 - Signe S = $0$ (positif)
 - Exposant : $3 + 127 = 130 = 10000010_2$
