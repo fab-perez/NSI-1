@@ -84,7 +84,7 @@ Une première chose à noter est le fait que de la même manière certains nombr
 
 
 
-Prenons l'exemple de $13,6875_{10}$.  La partie entière, $13_{10}$  , s'écrit en base 2 en effectuant une succession de division par 2 jusqu'à obtenir 0, comme on l'a vu précedemment. On trouve $1101_2$. Il faut maintenant écrire la partie factionnaire, $0,6875$, en binaire. 
+Prenons l'exemple de $13,6875_{10}$.  La partie entière, $13_{10}$, s'écrit en base 2 en effectuant une succession de division par 2 jusqu'à obtenir 0, comme on l'a vu avant. On trouve $1101_2$. Il faut maintenant écrire la partie factionnaire, $0,6875$, en binaire. 
 
 
 De la même manière qu'on a utilisée précédemment pour trouver les bits d'un nombre entier par une succession de divisions entières par 2, on peut écrire une partie décimale $0,n$ sous sa forme binaire $0,b_{1}b_{2}b_{3}... en effectuant des **multiplications successives** par 2 :
@@ -279,39 +279,39 @@ else:
 
 ## Le format des nombres flottants 
 
-Les ordinateurs utilisent généralement la norme IEEE 754 pour représenter les nombres flottants. Un nombre flottant est stocké sous la forme : $(-1)^{signe} \times mantisse \times 2^{exposant}$.
+Les ordinateurs utilisent généralement la norme IEEE 754 pour représenter les nombres flottants. L'idée ressemble à l'écriture scientifique en mathématiques, par exemple : $1234,56 = 1,23456 \times 10^3$
+
+En binaire, on écrit de la même façon : $101,11_2 = 1,0111₂ \times 2^2$.
+
+Un nombre flottant sur 32 bits[^3.2] se décompose en 3 parties :
+
+|*S*|*exposant*|*mantisse*|
+|:-:|:-:|:-:|
+|1 bit|8 bits|23 bits|
 
 
-Sur 32 bits (simple précision), un nombre flottant sera représenté par :
-- 1 bit de signe
-- 8 bits pour l'exposant biaisé (E + 127)
-- 23 bits pour la mantisse
+[^3.2]: Sur 64 bits (double précision, le plus courant en Python), la répartition est :
 
-`[S][EEEEEEEE][MMMMMMMMMMMMMMMMMMMMMMM]`
-` 1    8 bits        23 bits`
+    - 1 bit de signe
+    - 11 bits pour l'exposant
+    - 52 bits pour la mantisse
 
-Sa valeur est  `(-1)^S × 2^(E-127) × (1.M)`
+où :
+
+- S est un bit de signe, 0 pour un nombre positif, 1 pour un nombre négatif.
+- L'exposant est codé en notation biaisé, en ajoutant 127 à sa valeur réelle.
+- La mantisse représente les bits significatifs après la virgule. En base 2, il y a toujours un 1 avant la virgule, il n'est pas stocké, on stocke uniquement la partie après la virgule.
+
+La valeur stockée est donc : $(-1)^{S} \times 1,mantisse \times 2^{exposant}$.
 
 
-Sur 64 bits (double précision, le plus courant en Python), la répartition est :
+Prenons par exemple 5,75 codé sur 32 bits. $5.75_{10}$ s'écrit en binaire $101.11_2$ = 1.0111 \times  2^3$. On obtient :
 
-- 1 bit de signe
-- 11 bits pour l'exposant
-- 52 bits pour la mantisse
+- Signe S = $0$ (positif)
+- Exposant : $3 + 127 = 130 = 10000010_2$
+- Mantisse : $0111 0000 0000 0000 0000 000$
 
-Pour écrire un nombre au format IEEE 754 (32 bits), on procède de la manière suivante :
+En machine, 5,75 sera codé sur 32 bits en `0 10000010 01110000000000000000000`.
 
-1. Convertir en binaire
-2. Normaliser (forme 1.M × 2^E)
-3. Calculer l'exposant biaisé (E + 127)
-4. Donner S, E, M
 
-Prenons par exemple 5.75 sur 32 bits:
 
-- $5.75_{10} = 101.11_2$
-- Normalisation : $1.0111 \times  2^3$
-- Signe S = `0` (positif)
-- Exposant : $3 + 127 = 130$ = `10000010`
-- Mantisse : `0111 0000 0000 0000 0000 000`
-
-Résultat : `0 10000010 01110000000000000000000`
