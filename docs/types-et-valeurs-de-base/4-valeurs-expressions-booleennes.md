@@ -5,6 +5,7 @@
 
 !!! abstract "Cours" 
     En informatique, une **valeur booléenne** (du nom du mathématicien George Boole) ne peut prendre que deux états :
+    
     - **Faux** (False) ou **0**
     - **Vrai** (True) ou **1**
 
@@ -286,6 +287,7 @@ resultat = False and fonction_lente()
 ```
 
 À noter : L'évaluation séquentielle des opérations booléennes en programmation est une différence importante avec les circuits électroniques étudiés dans le chapitre « Transistors et circuits logiques » dans lesquels toutes les entrées sont évaluées simultanément.
+
 
 
 
