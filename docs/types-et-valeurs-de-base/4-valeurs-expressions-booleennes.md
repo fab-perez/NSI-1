@@ -5,7 +5,7 @@
 
 !!! abstract "Cours" 
     En informatique, une **valeur booléenne** (du nom du mathématicien George Boole) ne peut prendre que deux états :
-    
+	
     - **Faux** (False) ou **0**
     - **Vrai** (True) ou **1**
 
@@ -204,7 +204,7 @@ Par exemple calculons, avec la retenue, l'addition: 1 + 1 + 1 (A = B = C<sub>in<
 ### Priorités et caractère séquentiel des opérateurs
 
 !!! abstract "Cours" 
-    En Python, les opérateurs logiques `not`, `and` et `or` s'éxecutent par ordre de priorité :
+    En Python, les opérateurs logiques `not`, `and` et `or` s'exécutent par ordre de priorité :
 
     1. `not`
     2. `and`
@@ -222,9 +222,7 @@ True
 ```
 Ici, Python calcule d’abord `False and False`, c'est `False`, puis `True or False`, c'est donc `True`.
 
-Pour éviter les erreurs et améliorer la lisibilité du code on utilise des parenthèses.
-
-print(True or (False and False))
+Pour éviter les erreurs et améliorer la lisibilité du code on utilise des parenthèses : `True or (False and False)`.
 
 
 !!! question "Exercice corrigé" 
@@ -287,7 +285,6 @@ resultat = False and fonction_lente()
 ```
 
 À noter : L'évaluation séquentielle des opérations booléennes en programmation est une différence importante avec les circuits électroniques étudiés dans le chapitre « Transistors et circuits logiques » dans lesquels toutes les entrées sont évaluées simultanément.
-
 
 
 
