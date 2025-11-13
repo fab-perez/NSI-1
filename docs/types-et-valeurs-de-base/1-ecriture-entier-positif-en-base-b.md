@@ -1095,7 +1095,10 @@ En utilisant les restes de divisions successives par $3$, en remontant à partir
 
 
 !!! question "Exercice corrigé" 
-	Convertir en base 10 ne nombre qui s'écrit 7H3 en base 19.
+
+	Convertir en base 10 le nombre qui s'écrit 7H3 en base 19.
+
+	
 	
 	
 
@@ -1103,14 +1106,17 @@ En utilisant les restes de divisions successives par $3$, en remontant à partir
 	Notons que H en base 19 est égal à 17 en base 10 ($A_{19}=10_{10}$, $B_{19}=11_{10}$, ..., $G_{19}=16_{10}$, et $H_{19}=14_{10}$).
 
 	On peut alors calculer : 
-	$7H3_{19} = 7 \times 19^2 +  17 \times 19^1 3 \times 19^0 = $
+	$7H3_{19} = 7 \times 19^2 +  17 \times 19^1 3 \times 19^0 = 2853_{10} $
+
+	
 	
 
 
 
 En Python, la fonction `int()` permet de convertir une chaine de caractère en précisant la base avec le paramètre par mot clé `base`. 
 
-Exemple 45 en base 6 est égal à 29 en base 10 ($4 \times 6  + 5$) : 
+Exemple 6103 en base 7 est égal à 2110 en base 10 : 
+
 ``` py
 >>> int('6103', base=7)
 2110
