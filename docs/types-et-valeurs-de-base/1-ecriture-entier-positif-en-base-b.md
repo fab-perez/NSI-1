@@ -135,7 +135,7 @@ def etoile(n):
     Source : [https://fr.wikipedia.org/wiki/Nombre_harshad](https://fr.wikipedia.org/wiki/Nombre_harshad).
 	
 	
-	Écrire un programme demande un nombre entier et affiche s'il est un nombre de harshad ou pas.
+	Écrire un programme demande un nombre entier et affiche s'il est un nombre harshad ou pas.
 
 	
 
@@ -144,14 +144,15 @@ def etoile(n):
 
     ``` py
 	n = int(input())
+	n_initial = n
 	somme = 0
 	while n > 0:
 		somme = somme + n % 10
 		n = n // 10
-	if n % somme == 0:
-		print(n, "est un nombre de harshad")
+	if n_initial % somme == 0:
+		print(n_initial, "est un nombre de harshad")
 	else:
-		print(n, "n'est pas un nombre de harshad")
+		print(n_initial, "n'est pas un nombre de harshad")
 
 	```
    
@@ -390,7 +391,7 @@ C'est une méthode simple et intuitive, mais en pratique elle est inefficace et 
 
 #### Effectuer des divisions successives par 2
 
-De la même manière qu'on a utilisée précédemment pour trouver les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des divisions entières par 2 :
+De la même manière qu'on a utilisée précédemment pour trouver les chiffres en base 10 d'un nombre par une succession de divisions entières par 10, on peut écrire un nombre décimal $n$ sous sa forme binaire $b_{p−1}b_{p−2}...b_2b_1b_0$ en effectuant des **divisions entières successives** par 2 :
 
 - Le reste de la division entière de $n$ par $2$, `n % 2` en Python, renvoie $b_0$. Cela permet d'obtenir le dernier bit de l'écriture binaire de $n$.
 
@@ -486,18 +487,18 @@ def dec_to_bin(n):
     """ int -> str
 	Renvoie l'écriture binaire de l'entier n 
 	"""
-    bin = ''
+    b = ''
     while n > 0:
-		bin =  str(n % 2) + bin     
+		b =  str(n % 2) + b     
 		n = n // 2
-	return bin
+	return b
    
 
 >>> bin_to_dec(13)
 '1101'
 ```
 
-:warning: Il faut écrire `bin =  str(n % 2) + bin` et non pas `bin =  bin + str(n % 2)`, c''est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}$.
+:warning: Il faut écrire `b =  str(n % 2) + b` et non pas `b =  b + str(n % 2)`, c'est un bug classique, car le premier bit trouvé est $b_0$ et le dernier est $b_{p−1}$.
 
 On note que le cas ou `n` est égal à `0`, la fonction n'entre pas dans la boucle `while` et renvoie une chaîne vide. On peut traiter le cas séparément au début de la fonction :
 
@@ -509,11 +510,11 @@ def dec_to_bin(n):
 	"""
 	if n == 0:
 		return '0'
-    bin = ''
+    b = ''
     while n > 0:
-		bin =  str(n % 2) + bin
+		b =  str(n % 2) + b
 		n = n // 2
-	return bin
+	return b
    
 ```
 
@@ -670,7 +671,7 @@ Les quatre opérations de base (addition, soustraction, multiplication et divisi
 		
 
 
-## Hexadécimal ou base 16
+## Système hexadécimal ou base 16
 
 Le système hexadécimal, ou base 16, est souvent utilisé en informatique, par exemple dans les adresses IPv6 ou pour définir les couleurs dans un fichier CSS, car il offre un bon compromis entre le système binaire utilisé par les machines tout en restant lisible pour les informaticiens.  
 
@@ -678,16 +679,16 @@ Le système hexadécimal, ou base 16, est souvent utilisé en informatique, par 
 Dans le système hexadécimal, ou en base 16, on utilise 16 symboles, appelés chiffres hexadécimaux : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E et F. Voilà leur équivalent décimal et binaire :
 
 
-|hexadécimal|décimal|binaire||hexadécimal|décimal|binaire|
-|:-:|-:|-:||:-:|-:|-:|
-|0|0|0000||8|8|1000|
-|1|1|0001||9|9|1001|
-|2|2|0010||A|10|1010|
-|3|3|0011||B|11|1011|
-|4|4|0100||C|12|1100|
-|5|5|0101||D|13|1101|
-|6|6|0110||E|14|1110|
-|7|7|0111||F|15|1111|
+|hexadécimal|décimal|binaire|\||hexadécimal|décimal|binaire|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|0|0|0000|\||8|8|1000|
+|1|1|0001|\||9|9|1001|
+|2|2|0010|\||A|10|1010|
+|3|3|0011|\||B|11|1011|
+|4|4|0100|\||C|12|1100|
+|5|5|0101|\||D|13|1101|
+|6|6|0110|\||E|14|1110|
+|7|7|0111|\||F|15|1111|
 
 
 
@@ -707,7 +708,7 @@ Comme dans les systèmes décimal et binaire, c'est la position qui indique le p
 |$16^i$|$16^3=4096$|$16^2=256$|$16^1=16$|$16^0=16$|
 |combinaison|$11 \times 16^3=450564$|$0 \times 16^2=0$|$13 \times 16^1=208$|$5 \times 16^0=5$|
 
-$B0D5_{16} = 11 × 16^3 + 0 × 16^2 + 13 × 16^1 + 5 × 16^0 = 45269{10}$
+$B0D5_{16} = 11 × 16^3 + 0 × 16^2 + 13 × 16^1 + 5 × 16^0 = 45269_{10}$
 
 
 
@@ -1062,15 +1063,9 @@ En base $b$, on utilise $b$ symboles, appelés chiffres, de valeurs allant de 0 
 	$n = \sum_{i=0}^{p-1} a_i × b^i$
 
 
-On peut écrire les $b$ premiers nombres entre 0 et $b-1$ avec 1 seul chiffre, $b^2$ nombres allant de 0 à $b^2-1$ avec 2 chiffres, ... $b^p$ nombres allant de 0 à $b^p-1$ avec $p$ chiffres.
 
 
-
-
-## Écrire un nombre en base b en décimal et réciproquement
-
-De la même 
-La formule précédente permet d'écrire facilement un nombre hexadécimal en décimal. Il suffit de multiplier chaque chiffre hexadécimal par la puissance de 16 correspondante et de faire la somme des valeurs obtenues. 
+### Écrire un nombre en base b en décimal et réciproquement
 
 Comme pour le binaire et l'hexadécimal, on peut écrire un nombre en base $b$ en décimal en calculant la formule avec les puissances de $b$ et retrouver l'écriture en base $b$ d'un nombre décimal par une suite de divisions entières par $b$.
 
@@ -1099,6 +1094,20 @@ Réciproquement, on peut écrire $64_{10}$ en base 3 par une succession de divis
 En utilisant les restes de divisions successives par $3$, en remontant à partir du dernier calculé jusqu'au premier, on obtient $64_{10} = 2101_3$
 
 
+!!! question "Exercice corrigé" 
+	Convertir en base 10 ne nombre qui s'écrit 7H3 en base 19.
+	
+	
+
+??? Success "Réponse"
+	Notons que H en base 19 est égal à 17 en base 10 ($A_{19}=10_{10}$, $B_{19}=11_{10}$, ..., $G_{19}=16_{10}$, et $H_{19}=14_{10}$).
+
+	On peut alors calculer : 
+	$7H3_{19} = 7 \times 19^2 +  17 \times 19^1 3 \times 19^0 = $
+	
+
+
+
 En Python, la fonction `int()` permet de convertir une chaine de caractère en précisant la base avec le paramètre par mot clé `base`. 
 
 Exemple 45 en base 6 est égal à 29 en base 10 ($4 \times 6  + 5$) : 
@@ -1106,7 +1115,3 @@ Exemple 45 en base 6 est égal à 29 en base 10 ($4 \times 6  + 5$) :
 >>> int('6103', base=7)
 2110
 ```
-
-
-
-
