@@ -87,7 +87,7 @@ Une première chose à noter est le fait que de la même manière certains nombr
 Prenons l'exemple de $13,6875_{10}$.  La partie entière, $13_{10}$, s'écrit en base 2 en effectuant une succession de division par 2 jusqu'à obtenir 0, comme on l'a vu avant. On trouve $1101_2$. Il faut maintenant écrire la partie factionnaire, $0,6875$, en binaire. 
 
 
-De la même manière qu'on a utilisée précédemment pour trouver les bits d'un nombre entier par une succession de divisions entières par 2, on peut écrire une partie décimale $0,n$ sous sa forme binaire $0,b_{1}b_{2}b_{3}... en effectuant des **multiplications successives** par 2 :
+De la même manière qu'on a utilisée précédemment pour trouver les bits d'un nombre entier par une succession de divisions entières par 2, on peut écrire une partie décimale $0,n$ sous sa forme binaire $0,b_{1}b_{2}b_{3}...$ en effectuant des **multiplications successives** par 2 :
 
 Le produit de $n$ par $2$, `n * 2` en Python, peut être décomposé en deux parties :
 
