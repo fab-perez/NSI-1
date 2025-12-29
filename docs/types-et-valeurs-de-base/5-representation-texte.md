@@ -10,17 +10,16 @@ Un ordinateur ne manipule que des nombres binaires (0 et 1), alors comment fait-
 !!! abstract "Cours" 
     Créé dans les années 60, l'ASCII (*American Standard Code for Information Interchange*) est la base de presque tous les encodages actuels. Il utilise 7 bits pour coder chaque caractère, ce qui permet de représenter $2^7 = 128$ caractères : 
 
-    - Les lettres majuscules A à Z (codes 65 à 90) et les lettres minuscules a à z (codes 97 à 122).
-    - Les chiffres 0 à 9 (codes 48 à 57).
+    - Les chiffres 0 à 9 (de 48 à 57).
+    - Les lettres majuscules A à Z (de 65 à 90)
+    - Les lettres minuscules a à z (de 97 à 122).
     - Les signes de ponctuation courants.
-    - des caractères spéciaux (tabulation, nouvelle ligne, etc.) et des caractères de contrôle non imprimables pour des protocole de communication et des contrôles de périphériques (Fin de transmission, etc. ).
+    - Des caractères spéciaux (tabulation, nouvelle ligne, etc.) et des caractères de contrôle non imprimables pour des protocole de communication et des contrôles de périphériques (Fin de transmission, etc. ).
 
-|Caractère|Code décimal|Code binaire|
-|:-:|:-:|:-:|
-|A|65|01000001|
-|a|97|01100001|
-|0|48|00110000|
-|espace|32|00100000|
+Le tableau suivant montre l’encodage des 127 caractères ASCII :
+![Table des 127 caractères ASCII](assets/5-ascii-table-light-mode.png#only-light){width=100%}
+![Table des 127 caractères ASCII](assets/5-ascii-table-dark-mode.png#only-dark){width=100%}
+
 
 L'ASCII fonctionne très bien pour l'anglais, mais il ne contient aucun caractère accentué (é, è, à, ç, etc.), aucun symbole spécifique à d'autres langues, et encore moins de caractères d'alphabets non latins (cyrillique, arabe, chinois, etc.).
 
@@ -30,13 +29,19 @@ L'ASCII fonctionne très bien pour l'anglais, mais il ne contient aucun caractè
 !!! abstract "Cours" 
     Pour résoudre le problème des accents, ISO-8859-1, aussi appelé Latin-1, utilise 8 bits par caractère, permettant de coder $2^8 = 256$ caractères :
 
-    - Les 128 premiers caractères (0 à 127) sont identiques à l'ASCII
+    - Les 128 premiers caractères (0 à 127) sont identiques à l'ASCII.
     - Les 128 caractères suivants (128 à 255) ajoutent les caractères accentués et symboles nécessaires aux langues d'Europe occidentale (français, espagnol, allemand, etc.). On y trouve : é, è, ê, ë, à, ù, ç, ñ, ö, etc.
 
-Cependant il ignore quelques caractères européens comme le symbole de l’euro € (qui n’existait pas encore lorsque ce jeu a été normalisé) ou certaines des lettres normalement nécessaires à certaines langues théoriquement couvertes (comme les lettres « œ », « Œ » et « Ÿ » en français, ou les lettres « š » et « Š » en finnois).
+Le tableau suivant[^5.1] montre l’encodage des 256 caractères ISO-8859-1. Les titres des lignes et des colonnes indiquent les valeurs hexadécimales correspondant aux positions codées assignées à chaque caractère, par exemple, la valeur hexadécimale de la position codée assignée à la lettre « L » est 4C16, soit 01001100 en binaire ou 76 en décimal.
+
+[^5.1]: source: [https://fr.wikipedia.org/wiki/ISO/CEI_8859-1](https://fr.wikipedia.org/wiki/ISO/CEI_8859-1)
+
+![Table des 256 caractères ISO-8859-1](assets/5-iso-8859-1-table.png){width=70%}
 
 
-Bien qu'utile pour l'Europe occidentale, ISO-8859-1 ne peut pas représenter les caractères d'autres régions du monde. Il existe d'autres variantes (ISO-8859-2 pour l'Europe centrale, ISO-8859-5 pour le cyrillique, etc.), mais on ne peut pas mélanger plusieurs alphabets dans un même document avec ce système.
+Si l'ISO-8859-1 est une amélioration de l'encodage ASCII, il ignore quelques caractères européens comme le symbole de l’euro € (qui n’existait pas encore lorsque ce jeu a été normalisé) ou certaines des lettres normalement nécessaires à certaines langues théoriquement couvertes (comme les lettres « œ », « Œ » et « Ÿ » en français, ou les lettres « š » et « Š » en finnois).
+
+Par ailleurs, bien qu'utile pour l'Europe occidentale, ISO-8859-1 ne peut pas représenter les caractères d'autres régions du monde. Il existe d'autres variantes (ISO-8859-2 pour l'Europe centrale, ISO-8859-5 pour le cyrillique, etc.), mais on ne peut pas mélanger plusieurs alphabets dans un même document avec ce système.
 
 
 
