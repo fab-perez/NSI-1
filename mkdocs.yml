@@ -15,14 +15,14 @@ theme:
   name: material
   font: false
   features:
-    - navigation.tabs
-    - navigation.sections
+    #- navigation.tabs
+    #- navigation.sections
     - navigation.prune 
     - navigation.expand
     - navigation.footer
     - navigation.indexes
     - navigation.instant
-    - navigation.tabs.sticky
+    #- navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - toc.integrate
@@ -164,6 +164,7 @@ nav:
     - k plus proches voisins: algorithmique/3-kppv.md 
     - Recherche dichotomique dans un tableau trié: algorithmique/4-recherche-dichotomique-tableau-trie.md
     - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
+
 
 
 
