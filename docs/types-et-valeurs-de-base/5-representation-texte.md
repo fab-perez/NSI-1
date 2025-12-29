@@ -82,7 +82,7 @@ Le mot « météo »  est donc encodé en UTF-8 par `6D C3 A9 74 C3 A9 6F` :
 donc avec seulement 7 octets pour 5 caractères, ce qui est bien moins que les 20 octets en UTF-32 !
 
 
-Notez qu'un logiciel lisant cet encodage en format ISO-8859-1 affichera  « mÃ@tÃ@o » au lieu de « météo », car `C3` encode la lettre « Ã »  et `A9` la lettre « @ » en ISO-8859-1. C'est à l'origine de la majorité des bugs d'affichage de caractères accentués sur Internet !
+Notez qu'un logiciel lisant cet encodage en format ISO-8859-1 affichera  « mÃ©tÃ©o » au lieu de « météo », car `C3` encode la lettre « Ã »  et `A9` la lettre « © » en ISO-8859-1. C'est à l'origine de la majorité des bugs d'affichage de caractères accentués sur Internet !
 
 Un autre avanatage d'UTF-8 est de permettre d'utiliser tous les caractères, symboles, emojis, etc. en même temps. Par exemple, texte "Hello 你好" (anglais + chinois) peut être représenté dans le même fichier, ce qui était impossible avec ASCII ou ISO-8859-1.
 
