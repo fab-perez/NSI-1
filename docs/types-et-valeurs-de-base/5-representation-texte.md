@@ -84,6 +84,12 @@ Les opérateurs de comparaison entre caractères `==`, `<` et `>` comparent les 
 False
 >>> '12' < '2'
 True
+>>> chr(0x1F600)
+'😀'
+>>> chr(0x1F602)
+'😂'
+>>> '😀' < '😂'
+True
 ``` 
 
 
