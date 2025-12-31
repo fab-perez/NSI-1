@@ -1,6 +1,6 @@
 # Représentation d’un texte en machine
 
-Un ordinateur ne manipule que des nombres binaires (0 et 1), alors comment fait-il pour représenter du texte, les lettres, les chiffres et autres symbolesque l'on utilise ? C'est ce qu'on appelle l'**encodage**.
+Un ordinateur ne manipule que des nombres binaires (0 et 1), alors comment fait-il pour représenter du texte, les lettres, les chiffres et autres symboles que l'on utilise ? C'est ce qu'on appelle l'**encodage**.
 
 !!! abstract "Cours" 
     Un **système d'encodage** établit une **correspondance entre des caractères (lettres, chiffres, ponctuation) et des nombres**. Chaque caractère se voit attribuer un code numérique unique, que l'ordinateur peut stocker et manipuler.
@@ -16,8 +16,8 @@ Un ordinateur ne manipule que des nombres binaires (0 et 1), alors comment fait-
     - Les signes de ponctuation courants.
     - Des caractères spéciaux (tabulation, nouvelle ligne, etc.) et des caractères de contrôle non imprimables pour des protocole de communication et des contrôles de périphériques (Fin de transmission, etc. ).
 
-Le tableau suivant montre l’encodage des 127 caractères ASCII :
-![Table des 127 caractères ASCII](assets/5-ascii-table.png){width=100%}
+Le tableau suivant montre l’encodage des 128 caractères ASCII :
+![Table des 128 caractères ASCII](assets/5-ascii-table.png){width=100%}
 
 
 
@@ -54,7 +54,39 @@ Face à la multiplication des systèmes d'encodage incompatibles entre eux, le c
 - Les émojis.
 - Des symboles mathématiques, musicaux, etc.
 
-Chaque point de code s'écrit sous la forme U+xxxx où chaque chiffre x est un caractère hexadécimal avec au moins quatre chiffres. LEs points de code vont de U+0000 à U+10FFFF. 
+Chaque point de code s'écrit sous la forme U+xxxx où chaque chiffre x est un caractère hexadécimal avec au moins quatre chiffres. Les points de code vont de U+0000 à U+10FFFF. 
+
+
+En Python, la fonction `ord` renvoie le code Unicode d'un caractère en décimal :
+
+``` python
+>>> ord('é')
+233
+>>> ord('€')
+8364
+```
+
+et inversement, la fonction `chr` renvoie le caractère d'un point de code :
+
+``` python
+>>> chr(233)
+'é'
+>>> chr(0xE9)
+'é'
+>>> chr(0x1F60B)
+'😋'
+```
+
+Les opérateurs de comparaison entre caractères `==`, `<` et `>` comparent les points de code dans l'ordre lexicographique (ou « ordre du dictionnaire »).
+
+``` python
+>>> 'a' < 'A'
+False
+>>> '12' < '2'
+True
+``` 
+
+
 
 En séparant le point de code (le sens) de l'encodage (le stockage), Unicode permet de représenter tous les systèmes d'écriture du monde dans un seul standard. Il existe plusieurs encodages pour la table Unicode :
 
@@ -69,7 +101,7 @@ Prenons l'exemple du caractère "é". Son point de code est U+00E9.
 
 L'encodage UTF-32 est la traduction directe du point de code sur 4 octets : 00 00 00 E9 en hexadécimal ou encore 00000000 00000000 00000000 11101001 en binaire.
 
-L'encodage UTF-8 ne nécessite que 2 octets  : C3 A9 en héxadécimal ou 11000011 10101001 en binaire (l'encodage UTF-8 est expliqué en exercice).
+L'encodage UTF-8 ne nécessite que 2 octets  : C3 A9 en hexadécimal ou 11000011 10101001 en binaire (l'encodage UTF-8 est expliqué en exercice).
 
 Le mot « météo »  est donc encodé en UTF-8 par `6D C3 A9 74 C3 A9 6F` :
 
@@ -84,7 +116,7 @@ donc avec seulement 7 octets pour 5 caractères, ce qui est bien moins que les 2
 
 Notez qu'un logiciel lisant cet encodage en format ISO-8859-1 affichera  « mÃ©tÃ©o » au lieu de « météo », car `C3` encode la lettre « Ã »  et `A9` la lettre « © » en ISO-8859-1. C'est à l'origine de la majorité des bugs d'affichage de caractères accentués sur Internet !
 
-Un autre avanatage d'UTF-8 est de permettre d'utiliser tous les caractères, symboles, emojis, etc. en même temps. Par exemple, texte "Hello 你好" (anglais + chinois) peut être représenté dans le même fichier, ce qui était impossible avec ASCII ou ISO-8859-1.
+Un autre avantage d'UTF-8 est de permettre d'utiliser tous les caractères, symboles, emojis, etc. en même temps. Par exemple, texte "Hello 你好" (anglais + chinois) peut être représenté dans le même fichier, ce qui était impossible avec ASCII ou ISO-8859-1.
 
 
 !!! abstract "Cours" 
@@ -102,40 +134,10 @@ UTF-8 offre de nombreux avantages :
 3.  Efficacité : les textes en langues occidentales restent compacts car les caractères courants utilisent peu d'octets.
 4.  Standard : C'est le standard du Web aujourd'hui. 
 
+C'est l'encodage qu'il est actuellement recommandé d'utiliser.
 
 
-En Python, la fonction `ord` renvoie le code Unicode d'un caractère :
-
-``` python
->>> ord('é')
-233
->>> ord('€')
-8364
-```
-
-et inversement, la fonction `chr` renvoie le caracère d'un point de code :
-
-``` python
->>> chr(233)
-'é'
->>> chr(0xE9)
-'é'
->>> chr(0x1F60B)
-'😋'
-```
-
-Les opérateurs de comparaison entre caractères==, < et > comparent les points de code.
-
-``` python
->>> 'a' < 'A'
-False
->>> '12' < '2'
-True
-``` 
-
-
-## Comparaison
-
+## Comparaisons
 
 
 !!! abstract "Cours" 
@@ -152,49 +154,45 @@ True
 
 
 
-## Pratique : Identifier et convertir un encodage
+## Convertir un texte dans différents formats d’encodage
 
 Même si UTF-8 est devenu le standard, on rencontre encore d'autres encodages pour des raisons historiques. Certains anciens systèmes ou fichiers utilisent toujours ISO-8859-1 ou d'autres encodages. Et quand on ouvre un fichier encodé dans un certain format en utilisant un décodeur différent, on obtient des caractères étranges à l'écran (ex: Ã© au lieu de é).
 
 Une même suite de bits peut être interprétée différemment selon l'encodage choisi. Il est donc important de savoir identifier et convertir entre différents formats. 
 
 
-Pour convertir un fichier d'un encodage à un autre, il faut :
+Les méthodes Python `encode` et `decode` transforment une chaîne de caractères (type `str`) en une suite d'octets (`bytes`) et réciproquement (les caractères ASCII sont encodés tels quels). Elles permettent de passer d'un encodage à l'autre  :
 
-- Décoder le fichier source avec le bon encodage (pour retrouver les caractères)
-- Encoder le résultat dans le nouvel encodage
+``` python
+>>> "m".encode()
+b'm'
+>>> "é".encode("utf-8")
+b'\xc3\xa9'
+>>> "é".encode("iso-8859-1")
+b'\xe9'
+>>> b'\xc3\xa9'.decode("utf-8")
+'é'
+>>> b'\xc3\xa9'.decode("iso-8859-1")       # le bug classique d'un encodage utf-8 lu en latin-1 !
+'Ã©'
+```
 
-
-En Python, on peut par exemple convertir un fichier iso-8859-1 en utf-8 :
+Quand on travaille avec des fichiers textes, il faut toujours spécifier l'encodage lors de la lecture ou l'écriture. Par exemple, on peut lire le texte d'un fichier au format ISO-8859-1 :
 
 ```Python
 # Lire le fichier en ISO-8859-1
 with open('fichier.txt', 'r', encoding='iso-8859-1') as f:
     texte = f.read()
+```   
+Cela permet de convertir un fichier d'un encodage à un autre facilement, par exemple pour enregistrer le fichier précédant au format UTF-8, on ajoute au code : 
 
+
+```Python
 # Sauvegarder en UTF-8
 with open('fichier_utf8.txt', 'w', encoding='utf-8') as f:
     f.write(texte)
 ```
 
 
-Les méthodes Python `encode` et `decode` transforment une chaine de caractères (type `str`) en une suite d'octets (`bytes`) et réciproquement (les caractères ASCII sont encodés tels quels)  :
 
-``` python
->>> "m".encode()
-b'm'
->>> "é".encode()
-b'\xc3\xa9'
->>> "é".encode("utf-8")
-b'\xc3\xa9'
->>> "é".encode("latin-1")
-b'\xe9'
->>> b'\xc3\xa9'.decode("utf-8")
-'é'
-```
 
-Quelques bonnes pratiques pour conclure :
-
-- Toujours spécifier l'encodage lors de la lecture ou l'écriture de fichiers texte
-- Privilégier UTF-8 pour les nouveaux projets (c'est le standard actuel)
 
