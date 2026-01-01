@@ -173,7 +173,7 @@ Noter qu'il y a toujours un nombre négatif de plus que les positifs car $0$ est
 
 L'avantage du complément à 2 est d'encoder les entiers relatifs de telle façon que la somme bit à bit d'un nombre et de son opposé, en ignorant le dépassement éventuel, est égale à 0.
 
-Par exemple 5 et encodé en 0101 sur 4 bits et −5 en 1011. Quand on ajoute 5 et -5 en binaire, on obtient bien 1011 + 0101 = 0000 car la dernière retenue disparait sur 4 bits. Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
+Par exemple 5 et encodé en 0101 sur 4 bits et −5 en 1011. Quand on ajoute 5 et -5 en binaire, on obtient bien 1011 + 0101 = 0000 car la dernière retenue disparaît sur 4 bits. Cela permet d'effectuer toutes les opérations d’addition et de soustraction sur des entiers relatifs de la même façon que pour les entiers positifs, sans distinction du signe des nombres (tant qu’on reste dans la plage $[−2^{n-1}, 2^{n-1}-1]$).
 
 Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
@@ -186,7 +186,7 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
 ### Encoder un entier négatif sur n bits
 
-Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permt d'ajoute $2^n$ à une valeur avec la technique du complément à 2.
+Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permet d'ajouter $2^n$ à une valeur avec la technique du complément à 2.
 
 
 !!! abstract "Cours"

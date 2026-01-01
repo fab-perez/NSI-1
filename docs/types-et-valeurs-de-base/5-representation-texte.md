@@ -148,7 +148,7 @@ C'est l'encodage qu'il est actuellement recommandé d'utiliser.
 
 !!! abstract "Cours" 
 
-    |Critère|ASCII|ISO-8859-1|UTF-8|
+    |Critère|ASCII|ISO-8859-1|Unicode/UTF-8|
     |:-|:-|:-|:-|
     |Nombre de caractères|128|256|Plus de 140 000|
     |Taille par caractère|7 bits|1 octet fixe|1 à 4 octets variable|
