@@ -809,7 +809,7 @@ Mais attention à ne pas utiliser cette méthode pour des tableaux de tableaux :
 [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
 ```
 
-On préfèrera donc :  `t = [0 for i in range(3)]`  et    `t = [[0 for i in range(3)] for i in range(3)]`
+On préférera donc :  `t = [0 for i in range(3)]`  et    `t = [[0 for i in range(3)] for i in range(3)]`
 
 De la même façon, on ne doit pas définir une valeur par défaut de paramètre de fonction avec un tableau de type `list`[^2.10], par exemple dans la fonction suivante :  
 

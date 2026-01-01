@@ -305,7 +305,7 @@ print("L'aire du cercle est", aire)
 
 ## Conversion de type (cast)
 
-La fonction `tuple()`, prend en argument un objet séquentiel (une chaine de caractère par exemple) et renvoie le p-uplet correspondant :
+La fonction `tuple()`, prend en argument un objet séquentiel (une chaîne de caractère par exemple) et renvoie le p-uplet correspondant :
 
 ``` py
 >>> tuple("ABCDEF")
