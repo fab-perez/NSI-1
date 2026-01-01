@@ -102,7 +102,7 @@ def f(x):
 ```
 
 !!! tip inline end "PEP 8"  
-    Ecrire les noms tout en minuscule avec des mots séparés par des blancs soulignés (`_`)  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
+    Écrire les noms tout en minuscule avec des mots séparés par des blancs soulignés (`_`)  par exemple `nom_de variable` (*snake case*) plutôt que  `NomDeVariable` (*camel case*)
 
 C’est plus déjà plus lisible avec des noms de fonction et variable qui ont un sens plutôt que réduits à une lettre.
 
@@ -268,6 +268,7 @@ def parfait(nombre):
 
 
 Par exemple :
+
 - une précondition à une fonction effectuant une division est de s’assurer que le dénominateur est non nul, 
 
 - une postcondition à une fonction renvoyant la valeur absolue d’un nombre est de vérifier que la fonction renvoie une valeur positive.

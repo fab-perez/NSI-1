@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
 Ici le programme est écrit dans le même fichier Python que la fonction `est_premier`. Mais que se passerait-il si un programme écrit dans un autre fichier Python appelle cette même fonction ? 
 
-Ecrivons un nouveau programme Python qui appelle `est_premier` :
+Écrivons un nouveau programme Python qui appelle `est_premier` :
 
 ``` py linenums="1"
 n = int(input('Entrez un nombre'))

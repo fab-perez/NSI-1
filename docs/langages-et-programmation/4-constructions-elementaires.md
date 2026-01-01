@@ -7,7 +7,7 @@
 !!! tip inline end "PEP 8" 
     Préférer les espaces aux tabulations.
 
-L'indentation est normalement réalisée par quatre caractères « espace ». Python accèpte aussi une tabulation, voire un seul ou un autre nombre d'espaces, mais dans tous les cas il faut être consistant à travers tout un programme.
+L'indentation est normalement réalisée par quatre caractères « espace ». Python accepte aussi une tabulation, voire un seul ou un autre nombre d'espaces, mais dans tous les cas il faut être consistant à travers tout un programme.
 
 ##	Instructions conditionnelles
 
@@ -230,7 +230,7 @@ Ces deux programmes font exactement la même chose, mais le second est plsu lisi
         print(annee, "n'est pas est bissextile")
     elif annee % 4 == 0:          # sinon, si annee est divisible par 4 (et pas par 100 et 400 car déjà testés)
             print(annee, "est bissextile")        
-    else:                         # sinon (l'annee n'est pas divisible par 4, 100 et 400 car déjà testés)
+    else:                         # sinon annee n'est pas divisible par 4, 100 et 400 car déjà testés
         print(annee, "n'est pas est bissextile")
     ```
     
@@ -337,7 +337,7 @@ Il est aussi possible d'utiliser :
 
 - `range(d, f)` qui énumère les `f-d` nombres entiers compris entre `d` et `f-1`.[^4.1]
 
-[^4.1]: L'avantage d'exclure la borne supérieure apparait clairement dans l'instruction `range(d, f)` qui comprend `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l'a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
+[^4.1]: L'avantage d'exclure la borne supérieure apparaît clairement dans l'instruction `range(d, f)` qui comprend `f-d` nombres compris entre `d` (inclus) et `f` (exclus), comme l'a expliqué Edsger W. Dijkstra dans une [note de 1982](https://www.cs.utexas.edu/users/EWD/transcriptions/EWD08xx/EWD831.html)
 
 - `range(d, f, p)` qui énumère les nombres entiers compris entre `d` et `f-1` avec un pas de `p` : `d`, `d+p`, `d+2p`, etc. [^4.2]
 
@@ -426,7 +426,7 @@ Autre différence, quand on modifie l'indice de boucle dans une boucle `for`, il
     A chaque passage dans une boucle `for`, l'indice de boucle repart de sa valeur au dernier passage dans la boucle, même si cette valeur a changé dans la boucle. En pratique, il n'est pas recommandé de changer sa valeur dans la boucle.
 
 
-La boucle `for` possède d'autres possibilités très utiles, par exemple elle permet d'énumérer chaque caractère d'une chaine de caractères. Le programme ci-dessous affiche chaque lettre d'une variable message l'une après l'autre.
+La boucle `for` possède d'autres possibilités très utiles, par exemple elle permet d'énumérer chaque caractère d'une chaîne de caractères. Le programme ci-dessous affiche chaque lettre d'une variable message l'une après l'autre.
 ``` py
 message = 'Hello world'
 for c in message:

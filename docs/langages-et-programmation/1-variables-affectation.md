@@ -3,7 +3,7 @@
 ## Variables
 L'informatique désigne le traitement automatique de l'information[^1.1]. Dans les programmes informatiques, l'information est représentée par des données.
 
-[^1.1]: Le terme « informatique » résulte de l'association du terme « information » au suffixe « -ique » signifiant « qui est propre à ».
+[^1.1]: Le terme « informatique » résulte de l'association du terme « information » au suffixe « -ique » signifiant « qui est propre à », et en anglais on utilise souvent le terme IT pour *information technology*.
 
 !!! abstract "Cours" 
     Les programmes informatiques manipulent des données en utilisant des **variables**. Une variable permet d'associer un nom à une valeur.
@@ -15,7 +15,7 @@ L'informatique désigne le traitement automatique de l'information[^1.1]. Dans l
 Une variable informatique peut se concevoir comme une sorte de “boite” étiquetée avec un nom, dans laquelle un programme enregistre une valeur pour la consulter ou la modifier pendant son exécution[^1.2].
 
 [^1.2]:
-    La notion de variable en informatique diffère des mathématiques. En mathématique une variable apparait dans l'expression symbolique d'une fonction $f(x)=2x+3$, ou dans une équation $2x+3=5x-3$ pour désigner une inconnue qu'il faut trouver, ou encore dans  une formule comme $(a+b)² =a²+2ab+b²$ pour indiquer que l'égalité est vraie pour toutes les valeurs de $a$ et $b$.
+    La notion de variable en informatique diffère des mathématiques. En mathématique une variable apparaît dans l'expression symbolique d'une fonction $f(x)=2x+3$, ou dans une équation $2x+3=5x-3$ pour désigner une inconnue qu'il faut trouver, ou encore dans  une formule comme $(a+b)² =a²+2ab+b²$ pour indiquer que l'égalité est vraie pour toutes les valeurs de $a$ et $b$.
 
 En Python, comme dans la plupart des langages informatiques, le nom d'une variable :
 
@@ -36,7 +36,7 @@ En pratique cela permet d'éviter les noms de variable réduits à une lettre et
     Une [PEP (pour *Python Enhancement Proposal*)](https://www.python.org/dev/peps/#introduction) est un document fournissant des informations à la communauté Python, ou décrivant une nouvelle fonctionnalité. En particulier la [PEP 8](https://peps.python.org/pep-0008/) décrit les conventions de style de code agréable à lire.
 
 [^1.4]: 
-    Le style qui consiste à nommer les variables par des mots écritsen minuscule séparés par des blancs soulignés, par exemple `somme_des_nombres`, est appelé  « *snake case* » en opposition au style qui consiste à écrire les mots attachés en commençant par des majuscules, par exemple ```SommeDesNombres```, appelé « *camel case* ».
+    Le style qui consiste à nommer les variables par des mots écrits en minuscule séparés par des blancs soulignés, par exemple `somme_des_nombres`, est appelé  « *snake case* » en opposition au style qui consiste à écrire les mots attachés en commençant par des majuscules, par exemple ```SommeDesNombres```, appelé « *camel case* ».
 
 ## Types de variable
 
@@ -148,9 +148,9 @@ NameError: name 'd' is not defined
     >>> b
     6
     ```
-    Cette solution ne fonctionne pas car la valeur intiale de `a`, c'est-à-dire 5, est perdue quand on écrit `a = b`, on dit qu'elle est "écrasée" par la valeur de `b`. Ensuite quand on écrit `b = a` on affecte la nouvelle valeur de `a`, c'est-à-dire 6 au lieu de 5, à `b`.
+    Cette solution ne fonctionne pas car la valeur initiale de `a`, c'est-à-dire 5, est perdue quand on écrit `a = b`, on dit qu'elle est "écrasée" par la valeur de `b`. Ensuite quand on écrit `b = a` on affecte la nouvelle valeur de `a`, c'est-à-dire 6 au lieu de 5, à `b`.
 
-    2. Une première solution consiste donc à utiliser une autre variable pour conserver la valeur intiale de `a` temporairement, appelons la `temp` :
+    2. Une première solution consiste donc à utiliser une autre variable pour conserver la valeur initiale de `a` temporairement, appelons la `temp` :
     ``` py
     >>> temp = a
     ```

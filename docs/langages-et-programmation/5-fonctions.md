@@ -513,7 +513,7 @@ affiche `(25, 125)`.
 
 
 !!! question "Exercice corrigé" 
-	Écrire une fonction `est_premier(nombre)` qui renvoie `True` si `nombre` est un nomber premier et `False` sinon.
+	Écrire une fonction `est_premier(nombre)` qui renvoie `True` si `nombre` est un nombre premier et `False` sinon.
 
     Rappel : un nombre est premier s'il n'a que deux diviseurs, 1 et lui-même.
 
@@ -536,7 +536,7 @@ affiche `(25, 125)`.
             return True   # si aucun diviseur n'a été trouvé alors le nombre est premier, la fonction renvoie True
         ```
 
-    === "Avec une boucle `while` en testant les entiers allent de 2 à la racine carrée du nombre"
+    === "Avec une boucle `while` en testant les entiers entre 2 à la racine carrée du nombre"
         ``` py linenums="1"
         def est_premier(nombre):
             div = 2

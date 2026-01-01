@@ -147,7 +147,7 @@ Pour les chaînes de caractères, deux opérations sont possibles, l'addition et
 'Hello Hello Hello '
 ```
 
-La fonction `len()` donne le nombre de caractère d’une chaine (y compris les espaces et les signes de ponctuation).
+La fonction `len()` donne le nombre de caractère d’une chaîne (y compris les espaces et les signes de ponctuation).
 
 ``` py
 >>> ch = 'Hello world'
@@ -155,9 +155,9 @@ La fonction `len()` donne le nombre de caractère d’une chaine (y compris les 
 11
 ```
 
-Chaque caractère d’une chaine de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
+Chaque caractère d’une chaîne de caractères `ch` a une position qui va de `0` à `len(ch) - 1`. 
 
-- `ch[0]` permet d'accéder au premier caractère en position `0` de la chaine `ch`, 
+- `ch[0]` permet d'accéder au premier caractère en position `0` de la chaîne `ch`, 
 - `ch[1]` au second caractère en position `1`,
 - ... 
 - `ch[i]` au caractère en `i`^ième^ position,
@@ -203,13 +203,13 @@ Il existe de nombreuses méthodes[^2.7] pour traiter les chaines de caractères,
 |`.index('c')`| trouve l'index du premier caractère `"c"` dans une chaîne.|`>>> chaine = 'aaabbbccc'`<br>`>>> chaine.index('b')`<br>`3`|
 |`.find('sc')`| cherche la position d'une sous-chaîne `sc` dans la chaîne.|`>>> chaine.find('bc')`<br>`5`|
 |`.count('sc')`| compte le nombre de sous-chaînes `sc` dans la chaîne.|`>>> chaine.count('bc')`<br>`1`|
-|`.lower('sc')`| onvertit une chaîne en minuscules.|`>>> 'ABCdef'.lower()`<br>`'abcdef'`|
-|`.upper('sc')`| onvertit une chaîne en majuscules.|`>>> 'ABCdef'.upper()`<br>`'ABCDEF'`|
+|`.lower('sc')`| convertit une chaîne en minuscules.|`>>> 'ABCdef'.lower()`<br>`'abcdef'`|
+|`.upper('sc')`| convertit une chaîne en majuscules.|`>>> 'ABCdef'.upper()`<br>`'ABCDEF'`|
 |`.replace('old', 'new')`| remplace tous les caractères `old` par `new`  dans la chaîne.|`>>> 'aaabbbccc'.replace('c', 'e')`<br>`'aaabbbeee'`|
 
 
 ## Opérateurs de comparaison
-Les opérations de comparaison usuelless permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.8] .
+Les opérations de comparaison usuelles permettent de comparer des valeurs de même type entre elles. Le résultat est toujours un booléen (de type `bool`) égal à `True` ou `False`[^2.8] .
 
 [^2.8]: `True` et `False` (et `None`) sont les rares mots en Python qui s’écrivent avec une majuscule. `TRUE` ou `true` ne sont pas acceptés.
 
@@ -347,7 +347,7 @@ Comme pour les opérations mathématiques, les opérations logiques suivent des 
 Exemples :
 
 - `2*a + 5`	est une expression, elle a une valeur (qui dépend de la valeur de `a`).  
-- `a == 5`	est une expression booléene, elle vaut `True`ou `False`.
+- `a == 5`	est une expression booléenne, elle vaut `True`ou `False`.
 - `a = 5`	n’est **pas** une expression, c’est une instruction qui affecte de la valeur 5 à la variable `a`.
 
 
@@ -367,7 +367,7 @@ Puisqu'elle a une valeur, une expression peut être affectée à une variable :
 !!! question "Exercice corrigé" 
 	La valeur d'une variable `annee` de type `int` est donnée, par exemple `>>> annee = 2023`.
 
-    Ecrire dans l'interpréteur une expression booléenne, qui vaut `True` si `annee` est une année bissextile ou `False` sinon.
+    Écrire dans l'interpréteur une expression booléenne, qui vaut `True` si `annee` est une année bissextile ou `False` sinon.
 
     « Depuis l'ajustement du calendrier grégorien, l'année sera bissextile (elle aura 366 jours) seulement si elle respecte l'un des deux critères suivants :
 
