@@ -15,7 +15,7 @@ C'est le principe d'un **algorithme glouton**.
 
 Dans notre exemple, l'algorithme va recouvrir le rectangle en 8 étapes :
 
-|Etape 1|Etapes 2 à 6|Etapes 7 et 8|
+|Etape 1|Étapes 2 à 6|Étapes 7 et 8|
 |:-:|:-:|:-:|
 |![Exemple de rectangle de 13x11 rempli avec un carré de 11x11](assets/5-rectangle-glouton-1.png)|![Exemple de rectangle de 13x11 rempli avec un carré de 11x11 et 5 carrés de 2x2](assets/5-rectangle-glouton-2.png)|![Exemple de rectangle de 13x11 rempli avec un carré de 11x11, 5 carrés de 2x2 et 2 carrés 1x1](assets/5-rectangle-glouton-3.png)|
 |On place d'abord le plus grand carré possible de dimension 11x11|Puis 5 carrés de dimension 2x2 dans l'espace restant| Et enfin 2 carrés de dimension 1x1.|
@@ -130,7 +130,7 @@ On observe rapidement que l'algorithme glouton ne renvoie pas le nombre minimal 
 
 ## Problème du sac à dos
 
-On dispose d'un sac à dos avec une capacité maximum de poids à transporter de 15 kg. On a le choix d'emporter certains des objets dont on connait le poids et la valeur :
+On dispose d'un sac à dos avec une capacité maximum de poids à transporter de 15 kg. On a le choix d'emporter certains des objets dont on connaît le poids et la valeur :
 ![Exemples d'objets mis dans le sac à dos](assets/5-sac-a-dos.png){width=30%}
 
 
@@ -231,7 +231,7 @@ nombres = [15, 4, 20, 17, 11, 8, 11, 16, 7, 14, 19, 7, 5, 17, 2, 18, 4, 5, 13, 8
             somme += tab[imax]
             tab[imax] = 0
             # les nombres voisins sont aussi mis à 0
-            if imax > 0:         # si c'est n'est pas le premier ékément de tab
+            if imax > 0:         # si c'est n'est pas le premier élément de tab
                 tab[imax-1] = 0      # on met le nombre de gauche à 0
             if imax < len(tab)- 1:   # si ce n'est pas le dernier
                 tab[imax+1] =0      # on met le nombre de droite à 0
@@ -268,10 +268,10 @@ On cherche la répartition des containers (**sélectionner**) qui permet d'utili
 On propose d'utiliser l'algorithme glouton suivant :
 
 - train = tableau_vide
-- Trier les containers en ordre croissant (du plus leger au plus lourd).
+- Trier les containers en ordre croissant (du plus léger au plus lourd).
 - Tant qu'il reste des containers à charger :
     - wagon = tableau vide
-    - Parcourir les containers qui restent en partant de la fin (du plus lourd au plus leger) :
+    - Parcourir les containers qui restent en partant de la fin (du plus lourd au plus léger) :
         - Si on ne dépasse pas 60 tonnes sur le wagon : enlever le container de la liste des containers et l'ajouter sur le wagon.
     - Ajouter le wagon au train.
 
