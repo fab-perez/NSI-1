@@ -260,7 +260,7 @@ Pour décoder un nombre négatif, il suffit donc d'appliquer une nouvelle fois l
 
 !!! abstract "Cours"
 
-    En machine, le complément à 2 d'un nombre négatif (dont le bit de signe est 1) est obtenu en effectuant les opérations suivantes :
+    En machine, la valeur décimale d'un nombre binaire négatif (dont le bit de signe est 1) est obtenue en effectuant les opérations suivantes :
 
     1.  Inverser tous les bits (« **complément à 1** ») :
         -   0  devient  1 
