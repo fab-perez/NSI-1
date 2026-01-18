@@ -314,7 +314,8 @@ Pour trouver un élément dans un tableau :
     2
     ```
 
-Enfin, `dir(list)` permet d'obtenir la liste exhaustive des méthodes disponibles pour les tableaux.
+Enfin, `dir(list)` et `help(list)` permet d'obtenir la liste des méthodes disponibles.
+
 
 !!! note "" 
     Les méthodes telles que `insert()`, `remove()` ou `sort()`, qui ne font que modifier le tableau, ne renvoient pas de valeur (ou plutôt elles renvoient `None`).

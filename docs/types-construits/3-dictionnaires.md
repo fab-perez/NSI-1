@@ -173,6 +173,8 @@ Les mentions `dict_keys`, `dict_values`, `dict_items` indiquent que nous avons a
 [('France', 'Paris'), ('Italie', 'Rome'), ('Espagne', 'Madrid')]
 ```
 
+Enfin, `dir(dict)` et `help(dict)` permet d'obtenir la liste des méthodes disponibles.
+
 ##	Modifier un dictionnaire
 
 ###	Modifier ou ajouter un élément
