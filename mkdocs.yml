@@ -1,11 +1,11 @@
 site_name: "Ressources de 1ère NSI"
 site_author: Fabrice Perez
-site_url: https://fab-perez.github.io/NSI-1/
+site_url: https://eipaca.github.io/NSI-1/
 
 site_description: >-
   Ressources pour le cours de 1ère NSI de l'Ecole Internationale PACA
 
-repo_url: https://github.com/fab-perez/NSI-1
+repo_url: https://github.com/eipaca/NSI-1
 
 copyright: |
   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> Mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
@@ -22,7 +22,7 @@ theme:
     - navigation.footer
     - navigation.indexes
     - navigation.instant
-    - navigation.tabs.sticky
+    #- navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - toc.integrate
@@ -67,6 +67,25 @@ theme:
       example: octicons/beaker-16
       quote: octicons/quote-16
 
+
+plugins:
+  # An Mkdocs plugin to generate a PDF file for each MkDocs
+  # https://github.com/brospars/mkdocs-page-pdf
+  - page-to-pdf:
+      disableOnServe: true
+      displayHeaderFooter: true
+      printBackground: true
+      scale: 1.0
+      headerTemplate: '<header style="width:100%;font-size:10px;font-weight:600;color:white;background:#4051b5;margin-top:-20px;padding:10px;-webkit-print-color-adjust: exact">
+                        <span style="display:inline-block;vertical-align:middle;margin-top:-4px;margin-left:40px;">Cours de 1ère NSI</span>
+                     </header>'
+      footerTemplate: '<footer style="position:relative;width:100%;font-size:6px;color:#999999;margin:10px 20px 0px 50px;-webkit-print-color-adjust: exact">
+                        <span> 
+                        Ecole Internationale PACA | CC-BY-NC-SA 4.0</span>
+                        <span class="page" style="position:absolute;bottom:0;right:0;">
+                          <span class="pageNumber"></span>/<span class="totalPages"></span>
+                        </span>
+                      </footer>'
 
 extra_css:
   - stylesheets/extra.css
@@ -136,6 +155,7 @@ nav:
     - Trier une table: donnees-en-tables/4-trier-une-table.md
     - Fusionner des tables: donnees-en-tables/5-fusionner-des-tables.md
 
+
   #- Interactions entre l’homme et la machine sur le Web: 
   #  - ihm-sur-web/index.md
 
@@ -145,6 +165,8 @@ nav:
     - Réseaux: architecture-materielles-et-systemes-d-exploitation/2-reseaux.md
     - Systèmes d'exploitation: architecture-materielles-et-systemes-d-exploitation/3-systemes-exploitation.md
     - Périphériques d'E/S, Interface Homme Machine (IHM): architecture-materielles-et-systemes-d-exploitation/4-peripheriques-es-ihm.md
+
+
 
   - Langages et programmation(1): 
     - langages-et-programmation/index.md
@@ -163,14 +185,10 @@ nav:
 
   - Algorithmique: 
     - algorithmique/index.md
+    - Parcours séquentiel d'un tableau: algorithmique/1-parcours-sequentiel-tableau.md
     - Tris: algorithmique/2-tris.md 
     - k plus proches voisins: algorithmique/3-kppv.md 
     - Recherche dichotomique dans un tableau trié: algorithmique/4-recherche-dichotomique-tableau-trie.md
     - Algorithmes glouton: algorithmique/5-algorithmes-gloutons.md
-
-
-
-
-
 
 
