@@ -1,0 +1,1429 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ressources pour le cours de 1ère NSI de l'Ecole Internationale PACA">
+      
+      
+        <meta name="author" content="Fabrice Perez">
+      
+      
+        <link rel="canonical" href="https://eipaca.github.io/NSI-1/types-et-valeurs-de-base/3-representation-approximative-nombres-reels/">
+      
+      
+        <link rel="prev" href="../2-representation-des-entiers-en-machine-entiers-relatifs/">
+      
+      
+        <link rel="next" href="../4-valeurs-expressions-booleennes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Représentation approximative des nombres réels - Ressources de 1ère NSI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%208.25a.75.75%200%200%201%20.75-.75h4a.75.75%200%200%201%200%201.5h-4A.75.75%200%200%201%205%208.25M4%2010.5A.75.75%200%200%200%204%2012h4a.75.75%200%200%200%200-1.5z%22/%3E%3Cpath%20d%3D%22M13-.005c1.654%200%203%201.328%203%203%200%20.982-.338%201.933-.783%202.818-.443.879-1.028%201.758-1.582%202.588l-.011.017c-.568.853-1.104%201.659-1.501%202.446-.398.789-.623%201.494-.623%202.136a1.5%201.5%200%201%200%202.333-1.248.75.75%200%200%201%20.834-1.246A3%203%200%200%201%2013%2016H3a3%203%200%200%201-3-3c0-1.582.891-3.135%201.777-4.506q.315-.483.623-.946c.473-.709.923-1.386%201.287-2.048H2.51c-.576%200-1.381-.133-1.907-.783A2.68%202.68%200%200%201%200%202.995a3%203%200%200%201%203-3Zm0%201.5a1.5%201.5%200%200%200-1.5%201.5c0%20.476.223.834.667%201.132A.75.75%200%200%201%2011.75%205.5H5.368c-.467%201.003-1.141%202.015-1.773%202.963-.192.289-.381.571-.558.845C2.13%2010.711%201.5%2011.916%201.5%2013A1.5%201.5%200%200%200%203%2014.5h7.401A3%203%200%200%201%2010%2013c0-.979.338-1.928.784-2.812.441-.874%201.023-1.748%201.575-2.576l.017-.026c.568-.853%201.103-1.658%201.501-2.448s.623-1.497.623-2.143c0-.838-.669-1.5-1.5-1.5m-10%200a1.5%201.5%200%200%200-1.5%201.5c0%20.321.1.569.27.778.097.12.325.227.74.227h7.674A2.7%202.7%200%200%201%2010%202.995c0-.546.146-1.059.401-1.5Z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#representation-approximative-des-nombres-reels-nombres-flottants" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="Ressources de 1ère NSI" class="md-header__button md-logo" aria-label="Ressources de 1ère NSI" data-md-component="logo">
+      
+  <img src="../../assets/logo-ecole-internationale-paca-manosque.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ressources de 1ère NSI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Représentation approximative des nombres réels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eipaca/NSI-1" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ressources de 1ère NSI" class="md-nav__button md-logo" aria-label="Ressources de 1ère NSI" data-md-component="logo">
+      
+  <img src="../../assets/logo-ecole-internationale-paca-manosque.png" alt="logo">
+
+    </a>
+    Ressources de 1ère NSI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eipaca/NSI-1" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A propos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types et valeurs de base
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Types et valeurs de base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-ecriture-entier-positif-en-base-b/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Écriture d'un entier positif dans une base b >= 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-representation-des-entiers-en-machine-entiers-relatifs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Représentation des nombres entiers en machine et entiers relatifs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Représentation approximative des nombres réels
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Représentation approximative des nombres réels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ecriture-binaire-dun-nombre-flottant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Écriture binaire d'un nombre flottant
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Écriture binaire d&#39;un nombre flottant">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecrire-un-nombre-binaire-en-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Écrire un nombre binaire en décimal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecrire-un-nombre-reel-en-binaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Écrire un nombre réel en binaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-01-nest-pas-egal-a-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 + 0.1 n’est pas égal à 0.3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-format-des-nombres-flottants-en-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le format des nombres flottants en machine
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-valeurs-expressions-booleennes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Valeurs, opérateurs et expressions booléens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-representation-texte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Représentation d'un texte en machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../types-construits/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types construits
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../donnees-en-tables/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traitement des données en table
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../architecture-materielles-et-systemes-d-exploitation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architectures matérielles et systèmes d'exploitation
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../langages-et-programmation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Langages et programmation(1)
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../langages-et-programmation-2/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Langages et programmation(2)
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../algorithmique/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithmique
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset"><a class="md-content__button md-icon" download href="3-representation-approximative-nombres-reels.pdf" title="PDF"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 10.5h1v3h-1v-3m-5 1h1v-1H7v1M20 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M9.5 10.5A1.5 1.5 0 0 0 8 9H5.5v6H7v-2h1a1.5 1.5 0 0 0 1.5-1.5v-1m5 0A1.5 1.5 0 0 0 13 9h-2.5v6H13a1.5 1.5 0 0 0 1.5-1.5v-3m4-1.5h-3v6H17v-2h1.5v-1.5H17v-1h1.5V9z"></path></svg></a>
+                
+                  
+
+
+  
+  
+
+
+<h1 id="representation-approximative-des-nombres-reels-nombres-flottants">Représentation approximative des nombres réels : nombres flottants</h1>
+<p>En informatique, les nombres réels (comme 3.14, 0.1 ou 1/3) ne peuvent pas être représentés de manière exacte dans la plupart des cas. On utilise une représentation approximative appelée <strong>nombre flottant</strong> (ou <em>float</em> en anglais<sup id="fnref:3.1"><a class="footnote-ref" href="#fn:3.1">1</a></sup>). Cette limitation a des conséquences importantes en programmation, notamment lorsqu'on effectue des calculs ou des comparaisons.</p>
+<h2 id="ecriture-binaire-dun-nombre-flottant">Écriture binaire d'un nombre flottant</h2>
+<p>On a vu dans un chapitre précédant comment représenter un nombre entier en binaire, par exemple <span class="arithmatex">\(13_{10}\)</span> s'écrit en binaire <span class="arithmatex">\(1101_2\)</span>. Mais comment représenter les nombres réels, et à quoi correspondent des bits écrits après une virgule ?</p>
+<div class="admonition notetip inline end">
+<p>En maths, quel que soit le nombre <span class="arithmatex">\(n\)</span>, on a la formule : <span class="arithmatex">\(2^{-n} = {1 \over 2^n}\)</span>.</p>
+</div>
+<p>Comme pour les nombres entiers, c'est la position qui indique le poids de chaque bit après la virgule, mais avec des puissances négatives de 2. Par exemple, les bits du nombre binaire <span class="arithmatex">\(0,1011_2\)</span> correspondent à :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">bits</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">i</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-4</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(2^i\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^{-1} = {1 \over 2^1}  = 0,5\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^{-2} = {1 \over 2^2} = 0,25\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^{-3} = {1 \over 2^3} = 0.125\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2^{-4} = {1 \over 2^4}=0.0625\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">combinaison</td>
+<td style="text-align: center;"><span class="arithmatex">\(1 \times 2^{-1}=0,5\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(0 \times 2^{-2}=0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 \times 2^{-3}=0,125\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 \times 2^{-4}=0.0625\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(0,1011_2 = 1 × 2^{-1} + 0 × 2^{-2} + 1 × 2^{-3} + 1 × 2^{-4} = 0,6875_{10}\)</span></p>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>De manière générale, un nombre <span class="arithmatex">\(n &lt; 1\)</span> qui s'écrit dans le système binaire <span class="arithmatex">\(0,b_{1}b_{2}b_{3}...\)</span>  (chaque <span class="arithmatex">\(b_i\)</span> est un bit valant 0 ou 1) a une valeur en base 10 égale à : </p>
+<p><span class="arithmatex">\(n = b_{1} \times 2^{−1}  + b_{2} \times 2^{−2} + + b_{3} \times 2^{−3} + ...\)</span>  </p>
+</div>
+<p>ou encore, sans puissances négatives :
+<span class="arithmatex">\(n = b_1 \times {1 \over 2^1}  + b_2 \times {1 \over 2^2} + b_3 \times {1 \over 2^3} + ...\)</span>  </p>
+<p>Bien sûr, on peut aussi compléter avec une partie entière comme vu précédemment : </p>
+<p><span class="arithmatex">\(1101,1011_2 = 13,6875_{10}\)</span>.</p>
+<h3 id="ecrire-un-nombre-binaire-en-decimal">Écrire un nombre binaire en décimal</h3>
+<p>La formule précédente permet d'écrire facilement un nombre binaire en décimal. Il suffit de multiplier chaque bit par la puissance de 2 correspondante et de faire la somme des valeurs obtenues. <img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" /> Attention, on commence à <span class="arithmatex">\(2^{-1}\)</span> pour le premier bit après la virgule.</p>
+<p>Exemple :</p>
+<p><span class="arithmatex">\(101,011_2\)</span> </p>
+<p><span class="arithmatex">\(= 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 + 0 \times 2^{-1} + 1 \times 2^{-2} + 1 \times 2^{-2}\)</span></p>
+<p><span class="arithmatex">\(= 1 \times 4 + 0 \times 2 + 1 \times 1 + 0 \times 0,5 + 1 \times 0,25 + 1 \times 0,125\)</span></p>
+<p><span class="arithmatex">\(=  4 + 1 + 0,25 + 0,125\)</span></p>
+<p><span class="arithmatex">\(= 5,375_{10}\)</span> </p>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Calculer la valeur en base 10 des nombres binaires suivants :</p>
+<ul>
+<li>0,0011</li>
+<li>1,10101</li>
+<li>101,1110011</li>
+</ul>
+</div>
+<details class="success">
+<summary>Réponse</summary>
+<p><span class="arithmatex">\(0,0011_2 = 1 \times 2^{-3} + 1 \times 2^{-4} = 0,125 +  0,0625 = 0,1875_{10}\)</span></p>
+<p><span class="arithmatex">\(1,10101_2 = 1 \times 2^{0} + 1 \times 2^{-1} + 1 \times 2^{-3} + 1 \times 2^{-5} = 1 + 0,5 + 0,125 + 0,03125 = 1,65625_{10}\)</span></p>
+<p><span class="arithmatex">\(101,1110011_2 = 1 \times 2^{2} +1 \times 2^{0} +1 \times 2^{-1} + 1 \times 2^{-2} + 1 \times 2^{-3} + 1 \times 2^{-6} + 1 \times 2^{-7} = 4+1+ 0,5+0,25+0,125 + 0,015625 + 0,0078125=5,8671875_{10}\)</span></p>
+</details>
+<h2 id="ecrire-un-nombre-reel-en-binaire">Écrire un nombre réel en binaire</h2>
+<p>Voyons maintenant comment passer de l'écriture décimale d'un nombre réel <span class="arithmatex">\(n\)</span> à son écriture binaire. </p>
+<p>Une première chose à noter est le fait que de la même manière certains nombres ne peuvent pas s'écrire avec un nombre fini de chiffres après la virgules en base 10, par exemple <span class="arithmatex">\(1/3\)</span> s'écrit avec une infinité de 3, tous les nombres réels ne pourront pas s'écrire avec un nombre fini de bits après la virgules en binaire. On ne pourra obtenir qu'une approximation de leur valeur en machine.</p>
+<p>Prenons l'exemple de <span class="arithmatex">\(13,6875_{10}\)</span>.  La partie entière, <span class="arithmatex">\(13_{10}\)</span>, s'écrit en base 2 en effectuant une succession de division par 2 jusqu'à obtenir 0, comme on l'a vu avant. On trouve <span class="arithmatex">\(1101_2\)</span>. Il faut maintenant écrire la partie factionnaire, <span class="arithmatex">\(0,6875\)</span>, en binaire. </p>
+<p>De la même manière qu'on a utilisée précédemment pour trouver les bits d'un nombre entier par une succession de divisions entières par 2, on peut écrire une partie décimale <span class="arithmatex">\(0,n\)</span> sous sa forme binaire <span class="arithmatex">\(0,b_{1}b_{2}b_{3}...\)</span> en effectuant des <strong>multiplications successives</strong> par 2 :</p>
+<p>Le produit de <span class="arithmatex">\(n\)</span> par <span class="arithmatex">\(2\)</span>, <code>n * 2</code> en Python, peut être décomposé en deux parties :</p>
+<ul>
+<li>
+<p>La partie entière égale à <span class="arithmatex">\(b_1\)</span>. Cela permet d'obtenir le premier bit de l'écriture binaire de <span class="arithmatex">\(n\)</span>.</p>
+</li>
+<li>
+<p>La partie décimale entière égale à <span class="arithmatex">\(b_2b_3b_4...\)</span>. On remplace <span class="arithmatex">\(n\)</span> par ce nombre pour trouver les autres bits.</p>
+</li>
+</ul>
+<p>Il suffit alors de répéter l'opération :</p>
+<ul>
+<li>jusqu'à ce que <span class="arithmatex">\(n\)</span> soit égal à 0, on aura bien obtenu tous les bits de l'écriture binaire de <span class="arithmatex">\(n\)</span> ; ou alors</li>
+<li>jusqu'à ce que obtenir une valeur de <span class="arithmatex">\(n\)</span> déjà vue pendant les calculs, l'écriture binaire de <span class="arithmatex">\(n\)</span> est alors cyclique, la même suite de bit se répète à l'infini ; ou encore</li>
+<li>jusqu'à obtenir un nombre de bits dans la limite de la précision que souhaite obtenir. </li>
+</ul>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" /> Dans ces deux derniers cas, l'écriture d'un nombre flottant en machine sera une approximation de sa valeur, dans la limite du nombre de bits que l'on veut stocker, c'est souvent source de bugs !</p>
+<p>Revenons à l'exemple de <span class="arithmatex">\(n_{10} = 0,6875\)</span> :</p>
+<p><img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-1-light-mode.png#only-light" width="25%" />
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-1-dark-mode.png#only-dark" width="25%" /></p>
+<p><span class="arithmatex">\(0,6875 \times 2 = 1,375\)</span>,  la partie entière est 1, c'est le premier bit que l'on obtient : <strong>1</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.6875</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="mf">1.375</span>
+</code></pre></div>
+<p><img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-2-light-mode.png#only-light" width="25%" />
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-2-dark-mode.png#only-dark" width="25%" /></p>
+<p>Continuons avec la partie décimale. <span class="arithmatex">\(0,375 \times 2 = 0,75\)</span>, la partie entière est 0, on obtient un second bit : <strong>0</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.375</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="mf">0.75</span>
+</code></pre></div>
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-3-light-mode.png#only-light" width="25%" />
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-3-dark-mode.png#only-dark" width="25%" /></p>
+<p>Puis <span class="arithmatex">\(0,75 \times 2 = 1,5\)</span>, on obtient un autre bit:  <strong>1</strong>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="mf">1.5</span>
+</code></pre></div>
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-4-light-mode.png#only-light" width="25%" />
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-4-dark-mode.png#only-dark" width="25%" /></p>
+<p>Et <span class="arithmatex">\(0,5 \times 2 = 1,0\)</span>, on obtient encore un bit <strong>1</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="mf">1.0</span>
+</code></pre></div>
+<p><img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-5-light-mode.png#only-light" width="25%" />
+<img align="right" alt="Multiplications successives de 0,6875 par 2" src="../assets/3-06875-multiplie-par-2-5-dark-mode.png#only-dark" width="25%" /></p>
+<p>A ce stade, la partie décimale est 0, il est inutile de continuer les multiplications par 2, tous les bits ont été trouvés. On peut les lire dans l'ordre de gauche à droite, sans oublier le <span class="arithmatex">\(0,...\)</span> au début.</p>
+<p>L'écriture binaire de <span class="arithmatex">\(0,675_{10}\)</span> est donc :  <span class="arithmatex">\(0,1011_2\)</span>.</p>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Écrire les nombres suivants en binaire :</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(5,25\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(10,625\)</span></p>
+</li>
+</ul>
+</div>
+<details class="success">
+<summary>Réponse</summary>
+<p><span class="arithmatex">\(5_{10} = 101_2\)</span>
+<span class="arithmatex">\(0,25 times 2 = 0,5\)</span>   →  0
+<span class="arithmatex">\(0,5 times 2 = 1\)</span>   →  1
+donc  <span class="arithmatex">\(0,25_{10} = 0,01_2\)</span> et    <span class="arithmatex">\(5,25_{10} = 101,01_2\)</span></p>
+<p><span class="arithmatex">\(10_{10} = 1010_2\)</span>
+<span class="arithmatex">\(0,625 times 2 = 1,25\)</span>   →  1
+<span class="arithmatex">\(0,25 times 2 = 0,5\)</span>   →  0
+<span class="arithmatex">\(0,5 times 2 = 1\)</span>   →  1
+donc <span class="arithmatex">\(0,625_{10} = 0,101_2\)</span> et     <span class="arithmatex">\(10,625_{10} = 1010,101_2\)</span></p>
+</details>
+<p>Dans l'exemple précédant, <span class="arithmatex">\(0,675_{10}\)</span> peut être représenté exactement en binaire car il s'écrit comme une somme finie de puissances de 2. Mais ce n'est pas toujours le cas, prenons maintenant l'exemple de <span class="arithmatex">\(0,1_{10}\)</span> en binaire.</p>
+<p>On obtient son écriture binaire en multipliant successivement par 2 :</p>
+<ul>
+<li><span class="arithmatex">\(0,1 \times 2 = 0,2\)</span> → on obtient le bit 0, on continue avec <span class="arithmatex">\(0,2\)</span></li>
+<li><span class="arithmatex">\(0,2 \times 2 = 0,4\)</span> → on obtient le bit 0, on continue avec <span class="arithmatex">\(0,4\)</span></li>
+<li><span class="arithmatex">\(0,4 \times 2 = 0,8\)</span> → on obtient le bit 0, on continue avec <span class="arithmatex">\(0,8\)</span></li>
+<li><span class="arithmatex">\(0,8 \times 2 = 1,6\)</span> → on obtient le bit 1, on continue avec <span class="arithmatex">\(0,6\)</span></li>
+<li><span class="arithmatex">\(0,6 \times 2 = 1,2\)</span> → on obtient le bit 1, et on retombe sur <span class="arithmatex">\(0,2\)</span></li>
+<li>inutile de refaire les calculs, on sait que les bits suivants seront à nouveau 0, 0, 1, 1, 0, 0, 1, etc. C'est cyclique.</li>
+</ul>
+<p>L'écriture binaire de <span class="arithmatex">\(0,1_{10}\)</span> est donc <span class="arithmatex">\(0,00011001100110011....\)</span> avec <span class="arithmatex">\(0011\)</span> qui se répète à l'infini.</p>
+<div class="admonition question">
+<p class="admonition-title">Exercice corrigé</p>
+<p>Écrire les nombres suivants en binaire :</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(0,2\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(1 \over 3\)</span></p>
+</li>
+</ul>
+</div>
+<details class="success">
+<summary>Réponse</summary>
+<ul>
+<li><span class="arithmatex">\(0,2 \times 2 = 0,4\)</span> → 0</li>
+<li><span class="arithmatex">\(0,4 \times 2 = 0,8\)</span> → 0</li>
+<li><span class="arithmatex">\(0,8 \times 2 = 1,6\)</span> → 1</li>
+<li><span class="arithmatex">\(0,6 \times 2 = 1,2\)</span> → 1</li>
+<li>on retrouve <span class="arithmatex">\(0,2\)</span>, la suite des bits est <span class="arithmatex">\(0011\)</span> qui se répète.</li>
+</ul>
+<p>donc <span class="arithmatex">\(0,2_{10}\)</span> est donc <span class="arithmatex">\(0,0011001100110011....\)</span>. C'est exactement le même que <span class="arithmatex">\(0.1\)</span>, mais avec une période décalée.</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(1 \over 3\)</span> <span class="arithmatex">\(\times 2\)</span> = <span class="arithmatex">\({2 \over 3} \approx 0,666...\)</span> → 0</p>
+</li>
+<li>
+<p><span class="arithmatex">\(2 \over 3\)</span> <span class="arithmatex">\(\times 2\)</span> = <span class="arithmatex">\({4 \over 3} \approx 1,333...\)</span> → 1</p>
+</li>
+<li>
+<p>on retrouve <span class="arithmatex">\(1 \over 3\)</span>, la suite des bits est <span class="arithmatex">\(01\)</span> qui se répète.</p>
+</li>
+</ul>
+<p>donc <span class="arithmatex">\({1 \over 3}\)</span> est donc <span class="arithmatex">\(0,01010101010101....\)</span>.</p>
+</details>
+<p>Dans certains cas on ne trouvera pas de cycle,  par exemple les nombres irrationnels comme <span class="arithmatex">\(\pi\)</span> ou <span class="arithmatex">\(\sqrt 2\)</span>. Il faut s'arrêter quand on atteint un certain nombre de bits qui donne une approximation suffisante.</p>
+<h2 id="02-01-nest-pas-egal-a-03">0.2 + 0.1 n’est pas égal à 0.3</h2>
+<p>L'écriture binaire de <span class="arithmatex">\(0,1_{10}\)</span> est donc <span class="arithmatex">\(0,00011001100110011....\)</span> avec <span class="arithmatex">\(0011\)</span> qui se répète à l'infini.</p>
+<p>En machine, l'ordinateur ne dispose que d'un nombre fini de bits, il doit tronquer cette représentation, ce qui crée une approximation. On peut le vérifier en Python en affichant la valeur 0.1 dans une f-string avec une précision de 20 chiffres après la virgule :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">0.1</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="s1">&#39;0.10000000000000000555&#39;</span>
+</code></pre></div>
+<p>De la même façon, le nombre <span class="arithmatex">\(0,2\)</span> ne peut pas être représenté de façon exacte en Python : </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">0.2</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="s1">&#39;0.20000000000000001110&#39;</span>
+</code></pre></div>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" /> Puisque <span class="arithmatex">\(0,1\)</span> et <span class="arithmatex">\(0,2\)</span> ne peuvent pas être représentés exactement, leur somme ne donne pas exactement <span class="arithmatex">\(0,3\)</span> !</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="mf">0.30000000000000004</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Cours</p>
+<p>En Python, <code>0.2 + 0.1</code> n'est pas égal à <code>0.3</code> !</p>
+</div>
+<p>Ces erreurs d'arrondi sont la cause de nombreux bugs. Il ne faut jamais tester d'égalité sur les nombres de type <code>float</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">==</span> <span class="mf">0.3</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Égal&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Différent&quot;</span><span class="p">)</span>  <span class="c1"># C&#39;est ce qui s&#39;affiche !</span>
+</code></pre></div>
+<p>mais toujours tester avec une tolérance : </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">-</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-9</span><span class="p">:</span>   <span class="c1"># 0.000000001</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Les nombres sont suffisamment proches&quot;</span><span class="p">)</span>  <span class="c1"># C&#39;est ce qui s&#39;affiche !</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Les nombres sont différents&quot;</span><span class="p">)</span> 
+</code></pre></div>
+<h2 id="le-format-des-nombres-flottants-en-machine">Le format des nombres flottants en machine</h2>
+<p>Les ordinateurs utilisent généralement la norme IEEE 754 pour représenter les nombres flottants. L'idée ressemble à l'écriture scientifique en mathématiques, par exemple : <span class="arithmatex">\(1234,56 = 1,23456 \times 10^3\)</span></p>
+<p>En binaire, on écrit de la même façon : <span class="arithmatex">\(101,11_2 = 1,0111₂ \times 2^2\)</span>.</p>
+<p>Un nombre flottant sur 32 bits<sup id="fnref:3.2"><a class="footnote-ref" href="#fn:3.2">2</a></sup> se décompose en 3 parties :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><em>S</em></th>
+<th style="text-align: center;"><em>exposant</em></th>
+<th style="text-align: center;"><em>mantisse</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1 bit</td>
+<td style="text-align: center;">8 bits</td>
+<td style="text-align: center;">23 bits</td>
+</tr>
+</tbody>
+</table>
+<p>où :</p>
+<ul>
+<li>S est un bit de signe, 0 pour un nombre positif, 1 pour un nombre négatif.</li>
+<li>L'exposant est codé en notation biaisé, en ajoutant 127 à sa valeur réelle.</li>
+<li>La mantisse représente les bits significatifs après la virgule. En base 2, il y a toujours un 1 avant la virgule, il n'est pas stocké, on stocke uniquement la partie après la virgule.</li>
+</ul>
+<p>La valeur stockée est donc : <span class="arithmatex">\((-1)^{S} \times 1,mantisse \times 2^{exposant}\)</span>.</p>
+<p>Prenons par exemple 5,75 codé sur 32 bits. <span class="arithmatex">\(5.75_{10}\)</span> s'écrit en binaire <span class="arithmatex">\(101.11_2 = 1.0111 \times  2^3\)</span>. On obtient :</p>
+<ul>
+<li>Signe S = <span class="arithmatex">\(0\)</span> (positif)</li>
+<li>Exposant : <span class="arithmatex">\(3 + 127 = 130 = 10000010_2\)</span></li>
+<li>Mantisse : <span class="arithmatex">\(0111 0000 0000 0000 0000 000\)</span></li>
+</ul>
+<p>En machine, 5,75 sera codé sur 32 bits en <code>0 10000010 01110000000000000000000</code>.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:3.1">
+<p>Le terme « virgule flottante » désigne le fait que la virgule d'un nombre peut « flotter » n'importe où à gauche, à droite ou entre les chiffres significatifs. Cette position est indiquée par l'exposant.&#160;<a class="footnote-backref" href="#fnref:3.1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3.2">
+<p>Sur 64 bits (double précision, le plus courant en Python), la répartition est :</p>
+<ul>
+<li>1 bit de signe</li>
+<li>11 bits pour l'exposant</li>
+<li>52 bits pour la mantisse</li>
+</ul>
+<p><a class="footnote-backref" href="#fnref:3.2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../2-representation-des-entiers-en-machine-entiers-relatifs/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Représentation des nombres entiers en machine et entiers relatifs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Représentation des nombres entiers en machine et entiers relatifs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../4-valeurs-expressions-booleennes/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Valeurs, opérateurs et expressions booléens">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Valeurs, opérateurs et expressions booléens
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> Mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.prune", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.tracking", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
