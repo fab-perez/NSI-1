@@ -10,4 +10,24 @@ Les ordinateurs sur lesquels s'exécutent ces algorithmes ne sont pas infiniment
 
 !!! abstract "Cours" 
 
-    La **complexité d'un algorithme** mesure le nombre d'opérations élémentaires (comparaisons, affectations) qu'il effectue en fonction de la taille des données.  
+    La **complexité d'un algorithme** mesure le nombre d'opérations élémentaires (comparaisons, affectations) qu'il effectue en fonction de la taille n des données.  
+
+
+On utilise la notation O (grand O) pour exprimer un ordre de grandeur asymptotique.
+
+-	*O(1)* : complexité constante, le temps d'exécution ne dépend pas de n.
+-	*O(log₂(n))* : complexité logarithmique, par exemple la recherche dichotomique.
+-	*O(n)* : complexité linéaire, par exemple les parcours d'une liste.
+-	*O(n²)* : complexité quadratique, par exemple les tris par sélection ou par insertion.
+-	*O(2ⁿ)* : complexité exponentielle, par exemple le calcul de la suite de Fibonacci en récursif.
+-	*O(n!)* : complexité factorielle, par exemple le problème du voyageur de commerce.
+
+
+On vérifie :
+
+- la **terminaison** d'un algorithme pour prouver qu'il se termine en utilisant un variant de boucle : une expression entière, positive, et qui décroît strictement à chaque itération.
+
+- la **correction** d'un algorithle pour prouver qu'il est correct en on utilisant un invariant de boucle : une propriété vraie avant la boucle, conservée à chaque itération, et qui implique la postcondition à la sortie de la boucle.
+
+
+

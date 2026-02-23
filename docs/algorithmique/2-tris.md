@@ -6,19 +6,28 @@ Il existe de nombreux algorithmes de tris, étudions certains de ces algorithmes
 
 ## Tri par sélection
 
-Le tri par sélection consiste à parcourir le tableau pour trouver le plus petit élément et le placer en première position, puis recommencer avec le reste du tableau.
+![Tri par sélection d'un paquet de cartes](assets/2-tri-selection-cartes.png){width=40% align=right}
 
-L'idée est la suivante :
+Une façon simple qu'on peut utiliser pour trier un paquet de cartes consiste à séparer le paquet en deux partie : une partie déjà triée et un partie qui reste à trier. A chaque étape, on choisit la plus petite carte parmi le paquet des cartes qu'il reste à tier et on l'échange avec la première de ce paquet. On obtient une nouvelle carte triée et on recommence. C'est l'idée du **tri par sélection**.
 
-- On cherche le minimum du tableau et on l'échange avec le premier élément
-- On cherche le minimum du tableau privé de son premier élément et on l'échange avec le deuxième élément
-- On continue ainsi jusqu'à avoir traité tout le tableau
+### Algorithme
 
+L'algorithme du tri par séléction pour trier un tableau `T` de `n` valeurs consiste donc à itérer sur les positions `i` du tableau de la position `0` jusqu'à `n` (exclus) :
 
-### Programmation Python
+- Le sous-tableau `T[:i]` contenant les valeurs de `T` jusqu'à l'indice `i` (exclus) est déjà trié.
 
-Le début du tableau étant déjà trié (jusqu'à i exclus), on parcourt le reste pour trouver le plus petit élément à rajouter en fin de la partie triée (en i).
+- On cherche `i_min`, l'indice du minimum dans le sous-tableau `T[i:]` qui contient les autres valeurs qui ne sont pas encore triées.
 
+- On échange `T[i]` et `T[i_min]`.
+
+![Schéma du tri par sélection d'un tableau T](assets/2-tri-selection-light-mode.png#only-light){width=80%}
+![Schéma du tri par sélection d'un tableau T](assets/2-tri-selection-dark-mode.png#only-dark){width=80%}
+
+### Programme Python 
+
+Traduit en Python, on peut écrire :
+
+ 
 ``` py
 def tri_selection(T):
     """Trie le tableau T en place par sélection"""
@@ -70,28 +79,55 @@ Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et 
 Étudions maintenant la **complexité (ou coût) temporelle** de l'algorithme pour un tableau de grande taille $n$. La boucle `for i in range(n)` se répète donc $n$ fois. Et à chaque répétition, la boucle `for j in range(i+1, n)` va faire $n-1$ comparaisons `if T[j] < T[i_min]` et quelques opérations, puis $n-2$ comparaisons, puis $n-3$ comparaisons, etc., jusqu'à $0$. Au total, on va faire : $(n-1) + (n-2) + (n-3) + ... + 2 + 1$ = $n \times (n-1) \over 2$ comparaisons et quelques opérations supplémentaires. Seul l'ordre de grandeur nous intéresse ici et on voit bien que c'est de l'ordre de $n \times n$, autrement dit que la **complexité est quadratique en $O(n^2)$**.
 
 
-!!! abstract "Cours" 
+
+    
+!!! abstract "Cours"   
     **Tri par Selection** :
 
-    Algorithme : À chaque étape, on cherche le plus petit élément parmi les éléments restants et on l'ajoute au tableau trié.
+    - Algorithme : À chaque étape, on cherche le plus petit élément parmi les éléments restants à trier et on l'échange avec la valeur en première position des éléments à trier.
 
-    Terminaison : Les boucles `for` terminent.
+    - Terminaison : Les boucles `for` terminent.
 
-    Correction/Invariant de boucle : Les éléments jusqu'à `i` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i` à la fin.
+    - Correction/Invariant de boucle : Les éléments jusqu'à `i` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i` à la fin.
 
-    Complexité (ou coût) : Quadratique, en *O(n²)*.
+    - Complexité (ou coût) : Quadratique, en *O(n²)*.
 
 
 ## Tri par insertion 
+
+![Tri par insertion d'un paquet de cartes](assets/2-tri-insertion-cartes.png){width=40% align=right}
+
  
 La plupart des personnes utilisent naturellement le tri par insertion par exemple pour trier des cartes à jouer dans leur main en prenant les éléments un par un et en les insérant à leur place dans la partie déjà triée.
 
-
+### Algorithme
 L'idée est la suivante :
 
 - Au départ, on considère que le premier élément forme une partie triée. 
 - Pour chaque élément suivant, on l'insère à sa place dans la partie triée en décalant les éléments plus grands vers la droite.
 - On progresse ainsi jusqu'à avoir traité tous les éléments.
+
+
+L'algorithme du tri par insertion pour trier un tableau `T` de `n` valeurs consiste donc à itérer sur les positions `i` du tableau de la position `0` jusqu'à `n` (exclus) :
+
+- Le sous-tableau `T[:i]` contenant les valeurs de `T` jusqu'à l'indice `i` (exclus) est déjà trié.
+
+- On cherche à insérer la valeur `valeur_insertion = T[i]` à sa place dans la partie triée `T[:i]`.
+
+- On commence à `j = i `.
+
+- Tant que `T[j-1] > valeur_insertion` (et que `j > 0`) :
+
+    - On décale `T[j-1]` d’une position vers la droite : `T[j] = T[j-1]`.
+
+    - On continue vers la gauche : `j = j - 1`.
+
+- On insère `valeur_insertion` à sa position en `j`.
+
+
+![Tri par insertion d'un tableau T](assets/2-tri-insertion-light-mode.png#only-light){width=80%}
+![Tri par insertion d'un tableau T](assets/2-tri-insertion-dark-mode.png#only-dark){width=80%}
+
 
 ### Programmation Python 
 
@@ -178,12 +214,9 @@ Par contre, dans le meilleur des cas, quand le tableau est déjà trié, la bouc
 On peut noter que les deux tris par sélection et par insertion ont tous les deux une complexité quadratique, mais que le tri par insertion est plus efficace dans le cas d'un tableau déjà trié ou presque trié. Par contre, dans le cas d'un tableau en désordre, le tri par insertion à le désavantage de faire beaucoup plus d'échanges de valeurs dans le tableau quand on décale les éléments pour insérer une valeur à sa place.
 
 |Critère                           |Tri par sélection|Tri par insertion|
-|:-                               |:-:              |:-:|
-|Complexité                        |O(n²)            |O(n²)            |
-|Complexité meilleur cas           |O(n²)            |O(n)             |
-|Nombre d'échanges                 |O(n)             |O(n²)            |
+|:-                                |:-:              |:-:              |
+|Complexité                        |*O(n²)*          |*O(n²)*          |
+|Complexité meilleur cas           |*O(n²)*          |*O(n)*           |
+|Nombre d'échanges                 |*O(n) *          |*O(n²)*          |
 |Efficace sur tableau presque trié |Non              |Oui              |
 
-## Tri à bulle
-
-Le tri à bulles ou tri par propagation est un algorithme de tri. Il consiste à comparer répétitivement les éléments consécutifs d'un tableau, et à les permuter lorsqu'ils sont mal triés. Il doit son nom au fait qu'il déplace rapidement les plus grands éléments en fin de tableau, comme des bulles d'air qui remonteraient rapidement à la surface d'un liquide.

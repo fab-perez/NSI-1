@@ -134,7 +134,7 @@ def calcul_somme(T):
 
 Exemple :
 ```python
->>> calcul_somme([15, 12, 18, 14, 16]))
+>>> calcul_somme([15, 12, 18, 14, 16])
 75
 ```
 
@@ -155,7 +155,7 @@ def calcul_moyenne(T):
 
 Exemple :
 ```python
->>> calcul_moyenne([15, 12, 18, 14, 16]))
+>>> calcul_moyenne([15, 12, 18, 14, 16])
 15.0
 ```
 
