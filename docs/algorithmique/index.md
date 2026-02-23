@@ -25,9 +25,9 @@ On utilise la notation O (grand O) pour exprimer un ordre de grandeur asymptotiq
 
 On vérifie :
 
-- la **terminaison** d'un algorithme pour prouver qu'il se termine en utilisant un variant de boucle : une expression entière, positive, et qui décroît strictement à chaque itération.
+- la **terminaison** d'un algorithme qui consiste à prouver qu'il termine. On utilise souvent un **variant de boucle** qui change de valeur à chaque itération.
 
-- la **correction** d'un algorithle pour prouver qu'il est correct en on utilisant un invariant de boucle : une propriété vraie avant la boucle, conservée à chaque itération, et qui implique la postcondition à la sortie de la boucle.
+- la **correction** d'un algorithme qui consiste à prouver qu'il est correct. On utilise souvent un **invariant de boucle**, une propriété vraie avant la boucle, conservée à chaque itération, et en sortie de boucle.
 
 
 

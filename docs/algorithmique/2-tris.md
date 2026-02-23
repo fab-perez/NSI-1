@@ -25,7 +25,7 @@ L'algorithme du tri par séléction pour trier un tableau `T` de `n` valeurs con
 
 ### Programme Python 
 
-Traduit en Python, on peut écrire :
+Traduit en Python, l'algorithme peut écrire de la façon suivante :
 
  
 ``` py
@@ -66,11 +66,11 @@ L'**invariant de boucle** du tri par sélection est le suivant : « Tous les él
 
 On va faire un raisonnement par récurrence pour vérifier que cet invariant est correct :
 
-- Initialisation : Il est clairement vérifié au départ puisqu'il n'y a aucun élément avant l'indice `0`. 
+- Initialisation : il est clairement vérifié au départ puisqu'il n'y a aucun élément avant l'indice `0`. 
 
-- Conservation : Supposons qu'il est vérifié jusqu'à une valeur de `i` : Tous les éléments jusqu'à `i` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i` à la fin. Le prochain passage dans la boucle `for i in range(n)` consiste à chercher la plus petite valeur entre tous les éléments de `i` jusqu’à la fin et de la mettre en position `i`. Cette nouvelle valeur mise en `i`est bien supérieure à tous les éléments qui la précèdent et inférieure à tous ceux qui la suivent. On peut toujours dire que « tous les éléments jusqu'à `i+1` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i+1` à la fin », l'invariant est donc toujours vérifié. 
+- Conservation : supposons qu'il est vérifié jusqu'à une valeur de `i` : Tous les éléments jusqu'à `i` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i` à la fin. Le prochain passage dans la boucle `for i in range(n)` consiste à chercher la plus petite valeur entre tous les éléments de `i` jusqu’à la fin et de la mettre en position `i`. Cette nouvelle valeur mise en `i`est bien supérieure à tous les éléments qui la précèdent et inférieure à tous ceux qui la suivent. On peut toujours dire que « tous les éléments jusqu'à `i+1` (exclus) sont triés en ordre croissant et inférieurs à tous les éléments de `i+1` à la fin », l'invariant est donc toujours vérifié. 
 
-- Terminaison : Une fois que la boucle `for i in range(n)` termine, l'invariant de boucle nous assure que tous les éléments jusqu'à `n` (exclus) sont triés en ordre croissant. On a donc bien **prouvé la correction** de l'algorithme.
+- Terminaison : une fois que la boucle `for i in range(n)` termine, l'invariant de boucle nous assure que tous les éléments jusqu'à `n` (exclus) sont triés en ordre croissant. On a donc bien **prouvé la correction** de l'algorithme.
 
 Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et que la boucle termine, alors le tableau complet est trié.
 
@@ -101,16 +101,11 @@ Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et 
 La plupart des personnes utilisent naturellement le tri par insertion par exemple pour trier des cartes à jouer dans leur main en prenant les éléments un par un et en les insérant à leur place dans la partie déjà triée.
 
 ### Algorithme
-L'idée est la suivante :
-
-- Au départ, on considère que le premier élément forme une partie triée. 
-- Pour chaque élément suivant, on l'insère à sa place dans la partie triée en décalant les éléments plus grands vers la droite.
-- On progresse ainsi jusqu'à avoir traité tous les éléments.
 
 
 L'algorithme du tri par insertion pour trier un tableau `T` de `n` valeurs consiste donc à itérer sur les positions `i` du tableau de la position `0` jusqu'à `n` (exclus) :
 
-- Le sous-tableau `T[:i]` contenant les valeurs de `T` jusqu'à l'indice `i` (exclus) est déjà trié.
+- Le sous-tableau `T[:i]`, contenant les valeurs de `T` jusqu'à l'indice `i` (exclus), est déjà trié.
 
 - On cherche à insérer la valeur `valeur_insertion = T[i]` à sa place dans la partie triée `T[:i]`.
 
@@ -131,8 +126,8 @@ L'algorithme du tri par insertion pour trier un tableau `T` de `n` valeurs consi
 
 ### Programmation Python 
 
-Le début du tableau étant déjà trié (jusqu'à i exclus), on insère la valeur en position i à sa place dans la partie triée en décalant les éléments plus grands vers la droite.
 
+Traduit en Python, l'algorithme peut écrire de la façon suivante :
 
 ``` python
 def tri_insertion(T):
@@ -165,25 +160,23 @@ Quelques remarques :
 
 ### Terminaison
 
-Pour prouver la terminaison, il faut montrer que l'algorithme s'arrête toujours.
-Preuve de terminaison :
 
-La boucle externe `for` termine. La boucle interne `while` décrémente j à chaque itération et s'arrête dès que `j <= 0` ou que `valeur_insertion >= T[j - 1]`. Ici `j` est un **variant** de boucle qui décroît de 1 à chaque itération, la condition `j <= 0` sera nécessairement atteinte. Donc l'algorithme termine toujours
+La boucle externe `for i in range(n)` termine. La boucle interne `while j > 0 ...` décrémente `j` à chaque itération et s'arrête dès que `j <= 0` ou que `valeur_insertion >= T[j - 1]`. Ici `j` est un **variant** de boucle qui décroît de 1 à chaque itération, la condition `j <= 0` sera nécessairement atteinte. Donc l'algorithme termine toujours
 
 
 ### Correction
 
-L'**invariant de boucle** est le suivant : « À la fin de chaque itération de la boucle externe (indice `i`), le sous-tableau `T[0..i-1]` contient les mêmes éléments que le sous-tableau initial triés par ordre croissant ». 
+L'**invariant de boucle** est le suivant : « À la fin de chaque itération de la boucle externe `for i in range(n)`, le sous-tableau `T[:i]` contient les mêmes éléments que le sous-tableau initial triés par ordre croissant ». 
 
 On va faire un raisonnement par récurrence pour vérifier que cet invariant est correct :
 
-- Il est clairement vérifié au départ, puisqu'un tableau vide est trié.
+- Initialisation : il est clairement vérifié au départ, puisqu'un tableau vide est trié.
 
-- Conservation : si l'invariant est vrai avant l'itération `i`, alors après l'insertion de `T[i]` à sa place dans `T[0..i-1]` (qui est trié), le sous-tableau `T[0..i`] est trié.
+- Conservation : si l'invariant est vrai avant l'itération `i`, alors après l'insertion de `T[i]` à sa place dans `T[:i]` (qui est trié), le sous-tableau `T[:i+1]` est trié.
 
-- Terminaison : quand la boucle se termine, le sous-tableau T[0..n-1], c'est-à-dire tout le tableau, est trié
+- Terminaison : quand la boucle termine, le sous-tableau T[:n], c'est-à-dire tout le tableau, est trié
 
-Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et que la boucle se termine, alors le tableau complet est trié.
+Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et que la boucle termine, alors le tableau complet est trié.
 
 
 
