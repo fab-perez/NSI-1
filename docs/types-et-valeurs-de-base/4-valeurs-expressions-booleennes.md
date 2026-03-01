@@ -226,7 +226,7 @@ Pour éviter les erreurs et améliorer la lisibilité du code on utilise des par
 
 
 !!! question "Exercice corrigé" 
-    En Python, que renvoie l'expression suivant ?
+    En Python, que renvoie l'expression suivante ?
     ``` py
     >>> not True or False
     ```

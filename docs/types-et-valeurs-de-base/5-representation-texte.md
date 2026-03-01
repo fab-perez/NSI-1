@@ -57,7 +57,7 @@ Face à la multiplication des systèmes d'encodage incompatibles entre eux, le c
 Chaque point de code s'écrit sous la forme U+xxxx où chaque chiffre x est un caractère hexadécimal avec au moins quatre chiffres. Les points de code vont de U+0000 à U+10FFFF. 
 
 
-En Python, la fonction `ord` renvoie le code Unicode d'un caractère en décimal :
+En Python, la fonction `ord` renvoie le point de code d'un caractère, écrit en décimal :
 
 ``` python
 >>> ord('é')
