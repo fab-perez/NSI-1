@@ -136,7 +136,7 @@ De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire 
 
 === "Avec une boucle bornée `for`"
 
-    Avec `for i in range(len(t)):`, l'indice de boucle `i` prend automatiquement les valeurs allant de  `0` à `len(t) - 1`. `t[i]` permet d'accéder à la valeur du p-uplet qui se trouve à la position `i`.
+    Avec `for i in range(len(t)):`, l'indice de boucle `i` prend automatiquement les valeurs allant de  `0` à `len(t) - 1`. `t[i]` permet d'accéder à la valeur du tableau en la position `i`.
 
     ``` py
     >>> t = [1, 3, 8]
@@ -151,7 +151,7 @@ De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire 
 
 === "Avec une boucle bornée `for` et le mot clé `in`"
 
-    `for elem in t` permet d'accéder directement à toutes les du tableau les unes après les autres, sans connaître leurs positions.
+    `for elem in t` permet d'accéder directement à toutes les valeurs du tableau les unes après les autres, sans connaître leurs positions.
 
     ``` py
     >>> t = [1, 3, 8]

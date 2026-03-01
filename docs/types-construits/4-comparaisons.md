@@ -2,7 +2,7 @@
 |:--|:--|:--|:--|:--|
 |type Python|`tuple`|`list`|`dict`|`str`|
 |Suite d'éléments|ordonnés|ordonnés|sans ordre|ordonnés|
-|Eléments modifiables|immuable|muable|muable|immuable|
+|Éléments modifiables|immuable|muable|muable|immuable|
 |Création/notation|`t = (1, 2, 3, 4)` ou `t = 1, 2, 3, 4`|`l = [1, 2, 3, 4]`|`d = {'one':1, 'two':2, 'three':3}`|`s='abcd'`|
 |Création par compréhension|impossible|`l1 = [x**2 for x in range(5)]`<br>`l2 = [3*i for i in [1, 2, 3]]`<br>`l3 = [x for x in range(9) if x!=2]`<br>`l4 = [f(x) for x in l3]`<br>`d1 = {x: x**2 for x in range(5)}`|`d2 = {str(x): x for x in range (5)}`<br>`d3 = {x: x for x in range(5) if x=2}`<br>`d4 = {x: f(x) for x in [1, 2, 3]}`|Impossible|
 |Nombre d’éléments|`len(t)`|`len(l)`|`len(d)`|`len(s)`|
