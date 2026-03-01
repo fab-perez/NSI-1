@@ -98,7 +98,7 @@ with open('fichier.txt', 'w') as f:
 Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instructions (attention à l'indentation), il n'y a pas besoin de le fermer, cela évite beaucoup d'erreurs.
 
 ##	encodage
-On peut aussi préciser l'encodage lorsqu'on ouvre un fichier avec le paramètre `encode`, "utf-8" ou par exemple "utf-8" ou "latin-1": 
+On peut aussi préciser l'encodage lorsqu'on ouvre un fichier en lecture avec le paramètre `encode`, par exemple `encode="utf-8"` ou `encode="latin-1"` : 
  :
 
 === "f = open(...)"
