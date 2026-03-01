@@ -5,7 +5,7 @@ Il y a deux façons de décrire l'emplacement d'un fichier : son chemin absolu o
 
 -	Son **chemin absolu** décrit l'intégralité des dossiers (ou répertoires[^1.1]) menant au fichier, peu importe le répertoire courant, depuis un répertoire dit « racine ». Sous Windows, la racine  est le nom de volume (C:\, D:\…), sous les systèmes de la famille Unix, c'est « / ».
 
--	Son **chemin relatif** décrit la succession de répertoires à parcourir en prenant comme point de départ le répertoire courrant dans lequel on se trouve.
+-	Son **chemin relatif** décrit la succession de répertoires à parcourir en prenant comme point de départ le répertoire courant dans lequel on se trouve.
 
 [^1.1]: Depuis Windows 7, le terme « dossier » remplace « répertoire »
 
@@ -43,7 +43,7 @@ A --> G[Users];
 [^1.3]: « `..` » désigne le répertoire parent.
 
 
-Python reconnait indifféremment les chemins indiqués avec *backslash* (norme Windows) « `\` » qu'avec *slash* « `/` » (norme Unix et protocoles Internet).
+Python reconnaît indifféremment les chemins indiqués avec *backslash* (norme Windows) « `\` » qu'avec *slash* « `/` » (norme Unix et protocoles Internet).
 
 ##	f = open() et f.close()
 
@@ -153,7 +153,7 @@ Italie;Rome;60
 
 
 !!! question "Exercice corrigé" 
-    Ecrire un programme qui crée un fichier 'parite.txt' contenant tous les nombres entre 0 et 100 suivis de pair ou impair :
+    Écrire un programme qui crée un fichier 'parite.txt' contenant tous les nombres entre 0 et 100 suivis de pair ou impair :
 
     ```
     0;pair
@@ -181,11 +181,11 @@ Italie;Rome;60
 
 ##	Lire un fichier
 
-Il ewiste plusieurs approches pour lire les données dans un fichier.
+Il existe plusieurs approches pour lire les données dans un fichier.
 
 ### La méthode `.read()`
 
-La méthode `.read()`  renvoie l'intégralité du fichier dans une chaine de caractères :
+La méthode `.read()`  renvoie l'intégralité du fichier dans une chaîne de caractères :
 
 
 === "f = open(...)"
@@ -269,21 +269,21 @@ Une boucle  `for… in …` permet d'itérer sur toutes les lignes d'un fichier.
     ```
 
 
-Ici, la variable `ligne` est une chaine de caractère qui prend la valeur de chaque ligne de `pays.txt`.
+Ici, la variable `ligne` est une chaîne de caractère qui prend la valeur de chaque ligne de `pays.txt`.
 
 
 !!! question "Exercice corrigé" 
     « Green Eggs and Ham is one of Seuss's "Beginner Books", written with very simple vocabulary for beginning readers. The vocabulary of the text consists of just 50 words and was the result of a bet between Seuss and Bennett Cerf, Dr. Seuss's publisher » Source : Wikipedia. 
 
-    Ecrire un programme pour vérifier si Dr. Seuss a gagné son pari d'écrire un livre en utilisant moins de 50 mots dans son livre :  [https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt](https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt)    
+    Écrire un programme pour vérifier si Dr. Seuss a gagné son pari d'écrire un livre en utilisant moins de 50 mots dans son livre :  [https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt](https://www.clear.rice.edu/comp200/resources/texts/Green%20Eggs%20and%20Ham.txt)    
 
-    Aide : Utiliser les méthodes `.lower()` pour convertir une chaîne de caractères en minuscule, `.replace()` pour rempalcer les les signes de ponctuation (. , - ! et ? ) par des espaces, et `.split()` pour séparer les mots dans une chaîne de caractères. 
+    Aide : Utiliser les méthodes `.lower()` pour convertir une chaîne de caractères en minuscule, `.replace()` pour remplacer les signes de ponctuation (. , - ! et ? ) par des espaces, et `.split()` pour séparer les mots dans une chaîne de caractères. 
 
 ??? Success "Réponse"
 
 
     ``` py
-    mots_utilises = {}  #dictionnaire des mots utilisés et de leur nombre d'occurence
+    mots_utilises = {}  #dictionnaire des mots utilisés et de leur nombre d’occurrence
     with open('green eggs and ham.txt', 'r') as f:
         texte = f.read()
         texte = texte.lower()   # met le texte en minuscule

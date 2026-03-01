@@ -10,10 +10,10 @@ Pour trier en ordre croissant de façon simple et facile, le type `list` offre u
 >>> tab
 [1, 2, 3, 4, 5]
 ```
-Notr que `tab.sort()` a modifié le tableau `tab` et a renvoyé `None`.
+Noter que `tab.sort()` a modifié le tableau `tab` et a renvoyé `None`.
 
 
-Dans cet exemple, on a trié un tableau de nombres entiers. On peut faire la même chose avec un tableau de nombres decimaux (`float`)  ou de chaines de caractères. :warning: Les chaines de caractères sont triées par ordre lexicographique[^4.1].
+Dans cet exemple, on a trié un tableau de nombres entiers. On peut faire la même chose avec un tableau de nombres décimaux (`float`)  ou de chaines de caractères. :warning: Les chaines de caractères sont triées par ordre lexicographique[^4.1].
 
 [^4.1]: On commence par comparer les  codes Unicode du premier caractère de chaque chaîne, puis en cas d'égalité le second caractère, et ainsi de suite comme dans un dictionnaire. Attention aux majuscules et aux nombres, '11' est plus petit que '2' !
 
@@ -25,7 +25,7 @@ Dans cet exemple, on a trié un tableau de nombres entiers. On peut faire la mê
 ```
 
 
-Noter que  `.sort()` est une méthode reservée aux tableaux, c'est-à-dire aux variables de type `list`. Elle ne s'applique pas aux vp-uplets ou aux dictionnaires :
+Noter que  `.sort()` est une méthode réservée aux tableaux, c'est-à-dire aux variables de type `list`. Elle ne s'applique pas aux p-uplets ni aux dictionnaires :
 
 ``` py
 >>> puplet  = (5, 2, 3, 1, 4)
@@ -150,7 +150,7 @@ De la même façon, une fonction lambda va permettre de trier le tableau de dict
 
 ``` py
 >>> pays = [{'Capitale': 'Paris', 'Pays': 'France', 'Population (ml)': '68'}, \
-            {'Capitale': 'MAdrid', 'Pays': 'Espage', 'Population (ml)': '48'}, \
+            {'Capitale': 'Madrid', 'Pays': 'Espagne', 'Population (ml)': '48'}, \
             {'Capitale': 'Rome', 'Pays': 'Italie', 'Population (ml)': '60'}]
 
 >>> sorted(pays, key=lambda x:int(x['Population (ml)']))
@@ -175,9 +175,9 @@ Par exemple, pour avoir les pays dans par population décroissante :
         codes = list(csv.DictReader(f, delimiter=';'))
     ```
 
-    1. Ecrire les fonctions `plus_petit_code` et `plus_grand_code` qui renvoient la commune qui a le plus petit code postal et celle qui a le plus grand code postal.
+    1. Écrire les fonctions `plus_petit_code` et `plus_grand_code` qui renvoient la commune qui a le plus petit code postal et celle qui a le plus grand code postal.
 
-    2. Ecrire les fonctions `plus_grande_latitude` qui renvoie la commune qui a la plus grande latitude.
+    2. Écrire les fonctions `plus_grande_latitude` qui renvoie la commune qui a la plus grande latitude.
 
 
 ??? Success "Réponse"
@@ -205,9 +205,10 @@ Par exemple, pour avoir les pays dans par population décroissante :
 
 
 !!! question "Exercice corrigé - Pour aller plus loin" 
-    3. Ecrire les fonctions `plus_loin(longA, latA)` qui renvoie la commune la plus éloignée du point GPS de coordonnées (longA, latA).
+    3. Écrire les fonctions `plus_loin(longA, latA)` qui renvoie la commune la plus éloignée du point GPS de coordonnées (longA, latA).
 
     Exemple:
+    
     ``` py
     >>> plus_loin(0,0)
     {'code_commune_insee': '98612',

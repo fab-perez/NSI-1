@@ -19,9 +19,9 @@ Et un  tableau de nouveaux pays.
 
 Remarque : Pour un tableau de tableaux ou de p-uplets, il faut veiller à ce que les données sur une même colonne correspondent à leur descripteur. S'il manque une donnée, on complète avec `''` ou `None`[^5.1]. 
 
-[^5.1]: Ce n'est pas necessaire pour un tableau de dictionnaires.
+[^5.1]: Ce n'est pas nécessaire pour un tableau de dictionnaires.
 
-On peut simplement utiliser l'opérateur `+` qui créé un nouveau tableau :
+On peut simplement utiliser l'opérateur `+` qui crée un nouveau tableau :
 
 ``` py
 >>> pays + nouveau_pays
@@ -61,7 +61,7 @@ Si on ne veut ajouter qu'un seul élément (= un seul tableau pour un pays), on 
 
 ```
 
-Note: On peut supprimer la ligne avec `del(pays[6])` et pour éviter les doublons créés par `pays + pays_sud` on préfèrera faire :
+Note: On peut supprimer la ligne avec `del(pays[6])` et pour éviter les doublons créés par `pays + pays_sud` on préférera faire :
 
 ``` py
 >>> pays_sud = [['Espagne', 'Madrid', '47'], ['Portugal', 'Lisbonne', None], ['Italie', 'Rome', '60'], ['Grece', 'Athenes', 10]]
@@ -104,7 +104,7 @@ for ligne_pays in pays:      # pour chaque ligne de pays
 
 A noter la dernière ligne qui permet de conserver l'intégrité de la table en ajoutant un champ `None` si le PIB d'un pays n'est pas présent.
 
-Pour un tableau de p-uplets, les p-uplets sont immuables et la méthode `.append()` ne fonctionne pas, il faut créér un nouveau p-uplet  pour chaque ligne, par exemple: 
+Pour un tableau de p-uplets, les p-uplets sont immuables et la méthode `.append()` ne fonctionne pas, il faut créer un nouveau p-uplet  pour chaque ligne, par exemple: 
 
 ``` py
 pays = [('France', 'Paris', 68),
@@ -135,7 +135,7 @@ pib = [('France', 2900),  ('Espagne', 1600)]
 for ligne_pays in pays:                       # pour chaque ligne de pays
     for ligne_pib in pib:                     # parcourir les lignes de pib
         if ligne_pays['Pays'] == ligne_pib[0]:     # si c'est le meme pays
-            ligne_pays['PIB'] = ligne_pib[1] # alors on ajoute le pib à laclé PIB
+            ligne_pays['PIB'] = ligne_pib[1] # alors on ajoute le pib à la clé PIB
             break                             # inutile de continuer à parcourir pib
     if len(ligne_pays) == 3 : ligne_pays['PIB'] = None   # on n'a pas trouvé de pib
 ```

@@ -1,6 +1,6 @@
 # Table de données
 
-Les tables de données sont le moyen le plus repandu de stocker et traiter de l'information structurée. 
+Les tables de données sont le moyen le plus répandu de stocker et traiter de l'information structurée. 
 
 !!! abstract "Cours" 
     Une table de données est un ensemble de valeurs organisées sous forme de table :
@@ -31,9 +31,9 @@ Les bases de données permettent de manipuler d'importantes quantités de donné
 Chaque ligne du texte correspond à une ligne du tableau et les virgules correspondent aux séparations entre les colonnes. Un fichier csv est un fichier texte mais on utilise l'extension .csv pour indiquer la nature de ses données.
 
 
-##	Ecrire une table de données dans un fichier csv
+##	Écrire une table de données dans un fichier csv
 
-Un fichier csv est un simple fichier texte, on peut enregister des données structurées dans un fichier csv comme on l'a fait avec un fichier texte en séparant les données par une virgule ou un autre séparateur et les lignes par `\n`. Il suffit juste de changer l'extension du fichier et d'ajouter une ligne de descripteurs : 
+Un fichier csv est un simple fichier texte, on peut enregistrer des données structurées dans un fichier csv comme on l'a fait avec un fichier texte en séparant les données par une virgule ou un autre séparateur et les lignes par `\n`. Il suffit juste de changer l'extension du fichier et d'ajouter une ligne de descripteurs : 
 
 === "f = open(...)"
     ``` py

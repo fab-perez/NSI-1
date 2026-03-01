@@ -57,7 +57,7 @@ for ligne in pays:
         codes = list(csv.DictReader(f, delimiter=';'))
     ```
 
-    1.  Ecrire une fonction `coord_gps` qui prend en paramètre un nom de commune et renvoie les coordonnées gps de cette commune. 
+    1.  Écrire une fonction `coord_gps` qui prend en paramètre un nom de commune et renvoie les coordonnées gps de cette commune. 
 
         Exemple : 
         ``` py
@@ -65,7 +65,7 @@ for ligne in pays:
         '43.835211125, 5.791029867'
         ```
 
-    2.  Ecrire une fonction `chercher_communes` qui prend en paramètre un code postal et renvoie le tableau des communes qui ont ce code postal.
+    2.  Écrire une fonction `chercher_communes` qui prend en paramètre un code postal et renvoie le tableau des communes qui ont ce code postal.
 
         Exemple : 
         ``` py
@@ -129,7 +129,7 @@ for ligne in pays:
         codes = list(csv.DictReader(f, delimiter=';'))
     ```
 
-    Ecrire une fonction `tout_departement` qui prend en paramètre un numéro de département et renvoie un tableau avec toutes les communes de ce département.
+    Écrire une fonction `tout_departement` qui prend en paramètre un numéro de département et renvoie un tableau avec toutes les communes de ce département.
 
         Exemple : 
         ``` py
@@ -184,7 +184,7 @@ Ces données vont créer plusieurs problèmes :
     File "<interactive input>", line 1, in <module>
     ValueError: invalid literal for int() with base 10: '68.0'
     ```
--   La capitale de l'Espagne n'est pas renseignée, c'est la valeur suivante, `'48'` qui sera utilisée à la place. Si on ne veut pas renseigner cette capitale, il faudrait écrire `..., ['Espagne', '', '48'], ...` ou `..., ['Espagne', None, '48'], ...` pour respecter les descriteurs de colonne. Ici on peut noter l'avantage d'utiliser un tableau de dictionnaire où il suffirait d'omettre la clé d'une valeur qui n'est pas renseignée.
+-   La capitale de l'Espagne n'est pas renseignée, c'est la valeur suivante, `'48'` qui sera utilisée à la place. Si on ne veut pas renseigner cette capitale, il faudrait écrire `..., ['Espagne', '', '48'], ...` ou `..., ['Espagne', None, '48'], ...` pour respecter les descripteurs de colonne. Ici on peut noter l'avantage d'utiliser un tableau de dictionnaire où il suffirait d'omettre la clé d'une valeur qui n'est pas renseignée.
 
 -   Il y a un doublon sur l'Italie, quelle valeur utiliser dans un programme pour la capitale, `Rome` ou `Roma`, et pour la population ? C'est source d'erreurs.
 
@@ -198,7 +198,7 @@ Ces données vont créer plusieurs problèmes :
         codes = list(csv.DictReader(f, delimiter=';'))
     ```
 
-    1.  Ecrire une fonction `coherence` qui vérifie que tous les noms de communes sont renseignés et qu'aucun n'est laissé vide.
+    1.  Écrire une fonction `coherence` qui vérifie que tous les noms de communes sont renseignés et qu'aucun n'est laissé vide.
 
         Exemple : 
         ``` py
@@ -206,7 +206,7 @@ Ces données vont créer plusieurs problèmes :
         True
         ```
 
-    2.   Ecrire une fonction `doublons` qui affiche les doublons.
+    2.   Écrire une fonction `doublons` qui affiche les doublons.
 
 
 
