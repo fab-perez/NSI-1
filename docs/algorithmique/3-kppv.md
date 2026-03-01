@@ -4,14 +4,14 @@
 
 L'apprentissage automatique, ou *machine learning* en anglais, est un domaine clé de l'**intelligence artificielle**. Il repose sur des méthodes mathématiques et statistiques qui permettent aux ordinateurs **d'apprendre à partir de données** : autrement dit, à améliorer leurs performances dans l'exécution de certaines tâches, sans que chaque étape soit explicitement programmée.
 
-L'apprentissage automatique comporte généralement deux phases. Une première phase d'**apprentissage (ou entrainement)** consiste à analyser un ensemble de données connues (données d’entrainement) afin de construire un modèle. Une fois ce modèle déterminé, la seconde phase de **production (ou d'inférence)** consiste à lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision.
+L'apprentissage automatique comporte généralement deux phases. Une première phase d'**apprentissage (ou entraînement)** consiste à analyser un ensemble de données connues (données d’entraînement) afin de construire un modèle. Une fois ce modèle déterminé, la seconde phase de **production (ou d'inférence)** consiste à lui soumettre de nouvelles données pour obtenir une prédiction, une classification ou une décision.
 
 
 On distingue trois principaux types d'apprentissage automatique :
 
 |Type d'apprentissage|Description|Exemples|
 |:-|:-|:-|
-|🧩 L'apprentissage supervisé|Les données d'entrainement incluent les réponses attendues|Prédiction météo, reconnaissance d'images|
+|🧩 L'apprentissage supervisé|Les données d’entraînement incluent les réponses attendues|Prédiction météo, reconnaissance d'images|
 |🔍 L'apprentissage non supervisé|Les données sont brutes, l'algorithme doit trouver des structures cachées|Regroupement de clients, segmentation marketing|
 |🎮 L'apprentissage par renforcement|L'algorithme apprend en interagissant avec son environnement, il reçoit des récompenses ou pénalités|Jeux d'échecs, optimisation robotique|
 
@@ -30,19 +30,21 @@ Il existe d'autres formes d'apprentissage automatique, par exemple les algorithm
 
 
 !!! abstract "Cours" 
-    L'algorithme des k plus proches voisins (KPPV) ou *k-nearest neigbors* (KNN) permet de résoudre des problèmes de **régression** (estimer la valeur d'une nouvelle donnée) ou de **classification** (déterminer à quelle classe appartient une nouvelle donnée) à partir des k plus proches parmi des **données d'entrainement**. La proximité est souvent mesurée à l'aide de la **distance euclidienne**[^3.1].
+    L'algorithme des k plus proches voisins (KPPV) ou *k-nearest neighbors* (KNN) permet de résoudre des problèmes de **régression** (estimer la valeur d'une nouvelle donnée) ou de **classification** (déterminer à quelle classe appartient une nouvelle donnée) à partir des k plus proches parmi des **données d’entraînement**. La proximité est souvent mesurée à l'aide de la **distance euclidienne**[^3.1].
  
 
 
-[^3.1]: D'autres distances existent, par exemple la distance de Manhattan calculée en utilisant les déplacements horizontaux et verticaux.
+[^3.1]: D'autres distances existent, par exemple la distance de Manhattan calculée en utilisant les déplacements horizontaux et verticaux ou la distance de Tchebychev donnée par la distance maximale sur l'un des deux axes.
 
-Prenons un exemple simple de classification. Les bonbons rouges d'un célèbre confiseur appartiennent à deux **classes** différentes, certains sont au gout fraise, d'autres sont au gout framboise. On veut déterminer la classe d'un bonbon rouge inconnu. Pour nous aider, on dispose de 5 bonbons de chaque classe, ce sont les **données d'entrainement**, dont on a mesuré le poids et la taille. Il est très difficile de les différencier à vue d'œil mais Les bonbons au gout fraise sont souvent un peu plus grands et plus légers que ceux au gout framboise.  
+![6 bonbons rouges](assets/3-kppv-6-bonbons-rouges.png){width=25% align=right}
+
+Prenons un exemple simple de classification. Les bonbons rouges d'un célèbre confiseur appartiennent à deux **classes** différentes, certains sont au gout fraise, d'autres sont au gout framboise. On veut déterminer la classe d'un bonbon rouge inconnu. Pour nous aider, on dispose de 6 bonbons de chaque classe, ce sont les **données d’entraînement**, dont on a mesuré le poids et la taille. Il est très difficile de les différencier à vue d'œil mais Les bonbons au gout fraise sont souvent un peu plus grands et plus légers que ceux au gout framboise.  
 
 
-On a mesuré les valeurs suivantes sur les données d'entrainement :
+On a mesuré les valeurs suivantes sur les données d’entraînement :
 
 
-![Données d'entrainement contenant 5 bonbons fraises et 6 bonbons framboises ](assets/3-kppv-donnees-d-entrainement.png){width=50% align=right}
+![Données d’entraînement contenant 6 bonbons fraises et 6 bonbons framboises ](assets/3-kppv-donnees-d-entrainement.png){width=50% align=right}
 
 
 |poids (g)|taille (mm)|classe|
@@ -65,7 +67,7 @@ On veut déterminer la classe d'une nouvelle donnée: un bonbon rouge inconnu. O
 
 La distance euclidienne entre deux points de coordonnées $(x_1, y_1)$ et $(x_2,y_2)$ dans le plan[^3.2] est donnée par la formule :  $d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$ .
 
-Calculons les distances entre chaque donnée d'entrainement et cette nouvelle donnée :
+Calculons les distances entre chaque donnée d’entraînement et cette nouvelle donnée :
 
 [^3.2]: avec un repère orthonormé.
 
@@ -90,23 +92,23 @@ Calculons les distances entre chaque donnée d'entrainement et cette nouvelle do
 
 ![Classement avec les 3 plus proches voisins](assets/3-kppv-choix-k-1-3.png){width=50% align=right}
 
-L'approche la plus simple consiste à utiliser la classe du voisin le plus proche parmi les données d'entrainement, c'est-à-dire k = 1. C'est le bonbon qui pèse 8 g et mesure 8 mm qui se trouve à une distance de 1 de la nouvelle donnée: il est au gout fraise. 
+L'approche la plus simple consiste à utiliser la classe du voisin le plus proche parmi les données d’entraînement, c'est-à-dire k = 1. C'est le bonbon qui pèse 8 g et mesure 8 mm qui se trouve à une distance de 1 de la nouvelle donnée: il est au gout fraise. 
 
 👉 Le bonbon inconnu est de la même classe que son voisin le plus proche, il est donc au gout fraise.
 
 
-Mais on peut aussi prendre une autre approche qui consiste à prendre compte plusieurs voisins, par exemple les 3 voisins les plus proches, c'est-à-dire k = 3. Parmi les 3 bonbons les plus proches, un est au gout fraise et deux au gout framboise.  
+Mais on peut aussi prendre une autre approche qui consiste à prendre en compte plusieurs voisins, par exemple les 3 voisins les plus proches, c'est-à-dire k = 3. Parmi les 3 bonbons les plus proches, un est au gout fraise et deux au gout framboise.  
 
 👉 Le bonbon inconnu est de la classe majoritaire de ses 3 voisins les plus proches, il est donc au gout framboise.
 
 Comme on peut le voir, le choix de la valeur de k utilisée dans l'algorithme est déterminant sur le résultat obtenu ! La phase d'apprentissage permet de choisir la meilleure valeur de k[^3.3]. On choisit en principe un nombre impair pour éviter les cas d'égalité entre plusieurs classes.
 
-[^3.3] une méthode classique est la validation croisée (*cross validation*).
+[^3.3]: Une méthode classique est la validation croisée (*cross validation*).
 
 Dans cette exemple, nous avons étudié un problème de classification. Dans le cas d'un problème de régression, l'approche est la même en calculant la valeur moyenne des k plus proches voisins plutôt que la classe majoritaire.
 
 ## Coût de l'algorithme
-Etudions le côut de l'algorithme des k plus proches voisins. Pour $n$ données d'entrainement, l'algorithme consiste à parcourir chaque donnée pour calculer sa distance avec la donnée inconnue. Le cout est donc **linéaire en $O(n)$**. 
+Étudions le coût de l'algorithme des k plus proches voisins. Pour $n$ données d’entraînement, l'algorithme consiste à parcourir chaque donnée pour calculer sa distance avec la donnée inconnue. Le coût est donc **linéaire en $O(n)$**. 
 
 Le tri du tableau des distance rajoute ici une complexité supplémentaire, en $O(n^2)$ pour les tris les moins efficaces. Néanmoins on peut très bien se passer de ce tri pour optimiser l'algorithme et enregistrer directement les classes ou les valeurs des k plus proches voisins pendant le calcul des distances.
 

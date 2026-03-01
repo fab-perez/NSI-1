@@ -6,13 +6,13 @@ Il existe de nombreux algorithmes de tris, étudions certains de ces algorithmes
 
 ## Tri par sélection
 
-![Tri par sélection d'un paquet de cartes](assets/2-tri-selection-cartes.png){width=40% align=right}
+![Tri par sélection d'un paquet de cartes](assets/2-tri-selection-cartes.png){width=50% align=right}
 
-Une façon simple qu'on peut utiliser pour trier un paquet de cartes consiste à séparer le paquet en deux partie : une partie déjà triée et un partie qui reste à trier. A chaque étape, on choisit la plus petite carte parmi le paquet des cartes qu'il reste à tier et on l'échange avec la première de ce paquet. On obtient une nouvelle carte triée et on recommence. C'est l'idée du **tri par sélection**.
+Une façon simple de trier un paquet de cartes consiste à séparer le paquet en deux parties : une partie déjà triée et un partie qui reste à trier. A chaque étape, on choisit la plus petite carte celles qui reste à tier et on l'échange avec la première d'entre elles. La partie déjà triée augmente alors d'une carte et on recommence. C'est l'idée du **tri par sélection**.
 
 ### Algorithme
 
-L'algorithme du tri par séléction pour trier un tableau `T` de `n` valeurs consiste donc à itérer sur les positions `i` du tableau de la position `0` jusqu'à `n` (exclus) :
+L'algorithme du tri par sélection pour trier un tableau `T` de `n` valeurs consiste donc à itérer sur les positions `i` du tableau de la position `0` jusqu'à `n` (exclus) :
 
 - Le sous-tableau `T[:i]` contenant les valeurs de `T` jusqu'à l'indice `i` (exclus) est déjà trié.
 
@@ -95,10 +95,12 @@ Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et 
 
 ## Tri par insertion 
 
-![Tri par insertion d'un paquet de cartes](assets/2-tri-insertion-cartes.png){width=40% align=right}
+![Tri par insertion d'un paquet de cartes](assets/2-tri-insertion-cartes.png){width=50% align=right}
 
  
-La plupart des personnes utilisent naturellement le tri par insertion par exemple pour trier des cartes à jouer dans leur main en prenant les éléments un par un et en les insérant à leur place dans la partie déjà triée.
+Les joueurs de cartes utilisent souvent le **tri par insertion** de façon naturelle quand ils trient leurs cartes en main en les prenant une par une de la gauche vers la droite et en plaçant chaque carte à sa place entre celles qui sont déjà triées sur la gauche.
+
+
 
 ### Algorithme
 
