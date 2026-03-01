@@ -99,7 +99,6 @@ Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instr
 
 ##	encodage
 On peut aussi préciser l'encodage lorsqu'on ouvre un fichier en lecture avec le paramètre `encode`, par exemple `encode="utf-8"` ou `encode="latin-1"` : 
- :
 
 === "f = open(...)"
     ``` py
