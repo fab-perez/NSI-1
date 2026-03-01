@@ -94,8 +94,28 @@ Une autre façon d'ouvrir « fichier.txt »  est d'utiliser la construction su
 with open('fichier.txt', 'w') as f:
     # bloc d'instructions
 ```
-    
+
 Dans ce cas-là, le fichier est automatiquement fermé à la fin du bloc d'instructions (attention à l'indentation), il n'y a pas besoin de le fermer, cela évite beaucoup d'erreurs.
+
+##	encodage
+On peut aussi préciser l'encodage lorsqu'on ouvre un fichier avec le paramètre `encode`, "utf-8" ou par exemple "utf-8" ou "latin-1": 
+ :
+
+=== "f = open(...)"
+    ``` py
+    f = open('pays.txt, 'r', encode="utf-8")
+    ...
+    f.close()	
+    ```
+
+=== "with open(...) as f:"
+    ``` py
+    with open('pays.txt', 'r', encode="utf-8") as f:
+         ...
+       
+    ```
+Si on ne précises rien, Python utilise l’encodage par défaut du système d'exploitation.
+
 
 ##	Écrire dans un fichier
 
