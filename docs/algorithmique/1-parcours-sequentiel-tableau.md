@@ -172,6 +172,7 @@ Le but est de trouver  **la plus grande (ou la plus petite) valeur dans un table
 
 Après avoir initialisé le maximum (ou minimum) à la première valeur du tableau (`T[0]`), l'algorithme parcourt chaque élément du tableau et remplace le maximum (respectivement le minimum) chaque fois qu'un élément est plus grand (resp. plus petit). Une fois le tableau entièrement parcouru, le maximum (resp. minimum) aura bien la valeur la plus grande (resp. la plus petite) du tableau.
 
+
 :warning: Il faut traiter le cas du tableau vide séparément pour éviter de lever un erreur `IndexError`sur `T[0]` au début de l'algorithme par exemple en renvoyant `None`ou avec une assertion du genre `assert len(T) != 0`.
 
 Traduit simplement en Python : 
@@ -197,6 +198,8 @@ Exemple :
 15
 ```
 
+:bug: Une erreur classique consiste à commencer la rechercher en écrivant  `maxi = 0` au lieu de  `maxi = T[0]` au début de l'algorithme, ce qui n'est pas correct dans le cas où les valeurs sont toutes négatives !
+
 La recherche du minimum est très similaire :
 
 ```python
@@ -218,6 +221,7 @@ Exemple :
 >>> recherche_minimum([5, 12, 3, 8, 15, 3])
 3
 ```
+
 
 :bug: Éviter d'utiliser les noms de variable `max`et `min` qui sont des mots réservés Python.
 
