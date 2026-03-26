@@ -76,7 +76,7 @@ Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et 
 
 ### Complexité
 
-Étudions maintenant la **complexité (ou coût) temporelle** de l'algorithme pour un tableau de grande taille $n$. La boucle `for i in range(n)` se répète donc $n$ fois. Et à chaque répétition, la boucle `for j in range(i+1, n)` va faire $n-1$ comparaisons `if T[j] < T[i_min]` et quelques opérations, puis $n-2$ comparaisons, puis $n-3$ comparaisons, etc., jusqu'à $0$. Au total, on va faire : $(n-1) + (n-2) + (n-3) + ... + 2 + 1$ = $n \times (n-1) \over 2$ comparaisons et quelques opérations supplémentaires. Seul l'ordre de grandeur nous intéresse ici et on voit bien que c'est de l'ordre de $n \times n$, autrement dit que la **complexité est quadratique en $O(n^2)$**.
+Étudions maintenant la **complexité (ou coût) temporelle** de l'algorithme pour un tableau de grande taille $n$. La boucle `for i in range(n)` se répète donc $n$ fois. Et à chacune de ces répétitions, la boucle `for j in range(i+1, n)` va répéter $n-1$ fois uen comparaison (`if T[j] < T[i_min]`) et éventuellement une affectation (`i_min = j`) quand `i` vaut 0, puis répéter $n-2$ fois la comparaison quand `i` vaut 1, puis $n-3$ quand `i` vaut 2, etc., jusqu'à ne plus s'exécuter quand `i` vaut `n - 1`. Au total, le tri par sélection effectue $(n-1) + (n-2) + (n-3) + ... + 2 + 1$ = $n \times (n-1) \over 2$ comparaisons et quelques affectations supplémentaires. Seul l'ordre de grandeur nous intéresse ici et on voit bien que c'est de l'ordre de $n \times n$, autrement dit que la **complexité du tri par sélection est quadratique en $O(n^2)$**.
 
 
 
@@ -184,9 +184,9 @@ Cet invariant prouve la correction de l'algorithme : si l'invariant est vrai et 
 
 ### Complexité
 
-Dans le **pire des cas**, le tableau est trié en ordre décroissant. À chaque itération i, on effectue i comparaisons et décalages. Le nombre total d'opérations est alors : $1 + 2 + 3 + ... + (n-1)$ = ${n \times (n-1)} \over 2$. La complexité est donc la **complexité est quadratique en $O(n^2)$**..
+Dans le **pire des cas**, le tableau est trié en ordre décroissant. À chaque itération de la boucle `for i in range(n)`, on doit décaler tous les éléments pour placer `T[i]` tout au début du tableau, on effectue donc `i` comparaisons et décalages. On répète cette opération pour toutes les valeurs de `i` allant de `0` à `n-1`, le nombre total d'opérations est alors : $0 + 1 + 2 + 3 + ... + (n-1)$ = ${n \times (n-1)} \over 2$. La **complexité du tri par insertion est quadratique en $O(n^2)$**..
 
-Par contre, dans le meilleur des cas, quand le tableau est déjà trié, la boucle interne ne s'exécute jamais et donc la complexité est linéaire ou en $O(n)$.
+Par contre, **dans le meilleur des cas**, quand le tableau est déjà trié, la boucle interne ne s'exécute jamais et donc la complexité est **linéaire ou en $O(n)$**, c'est donc bien meilleur que le tri par sélection.
 
 
 !!! abstract "Cours" 
@@ -210,8 +210,8 @@ On peut noter que les deux tris par sélection et par insertion ont tous les deu
 
 |Critère                           |Tri par sélection|Tri par insertion|
 |:-                                |:-:              |:-:              |
-|Complexité                        |*O(n²)*          |*O(n²)*          |
+|Complexité moyenne                |*O(n²)*          |*O(n²)*          |
 |Complexité meilleur cas           |*O(n²)*          |*O(n)*           |
-|Nombre d'échanges                 |*O(n)*          |*O(n²)*          |
+|Nombre d'échanges                 |*O(n)*           |*O(n²)*          |
 |Efficace sur tableau presque trié |Non              |Oui              |
 
