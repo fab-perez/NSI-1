@@ -8,7 +8,7 @@ Il existe de nombreux algorithmes de tris, étudions certains de ces algorithmes
 
 ![Tri par sélection d'un paquet de cartes](assets/2-tri-selection-cartes.png){width=50% align=right}
 
-Une façon simple de trier un paquet de cartes consiste à séparer le paquet en deux parties : une partie déjà triée et un partie qui reste à trier. A chaque étape, on choisit la plus petite carte celles qui reste à tier et on l'échange avec la première d'entre elles. La partie déjà triée augmente alors d'une carte et on recommence. C'est l'idée du **tri par sélection**.
+Une façon simple de trier un paquet de cartes consiste à séparer le paquet en deux parties : une partie déjà triée et un partie qui reste à trier. A chaque étape, on choisit la plus petite carte parmi celles qui reste à trier et on l'échange avec la première d'entre elles. La partie déjà triée augmente alors d'une carte et on recommence. C'est l'idée du **tri par sélection**.
 
 ### Algorithme
 
@@ -212,6 +212,6 @@ On peut noter que les deux tris par sélection et par insertion ont tous les deu
 |:-                                |:-:              |:-:              |
 |Complexité                        |*O(n²)*          |*O(n²)*          |
 |Complexité meilleur cas           |*O(n²)*          |*O(n)*           |
-|Nombre d'échanges                 |*O(n) *          |*O(n²)*          |
+|Nombre d'échanges                 |*O(n)*          |*O(n²)*          |
 |Efficace sur tableau presque trié |Non              |Oui              |
 
