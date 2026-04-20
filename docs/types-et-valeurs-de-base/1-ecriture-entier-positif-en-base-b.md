@@ -262,6 +262,19 @@ def bin_to_dec(n):
 	return dec
 ```
 
+La correspondance entre la position d'un bit (`-i-1`) dans la chaîne de caractère `n` et la puissance de 2 associée (`i`) est source d'erreur. Une autre façon de programmer cette même fonction consiste à additionner les bits de droite à gauche avec des multiplications successives par 2 : 
+
+``` py
+def bin_to_dec(n):
+    """ str -> int
+	Renvoie l'écriture décimale de la chaine de caractère n représentant un nombre binaire
+	"""
+    dec = 0
+    for bit in n:
+	    dec = 2*dec + int(bit)
+	return dec
+```
+Si `n` est une chaîne de caractères représentant un nombre de 4 bits, au final le premier bit sera bien multiplié par $2^3$, le deuxième bit par  $2^2$, le troisième par $2$ et le dernier sera rajouté tel quel à `dec` sans être multiplié.
 
 En Python, les nombres binaires s'écrivent avec le préfixe ```0b``` et l'équivalent en décimal est affiché automatique dans la console :
 
@@ -1113,7 +1126,7 @@ En utilisant les restes de divisions successives par $3$, en remontant à partir
 
 
 
-En Python, la fonction `int()` permet de convertir une chaine de caractère en précisant la base avec le paramètre par mot clé `base`. 
+En Python, la fonction `int()` permet de convertir une chaîne de caractère en précisant la base avec le paramètre par mot clé `base`. 
 
 Exemple 6103 en base 7 est égal à 2110 en base 10 : 
 
