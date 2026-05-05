@@ -27,8 +27,8 @@ Recherche dichotomique de `x` dans un tableau **trié** `T` :
 
 |Etape|Description|
 |:--|:--|
-|**Diviser** |Découper le tableau trié `[T[debut], T[debut+1], ..., T[fin]]` en son milieu (`(debut + fin)//2`) pour avoir deux sous-tableaux  `[T[debut], T[debut+1], ..., T[milieu-1]]` et `[T[milieu + 1], ..., T[fin]]`|
-|**Régner**	 |- si `x < T[milieu]`, chercher `x` dans `[T[debut], T[debut+1], ..., T[milieu-1]]` <br>- si `x > T[milieu]` , chercher `x` dans `[T[milieu + 1], ..., T[fin]]`<br>- si `x == T[milieu]`,  `x` a été trouvé|
+|**Diviser** |Découper le tableau trié `[T[debut], T[debut+1], ..., T[fin]]` en son milieu (`(debut + fin)//2`) pour avoir deux sous-tableaux  `[T[debut], T[debut+1], ..., T[milieu - 1]]` et `[T[milieu + 1], ..., T[fin]]`|
+|**Régner**	 |- si `x < T[milieu]`, chercher `x` dans `[T[debut], T[debut+1], ..., T[milieu - 1]]` <br>- si `x > T[milieu]` , chercher `x` dans `[T[milieu + 1], ..., T[fin]]`<br>- si `x == T[milieu]`,  `x` a été trouvé|
 |**Combiner**| |
 
  Faisons par exemple des recherches dans le tableau **trié** [5, 7, 12, 14, 23, 27, 35, 40 ,41, 45]. 
@@ -89,7 +89,7 @@ Recherche dichotomique de `x` dans un tableau **trié** `T` :
 Voilà ce que l'on peut écrire en mode itératif :
 
 ``` py linenums="1"
-def recherche(x, T) :
+def recherche(x, T):
     debut = 0
     fin = len(T) - 1
     while debut <= fin:      
@@ -109,11 +109,11 @@ def recherche(x, T) :
 
 Ce programme contient une boucle `while`, il faut donc s'assurer qu'elle termine. Ici le variant de boucle est `fin - debut`. A chaque itération de boucle, on voit qu'il y a trois cas :
 
-- `x < T[milieu]` : dans ce cas, `fin` devient `milieu - 1`, donc le variant décroit strictement ; 
-- `x > T[milieu]` : dans ce cas, `debut` devient `milieu + 1`, donc le variant décroit strictement ;
+- `x < T[milieu]` : dans ce cas, `fin` devient `milieu - 1`, donc le variant décroît strictement ; 
+- `x > T[milieu]` : dans ce cas, `debut` devient `milieu + 1`, donc le variant décroît strictement ;
 - `x == T[milieu]` : dans ce cas, l'instruction `return True` sort de la boucle et même de la fonction.
 
-Tant qu'on est dans la boucle, le variant de boucle `fin - debut` décroit strictement, la boucle `while debut <= fin:` terminera donc.
+Tant qu'on est dans la boucle, le variant de boucle `fin - debut` décroît strictement, la boucle `while debut <= fin:` terminera donc.
 
 ## Correction
 
@@ -123,21 +123,36 @@ Au début, l'invariant est vrai, si x est dans la tableau alors il est compris e
 
 Si l'invariant est vrai quand on entre dans la boucle, alors il y a les mêmes trois possibilités :
 
-- `x < T[milieu]` : alors la recherche se poursuit dans `[T[debut], ..., T[milieu-1]]`, l'invariant est encore vrai quand on retourne dans la boucle; 
-- `x > T[milieu]` : alors la recherche se poursuit dans `[T[milieu+1], ..., T[fin]]`, l'invariant est encore vrai quand on retourbne dans la boucle ;  
+- `x < T[milieu]` : alors la recherche se poursuit dans `[T[debut], ..., T[milieu - 1]]`, l'invariant est encore vrai quand on retourne dans la boucle; 
+- `x > T[milieu]` : alors la recherche se poursuit dans `[T[milieu + 1], ..., T[fin]]`, l'invariant est encore vrai quand on retourne dans la boucle ;  
 - `x == T[milieu]` : alors on l'a trouvé.
 
 On a donc bien un invariant de boucle et l'algorithme trouve bien si une valeur est dans un tableau trié ou pas.
 
 ## Coût (complexité)
 
-Étudions la complexité temporelle pour un tableau de taille $n$. A chaque itération de la boucle on divise la taille du tableau par 2, cela revient donc à se demander combien de fois faut-il diviser la taille du tableau par 2 pour obtenir dans le cas le plus défavorable (`x` n'est pas dans `T`) un tableau vide ? Cela revient à trouver le nombre $a$ tel que $2^a  = n$ . La solution est  $a= log_2(n)$.
+
+
+Étudions la complexité temporelle d'une recherche dichotomique sur un tableau de taille $n$.
+
+À chaque itération de la boucle, l'intervalle de recherche est divisé par 2. La question est donc :
+combien de fois faut-il diviser $n$ par 2 avant d'obtenir un intervalle vide, dans le cas le plus
+défavorable (lorsque `x` n'est pas dans `T`) ?
+
+Autrement dit, on cherche l'entier $k$ tel que : $2^k = n$.
+
+La solution est $k = \log_2(n)$, ce qui signifie que l'algorithme effectue au plus $\lfloor \log_2(n) \rfloor + 1$
+itérations. 
+
 
 
 !!! abstract "Cours" 
-    La **complexité en temps de l'algorithme de recherche dichotomique est logarithmique en  $O(log_2(n))$**.
+    La **complexité temporelle de la recherche dichotomique est logarithmique en  $\mathcal{O}(\log_2(n))$**.
 
-On peut bien sûr écrire le même algorithme en mode récursif, en passant en paramètre de la fonction les valeurs de `debut`et `fin`. Les paramètres sont des paramètres facultatifs par mot-clé, ils sont initialisés à `0`et `lent(T)-1` au premier appel.
+
+## Version récursive (hors programme)
+
+Pour finir, on rencontre aussi une version récursive du même algorithme, en passant en paramètre de la fonction les valeurs de `debut`et `fin`. Les paramètres sont des paramètres facultatifs par mot-clé, ils sont initialisés à `0`et `lent(T)-1` au premier appel.
 
 
 ``` py linenums="1"
@@ -148,16 +163,17 @@ def recherche(x, T, debut=None, fin=None):
         debut = 0
         fin = len(T)-1
 
-    if debut > fin:
-        return False
-    else:
+    if  debut <= fin:
         milieu = (debut + fin)//2
         if x < T[milieu]:
-            return recherche(x, T, debut, milieu-1)
+            return recherche(x, T, debut, milieu - 1)
         elif x > T[milieu]:
-            return recherche(x, T, milieu+1, fin)
+            return recherche(x, T, milieu + 1, fin)
         else:
-            return True
+            return True    
+    else:
+        return False
+
 
 assert recherche(35, [5, 7, 12, 14, 23, 27, 35, 40 ,41, 45])
 assert not recherche(34, [5, 7, 12, 14, 23, 27, 35, 40 ,41, 45])
