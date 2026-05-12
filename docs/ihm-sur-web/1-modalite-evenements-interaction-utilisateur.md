@@ -1,9 +1,7 @@
 # Modalités de l’interaction entre l’homme et la machine
 
 
-Corrigés de l'activité faite en classe : 
-
-- [IHM Web (1)](assets/[NSI] IHM Web (1) - Modalité, évènements, boutons et formulaires (correction).pdf).
+Corrigés de l'activité faite en classe :  [IHM Web (1)](assets/[NSI] IHM Web (1) - Modalité, évènements, boutons et formulaires (correction).pdf).
 
 ## Le web
 
@@ -207,13 +205,15 @@ Voici un exemple de code d'un formulaire qui demande le nom et le prénom de l'u
     <input type="button" value="Envoyer" onclick="bonjour(this.form)">
 </form>
 
-Vous pouvez tester le code ici :
+
 <script>
 function bonjour(f) {
     alert('Bonjour ' + f.prenom.value + ' ' + f.nom.value );
 }
 </script>
 ```
+
+Vous pouvez tester le code ici :
 
 <form>
     Nom: <input type="text" name="nom">
