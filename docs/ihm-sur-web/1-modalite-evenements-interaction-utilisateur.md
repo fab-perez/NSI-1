@@ -63,7 +63,7 @@ Rappel des principales balises HTML :
 |`<h1>` à `<h6>`|`</h1>` à `</h6>`|	6 niveaux de titre |
 |`<p>`|`</p>`|Paragraphe|
 |`<ol>`, `<ul>`, `<li>`|`</ol>`, `</ul>`, `</li>`|Liste numérotée, à puce, élément de liste|
-|`<i>`, `<b>`, `<u>`|`</i>`, `</b>`, `</u`>|Texte en italique, gras, souligné|
+|`<i>`, `<b>`, `<u>`|`</i>`, `</b>`, `</u>`|Texte en italique, gras, souligné|
 |`<br>`||	Retour à la ligne|
 |`< !--`|`	-->	`|Commentaire|
 |<`a  href=...>`|`</a>`|Lien hypertexte|
