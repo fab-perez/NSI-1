@@ -156,8 +156,10 @@ nav:
     - Fusionner des tables: donnees-en-tables/5-fusionner-des-tables.md
 
 
-  #- Interactions entre l’homme et la machine sur le Web: 
-  #  - ihm-sur-web/index.md
+  - Interactions entre l'homme et la machine sur le Web: 
+    - ihm-sur-web/index.md
+    - Modalité de l'interaction homme-machine, évènements, boutons et formulaires: ihm-sur-web/1-modalite-evenements-interaction-utilisateur.md
+    - Interaction client-serveur, requête HTTP, méthodes GET et POST: ihm-sur-web/2-client-serveur-http-get-post.md
 
   - Architectures matérielles et systèmes d'exploitation:
     - architecture-materielles-et-systemes-d-exploitation/index.md
