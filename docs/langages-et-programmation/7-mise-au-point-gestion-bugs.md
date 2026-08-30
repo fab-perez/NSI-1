@@ -82,7 +82,7 @@ Pour corriger les bugs et exceptions inévitables lorsqu’on écrit un programm
 Pour utiliser le débogueur de PyScripter :
 
 1.	Créer un point d’arrêt sur une ligne (clic sur le numéro de la ligne), ou plusieurs.
-2.	Lancer le débogage ( ![icon-debug](../assets/pyscripter-debug-icon.png)
+2.	Lancer le débogage ( ![icon-debug](assets/7-pyscripter-debug-icon.png)
     )
  ce qui exécute le script jusqu’au point d’arrêt
 3.	Exécuter le script pas à pas tout en inspectant l’évolution des variables dans les onglets Variables ou Watches (surveillances). Pour ajouter une variable à surveiller, cliquer droit dans la fenêtre Watches et ajouter un nom de la variable ou une expression.
@@ -230,7 +230,7 @@ est_premier(nombre)
 
 !!! note inline end "" 
     Remarquer l'affichage dans la console ou dans la zone de programmation de l'IDE la spécification qui s’affiche après avoir saisi le nom de la fonction, par exemple `parfait(`.
-    ![PyScripter affiche la docstring](../assets/pyscripter-docstring.png )
+    ![PyScripter affiche la docstring](assets/7-pyscripter-docstring.png )
 
 
 ##	Préconditions, postconditions
