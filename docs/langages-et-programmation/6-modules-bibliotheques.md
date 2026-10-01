@@ -165,27 +165,30 @@ et utiliser ensuite la fonction `estprems()`.
 
 
 
-Il est aussi possible d'importer plusieurs fonctions d’un même module séparées par des virgules :
+Il est aussi possible d'importer plusieurs fonctions d’un même module séparées par des virgules, par exemple pour écrire un programme qui réalise des calculs de trigonométrie :
 
 ``` py
-from mesfonctions import est_premier, une_autre_fonction
+from math import sin, cos, tan
 ```
-voire même toutes les fonctions d'un module en tapant « `*` » à la place du nom de la fonction à importer.
+voire même toutes les fonctions d'un module en tapant « `*` » à la place du nom de la fonction à importer : 
 
 ``` py
-from mesfonctions import *
+from math import *
 ```
 
-Mais cette dernière utilisation est vivement déconseillée, hormis dans des cas très particuliers par exemple des programmes très courts, car il peut y avoir des conflits entre des fonctions qui ont le même nom. Pour s’en convaincre, imaginons un programme écrit en utilisant l'instruction `pow(1, 2, 3)` qui fonctionnerait parfaitement jusqu'à ce qu'une modification nécessitant le module `math` ajoute l'instruction `from math import *` en début de programme et génère une erreur inattendue [^6.2] là où il n'y en avait pas.
+Mais cette dernière utilisation est vivement déconseillée, hormis dans des cas très particuliers par exemple des programmes très courts, car il peut y avoir des conflits entre des fonctions qui ont le même nom. Pour s’en convaincre, imaginons un programme écrit en utilisant l'instruction `pow(1, 2, 3)` qui fonctionnerait parfaitement jusqu'à ce qu'une modification nécessitant ce module `math` ajoute l'instruction `from math import *` en début de programme et génère une erreur inattendue [^6.2] là où il n'y en avait pas.
 
 [^6.2]: La fonction standard Python `pow()` prend trois paramètres alors que la fonction `pow()` du module `math` n'en a que deux ! L'import de `from math import *` a importé la seconde fonction probablement à l'insu du programmeur.
 
 
 Python offre des centaines de modules avec des milliers de fonctions déjà programmées. Il y a différents types de modules :
 
-- ceux que l’on peut faire soi-même (comme `mesfonctions`).
+- ceux que l’on peut faire soi-même (comme `mesfonctions` dans l'exemple précédant).
 - ceux qui sont inclus dans la bibliothèque standard de Python comme `random` ou `math`,
-- ceux que l’on peut rajouter en les installant séparément comme `numpy` ou `matplotlib`.
+- ceux que l’on peut rajouter en les installant séparément comme `numpy` ou `matplotlib`[^6.3].
+
+[^6.3] Par exemple pour installer `matplotlib`, on utilise `python -m pip install -U matplotlib`.
+
 
 ##	De l'utilité de la fonction 'main()'
 
@@ -204,10 +207,10 @@ L’interpréteur Python définit la variable `__name__` selon la manière dont 
 
 - en important le code dans un autre script et dans ce cas la fonction `main()` n’est pas appelée.
 
-En bref, la variable `__name__` détermine si le fichier est exécuté directement ou s'il a été importé.[^6.3] 
+En bref, la variable `__name__` détermine si le fichier est exécuté directement ou s'il a été importé.[^6.4] 
 
 
-[^6.3]:
+[^6.4]:
     On peut facilement se convaincre de l’utilité de la fonction `main()` en écrivant le programme qui affiche la décomposition d’un nombre en facteurs premiers sans `main()` dans le fichier « mesfonctions.py » :
     ``` py linenums="1"
     def est_premier(nombre):
@@ -231,9 +234,9 @@ En bref, la variable `__name__` détermine si le fichier est exécuté directeme
 
 ##	Le module math
 
-Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir accès aux fonctions mathématiques, par exemple les fonctions cosinus (`cos`), sinus (`sin`), racine carrée (`sqrt`), le nombre $\pi$ (`pi`), la partie entière (`floor`)[^6.4], etc.
+Le [module `math`](https://docs.python.org/3/library/math.html) permet d’avoir accès aux fonctions mathématiques, par exemple les fonctions cosinus (`cos`), sinus (`sin`), racine carrée (`sqrt`), le nombre $\pi$ (`pi`), la partie entière (`floor`)[^6.5], etc.
 
-[^6.4]:
+[^6.5]:
     Nous avons déjà vu la fonction `int()` qui semble similaire à `math.floor()`, mais attention aux différences entre les deux.
 
     === "Avec un `float` positif"
