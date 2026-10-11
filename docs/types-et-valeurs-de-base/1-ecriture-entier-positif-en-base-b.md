@@ -271,7 +271,7 @@ def bin_to_dec(n):
 	"""
     dec = 0
     for bit in n:
-	    dec = 2*dec + int(bit)
+	    dec = 2 * dec + int(bit)
 	return dec
 ```
 Si `n` est une chaîne de caractères représentant un nombre de 4 bits, au final le premier bit sera bien multiplié par $2^3$, le deuxième bit par  $2^2$, le troisième par $2$ et le dernier sera rajouté tel quel à `dec` sans être multiplié.
@@ -759,7 +759,10 @@ La formule précédente permet d'écrire facilement un nombre hexadécimal en d�
 
 
 
-La traduction en Python est la même que pour le binaire, seulement il faut remplacer les lettres hexadécimales par leur valeur équivalente, par exemple en utilisant un dictionnaire Python.
+La traduction en Python est la même que pour le binaire, seulement il faut utiliser la valeur de chaque chiffre hexadécimal, par exemple en utilisant un dictionnaire Python[^1.4] ou avec la fonction int() en précisant la base 16.
+
+[^1.4]: On crée un dictionnaire `mapping = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15}` qui associe chaque chiffre hexadécimal à la valeur décimale correspondante, puis on utilise  `mapping[chiffre]` dans la fonction.
+
 
 
 ``` py
@@ -767,12 +770,9 @@ def hex_to_dec(n):
     """ str -> int
 	Renvoie l'écriture décimale de la chaine de caractère n représentant un nombre hexadécimal
 	"""
-	valeur_hex = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
-		'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15}
-
-    dec = 0
-    for i in range(len(n)):
-	    dec = dec + valeur_hex[n[-i-1]] * 16**i
+	dec = 0
+    for chiffre in n:
+	    dec = 16 * dec + int(chiffre, base=16)
 	return dec
 ```
 
@@ -791,13 +791,9 @@ En Python, les nombres hexadécimaux s'écrivent avec le préfixe ```0x``` (les 
 
 Comme pour le binaire, on peut écrire un nombre décimal $n$ sous sa forme hexadécimale, $h_{p−1}h_{p−2}...h_2h_1h_0$, par une suite de divisions entières par 16 : 
 
-
-
 - Le reste de la division entière de $n$ par $16$, `n % 16` en Python, renvoie $h_0$. Cela permet d'obtenir le dernier chiffre  de l'écriture hexadécimale de $n$.
 
 - Le quotient de la division entière de $n$ par $16$, `n // 16` en Python, renvoie $h_{p−1}h_{p−2}...h_2h_1$. On remplace $n$ par ce nombre pour trouver les autres chiffres hexadécimaux.
-
-
 
 Il suffit alors de répéter l'opération jusqu'à ce que $n$ soit égal à 0, on aura bien obtenu tous les chiffres de l'écriture hexadécimale de $n$. 
 
@@ -870,20 +866,17 @@ On a obtenu les chiffres hexadécimaux de l'écriture binaire de $45269_{10}$, m
 	
 
 
-
-	
-
 ??? Success "Réponse"
     
-	$142{10} = 8E$
+	$142_{10} = 8E$
 
 	$3121309_{10} = 2FA09D_2$
 
 
-	
 
+La traduction en Python est la même que pour le binaire, seulement il faut écrire les restes en chiffres hexadécimaux, par exemple en utilisant un dictionnaire Python[^1.5] ou une chaîne de caractères `mapping = '0123456789ABCDEF'` permettant de passer d'un nombre décimal au chiffre hexadécimal correspondant. Avec les indices de position dans une chaîne de caractère, `mapping[0]` renvoie `'0'`, `mapping[1]` renvoie `'1'`, ...`mapping[10]` renvoie `'A'`, ... et `mapping[15]` renvoie `'F'`
 
-On peut traduire cet algorithme en Python, par exemple pour écrire une fonction `dec_to_hex` qui renvoie l'écriture hexadécimale d'un nombre entier `n` :
+[^1.5]: On crée un dictionnaire `mapping = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}` qui associe chaque valeur décimale à son chiffre hexadécimal correspondant, puis on utilise  `mapping[n % 16]` dans la fonction.
 
 
 ``` py
@@ -891,22 +884,23 @@ def dec_to_hex(n):
     """ int -> str
 	Renvoie l'écriture hexadécimale de l'entier n 
 	"""
-    chiffre_hex = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9',
-        10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
-
-	if n == 0: 
-		return '0'
-    hex = ''
+	mapping = '0123456789ABCDEF'
+    hexa = ''
     while n > 0:
-		hex = chiffre_hex[n % 16] + hex     
+		hexa = mapping[n % 16] + hexa     
 		n = n // 16
-	return hex
+	return hexa
    
 
 >>> dec_to_hex(45269)
 'B0D5'
 ```
 
+On peut traiter  séparément le cas ou `n` est égal à `0` en ajoutant au début de la fonction :
+``` py
+	if n == 0: 
+		return '0'
+```
 
 En Python, la fonction `hex` permet d'écrire un nombre décimal en binaire :
 
@@ -919,11 +913,21 @@ En Python, la fonction `hex` permet d'écrire un nombre décimal en binaire :
 
 ### Écrire un nombre binaire en hexadécimal et réciproquement
 
-Chaque chiffre hexadécimal correspond à 4 bits en binaire, car $2^4 = 16$, ce qui rend l'hexadécimal particulièrement utile en informatique offrant une écriture plus compacte et des conversions très simples. Avec un peu d'habitude, la conversion de binaire en hexadécimal se fait donc tout simplement en lisant les bits quatre par quatre, et inversement on passe de l'hexadécimal au binaire en remplaçant chaque chiffre hexadécimal par les 4 bits équivalents.
+Dans le système hexadécimal, chaque chiffre correspond exactement à 4 bits en binaire (car \(2^4 = 16\)). Cette propriété[^1.6] le rend particulièrement utile en informatique, puisqu'il offre une écriture plus compacte tout en simplifiant les conversions. Avec un peu d'habitude, la conversion du binaire vers l'hexadécimal se fait simplement en groupant les bits quatre par quatre. Inversement, on passe de l'hexadécimal au binaire en remplaçant chaque chiffre par son équivalent sur 4 bits.
 
+[^1.6]: L'explication mathématique est assez simple :
 
+	- En **binaire**, décaler un nombre de **4 positions vers la gauche** revient à le multiplier par \(2^{4}\), c'est-à-dire par **16**.
 
-Par exemple un octet, sur 8 bits, s'écrit simplement avec 2 chiffres hexadécimaux : On peut écrire directement $E8_{16}$ en binaire, c'est $1110 \space 1000_2$, $1110$ pour E et $1000$ pour 8; et inversement, $110 \space 1101_2$ peut s'écrire $6D$ en hexadécimal, $6$ pour $0110$ et $D$ pour $1101$.
+	- En **hexadécimal**, décaler un nombre de **1 position vers la gauche** revient aussi à le multiplier par **16**.
+
+	Puisqu'avancer d'un chiffre en hexadécimal équivaut mathématiquement à avancer de 4 chiffres en binaire, on peut traduire chaque bloc de 4 bits de manière totalement indépendante du reste du nombre, sans jamais avoir besoin de faire de calcul complexe.
+
+Par exemple, un octet (8 bits) se représente simplement par 2 chiffres hexadécimaux :
+
+- \(E8_{16}\) devient \(1110\ 1000_2\) (soit \(1110\) pour E et \(1000\) pour 8).
+
+- Inversement, \(0110\ 1101_2\) s'écrit \(6D_{16}\) (soit \(6\) pour \(0110\) et \(D\) pour \(1101\)).
 
 
 
