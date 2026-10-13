@@ -58,7 +58,7 @@ Prenons l'exemple du nombre $n = 2083$, le reste de la division entière par 10 
 208
 ```
 
-On a déjà trouvé le dernier chiffre : 3. Continuons avec 208. Le reste de la division entière de 208 par 10 est 8 et le quotient 20.
+On a déjà trouvé le dernier chiffre, celui des unités : 3. Continuons avec 208. Le reste de la division entière de 208 par 10 est 8 et le quotient 20.
 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-2-light-mode.png#only-light){width=25% align=right}
 
@@ -71,7 +71,7 @@ On a déjà trouvé le dernier chiffre : 3. Continuons avec 208. Le reste de la 
 20
 ```
 
-On obtient le 8. Continuons avec 20. Le reste de la division entière de 20 par 10 est 0 et le quotient 2.
+On obtient le chiffre 8. Continuons avec 20. Le reste de la division entière de 20 par 10 est 0 et le quotient 2.
 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-3-light-mode.png#only-light){width=25% align=right}
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-3-dark-mode.png#only-dark){width=25% align=right}
@@ -83,7 +83,7 @@ On obtient le 8. Continuons avec 20. Le reste de la division entière de 20 par 
 2
 ```
 
-On obtient le 0. Continuons avec 2. Le reste de la division entière de 2 par 10 est 2 et le quotient 0.
+On obtient le chiffre 0. Continuons avec 2. Le reste de la division entière de 2 par 10 est 2 et le quotient 0.
 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-4-light-mode.png#only-light){width=25%  align=right}
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-4-dark-mode.png#only-dark){width=25% align=right}
@@ -95,13 +95,13 @@ On obtient le 0. Continuons avec 2. Le reste de la division entière de 2 par 10
 >>> 2 // 10
 0
 ```
-On a obtenu le dernier chiffre 2.  Le quotient est 0, inutile de continuer les divisions, tous les chiffres ont été trouvés.
+On a obtenu le chiffre 2.  Le quotient est 0, inutile de continuer les divisions, tous les chiffres ont été trouvés.
 
 
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-5-light-mode.png#only-light){width=25% align=right}
 ![Divisions euclidiennes successives de 2083 par 10](assets/1-2083-divise-par-10-5-dark-mode.png#only-dark){width=25% align=right}
 
-Noter qu'on a obtenu les chiffres de l'écriture décimale de 2083, mais :warning: de gauche à droite, il faut donc les lire de droite à gauche pour retrouver 2083.
+Noter qu'on a obtenu les chiffres de l'écriture décimale de 2083, mais :warning: en commençant par le dernier chiffre, il faut donc les lire de droite à gauche pour retrouver 2083.
 
 On peut traduire cet algorithme en Python, par exemple pour écrire une fonction `etoile` qui renvoie une chaîne de caractère composées de tous les chiffres d'un nombre entier `n` suivis d'une étoile.
 
@@ -248,7 +248,11 @@ La formule précédente permet d'écrire facilement un nombre binaire en décima
 
 
 
-Traduisons cela en Python. Pour plus de simplicité, on peut parcourir le nombre binaire de gauche à droite.
+![Fonction bin_to_dec avec indices négatifs](assets/1-bin-to-dec-1-light-mode.png#only-light){width=25% align=right}
+![Fonction bin_to_dec avec indices négatifs](assets/1-bin-to-dec-1-dark-mode.png#only-dark){width=25% align=right}
+
+
+Traduisons cela en Python. Pour plus de simplicité, on peut parcourir la chaîne de caractères représentant le nombre binaire de la droite vers la gauche en utilisant des indices négatifs, -1 pour le dernier bit, -2 pour l'avant dernier, etc.. 
 
 
 ``` py
@@ -262,7 +266,11 @@ def bin_to_dec(n):
 	return dec
 ```
 
-La correspondance entre la position d'un bit (`-i-1`) dans la chaîne de caractère `n` et la puissance de 2 associée (`i`) est source d'erreur. Une autre façon de programmer cette même fonction consiste à additionner les bits de droite à gauche avec des multiplications successives par 2 : 
+
+![Fonction bin_to_dec avec multiplications successives par 2](assets/1-bin-to-dec-2-light-mode.png#only-light){width=25% align=right}
+![Fonction bin_to_dec avec multiplications successives par 2](assets/1-bin-to-dec-2-dark-mode.png#only-dark){width=25% align=right}
+
+La correspondance entre la position d'un bit (`-i-1`) dans la chaîne de caractère `n` et la puissance de 2 associée (`i`) est source d'erreur. Une autre façon de programmer cette même fonction consiste à additionner les bits de gauche à droite avec des multiplications successives par 2 : 
 
 ``` py
 def bin_to_dec(n):
@@ -440,7 +448,7 @@ On a déjà trouvé le dernier bit : 1. Continuons avec 6. Le reste de la divisi
 3
 ```
 
-On obtient le bit 0. Continuons avec 3. Le reste de la division entière de 3 par 2 est 1 et le quotient 1.
+On obtient un bit 0. Continuons avec 3. Le reste de la division entière de 3 par 2 est 1 et le quotient 1.
 
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-3-light-mode.png#only-light){width=25%  align=right}
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-3-dark-mode.png#only-dark){width=25% align=right}
@@ -452,7 +460,7 @@ On obtient le bit 0. Continuons avec 3. Le reste de la division entière de 3 pa
 1
 ```
 
-On obtient le bit 1. Continuons avec 1. Le reste de la division entière de 1 par 2 est 1 et le quotient 0.
+On obtient un bit 1. Continuons avec 1. Le reste de la division entière de 1 par 2 est 1 et le quotient 0.
 
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-4-light-mode.png#only-light){width=25% align=right}
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-4-dark-mode.png#only-dark){width=25% align=right}
@@ -464,14 +472,14 @@ On obtient le bit 1. Continuons avec 1. Le reste de la division entière de 1 pa
 >>> 1 // 2
 0
 ```
-On a obtenu le dernier bit, c'est encore 1.  Le quotient est 0, inutile de continuer les divisions, tous les bits ont été trouvés.
+On obtient encore un bit 1.  Le quotient est 0, inutile de continuer les divisions, tous les bits ont été trouvés.
 
 
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-5-light-mode.png#only-light){width=25% align=right}
 ![Divisions euclidiennes successives de 13 par 2](assets/1-13-divise-par-2-5-dark-mode.png#only-dark){width=25% align=right}
 
 
-On a obtenu les bits de l'écriture binaire de $13_{10}$, mais :warning: de gauche à droite, il faut donc les lire de droite à gauche pour trouver $1101_2$.
+On a obtenu les bits de l'écriture binaire de $13_{10}$, mais :warning: en commençant par le dernier bit, il faut les lire de droite à gauche pour trouver $1101_2$.
 
 
 !!! question "Exercice corrigé" 
@@ -740,7 +748,8 @@ $B0D5_{16} = 11 × 16^3 + 0 × 16^2 + 13 × 16^1 + 5 × 16^0 = 45269_{10}$
 
 La formule précédente permet d'écrire facilement un nombre hexadécimal en décimal. Il suffit de multiplier chaque chiffre hexadécimal par la puissance de 16 correspondante et de faire la somme des valeurs obtenues. 
 
-!! question "Exercice corrigé" 
+!!! question "Exercice corrigé" 
+
     Calculer la valeur décimale des nombres hexadécimaux suivants :
 
 	- A4C
