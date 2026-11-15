@@ -647,7 +647,15 @@ Pour accéder à un élément d'un sous-tableau, on utilise un double indiçage 
 8
 ```
 
-Chaque élément peut donc être repéré par deux indices `t[ligne][colonne]` (souvent noté `t[i][j]` ou `t[l][c]`).
+On peut aussi afficher ce même tableau de tableaux sous forme de matrice :
+``` py
+t = [[1, 2, 3],
+     [4, 5, 6],
+	 [7, 8, 9],
+	 [10, 11, 12]]
+```
+Chaque élément peut alors être repéré par deux indices `t[ligne][colonne]` (souvent noté `t[i][j]` ou `t[l][c]`).
+
 
 
 On peut simplement parcourir un tableau de tableaux avec deux boucles imbriquées sur les lignes et les colonnes :
