@@ -99,6 +99,21 @@ Lorsqu'aucun indice n'est indiqué à gauche ou à droite du symbole deux-points
 ['a', 'b', 'c', 'd', 'e', 'f']
 ```
 
+On peut aussi avoir un troisième paramètre dans une tranche pour indiquer un pas (*step*) sur le modèle `t[début:fin:pas]` :
+
+``` py
+>>> t = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> t[1:5:2]
+['b', 'd' ]
+```
+
+... ce qui donne la célèbre formule pour inverser l'ordre des éléments d'un tableau (ou d'un chaîne de caractères) :
+
+``` py
+>>> t[::-1]
+['f', 'e', 'd', 'c', 'b', 'a']
+```
+
 Il est aussi possible de disperser, ou « déballer », un tableau en affectant tous ses éléments dans plusieurs variables :
 
 ``` py
@@ -116,7 +131,7 @@ True
 False
 ```
 
-De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes méthodes pour parcourir un tableau `t` :
+De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes approches pour parcourir un tableau `t` :
 
 
 === "Avec une boucle non bornée `while`"
@@ -164,7 +179,7 @@ De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire 
     ```
 
 
-La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un tableau, par exemple pour rechercher la plus petite ou la plus grande valeur dans ce tableau, mais elle ne permet pas d'accéder à sa position. Pour accéder à la position d'une valeur que l'on recherche, il faut utiliser les deux autres méthodes.
+La boucle `for elem in t` est plus simple pour parcourir les valeurs d'un tableau, par exemple pour rechercher la plus petite ou la plus grande valeur dans ce tableau, mais elle ne permet pas d'accéder à sa position. Pour accéder à la position d'une valeur que l'on recherche, il faut utiliser les deux autres approches.
 
 
 
@@ -314,7 +329,7 @@ Pour trouver un élément dans un tableau :
     2
     ```
 
-Enfin, `dir(list)` et `help(list)` permet d'obtenir la liste des méthodes disponibles.
+Enfin, `dir(list)` et `help(list)` permet d'obtenir la liste des méthodes du type `list`.
 
 
 !!! note "" 
@@ -323,7 +338,7 @@ Enfin, `dir(list)` et `help(list)` permet d'obtenir la liste des méthodes dispo
 
 ##	Conversion de type (cast)
 
-Comme la fonction `tuple()`, la fonction `list()` prend en argument un objet séquentiel (une chaine de caractère par exemple) et renvoie le tableau correspondant :
+Comme la fonction `tuple()`, la fonction `list()` prend en argument une séquence (un tuple ou une chaine de caractère, etc.) et renvoie le tableau correspondant :
 
 
 ``` py
@@ -333,19 +348,19 @@ Comme la fonction `tuple()`, la fonction `list()` prend en argument un objet sé
 [1, 2, 3]
 ```
 
-On peut créer un tableau vide avec la fonction list() sans argument.
+On peut créer un tableau vide avec la fonction `list()` sans argument.
 ``` py
 t_vide = list()  
 ```
 
-Nous avons déjà vu l'utilisation de la fonction `range()` . Lorsqu'elle est utilisée en combinaison avec la fonction list(), on obtient une tableau d'entiers. Par exemple :
+Nous avons déjà vu l'utilisation de la fonction `range()` . Lorsqu'elle est utilisée en combinaison avec la fonction `list()`, on obtient une tableau d'entiers. Par exemple :
 
 ``` py
 >>> list(range(10))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-La méthode `.split()` permet de découper une chaîne en tableau avec un séparateur  : `chaine.split(separateur)`.
+La méthode `split()` permet de découper une chaîne en tableau avec un séparateur  : `chaine.split(separateur)`.
 
 ``` py
 >>> chaine = 'Bonjour tout le monde !'
@@ -353,7 +368,7 @@ La méthode `.split()` permet de découper une chaîne en tableau avec un sépar
 ['Bonjour', 'tout', 'le', 'monde', '!']
 ```
 
-Réciproquement la méthode `.join()` permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: `elementSeparateur.join(t)```.
+Réciproquement la méthode `join()` permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: `elementSeparateur.join(t)```.
 
 ``` py
 >>> t = ['Bonjour', 'tout', 'le', 'monde', '!']
@@ -363,129 +378,198 @@ Réciproquement la méthode `.join()` permet de convertir un tableau en chaîne 
 
 ##	Création par compréhension
 
-Il est possible de créer un tableau par compréhension en utilisant l'une de ces syntaxes :
+On a vu qu'on pouvait créer un tableau en écrivant tous les éléments à la main :
 
--   avec une expression sur les valeurs dans un `ancien_tableau` ou d'une fonction `range` : 
-    ```py 
-    nouveau_tableau = [expression(i) for i in ancien_tableau]
-    nouveau_tableau = [expression(i) for i in range(...)]
-    ```
+``` py
+t = [0, 1, 4, 9, 16]
+```
 
-    Exemple :
+Mais cela devient rapidement impossible quand le tableau est grand ! On peut aussi utiliser une boucle qui ajoute au tableau les éléments l'un après l'autre avec la méthode `append()` :
+
+``` py
+t = []
+for i in range(5):
+    t.append(i ** 2)
+```
+
+Il existe une troisième approche, plus courte et plus lisible : la **compréhension**.
+
+``` py
+t = [i ** 2 for i in range(5)]
+```
+On peut lire ça comme « le tableau des i² pour i allant de 0 à 4 ». C’est très proche de la notation mathématique $\{i^2 \mid i \in [0, 4]\}$.
+
+De façon générale, un tableau par compréhension s'écrit sous la forme : `[ expression  for x in  itérable ]`.
+
+
+Exemples :
+``` py
+[i + 1 for i in range(3)]          # [1, 2, 3]
+[str(i) for i in range(3)]         # ['0', '1', '2']
+[0 for _ in range(4)]              # [0, 0, 0, 0]
+["a" for _ in range(3)]            # ['a', 'a', 'a']
+```
+
+L’itérable peut aussi être un tableau, un tuple, une chaîne de caractères, etc.
+
+``` py
+doubles = [2 * n for n in [5, 6, 8]]        # [10, 12, 16]
+majuscules = [c.upper() for c in "nsi"]     # ['N', 'S', 'I']
+```
+
+On peut ne garder que certains éléments en les filtrant avec une condition `if` placée à la fin, par exemple :
+
+``` py
+# Les nombres pairs de 0 à 9
+[i for i in range(10) if i % 2 == 0]         # [0, 2, 4, 6, 8]
+
+# Les notes supérieures ou égales à 10
+notes = [12, 7, 15, 8, 17]
+[n for n in notes if n >= 10]                # [12, 15, 17]
+
+# Le carré des multiples de 3 inférieurs à 20
+[i ** 2 for i in range(20) if i % 3 == 0]    # [0, 9, 36, 81, 144, 225, 324]
+```
+
+
+Le `if` _placé à la fin_ supprime des éléments. On peut aussi utiliser un `if … else` _placé dans l’expression_ pour transformer chaque élément sans en supprimer. :warning: Attention l'ordre est différent. 
+
+``` py
+notes = [12, 7, 15, 8, 17]
+[n for n in notes if n >= 10]                         # [12, 15, 17]         (3 éléments)
+[n if n >= 10 else 10 for n in notes]                 # [12, 10, 15, 10, 17]  (5 éléments)
+["admis" if n >= 10 else "refusé" for n in notes]     # ['admis', 'refusé', 'admis', 'refusé', 'admis']  (5 éléments)
+```
+
+
+Enfin, on peut parcourir plusieurs itérables avec plusieurs variables :
+
+``` py
+>>> [x + y for x in [1, 2, 3] for y in [10, 20, 30]] 
+[11, 21, 31, 12, 22, 32, 13, 23, 33]
+ >>> [(x, y) for x in range(2) for y in 'ab']
+ [(0, 'a'), (0, 'b'),  (1, 'a'), (1, 'b')]
+```
+
+
+!!! abstract "Cours" 
+    On peut créer un **tableau par compréhension** en utilisant les syntaxes suivantes :
     ``` py
-    >>> carres = []
-    >>> for x in range(10):
-    ...     carres.append(x**2)
-    >>> carres
-    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81
-    ```
-    est equivalent à :
-    ``` py
-    >>> carres = [x**2 for x in range(10)]
-    >>> carres
-    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-    ```
-    ou avec un autre tableau : 
-    ``` py
-    >>> mult_3 = [3 * i for i in [1, 2, 3]]
-    >>> mult_3
-    [3, 6, 9]
-    >>> mult_ = [3 * i for i in [1, 2, 3]]
-    >>> mult_3
-    [3, 6, 9]
-    ```
-
--   avec une fonction : ``` nouveau_tableau = [f(x) for x in ... ] ```
-
-    Exemple : 
-    
-    ``` python
-    >>> def f(x):
-    ...     return 2*x + 3
-    >>> absisses = [1, 2, 3, 5, 10]
-    >>> ordonnees = [f(x) for x in absisses]
-    >>> ordonnees
-    [5, 7, 9, 13, 23]
+    [ expression  for x in  itérable ]
+    [ expression  for x in  itérable  if  condition ]
+    [ expression if condition else autre_expression for x in  itérable ]
+    [ expression(x, y) for x in itérable1 for y in  itérable2]
     ```
 
 
--   avec une condition `if` : ``` nouveau_tableau = [expression(i) for i in ... if condition] ```
 
-    Exemple : 
-    ``` py
-    >>> carre_mult_3 = [x**2 for x in range(10) if x%3 == 0]
-    >>> carre_mult_3
-    [0, 9, 36, 81]
-    ```
-    
--   avec une condition `if...else` : ``` nouveau_tableau = [expression(i) if condition else autre_expression(i) for i in ...] ```
-    (attention l'ordre est différent)
 
-    Exemple :
-    
-    ``` py
-    >>> carre_mult_3_or_0 = [x**2 if x%3 == 0 else 0 for x in range(10)] 
-    >>> carre_mult_3_or_0
-    [0, 0, 0, 9, 0, 0, 36, 0, 0, 81]
+!!! question "Exercice corrigé" 
+	Donner la valeur de chaque expression.
+
+    ```python
+    a = [3 * i for i in range(5)]
+    b = [i for i in range(1, 20) if i % 5 == 0]
+    c = [len(m) for m in ["nsi", "python", "tableau"]]
+    d = ["pair" if i % 2 == 0 else "impair" for i in range(4)]
     ```
 
--   avec plusieurs paramètres  : ``` nouveau_tableau = [expression(i, j) for i in ... for j in ... if condition] ```
+??? Success "Réponse"
 
-    Exemples: 
-    ``` py
-    >>> [x + y for x in [10, 30, 50] for y in [20, 40, 60]]
-    [30, 50, 70, 50, 70, 90, 70, 90, 110]
+    ``` py 
+    a = [0, 3, 6, 9, 12]
+    b = [5, 10, 15]
+    c = [3, 6, 7]
+    d = ['pair', 'impair', 'pair', 'impair']
     ```
+
+
+!!! question "Exercice corrigé" 
+    Réécrire chaque boucle sous forme de compréhension.
+
+    ```python
+    # a)
+    t = []
+    for i in range(10):
+        t.append(i * i + 1)
+
+    # b)
+    t = []
+    for mot in ["chat", "chien", "souris"]:
+        if len(mot) > 4:
+            t.append(mot.upper())
+    ```
+
+??? Success "Réponse"
+
+    ``` py 
+    # a)
+    t = [i * i + 1 for i in range(10)]
+
+    # b)
+    t = [mot.upper() for mot in ["chat", "chien", "souris"] if len(mot) > 4]
+    # ['CHIEN', 'SOURIS']
+    ```
+
  
 ##	Tableaux de tableaux 
 
-Pour finir, il est tout à fait possible de construire des tableaux de p-uplets ou des tableaux de tableaux. Cette fonctionnalité peut parfois être très pratique.
+Il est tout à fait possible de construire un tableau qui contient d'autres tableaux. C'est un **tableau de tableaux**, appelé aussi **tableau à deux dimensions**, ou **matrice**. 
 
 ###	Création d'un tableau de tableaux
 
-On peut créer un tableau qui contient des tableaux :
+Créons d'abord trois tableaux : 
+
 ``` py
->>> t0 = [0, 0, 0]
->>> t1 = [1, 1, 1]
->>> t2 = [2, 2, 2]
->>> t = [t0, t1, t2]
+>>> t_0 = [0, 0, 0, 0]
+>>> t_1 = [1, 1, 1, 1]
+>>> t_2 = [2, 2, 2, 2]
+```
+
+On peut alors créer un tableau qui contient ces trois tableaux :
+``` py
+>>> t = [t_0, t_1, t_2]
 >>> t
-[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+[[0, 0, 0, 0], [1, 1, 1, 1], [2, 2, 2, 2]]
 ```
 
-Il était possible d'écrire directement :
-``` py
->>> t = [[0, 0, 0], [1, 1, 1], [2, 2, 2]]
->>> t
-[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
-```
-
-Il est aussi possible de construire le tableau de tableaux ligne par ligne.
+... mais on pouvait aussi le créer directement :
 
 ``` py
->>> t = []
->>> for i in range(3):
-...     t_i = [i for j in range (3)]
-...     t.append(t_i)
-...     
->>> t
-[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+>>> t = [[0, 0, 0, 0], [1, 1, 1, 1], [2, 2, 2, 2]]
 ```
 
-Ou par compréhension.
+... ou ligne par ligne dans un programme avec des boucles `for` imbriquées :
+
 ``` py
->>> t = [[i for j in range (3)] for i in range(3)]
->>> t
-[[0, 0, 0], [1, 1, 1], [2, 2, 2]]
+t = []
+for i in range(3):
+    t_i = []   # t_i = [i, i, i, i]
+    for j in range(4):
+         t_i.append(i)       
+    t.append(t_i)
 ```
 
-
-par exemple, cette compréhension de tableaux combine les éléments de deux tableaux  s'ils ne sont pas égaux :
+... ou encore en écrivant `t_i` par compréhension :
 ``` py
->>> table = [[x, y] for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
->>> table
-[[1, 3], [1, 4], [2, 3], [2, 1], [2, 4], [3, 1], [3, 4]]
+t = []
+for i in range(3):
+    t_i = [i for j in range(4)]  # t_i = [i, i, i, i]
+    t.append(t_i)
 ```
+
+... voire tout le tableau `t` par compréhension :
+
+``` py
+t = [[i for j in range (4)] for i in range(3)]
+```
+
+La compréhension interne construit une ligne, la compréhension externe construit le tableau de lignes. 
+Par compréhension, les boucles `for j in ...` et `for i in ...` s'écrivent donc à l'inverse du programme avec des boucles imbriquées. :bug: C'est une cause fréquente d'erreur.
+
+:warning: Quand on écrit `[[ ... for j in ...] for i in ...]`, la variable `i` désigne le numéro de ligne (3 lignes dans l'exemple) et `j` le numéro de colonne (4 colonnes dans l'exemple).
+
+
 
 
 !!! question "Exercice corrigé" 
@@ -545,7 +629,7 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments s
 
 
 !!! question "Exercice corrigé" 
-	Écrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  `0 < a < b < c – a` et `b ≠ 2a` puis renvoie le carré magique 3x3 en utilisant la méthode d’Édouard Lucas sous forme d'un tableau de tableaux :
+	Écrire une fonction `lucas(a, b, c)` prenant en paramètres 3 entiers relatifs `a`, `b` et `c` , vérifie par asserts que  `0 < a < b < c – a` et `b ≠ 2a` puis renvoie le carré magique 3x3 en utilisant les formules d’Édouard Lucas sous forme d'un tableau de tableaux :
 
 
     ||||
@@ -726,7 +810,7 @@ Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux no
 
 Pour copier un tableau , il faut créer une **copie explicite** du tableau initial.  Cela peut se faire de plusieurs manières[^2.6] :
 
-[^2.6]: :warning:Aucune de ces approches ne fonctionne pour un tableau de tableaux, il faut par exemple utiliser la méthode `.deepcopy()` du module `copy`. 
+[^2.6]: :warning:Aucune de ces approches ne fonctionne pour un tableau de tableaux, il faut par exemple utiliser la méthode `deepcopy()` du module `copy`. 
 
 - Avec `t[:]` qui créé une copie *des données* du tableau `t` (en opposition à une copie du tableau `t`) :
 ``` py
@@ -739,11 +823,10 @@ Pour copier un tableau , il faut créer une **copie explicite** du tableau initi
 >>> u = list(t)
 ```
 
-- Ou encore utiliser la méthode `.copy()` :
+- Ou encore utiliser la méthode `copy()` :
 ```
 >>> u = t.copy()
 ```
- 
 
 
 ###	Tableau passé en paramètre de fonction
@@ -800,7 +883,7 @@ On peut initialiser un tableau avec une valeur par défaut pour tous les éléme
 [0, 0, 0]
 ```
 
-Mais attention à ne pas utiliser cette méthode pour des tableaux de tableaux :
+Mais attention à ne pas utiliser cette approche pour des tableaux de tableaux :
 ``` py
 >>> t = [[0] * 3] * 3
 >>> t
@@ -817,7 +900,7 @@ De la même façon, on ne doit pas définir une valeur par défaut de paramètre
 [^2.10]: Voir [https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values](https://docs.python.org/fr/3/tutorial/controlflow.html#default-argument-values).
 
 ``` py
-def ajouter(a, L = []):
+def ajouter(a, L=[]):
     L.append(a)
     return L
 ```
