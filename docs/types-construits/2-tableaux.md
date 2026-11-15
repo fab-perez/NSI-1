@@ -514,7 +514,15 @@ Enfin, on peut parcourir plusieurs itérables avec plusieurs variables :
  
 ##	Tableaux de tableaux 
 
-Il est tout à fait possible de construire un tableau qui contient d'autres tableaux. C'est un **tableau de tableaux**, appelé aussi **tableau à deux dimensions**, ou **matrice**. 
+Il est tout à fait possible de construire un tableau qui contient d'autres tableaux. C'est un **tableau de tableaux**. 
+
+Les sous-tableaux contenus dans le tableau de tableaux peuvent avoir des tailles différentes (par exemple, une première ligne de 2 éléments et une deuxième de 5). 
+
+Dans le cas où tous sous-tableaux ont exactement le même nombre d'éléments, on parle aussi 
+de **tableau à deux dimensions**, de **grille**, ou encore de **matrice** en mathématique. 
+
+
+
 
 ###	Création d'un tableau de tableaux
 
@@ -539,7 +547,7 @@ On peut alors créer un tableau qui contient ces trois tableaux :
 >>> t = [[0, 0, 0, 0], [1, 1, 1, 1], [2, 2, 2, 2]]
 ```
 
-... ou ligne par ligne dans un programme avec des boucles `for` imbriquées :
+... ou en créant les sous-tableaux les uns après les autres dans un programme avec des boucles `for` imbriquées :
 
 ``` py
 t = []
@@ -564,68 +572,8 @@ for i in range(3):
 t = [[i for j in range (4)] for i in range(3)]
 ```
 
-La compréhension interne construit une ligne, la compréhension externe construit le tableau de lignes. 
+La compréhension interne construit les sous-tableaux, la compréhension externe construit le tableau de tableaux. 
 Par compréhension, les boucles `for j in ...` et `for i in ...` s'écrivent donc à l'inverse du programme avec des boucles imbriquées. :bug: C'est une cause fréquente d'erreur.
-
-:warning: Quand on écrit `[[ ... for j in ...] for i in ...]`, la variable `i` désigne le numéro de ligne (3 lignes dans l'exemple) et `j` le numéro de colonne (4 colonnes dans l'exemple).
-
-
-
-
-!!! question "Exercice corrigé" 
-	Construire le tableau de tableaux suivant par compréhension :
-
-    ``` py
-    [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-     [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-     [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-     [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
-     [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
-     [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
-     [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
-     [70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
-     [80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
-     [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]] 
-    ```
-
-
-??? Success "Réponse"
-
-    ``` py 
-    T = []
-    for i in range(10):
-        T.append([j + 10*i for j in range(10)])
-    ```
-    ou alors
-    ``` py 
-    T = [[j + 10*i for j in range (10)] for i in range(10)]
-    ```
-
-
-###	Accès aux éléments
-
-Pour accéder à un élément du tableau de tableaux, on utilise l'indiçage habituel :
-
-``` py
->>> t = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
->>> t[1]
-[4, 5, 6]
-```
-
-Pour accéder à un élément d'un sous-tableau, on utilise un double indiçage :
-```
->>> t[1][2]
-6
->>> t[2][1]
-8
-```
-
-Dans le cas d'un tableau de tableaux avec des sous-tableaux de même taille, on parle parfois de matrice. 
-
-
-
-On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments sont donc identifiés par `t[no de ligne][no de colonne]`.
-
 
 
 !!! question "Exercice corrigé" 
@@ -655,6 +603,81 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments s
                 [c - b, c + a + b, c - a]]
     ```
 
+!!! question "Exercice corrigé" 
+	Construire le tableau de tableaux suivant par compréhension :
+
+    ``` py
+    [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+     [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+     [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+     [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+     [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+     [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
+     [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
+     [70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+     [80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
+     [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]] 
+    ```
+
+
+??? Success "Réponse"
+
+
+    ``` py 
+    t = [[j + 10*i for j in range (10)] for i in range(10)]
+    ```
+
+
+###	Accès aux éléments
+
+Pour accéder à un élément du tableau de tableaux, on utilise l'indiçage habituel :
+
+``` py
+>>> t = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+>>> t[1]
+[4, 5, 6]
+```
+
+Pour accéder à un élément d'un sous-tableau, on utilise un double indiçage :
+
+``` py
+>>> t[1][2]
+6
+>>> t[2][1]
+8
+```
+
+Chaque élément peut donc être repéré par deux indices `t[ligne][colonne]` (souvent noté `t[i][j]` ou `t[l][c]`).
+
+
+On peut simplement parcourir un tableau de tableaux avec deux boucles imbriquées sur les lignes et les colonnes :
+
+``` py
+for i in range(len(t)):   # Boucle sur les lignes : i = 0, 1... len(t)-1
+    for j in range(len(t[i])):   # Boucle sur les colonnes : j = 0, 1,..., len(t[i]) - 1
+	    print(t[i][j])
+```
+
+
+Note : Dans le case d'un tableau de tableaux avec des lignes de longueurs différentes, la boucle interne doit s'adapter 
+à la taille de la ligne en cours. En écrivant `len(t[i])` comme ci-dessus, le code fonctionne aussi bien 
+pour une grille régulière que pour un tableau irrégulier.
+
+
+:warning: Quand on crée un tableau de tableaux par compréhension, on écrit `[[ ... for j in ...] for i in ...]`, 
+la variable `i` désigne le numéro de ligne (4 lignes dans l'exemple) et `j` le numéro de colonne (3 colonnes dans l'exemple).
+
+Pour créer le tableau 4 x 3 de l'exemple, on écrit donc:
+
+``` py
+t = [[ 3*i + j + 1 for j in range(3)] for i in range(4)]
+```
+
+
+
+
+
+
 
 
 !!! question "Exercice corrigé" 
@@ -668,30 +691,31 @@ On dit que cette matrice a 2 dimensions et est de taille 3 x 3. Les éléments s
         Renvoie True si m est un carré magique, False sinon
         '''
 
-        taille=len(m)
+		
+        taille = len(m)
 
-        # calcule la somme sur la diagonale
-        diag = 0
-        for line in range(taille):
-            diag = diag + m[line][line]
+        # On calcule la somme sur la diagonale
+        somme_diag = 0
+        for i in range(taille):
+            somme_diag = somme_diag + m[i][i]
 
-        # vérifie les lignes
-        for line in range(taille):
+        # On vérifie les lignes
+        for i in range(taille):
             somme = 0
-            for col in range(taille):
-                somme = somme + m[line][col]
-            if somme != diag:
+            for j in range(taille):
+                somme = somme + m[i][j]
+            if somme != somme_diag:
                 return False
 
-        #vérifie les colonnes
-        for col in range(taille):
+        # On vérifie les colonnes
+        for j in range(taille):
             somme = 0
-            for line in range(taille):
-                somme = somme + m[line][col]
-            if somme !=diag:
+            for i in range(taille):
+                somme = somme + m[i][j]
+            if somme != somme_diag:
                 return False
 
-        # si on arrive ici, c'est que m est un carre est magique
+        # Si on arrive ici, c'est que m est un carre est magique
         return True
 
 
