@@ -16,7 +16,7 @@ Mais ce n'est pas le cas de tous les langages informatiques. Dans la plupart des
 
 L'utilisation d'une taille fixe pose le problème du **dépassement** (*overflow*). Lorsqu'une opération arithmétique (comme l'addition ou la multiplication) produit un résultat qui sort de la plage de valeurs permise par le nombre de bits alloués, il y a dépassement. 
 
-Prenons l'exemple d'une addition de deux entiers naturels stockés sur 8 bits : $150+150=300$. L'ordinateur effectue une somme en binaire équivalente, ​1001 0110 + 1001 0110, mais le résultat comporte 9 bits à cause de la retenue : 1 0010 1100. Cela dépasse la capacité de stockage de 8 bits, le premier bit est alors ignoré et l'ordinateur ne garde que les 8 derniers bits, 0010 1100, c'est-à-dire 44 ce qui est bien sûr faux ! 
+Prenons l'exemple d'une addition de deux entiers naturels stockés sur 8 bits : $150+150=300$. L'ordinateur effectue une somme en binaire équivalente, 1001 0110 + 1001 0110, mais le résultat comporte 9 bits à cause de la retenue : 1 0010 1100. Cela dépasse la capacité de stockage de 8 bits, le premier bit est alors ignoré et l'ordinateur ne garde que les 8 derniers bits, 0010 1100, c'est-à-dire 44 ce qui est bien sûr faux ! 
 
 Même si certains langages informatiques offrent des types d'entiers *Big Integer* équivalents à `int` en Python qui offrent l'avantage d'éliminer les erreurs de dépassement, les opérations sont plus lentes que les opérations natives d'un processeur sur des entiers tailles fixes et il n'est pas toujours intéressant de les utiliser. Il est souvent préférable de comprendre le nombre de bits utilisés et de choisir un type d'entier adapté à la taille des nombres manipulés.
 
@@ -189,6 +189,22 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permet d'ajouter $2^n$ à une valeur avec la technique du complément à 2.
 
 
+Observons d'abord ce qu'il se passe quand on inverse les bits d'un nombre binaire. C'est le « **complément à 1** »:
+
+Exemples:
+
+- $5_{10} = 0101$ sur 4 bits. Son inversé est donc $1010$. Ajoutons ces deux nombres : $0101 + 1010= 1111$, c'est-à-dire $-1_{10}$.
+- $42_{10} = 0010 1010$ sur 8 bits. Son inversé est donc $1101 0101$. Ajoutons ces deux nombres : $0010 1010 + 1101 0101= 1111 1111$, c'est-à-dire $-1_{10}$.
+
+Constate facilement qu'un nombre plus son complément à 1 est toujours égal à $111...111_2$ c'est à dire $-1_{10}$.
+
+
+On en déduit que quand on ajoute 1 au complément à 1 d'un nombre $x$ en binaire, on obtient l'opposé de $x$, c'est-à-dire $-x$. C'est le le « **complément à 2** » !
+
+- $5_{10} = 0101$ sur 4 bits. Son inversé est donc $1010$. Quand on lui ajoutons lui 1, on obtient $1011$. $0101 + 1011= 0000$ sur 4 bits (le 1 au début disparait), $1011$ est bien l'opposé de 5, c'est à dire $-5_{10}$
+- $42_{10}= 0010 1010$ sur 8 bits. Son inversé est donc $1101 0101$. Quand on lui ajoutons lui 1, on obtient $1101 0101$. $0010 1010 + 1101 0101= 0000 0000$ sur 8 bits (le 1 au début disparait), $1011$ est bien l'opposé de 42, c'est à dire $-42_{10}$
+
+
 !!! abstract "Cours"
 
     
@@ -208,7 +224,7 @@ Par exemple, pour coder -5 sur 4 bits :
 2. Complément à 1 → 1010
 3. +1 → 1011
 
-Donc -26 est encodé par 1011 sur 4 bits.
+Donc -5 est encodé par 1011 sur 4 bits.
 
 Noter que sur 8 bits (1 octet) on obtient  :
 
