@@ -189,20 +189,17 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permet d'ajouter $2^n$ à une valeur avec la technique du complément à 2.
 
 
-Observons d'abord ce qu'il se passe quand on inverse les bits d'un nombre binaire. C'est le « **complément à 1** »:
+Observons d'abord ce qu'il se passe quand on inverse les bits d'un nombre binaire. C'est le « **complément à 1** » :
 
-Exemples:
+- $5_{10}$ s'écrit 0101 en binaire sur 4 bits. Son complément à 1 est donc 1010. Ajoutons ces deux nombres : 0101 + 1010 = 1111, c'est-à-dire $-1_{10}$.
+- $42_{10}$ s'écrit 0010 1010 en binaire  sur 8 bits. Son complément à 1 est donc 1101 0101. Ajoutons ces deux nombres : 0010 1010 + 1101 0101 = 1111 1111, c'est-à-dire $-1_{10}$.
 
-- $5_{10} = 0101$ sur 4 bits. Son inversé est donc $1010$. Ajoutons ces deux nombres : $0101 + 1010= 1111$, c'est-à-dire $-1_{10}$.
-- $42_{10} = 0010 1010$ sur 8 bits. Son inversé est donc $1101 0101$. Ajoutons ces deux nombres : $0010 1010 + 1101 0101= 1111 1111$, c'est-à-dire $-1_{10}$.
+On constate facilement que s'il on ajoute à un nombre binaire son complément à 1, le résultat est toujours un nombre binaire composé uniquement de 1 : $111...111_2$, autrement dit à $-1_{10}$.
 
-Constate facilement qu'un nombre plus son complément à 1 est toujours égal à $111...111_2$ c'est à dire $-1_{10}$.
+Donc, si on ajoute 1 au complément à 1 d'un nombre binaire $x$, on obtient l'opposé de $x$, c'est-à-dire $-x$. C'est le « **complément à 2** » !
 
-
-On en déduit que quand on ajoute 1 au complément à 1 d'un nombre $x$ en binaire, on obtient l'opposé de $x$, c'est-à-dire $-x$. C'est le le « **complément à 2** » !
-
-- $5_{10} = 0101$ sur 4 bits. Son inversé est donc $1010$. Quand on lui ajoutons lui 1, on obtient $1011$. $0101 + 1011= 0000$ sur 4 bits (le 1 au début disparait), $1011$ est bien l'opposé de 5, c'est à dire $-5_{10}$
-- $42_{10}= 0010 1010$ sur 8 bits. Son inversé est donc $1101 0101$. Quand on lui ajoutons lui 1, on obtient $1101 0101$. $0010 1010 + 1101 0101= 0000 0000$ sur 8 bits (le 1 au début disparait), $1011$ est bien l'opposé de 42, c'est à dire $-42_{10}$
+- $5_{10}$  s'écrit 0101 en binaire sur 4 bits. Son complément à 1 est 1010,  son complément à 2 est 1011. On peut vérifier que 0101 + 1011 = 0000 sur 4 bits (le 1 au début disparait), 1011 est bien l'opposé de 5, c'est à dire $-5_{10}$
+- $42_{10}$ s'écrit 0010 1010 en binaire  sur 8 bits. Son complément à 1 est 1101 0101, son complément à 2 est 1101 0110. On peut vérifier que 0010 1010 + 1101 0110 = 0000 0000 sur 8 bits (le 1 au début disparait), 1101 0110 est bien l'opposé de 42, c'est à dire $-42_{10}$.
 
 
 !!! abstract "Cours"
