@@ -161,7 +161,7 @@ Ce qui pouvait aussi s'écrire sans parenthèse :
 >>> a, b, c, d = 1, 2.5, 'hello', True
 ```
 
-Le mot clé `in` permet de vérifier si un élément `elem` est présent dans un p-uplet `p`,  `elem in p` renvoie un booléen :
+Le mot-clé `in` permet de vérifier si un élément `elem` est présent dans un p-uplet `p`,  `elem in p` renvoie un booléen :
 
 ``` py
 >>> p = (1, 2.5, 'hello', True)
@@ -171,7 +171,7 @@ True
 False
 ```
 
-Le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer sur») toutes les valeurs d'un p-uplet. 
+Le mot-clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer sur») toutes les valeurs d'un p-uplet. 
 
 Comparons différentes façons pour parcourir un p-uplet `p` :
 
@@ -208,7 +208,7 @@ Comparons différentes façons pour parcourir un p-uplet `p` :
     ```
 
 
-=== "Avec une boucle bornée `for` et le mot clé `in`"
+=== "Avec une boucle bornée `for` et le mot-clé `in`"
 
     `for elem in t` permet d'accéder directement à toutes les valeurs du p-uplet les unes après les autres, sans connaître leurs positions.
 

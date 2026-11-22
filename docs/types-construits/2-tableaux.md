@@ -3,11 +3,11 @@
 !!! abstract "Cours" 
     Un **tableau** est une suite **ordonnée** d'éléments qui peuvent être **modifiés** (muables[^2.1]).
 
-    En Python les tableaux sont du type `list`[^2.2].
+    En Python, les tableaux sont du type `list`. Par abus de langage, on francise le terme en « **liste** » pour désigner un tableau Python.[^2.2]
 
 [^2.1]: ou *mutable* en anglais.
 
-[^2.2]: Par abus de langage on francise parfois le terme en « liste » pour désigner un tableau.
+[^2.2]: On étudie en classe de terminale la différence entre une liste et un tableau en informatique.
 
 
 ##	Création
@@ -107,7 +107,7 @@ On peut aussi avoir un troisième paramètre dans une tranche pour indiquer un p
 ['b', 'd' ]
 ```
 
-... ce qui donne la célèbre formule pour inverser l'ordre des éléments d'un tableau (ou d'un chaîne de caractères) :
+... ce qui donne la célèbre formule pour inverser l'ordre des éléments d'un tableau (ou d'une chaîne de caractères) :
 
 ``` py
 >>> t[::-1]
@@ -121,7 +121,7 @@ Il est aussi possible de disperser, ou « déballer », un tableau en affectant 
 >>> a
 1
 ```
-Le mot clé `in` permet de vérifier si un élément `elem` est présent dans un tableau `t`,  `elem in t` renvoie un booléen :
+Le mot-clé `in` permet de vérifier si un élément `elem` est présent dans un tableau `t`,  `elem in t` renvoie un booléen :
 
 ``` py
 >>> t = [1, 3 ,8]
@@ -131,7 +131,7 @@ True
 False
 ```
 
-De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes approches pour parcourir un tableau `t` :
+De façon très similaire aux p-uplets, le mot-clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les valeurs d'un tableau. Comparons à nouveau différentes approches pour parcourir un tableau `t` :
 
 
 === "Avec une boucle non bornée `while`"
@@ -164,7 +164,7 @@ De façon très similaire aux p-uplets, le mot clé `in` permet aussi d'écrire 
     ```
 
 
-=== "Avec une boucle bornée `for` et le mot clé `in`"
+=== "Avec une boucle bornée `for` et le mot-clé `in`"
 
     `for elem in t` permet d'accéder directement à toutes les valeurs du tableau les unes après les autres, sans connaître leurs positions.
 
@@ -243,7 +243,7 @@ Il existe plusieurs méthodes pour ajouter des éléments à un tableau `t`:
    [1, 2, 3, 4, 5, 6]
    ```
 
-   :warning: Ne pas confondre `append` (ajouter un élément) et `extend` (étendre un tableau). Si on utilise `append` avec un tableau on obtient un tableau de tableaux !
+   :warning: Ne pas confondre `.append()` (ajouter un élément) et `.extend()` (étendre un tableau). Si on utilise `append` avec un tableau on obtient un tableau de tableaux !
    ``` py
    >>> t.append([4, 5, 6])
    >>> t
@@ -333,7 +333,7 @@ Enfin, `dir(list)` et `help(list)` permet d'obtenir la liste des méthodes du ty
 
 
 !!! note "" 
-    Les méthodes telles que `insert()`, `remove()` ou `sort()`, qui ne font que modifier le tableau, ne renvoient pas de valeur (ou plutôt elles renvoient `None`).
+    Les méthodes telles que `.append()`, `.insert()`, `.remove()` ou `.sort()`, qui ne font que modifier le tableau, renvoient `None`. :bug: Attention de ne pas écrire `t = t.append('x')`, sinon `t` prend la valeur `None` !
 
 
 ##	Conversion de type (cast)
@@ -360,7 +360,7 @@ Nous avons déjà vu l'utilisation de la fonction `range()` . Lorsqu'elle est ut
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-La méthode `split()` permet de découper une chaîne en tableau avec un séparateur  : `chaine.split(separateur)`.
+La méthode `.split()` permet de découper une chaîne en tableau avec un séparateur  : `chaine.split(separateur)`.
 
 ``` py
 >>> chaine = 'Bonjour tout le monde !'
@@ -368,7 +368,7 @@ La méthode `split()` permet de découper une chaîne en tableau avec un sépara
 ['Bonjour', 'tout', 'le', 'monde', '!']
 ```
 
-Réciproquement la méthode `join()` permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: `elementSeparateur.join(t)```.
+Réciproquement la méthode `.join()` permet de convertir un tableau en chaîne de caractères en insérant le paramètre entre les éléments du tableau: `separateur.join(t)```.
 
 ``` py
 >>> t = ['Bonjour', 'tout', 'le', 'monde', '!']
@@ -384,7 +384,7 @@ On a vu qu'on pouvait créer un tableau en écrivant tous les éléments à la m
 t = [0, 1, 4, 9, 16]
 ```
 
-Mais cela devient rapidement impossible quand le tableau est grand ! On peut aussi utiliser une boucle qui ajoute au tableau les éléments l'un après l'autre avec la méthode `append()` :
+Mais cela devient rapidement impossible quand le tableau est grand ! On peut aussi utiliser une boucle qui ajoute au tableau les éléments l'un après l'autre avec la méthode `.append()` :
 
 ``` py
 t = []
@@ -569,7 +569,7 @@ for i in range(3):
 ... voire tout le tableau `t` par compréhension :
 
 ``` py
-t = [[i for j in range (4)] for i in range(3)]
+t = [[i for j in range(4)] for i in range(3)]
 ```
 
 La compréhension interne construit les sous-tableaux, la compréhension externe construit le tableau de tableaux. 
@@ -667,9 +667,7 @@ for i in range(len(t)):   # Boucle sur les lignes : i = 0, 1... len(t)-1
 ```
 
 
-Note : Dans le case d'un tableau de tableaux avec des lignes de longueurs différentes, la boucle interne doit s'adapter 
-à la taille de la ligne en cours. En écrivant `len(t[i])` comme ci-dessus, le code fonctionne aussi bien 
-pour une grille régulière que pour un tableau irrégulier.
+Note : Dans le case d'un tableau de tableaux avec des lignes de longueurs différentes, la boucle interne doit s'adapter à la taille de la ligne en cours. En écrivant `len(t[i])` comme ci-dessus, le code fonctionne aussi bien pour une grille régulière que pour un tableau irrégulier.
 
 
 :warning: Quand on crée un tableau de tableaux par compréhension, on écrit `[[ ... for j in ...] for i in ...]`, 
@@ -684,6 +682,15 @@ t = [[ 3*i + j + 1 for j in range(3)] for i in range(4)]
 
 
 
+
+Quand on n'a pas besoin des indices de ligne et de colonne, on peut aussi tout simplement parcourir le
+tableau de tableaux par valeurs :
+
+``` py
+for ligne in t:   # Boucle sur les lignes (sous-tableaux) de t
+    for elem in ligne:   # Boucle sur les éléments de la ligne
+	    print(elem)
+```
 
 
 
@@ -842,7 +849,7 @@ Les deux variables `t` et `u` ne sont pas deux objets différents mais **deux no
 
 Pour copier un tableau , il faut créer une **copie explicite** du tableau initial.  Cela peut se faire de plusieurs manières[^2.6] :
 
-[^2.6]: :warning:Aucune de ces approches ne fonctionne pour un tableau de tableaux, il faut par exemple utiliser la méthode `deepcopy()` du module `copy`. 
+[^2.6]: :warning:Aucune de ces approches ne fonctionne pour un tableau de tableaux, il faut par exemple utiliser la méthode `.deepcopy()` du module `copy`. 
 
 - Avec `t[:]` qui créé une copie *des données* du tableau `t` (en opposition à une copie du tableau `t`) :
 ``` py
@@ -855,7 +862,7 @@ Pour copier un tableau , il faut créer une **copie explicite** du tableau initi
 >>> u = list(t)
 ```
 
-- Ou encore utiliser la méthode `copy()` :
+- Ou encore utiliser la méthode `.copy()` :
 ```
 >>> u = t.copy()
 ```

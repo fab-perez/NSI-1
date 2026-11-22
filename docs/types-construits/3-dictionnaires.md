@@ -10,9 +10,9 @@
 
 ##	Création
 
-Un dictionnaire est déclaré par une série d'éléments sous la forme de couples **clé:  valeur** séparés par des virgules, et le tout **encadré par des accolades** “{ }”.
+Un dictionnaire est déclaré par une série d'éléments sous la forme de couples **clé:  valeur** séparés par des virgules et le tout **encadré par des accolades** “{ }”.
 
-Créons un dictionnaire de noms de pays et des capitales associées :
+Créons un dictionnaire de noms de pays et de leurs capitales :
 
 !!! note inline end "" 
     Un dictionnaire est affiché sans ordre particulier.
@@ -27,7 +27,7 @@ Créons un dictionnaire de noms de pays et des capitales associées :
 
 
 
-Ici les clés de `d` sont `'Espagne'`, `'France'` et `'Italie'` et  les valeurs associées sont `'Madrid'`, `'Paris'` et `'Rome'`.
+Ici, les clés de `d` sont `'Espagne'`, `'France'` et `'Italie'` et leurs valeurs associées sont `'Madrid'`, `'Paris'` et `'Rome'`.
 
 Il est aussi possible de créer un dictionnaire vide avec les accolades `{}` :
 ``` py
@@ -43,7 +43,7 @@ Les clés peuvent être de type `int`, `float`, `str`, `tuple` :
 ``` py
 grille = {(0, 0): 'X', (0, 1): 'O', (1, 0): 'O', (1, 1): 'X'}
 ```
-… mais pas de type `list` ou d'un autre type muable :
+… mais pas de type `list` (ni d'un autre type muable) :
 
 ``` py
 >>> grille = {[0, 0]: 'X', [0, 1]: 'O', [1, 0]: 'O', [1, 1]: 'X'}
@@ -55,7 +55,7 @@ grille = {(0, 0): 'X', (0, 1): 'O', (1, 0): 'O', (1, 1): 'X'}
 
 ## Fonction `len()`
 
-La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nombre de couple clé :valeur qu'il contient.
+La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nombre d'éléments (des couples de clé : valeur) qu'il contient.
 
 ``` py
 >>> d = {"France": "Paris", "Italie": "Rome", "Espagne": "Madrid"}
@@ -64,10 +64,9 @@ La fonction `len()` renvoie la longueur d'un dictionnaire, c'est-à-dire le nomb
 ```
 
 
-
 ##	Accès aux éléments
 
-Les éléments d'un dictionnaire n'ont **pas d'ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de leur position (comme avec les p-uplets, tableaux et chaines de caractères). 
+Les éléments d'un dictionnaire n'ont **pas d'ordre particulier**, il n'est donc pas possible d'accéder aux éléments par un indice de position. 
 
 ``` py
 >>> d[1]
@@ -76,14 +75,14 @@ Traceback (most recent call last):
 KeyError: 1
 ```
 
-Pour accéder une valeur, on utilise sa clé :
+On accède à une valeur uniquement en utilisant sa clé :
 
 ``` py
 >>> d['Italie]
 'Rome'
 ```
 
-Si la clé n'existe pas, on obtient un message d'erreur :
+et si la clé n'existe pas, on obtient un message d'erreur :
 
 ``` py
 >>> d['Allemagne']
@@ -92,7 +91,7 @@ Traceback (most recent call last):
 KeyError: 'Allemagne'
 ```
 
-La méthode `.get()` retourne la valeur associée à une clé, sans lever d'erreur si la clé n'existe pas (renvoie `None` ou une valeur par défaut) :
+La méthode `.get()` retourne aussi la valeur associée à une clé, mais sans lever d'erreur si la clé n'existe pas (renvoie `None` ou une valeur par défaut) :
 
 ``` py
 >>> d.get('Italie')
@@ -103,8 +102,7 @@ La méthode `.get()` retourne la valeur associée à une clé, sans lever d'erre
 ```
 
 
-Le mot clé `in` permet de vérifier si une clé est présente dans un dictionnaire, il renvoie un booléen :
-
+Le mot-clé `in` permet de vérifier si une **clé** est présente dans un dictionnaire, il renvoie un booléen :
 
 ``` py
 >>> "France" in d
@@ -120,7 +118,7 @@ False
 False
 ```
 
-Le mot clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») toutes les clés d'un dictionnaire :
+Le mot-clé `in` permet aussi d'écrire une boucle pour parcourir (ou «itérer») les **clés** d'un dictionnaire :
 
 ``` py
 >>> for cle in d:
@@ -130,8 +128,7 @@ La capitale de Italie est Rome
 La capitale de Espagne est Madrid
 ```
 
-Bien sûr, on ne peut pas parcourir le dictionnaire par indice, les éléments du dictionnaire n'ont pas d'ordre.
-
+Bien sûr, on ne peut pas parcourir le dictionnaire par indice car les éléments du dictionnaire n'ont pas d'ordre.
 
 
 ##	Modifier un dictionnaire
@@ -149,8 +146,8 @@ d["Italie"] = "Roma"
 Dans un tableau, on ne peut pas modifier la valeur d'un indice qui n'existe pas :
 
 ``` py
->>> pays = ['Madrid', 'Paris', 'Roma']
->>> pays[3] = 'Berlin'
+>>> t = ['Madrid', 'Paris', 'Roma']
+>>> t[3] = 'Berlin'
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list assignment index out of range
@@ -165,23 +162,22 @@ Mais dans un dictionnaire, si on essaie de modifier la valeur d'une clé qui n'e
 ```
 
 
-
 ###	Supprimer des éléments
 
-Comme pour les tableaux, il est possible d'utiliser les méthodes `pop()` et `clear()` (mais pas `remove()`) pour supprimer des couples de clé:valeur :
+Comme pour les tableaux, il est possible d'utiliser les méthodes `.pop()` et `.clear()` (mais pas `.remove()`) pour supprimer des couples de clé:valeur :
 
 
-- `d.pop(cle)`[^3.3] supprime du dictionnaire la clé `cle` et renvoie la valeur associée :	
+- `d.pop(cle)` supprime du dictionnaire la clé `cle` et renvoie la valeur associée[^3.2] :	
     ``` py
     >>> d.pop('France')
     'Paris'
     ```
 
-[^3.3]: La clé dans `d.pop(cle)` est obligatoire, alors que pour les tableaux elle est facultative (par défaut le dernier élément est supprimé)
+[^3.2]: La clé dans `d.pop(cle)` est obligatoire, alors que pour les tableaux elle est facultative (par défaut le dernier élément est supprimé)
 
 - `d.clear()` supprime tous les éléments du dictionnaire :
 
-Comme pour les tableaux, le mot clé `del` permet aussi de supprimer un élément d'un dictionnaire :
+Le mot-clé `del` permet aussi de supprimer un élément d'un dictionnaire :
 
 ``` py
 >>> del d['France']
@@ -189,13 +185,13 @@ Comme pour les tableaux, le mot clé `del` permet aussi de supprimer un élémen
 {'Espagne': 'Madrid', 'Italie': 'Roma'} 
 ```
 
-Ou encore le dictionnaire entier avec l'instruction `del d`, alors la variable `d` n'existe plus.
+Ou encore tout le dictionnaire en entier avec l'instruction `del d`, alors la variable `d` n'existe plus.
 
 
 
 ##	Création par compréhension
 
-Comme pour les tableaux, on peut aussi créer un dictionnaire par compréhension :
+On peut créer un dictionnaire par compréhension, par exemple :
 
 ``` py
 >>> d = {i: i**2 for i in range(10)}
@@ -203,10 +199,7 @@ Comme pour les tableaux, on peut aussi créer un dictionnaire par compréhension
 {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81} 
 ```
 
-``
-On peut lire ça comme « le dictionnaire des i: i² pour i allant de 0 à 9 ».
-
-De façon générale, un tableau par compréhension s'écrit sous la forme : `[cle(x): expression(x)  for x in  itérable ]`.
+De façon générale, un dictionnaire par compréhension s'écrit sous la forme : `[cle(x): expression(x)  for x in  itérable ]`.
 
 Exemples :
 ``` py
@@ -243,14 +236,14 @@ dict_keys(['France', 'Italie', 'Espagne'])
 dict_values(['Paris', 'Rome', 'Madrid'])
 ```
 
-La méthode `.items()` renvoie tous les couples clé-valeur d'un dictionnaire :
+La méthode `.items()` renvoie tous les p-uplets (clé, valeur) d'un dictionnaire :
 
 ``` py
 >>> d.items()
 dict_items([('France', 'Paris'), ('Italie', 'Rome'), ('Espagne', 'Madrid')])
 ```
 
-Les mentions `dict_keys`, `dict_values`, `dict_items` indiquent que nous avons affaire à des objets un peu particuliers. Pour les utiliser il faut par exemple les transformer en tableaux avec la fonction `list()` :
+Ces méthodes renvoient des types de données un peu particulier, `dict_keys`, `dict_values`, `dict_items`. On peut les parcourir directement avec une boucle `for` ou les convertir en tableaux avec la fonction `list()` :
 
 ``` py
 >>> list(d.values())
@@ -259,7 +252,7 @@ Les mentions `dict_keys`, `dict_values`, `dict_items` indiquent que nous avons a
 [('France', 'Paris'), ('Italie', 'Rome'), ('Espagne', 'Madrid')]
 ```
 
-Ces méthodes `.keys()`, `.values()` et `.items()` permettent d'autres façons de parcourir un dictionnaire :
+Ces méthodes `.keys()`, `.values()` et `.items()` permettent de parcourir facilement les clés, les valeurs ou les couples (clé, valeur) d'un dictionnaire :
 
 === "Avec une boucle `for` et `.keys()`"
     ``` py
@@ -282,42 +275,43 @@ Ces méthodes `.keys()`, `.values()` et `.items()` permettent d'autres façons d
         print(cle) 
         print(val) 
     ```
-    Parcours les clés et valeurs du dictionnaire en « déballant » les p-uplets de `d.items()` dans deux variables `cle`, `val`.
+    Parcours les clés et valeurs du dictionnaire en « déballant » les p-uplets de `d.items()` dans deux variables `cle` et `val`.
 
 
 ##	Dictionnaires muables
 
-Les dictionnaires, comme les tableaux, sont de type muables, donc les mêmes limites s'appliquent.
+Les dictionnaires (comme les tableaux) sont de type muables, donc les mêmes limites s'appliquent.
 
 ###	Copie de dictionnaire
 
 ``` py
->>> d1 = {'one':1, 'two':2, 'three':3}
+>>> d1 = {1: 'un', 2: 'deux', 3: 'trois'}
 >>> d2 = d1
->>> d2['three'] = 4
->>> d1 
-{'one':1, 'two':2, 'three':4}
+>>> d2[4] = 'quatre'
+>>> d2
+{1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre'}
 ```
-Comme avec les tableaux, `d1` a aussi été modifiée quand on a modifié `d2` ! Les deux variables `d1` et `d2` sont en fait deux noms qui font référence vers le même objet[^3.4]. 
 
-[^3.4]: Pour s'en convaincre on peut vérifier les adresses des variables avec id() :
+`d1` a aussi été modifiée quand on a modifié `d2` ! Les deux variables `d1` et `d2` sont en fait deux noms qui font référence vers le même objet[^3.3]. 
+
+[^3.3]: Pour s'en convaincre on peut vérifier les adresses des variables avec id() :
     ``` 
     >>> id(d1)						>>> id(d2)
     2156942732160						2156942732160
     ```
 
 
-Pour copier un dictionnaire , il faut créer une copie explicite du dictionnaire initial[^3.5] :
+Pour copier un dictionnaire , il faut créer une copie explicite du dictionnaire initial[^3.4] :
 
 
-[^3.5]: :warning:Aucune de ces approches ne fonctionne si le dictionnaire contient lui-même des valeurs de type muable (`list` ou `dict`), il faut à nouveau utiliser la méthode `.deepcopy()` du module `copy`. 
+[^3.4]: :warning:Aucune de ces approches ne fonctionne si le dictionnaire contient lui-même des valeurs de type muable (`list` ou `dict`), il faut utiliser la méthode `.deepcopy()` du module `copy`. 
 
 - 	Avec  la fonction `dict(itérable)` qui renvoie un dictionnaire formé des éléments de la variable itérable :
     ``` py
     >>> d2 = dict(d)
     ```
 
--   Ou encore utiliser la méthode `.copy()` :
+-   En utilisant la méthode `.copy()` :
     ``` py
     >>> d2 = d1.copy()
     ```
@@ -333,16 +327,16 @@ Illustrons cela par deux fonctions `f(x)` et `g(x)` qui modifient simplement la 
 === "avec une variable de type "immuable""
     ``` py
     def f(x):
-        x = 2	
+        x = 4	
     ```
 
 === "avec une variable de type "muable""
     ``` py
     def g(x):
-        x['four']=4
+        x[4] = 'quatre'
     ```
 
-Appelons ces fonctions en passant des variables `a` et `d` en paramètre [^3.5]: 
+Appelons ces fonctions en passant des variables `a` et `d` en paramètre[^3.5] : 
 [^3.5]: Les variables `a` et `d` pourraient s'appeler aussi `x` ce qui donnerait le même résultat.
 
 === "avec une variable de type "immuable""
@@ -356,10 +350,10 @@ Appelons ces fonctions en passant des variables `a` et `d` en paramètre [^3.5]:
     
 === "avec une variable de type "muable""
     ``` py
-    >>> d = {'one':1, 'two':2, 'three':3}
-    >>> h(d)
+    >>> d = {1: 'un', 2: 'deux', 3: 'trois'}
+    >>> g(d)
     >>> d
-    {'four': 4, 'one': 1, 'three': 3, 'two': 2}
+    {1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre'}
     ```
 
     La valeur de `d` a été modifiée par la fonction `g` !
@@ -367,42 +361,80 @@ Appelons ces fonctions en passant des variables `a` et `d` en paramètre [^3.5]:
 
 ##	Conversion de type (cast)
 
-La fonction `dict(tableau de p-uplets)` transforme un tableau de tuples (comme obtenu par `items()`) en dictionnaire :
+La fonction `dict()` transforme un tableau de p-uplets (clé, valeur) en dictionnaire :
 
 ``` py
->>> dict([("one" , 1), ("two" , 2), ("three" , 3)])
-{'one': 1, 'three': 3, 'two': 2}
+>>> dict([(1, "un"), (2, "deux"), (3, "trois")])
+{1: 'un', 2: 'deux', 3: 'trois'}
 ```
 
 ##	Un exemple d'utilisation de dictionnaire : les p-uplets nommés
 
-Un **p-uplet nommé** est un p-uplet, dont les éléments sont appelés via un descripteur au lieu d'un indice. L'intérêt est d'améliorer la lisibilité du code pour réduire les risques d'erreurs. Le type des p-uplets nommés n'existe pas nativement dans Python[^3.6]: , on peut alors utiliser des dictionnaires. Voici un exemple pour montrer la syntaxe :
+Un **p-uplet nommé** est un p-uplet, dont les éléments sont appelés via un descripteur au lieu d'un indice. 
+
+L'intérêt est d'améliorer la lisibilité du code pour réduire les risques d'erreurs. Le type des p-uplets nommés n'existe pas nativement dans Python[^3.6]: on peut alors utiliser des dictionnaires. 
 
 [^3.6]: Il existe un module Python `collection.namedtuple` mais le programme invite à utiliser des dictionnaires dans ce cas.
 
+Prenons par exemple les notes de trois élèves enregistrées dans deux tableaux. Le code pour obtenir la note d'un élève n'est pas très lisible :
+
 ``` py
->>> monsieurX = {"nom": "X", "́prenom": "Monsieur", "age": 47}
->>> monsieurX["age"]
-47
+>>> eleves = ['Alice', 'Bob', 'Charlie']
+>>> notes = [15, 12, 17]
+>>> notes[1]    # note de Bob
+12
 ```
+Utiliser un p-uplet nommé à la place améliore grandement la lisibilité du code :
+
+``` py
+>>> notes = {'Alice': 15, 'Bob': 12, 'Charlie': 17}
+>>>notes['Bob']
+12
+```
+
 
 ##	Dictionnaire de tableaux, dictionnaires de dictionnaires
 
-De même qu'on peut utiliser des tableaux de tableaux, on peut utiliser des dictionnaires de tuples ou de tableaux :
+On peut créer des **dictionnaires de p-uplets** et des **dictionnaires de tableaux**. C'est ce qyu'on trouve dans les fichiers JSON (avec des clé en chaines de caractères)[^3.7] :
+
+
+[^3.7]: JavaScript Object Notation, dérivé du langage JavaScript.
 
 ``` py
->>> traduction = {"un": ["one", "eins"], "deux": ["two", "zwei"], "trois": ["three", "drei"]}
->>> traduction["un"]
-['one', 'eins']
->>> traduction["un"][0]
-'one'
+>>> notes = {
+     'Alice': [15, 14, 18],
+     'Bob': [12, 16, 13],
+     'Charlie': [17, 15, 16]
+}
+>>> notes['Alice']
+[15, 14, 18]
+>>> notes['Alice'][1]
+14
 ```
 
-ou même des dictionnaires de dictionnaires :
+... voire même un **dictionnaire de dictionnaires** :
+
 ``` py
->>> traduction = {"un": {"Ang":"one", "All":"eins"}, "deux": {"Ang": "two", "All":"zwei"}, "trois": {"Ang":"three", "All":"drei"}}
->>> traduction["un"]
-{'Ang': 'one', 'All': 'eins'}
->>> traduction["un"]["Ang"]
-'one'
+>>> notes = {
+     'Alice': {'maths': 15, 'physique': 14, 'NSI': 18},
+     'Bob': {'maths': 12, 'physique': 16, 'NSI': 13},
+     'Charlie': {'maths': 17, 'physique': 15, 'NSI': 16}
+}
+>>> notes['Bob']
+{'maths': 12, 'physique': 16, 'NSI': 13}
+>>> notes['Bob']['NSI']
+13
 ```
+
+
+Une troisième option est le** tableau de dictionnaires**. C'est le format typique des API, il préserve l'ordre, et autorise des doublons de « clé » : 
+
+``` py
+>>> pays = [{"nom": "France", "capitale": "Paris", "population": 68000000},
+            {"nom": "Italie",  "capitale": "Rome", "population": 58900000},
+            {"nom": "Espagne",  "capitale": "Madrid", "population": 49600000}
+]
+>>> pays[0]["capitale]
+'Paris'
+```
+
