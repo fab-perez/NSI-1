@@ -4,7 +4,7 @@
 
 
 !!! abstract "Cours" 
-    En informatique, une **valeur booléenne** (du nom du mathématicien George Boole) ne peut prendre que deux états :
+    En informatique, une **valeur booléenne** ou **booléen**(du nom du mathématicien George Boole) ne peut prendre que deux états :
 	
     - **Faux** (False) ou **0**
     - **Vrai** (True) ou **1**
@@ -25,11 +25,11 @@ En Python, ces deux valeurs s'écrivent `False` et `True` (avec une majuscule et
 ### NOT
 
 !!! abstract "Cours" 
-    L'opérateur **NOT**, « NON » en français, inverse la valeur booléenne. 
+    L'opérateur **NOT**, « non » en français, inverse la valeur booléenne. 
 
     Table de vérité :
 
-    | A | NOT A |
+    | A | not A |
     |---|-------|
     | 0 | 1     |
     | 1 | 0     |
@@ -47,7 +47,7 @@ True
 ### AND
 
 !!! abstract "Cours" 
-    L'opérateur **AND**, « ET » en français,  renvoie 1 (Vrai) uniquement si **toutes** les valeurs sont à 1.
+    L'opérateur **AND**, « et » en français,  est vrai (égal à 1) uniquement si **toutes** les valeurs sont à vraies (ou égales à 1).
 
     Table de vérité :
 
@@ -76,7 +76,7 @@ False
 
 
 !!! abstract "Cours" 
-    L'opérateur **OR**, « OU » en français,  renvoie 1 (Vrai) si **au moins une** des valeurs est à 1.
+    L'opérateur **OR**, « OU » en français,  est vrai (égal à 1) si **au moins une** des valeurs est vraie (ou égales à 1).
 
     Table de vérité :
 
@@ -102,7 +102,7 @@ True
 ### XOR
 
 !!! abstract "Cours" 
-    L'opérateur **XOR** (*eXclusive OR*), « OU exclusif » en français,  renvoie 1 uniquement si les deux valeurs sont **différentes**.
+    L'opérateur **XOR** (*eXclusive OR*), « OU exclusif » en français,  est vrai (égal à 1) uniquement si les deux valeurs sont **différentes**.
 
     Table de vérité :
 
@@ -170,7 +170,7 @@ Prenons l'exemple de l'expression booléenne A AND (B OR C). On commence par lis
 | 1 | 1 | 0 | 1      | 1              |
 | 1 | 1 | 1 | 1      | 1              |
 
----
+
 
 ### Application : l'addition binaire
 
@@ -200,6 +200,43 @@ Par exemple calculons, avec la retenue, l'addition: 1 + 1 + 1 (A = B = C<sub>in<
 - S = 1 XOR 1 XOR 1 = 0 XOR 1 = 1
 - C<sub>out</sub> = (1 AND 1) OR (1 AND 0) = 1 OR 0 = 1
 - Résultat : 11 en binaire (3 en décimal) 
+
+
+### Lois de Morgan
+
+Augustus De Morgan (1806-1871) est un mathématicien britannique, contemporain de George Boole. Ses deux lois relient les opérateurs et, ou et non. Elles permettent de transformer ou de simplifier une expression booléenne.
+
+!!! abstract "Cours" 
+	Loi 1 : la négation d'un ET est le OU des négations : 	`not (a and b)` est équivalent à  `(not a) or (not b)`
+
+	Loi 2 : la négation d'un OU est le ET des négations : 	`not (a or b)` est équivalent à  `(not a) and (not b)`
+
+Autrement dit, quand on « fait entrer » le `not` dans la parenthèse, on inverse chaque terme et on change l'opérateur.
+
+On peut facilement démontrer ces deux lois par les tables de vérité :
+
+Loi 1 :
+|a	|b	|a and b	|not (a and b)	|not a	|not b	|(not a) or (not b)|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|0 |0  |0  |1  |1  |1  |1  |
+|0 |1  |0  |1  |1  |0  |1  |
+|1 |0  |0  |1  |0  |1  |1  |
+|1 |1  |1  |0  |0  |0  |0  |
+
+
+Loi 2 :
+|a	|b	|a or b	|not (a or b)	|not a	|not b	|(not a) and (not b)|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|0 |0  |0  |1  |1  |1  |1  |
+|0 |1  |1  |0  |1  |0  |0  |
+|1 |0  |1  |0  |0  |1  |0  |
+|1 |1  |1  |0  |0  |0  |0  |
+
+
+
+
+
+
 
 ### Priorités et caractère séquentiel des opérateurs
 
