@@ -36,6 +36,8 @@ On peut écrire les 2 nombres 0 et 1 avec 1 seul bit, 4 nombres allant de 0 à 3
 
 	Avec $n$ bits, on peut écrire $2^n$ nombres entiers naturels (**positifs**), allant de $0$ à $2^n-1$.
 
+    PAr exemple, sur 1 octet (8 bits), on peut donc écrire 256 ($=2^8$) nombres positifs, allant de 0 à 255 ($=2^8-1$).
+
 !!! question "Exercice corrigé" 
 
 	1. En C, le type `unsigned short int` permet de stocker les entiers positifs sur 2 octets (16 bits). Quel est le plus grand nombre entier accepté ?
@@ -120,13 +122,13 @@ L'idée du complément à 2 et de partager la plage de nombres binaires disponib
     |0   |1   |2   |3   |4   |5   |6   |7   |
 
 
--   La seconde moitié, contenant les $2^{n-1}$ nombres binaires suivants, permet de représenter les entiers positifs entre $-2^{n-1}$ et $-1$. Par exemple sur 4 bits :
+-   La seconde moitié, contenant les $2^{n-1}$ nombres binaires suivants, permet de représenter les entiers négatifs compris entre $-2^{n-1}$ et $-1$. Par exemple sur 4 bits :
 
     |1000|1001|1010|1011|1100|1101|1110|1111|
     |:-: |:-: |:-: |:-: |:-: |:-: |:-: |:-: |
     |-8  |-7  |-6  |-5  |-4  |-3  |-2  |-1  |
 
-Autrement dit, on convertit en binaire un nombre négatif en ajoutant $2^n$ à sa valeur[^2.1]. Par exemple sur 4 bits :
+Autrement dit, on code un nombre négatif en binaire en ajoutant $2^n$ à sa valeur[^2.1]. Par exemple sur 4 bits :
 
 - $-1$ est représenté par $-1 + 16 = 15$ en binaire : 1111.
 - $-2$ est représenté par $-2 + 16 = 14$ en binaire : 1110.
@@ -135,9 +137,9 @@ Autrement dit, on convertit en binaire un nombre négatif en ajoutant $2^n$ à s
 
 [^2.1]: D'où le nom « complément à 2 puissance n », tronqué en « complément à 2 ».
 
-On observe immédiatement un premier avantage du complément à 2 : il permet d'identifier directement le signe d'un nombre juste avec son premier bit :  $0$ pour les nombres négatifs, $1$ pour les positifs. Ce premier bit est appelé « **bit de signe** ».
+On observe immédiatement un premier avantage du complément à 2 : il permet d'identifier directement le signe d'un nombre juste avec son premier bit :  $0$ pour les nombres positifs, $1$ pour les négatifs. Ce premier bit est appelé « **bit de signe** ».
 
-On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés par le complement à deux vont de $−2^{n-1}$ à $2^{n-1} - 1$.
+On peut toujours représenter $2^n$ nombres entiers relatifs sur n bits avec le complément à 2, mais à la différence des nombres positifs, les entiers représentés vont de $−2^{n-1}$ à $2^{n-1} - 1$.
 
 Voici les plages d'entiers que l'on peut représenter avec les nombres de bits les plus courants :
 
@@ -186,7 +188,7 @@ Par exemple, calculons −5 + 2 comme le ferait un ordinateur sur 4 bits :
 
 ### Encoder un entier négatif sur n bits
 
-Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits qui permet d'ajouter $2^n$ à une valeur avec la technique du complément à 2.
+Pour encoder un nombre négatif sur n bits, la machine effectue un calcul directement au niveau des bits pour ajouter $2^n$ à une valeur en complément à 2.
 
 
 Observons d'abord ce qu'il se passe quand on inverse les bits d'un nombre binaire. C'est le « **complément à 1** » :
@@ -194,12 +196,15 @@ Observons d'abord ce qu'il se passe quand on inverse les bits d'un nombre binair
 - $5_{10}$ s'écrit 0101 en binaire sur 4 bits. Son complément à 1 est donc 1010. Ajoutons ces deux nombres : 0101 + 1010 = 1111, c'est-à-dire $-1_{10}$.
 - $42_{10}$ s'écrit 0010 1010 en binaire  sur 8 bits. Son complément à 1 est donc 1101 0101. Ajoutons ces deux nombres : 0010 1010 + 1101 0101 = 1111 1111, c'est-à-dire $-1_{10}$.
 
-On constate facilement que s'il on ajoute à un nombre binaire son complément à 1, le résultat est toujours un nombre binaire composé uniquement de 1 : $111...111_2$, autrement dit à $-1_{10}$.
+On constate facilement qu'en ajoutant un nombre binaire à son complément à 1, le résultat est toujours un nombre binaire composé uniquement de 1 : $111...111_2$, autrement dit à $-1_{10}$.
 
-Donc, si on ajoute 1 au complément à 1 d'un nombre binaire $x$, on obtient l'opposé de $x$, c'est-à-dire $-x$. C'est le « **complément à 2** » !
+On en déduit, qu'en ajoutant 1 au complément à 1 d'un nombre binaire $x$ on obtient l'opposé de $x$, c'est-à-dire $-x$. C'est le « **complément à 2** »[^2.2] !
 
-- $5_{10}$  s'écrit 0101 en binaire sur 4 bits. Son complément à 1 est 1010,  son complément à 2 est 1011. On peut vérifier que 0101 + 1011 = 0000 sur 4 bits (le 1 au début disparait), 1011 est bien l'opposé de 5, c'est à dire $-5_{10}$
-- $42_{10}$ s'écrit 0010 1010 en binaire  sur 8 bits. Son complément à 1 est 1101 0101, son complément à 2 est 1101 0110. On peut vérifier que 0010 1010 + 1101 0110 = 0000 0000 sur 8 bits (le 1 au début disparait), 1101 0110 est bien l'opposé de 42, c'est à dire $-42_{10}$.
+- $5_{10}$  s'écrit 0101 en binaire sur 4 bits. Son complément à 1 est 1010,  son complément à 2 est 1011. On peut vérifier que 0101 + 1011 = 0000 sur 4 bits (le 1 au début disparait), 1011 est bien l'opposé de 5, c'est-àdire $-5_{10}$
+- $42_{10}$ s'écrit 0010 1010 en binaire  sur 8 bits. Son complément à 1 est 1101 0101, son complément à 2 est 1101 0110. On peut vérifier que 0010 1010 + 1101 0110 = 0000 0000 sur 8 bits (le 1 au début disparait), 1101 0110 est bien l'opposé de 42, c'est-à-dire $-42_{10}$.
+
+[^2.2]: Il y a une exception avec le nombre le plus négatif représentable (par exemple -8 sur 4 bits : 1000). Si on fait son complément à 2, on obtient... 1000 à nouveau, car il n'y a pas de +8 représentable en complément à 2 sur 4 bits (le maximum est +7).
+
 
 
 !!! abstract "Cours"
@@ -219,7 +224,7 @@ Par exemple, pour coder -5 sur 4 bits :
 
 1. 5 en binaire → 0101
 2. Complément à 1 → 1010
-3. +1 → 1011
+3. Ajouter 1 → 1011
 
 Donc -5 est encodé par 1011 sur 4 bits.
 
@@ -227,7 +232,7 @@ Noter que sur 8 bits (1 octet) on obtient  :
 
 1. 5 en binaire → 0000 0101
 2. Complément à 1 → 1111 1010
-3. +1 → 1111 1011
+3. Ajouter 1 → 1111 1011
 
 
 !!! question "Exercice corrigé" 
@@ -258,17 +263,16 @@ Noter que sur 8 bits (1 octet) on obtient  :
     
 
 
-### Décoder un nombre négatif sur n bits
+### Décoder un nombre négatif binaire sur n bits
 
-On constate que si on fait deux fois le complément à 2 d'un nombre, on retrouve le nombre original ! 
+On constate que quand on calcule deux fois le complément à 2 d'un nombre, on retrouve le nombre d'origine ! 
 
-Prenons par exemple le nombre 5 sur 4 bits, il s'écrit 0101. Si on effectue un premier complément à 2, on obtient 1011, c'est à dire -5. Effectuons un second complément à 2, on obtient à nouveau 0101, c'est à dire le nombre de départ, 5.
+Prenons par exemple le nombre 5 sur 4 bits, il s'écrit 0101. Si on calcule son premier complément à 2, on obtient 1011, c'est-à-dire -5. Calculons à nouveau son complément à 2, on obtient à nouveau 0101, c'est-à-dire le nombre de départ : 5.
 
-Mathématiquement c'est logique puisque le complément à 2 est une opération qui calcule l'opposé d'un nombre : si x est un nombre, son complément à 2 donne -x [^2.2]. 
+Mathématiquement, c'est logique puisque le complément à 2 est une opération qui calcule l'opposé d'un nombre : le complément à 2 d'un nombre x est -x, le complément à 2 de -x est -(-x), c'est le nombre x de départ. 
 
-[^2.2]: Il y a une exception avec le nombre le plus négatif représentable (par exemple -8 sur 4 bits : 1000). Si on fait son complément à 2, on obtient... 1000 à nouveau, car il n'y a pas de +8 représentable en complément à 2 sur 4 bits (le maximum est +7).
 
-Pour décoder un nombre négatif, il suffit donc d'appliquer une nouvelle fois le complément à 2.
+Pour décoder un nombre négatif binaire, il suffit donc d'appliquer une nouvelle fois le complément à 2.
 
 
 !!! abstract "Cours"
