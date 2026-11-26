@@ -216,6 +216,7 @@ Autrement dit, quand on « fait entrer » le `not` dans la parenthèse, on inver
 On peut facilement démontrer ces deux lois par les tables de vérité :
 
 Loi 1 :
+
 |a	|b	|a and b	|not (a and b)	|not a	|not b	|(not a) or (not b)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0 |0  |0  |1  |1  |1  |1  |
@@ -225,6 +226,7 @@ Loi 1 :
 
 
 Loi 2 :
+
 |a	|b	|a or b	|not (a or b)	|not a	|not b	|(not a) and (not b)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0 |0  |0  |1  |1  |1  |1  |
